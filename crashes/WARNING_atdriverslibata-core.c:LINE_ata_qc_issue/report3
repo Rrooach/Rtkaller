@@ -1,0 +1,34 @@
+------------[ cut here ]------------
+WARNING: at drivers/ata/libata-core.c:5108 ata_qc_issue+0x425/0x450()
+Modules linked in:
+CPU: 1 PID: 15554 Comm: syz-executor.1 Not tainted 3.10.108-rt123+ #14
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+ 0000000000000009 ffff880128a49a68 ffffffff81991617 ffff880128a49aa0
+ ffffffff8103b93c ffff88013a780158 0000000000000001 ffff88013a780000
+ 0000000000000002 ffff88013a781c80 ffff880128a49ab0 ffffffff8103ba15
+Call Trace:
+ [<ffffffff81991617>] dump_stack+0x1e/0x20
+ [<ffffffff8103b93c>] warn_slowpath_common+0x5c/0x80
+ [<ffffffff8103ba15>] warn_slowpath_null+0x15/0x20
+ [<ffffffff8152c895>] ata_qc_issue+0x425/0x450
+ [<ffffffff81533ddc>] ata_scsi_translate+0xbc/0x1c0
+ [<ffffffff8153767c>] ata_scsi_queuecmd+0xcc/0x340
+ [<ffffffff815031ed>] scsi_dispatch_cmd+0xed/0x460
+ [<ffffffff8150b0d2>] scsi_request_fn+0x3e2/0x5e0
+ [<ffffffff813243b0>] __blk_run_queue+0x40/0x50
+ [<ffffffff8132385a>] __elv_add_request+0x13a/0x370
+ [<ffffffff81330754>] blk_execute_rq_nowait+0x84/0x130
+ [<ffffffff81330884>] blk_execute_rq+0x84/0xf0
+ [<ffffffff81337350>] sg_scsi_ioctl+0x2f0/0x430
+ [<ffffffff81526af6>] sg_ioctl+0xfb6/0x1050
+ [<ffffffff81173ccc>] do_vfs_ioctl+0x35c/0x640
+ [<ffffffff81174047>] SyS_ioctl+0x97/0xd0
+ [<ffffffff819a0df2>] system_call_fastpath+0x16/0x1b
+---[ end trace 4665fcd826fd3cde ]---
+ata1.00: exception Emask 0x0 SAct 0x0 SErr 0x0 action 0x0
+ata1.00: failed command: READ DMA
+ata1.00: cmd c8/00:00:00:00:00/00:00:00:00:00/e0 tag 0
+         res 50/00:00:f0:52:38/00:00:00:00:00/e0 Emask 0x40 (internal error)
+ata1.00: status: { DRDY }
+ata1.00: configured for MWDMA1
+ata1: EH complete

@@ -1,0 +1,2 @@
+000: traps: syz-executor.1[2386] general protection fault ip:4686e5 sp:7f3563abcc58 error:0 in syz-executor.1[401000+c2000]
+000: syz-executor.1 (294) used greatest stack depth: 24816 bytes left

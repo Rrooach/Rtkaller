@@ -1,0 +1,37 @@
+Warning: Permanently added '[localhost]:38637' (ECDSA) to the list of known hosts.
+executing program
+syzkaller login: [    9.765137] netlink: 72 bytes leftover after parsing attributes in process `syz-executor583'.
+[    9.766300] ------------[ cut here ]------------
+[    9.766917] WARNING: at net/xfrm/xfrm_user.c:2079 xfrm_add_acquire+0xb3/0x310()
+[    9.767837] BAD policy passed
+[    9.768236] Modules linked in:
+[    9.768751] CPU: 1 PID: 1533 Comm: syz-executor583 Not tainted 3.10.108-rt123+ #14
+[    9.769856] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[    9.771031]  0000000000000009 ffff88013a1058c8 ffffffff81991617 ffff88013a105900
+[    9.772032]  ffffffff8103b93c ffff88013a2d9c00 ffff88013a2da000 ffff88013a1059d8
+[    9.773062]  ffffffff81e85d00 0000000000000000 ffff88013a105960 ffffffff8103b9a7
+[    9.774069] Call Trace:
+[    9.774427]  [<ffffffff81991617>] dump_stack+0x1e/0x20
+[    9.775087]  [<ffffffff8103b93c>] warn_slowpath_common+0x5c/0x80
+[    9.775854]  [<ffffffff8103b9a7>] warn_slowpath_fmt+0x47/0x50
+[    9.776628]  [<ffffffff81086e59>] ? get_seconds+0x9/0x20
+[    9.777275]  [<ffffffff81848fa3>] xfrm_add_acquire+0xb3/0x310
+[    9.778027]  [<ffffffff8136d57a>] ? nla_parse+0x13a/0x190
+[    9.778731]  [<ffffffff81848ef0>] ? xfrm_policy_construct+0x2e0/0x2e0
+[    9.779518]  [<ffffffff81848bdf>] xfrm_user_rcv_msg+0x18f/0x1c0
+[    9.780267]  [<ffffffff81848a50>] ? xfrm_send_mapping+0x1e0/0x1e0
+[    9.781064]  [<ffffffff8179c8e6>] netlink_rcv_skb+0x116/0x150
+[    9.781766]  [<ffffffff81846d18>] xfrm_netlink_rcv+0x28/0x40
+[    9.782503]  [<ffffffff8179c18f>] netlink_unicast+0x1af/0x260
+[    9.783240]  [<ffffffff8179c576>] netlink_sendmsg+0x336/0x430
+[    9.783939]  [<ffffffff81749b74>] sock_sendmsg+0xa4/0xf0
+[    9.784643]  [<ffffffff811057ae>] ? __alloc_pages_nodemask+0x13e/0xa60
+[    9.785491]  [<ffffffff8174a098>] ___sys_sendmsg+0x458/0x470
+[    9.786189]  [<ffffffff811372cb>] ? page_add_new_anon_rmap+0xab/0x150
+[    9.786994]  [<ffffffff8112bf41>] ? handle_mm_fault+0x161/0x240
+[    9.787755]  [<ffffffff8199bf24>] ? __do_page_fault+0x224/0x540
+[    9.788524]  [<ffffffff8117fdec>] ? fget_light+0xec/0x140
+[    9.789171]  [<ffffffff8174ae9d>] __sys_sendmsg+0x4d/0xa0
+[    9.789867]  [<ffffffff8174af1d>] SyS_sendmsg+0x2d/0x50
+[    9.790550]  [<ffffffff819a0df2>] system_call_fastpath+0x16/0x1b
+[    9.791273] ---[ end trace 1bbdf76dfbb7f128 ]---

@@ -1,0 +1,61 @@
+Warning: Permanently added '[localhost]:18068' (ECDSA) to the list of known hosts.
+2021/06/04 18:43:14 fuzzer started
+2021/06/04 18:43:14 dialing manager at 10.0.2.10:33313
+2021/06/04 18:43:15 syscalls: 1841
+2021/06/04 18:43:15 code coverage: enabled
+2021/06/04 18:43:15 comparison tracing: CONFIG_KCOV_ENABLE_COMPARISONS is not enabled
+2021/06/04 18:43:15 extra coverage: enabled
+2021/06/04 18:43:15 setuid sandbox: enabled
+2021/06/04 18:43:15 namespace sandbox: /proc/self/ns/user does not exist
+2021/06/04 18:43:15 Android sandbox: /sys/fs/selinux/policy can't be opened (open /sys/fs/selinux/policy: invalid argument)
+2021/06/04 18:43:15 fault injection: CONFIG_FAULT_INJECTION is not enabled
+2021/06/04 18:43:15 leak checking: CONFIG_DEBUG_KMEMLEAK is not enabled
+2021/06/04 18:43:15 net packet injection: /dev/net/tun does not exist
+2021/06/04 18:43:15 net device setup: enabled
+2021/06/04 18:43:15 concurrency sanitizer: /sys/kernel/debug/kcsan does not exist
+2021/06/04 18:43:15 devlink PCI setup: PCI device 0000:00:10.0 is not available
+2021/06/04 18:43:15 USB emulation: /dev/raw-gadget does not exist
+2021/06/04 18:43:15 hci packet injection: /dev/vhci does not exist
+corpus contains disabled syscall socket$inet6_udplitepanic: disabled syscall
+
+goroutine 1 [running]:
+github.com/google/syzkaller/prog.(*Target).BuildChoiceTable(0xc00009b520, 0xc000880000, 0x2028, 0x2400, 0xc000729e80, 0x2)
+	/root/fuzz/fuzzer/rtkaller/prog/prio.go:250 +0x8f8
+main.main()
+	/root/fuzz/fuzzer/rtkaller/syz-fuzzer/fuzzer.go:
+syzkaller login: [  175.869164] 000: cgroup: Unknown subsys name 'perf_event'
+[  175.869164] 001: cgroup: Unknown subsys name 'perf_event'
+[  175.869483] 001: cgroup: Unknown subsys name 'net_cls'
+[  175.869483] 000: cgroup: Unknown subsys name 'net_cls'
+[  177.226664] 000: tmpfs: Bad value for 'nr_blocks'
+[  177.251697] 000: tmpfs: Bad value for 'nr_blocks'
+[  177.256790] 000: blk_update_request: I/O error, dev loop1, sector 0 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+[  177.315043] 001: cgroup: Unknown subsys name 'perf_event'
+[  177.315210] 001: cgroup: Unknown subsys name 'net_cls'
+[  177.329742] 000: cgroup: Unknown subsys name 'perf_event'
+[  177.329896] 000: cgroup: Unknown subsys name 'net_cls'
+[  177.368485] 001: cgroup: Unknown subsys name 'perf_event'
+[  177.368603] 001: cgroup: Unknown subsys name 'net_cls'
+[  179.334652] 000: cgroup: Unknown subsys name 'perf_event'
+[  179.334820] 000: cgroup: Unknown subsys name 'net_cls'
+[  179.341456] 000: cgroup: Unknown subsys name 'perf_event'
+[  179.341561] 000: cgroup: Unknown subsys name 'net_cls'
+[  179.346632] 001: cgroup: Unknown subsys name 'perf_event'
+[  179.346783] 001: cgroup: Unknown subsys name 'net_cls'
+[  179.352116] 001: cgroup: Unknown subsys name 'perf_event'
+[  179.352277] 001: cgroup: Unknown subsys name 'net_cls'
+[  181.834436] 000: SELinux: Unable to set superblock options before the security server is initialized
+[  181.835412] 000: SELinux: Unable to set superblock options before the security server is initialized
+[  181.928758] 000: cgroup: Unknown subsys name 'perf_event'
+[  181.928850] 001: cgroup: Unknown subsys name 'perf_event'
+[  181.928868] 000: cgroup: Unknown subsys name 'net_cls'
+[  181.928945] 001: cgroup: Unknown subsys name 'net_cls'
+[  181.938176] 001: cgroup: Unknown subsys name 'perf_event'
+[  181.938304] 001: cgroup: Unknown subsys name 'net_cls'
+[  181.940965] 000: cgroup: Unknown subsys name 'perf_event'
+[  181.941557] 000: cgroup: Unknown subsys name 'net_cls'
+[  184.122137] 000: SELinux: Unable to set superblock options before the security server is initialized
+[  184.219280] 000: netlink: 8 bytes leftover after parsing attributes in process `syz-executor.1'.
+[  184.328639] 001: cgroup: Unknown subsys name 'perf_event'
+[  184.328736] 001: cgroup: Unknown subsys name 'net_cls'
+[  185.568275] 000: netlink: 76 bytes leftover after parsing attributes in process `syz-executor.1'.

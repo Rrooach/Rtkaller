@@ -1,0 +1,63 @@
+Warning: Permanently added '[localhost]:65425' (ECDSA) to the list of known hosts.
+executing program
+syzkaller login: [   16.343924] WARNING: CPU: 1 PID: 1937 at fs/attr.c:234 notify_change+0x9ef/0xd10
+[   16.345260] Kernel panic - not syncing: panic_on_warn set ...
+[   16.346347] CPU: 1 PID: 1937 Comm: syz-executor850 Not tainted 5.0.0 #3
+[   16.347463] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[   16.348902] Call Trace:
+[   16.349364]  dump_stack+0x79/0xba
+[   16.349952]  panic+0x226/0x47c
+[   16.350506]  ? __warn_printk+0xdf/0xdf
+[   16.351184]  ? __probe_kernel_read+0x15a/0x1b0
+[   16.351944]  ? __warn.cold.11+0x5/0x45
+[   16.352572]  ? notify_change+0x9ef/0xd10
+[   16.353250]  __warn.cold.11+0x20/0x45
+[   16.353914]  ? notify_change+0x9ef/0xd10
+[   16.354600]  report_bug+0x1f4/0x270
+[   16.355213]  ? notify_change+0x9ef/0xd10
+[   16.355916]  do_error_trap+0x105/0x180
+[   16.356572]  do_invalid_op+0x35/0x40
+[   16.357242]  ? notify_change+0x9ef/0xd10
+[   16.357960]  invalid_op+0x14/0x20
+[   16.358545] RIP: 0010:notify_change+0x9ef/0xd10
+[   16.359338] Code: 89 e2 e8 04 9e 07 00 45 31 c9 45 31 c0 b9 02 00 00 00 48 89 da 44 89 e6 48 89 df e8 4b 90 07 00 e9 52 fb ff ff e8 c1 77 d7 ff <0f> 0b e9 ea f6 ff ff e8 b5 77 d7 ff 44 89 fb 4c 89 ea 48 b8 00 00
+[   16.362500] RSP: 0018:ffff888111c37a70 EFLAGS: 00010293
+[   16.363362] RAX: ffff8881151eab00 RBX: 0000000000004200 RCX: ffffffffa71c922f
+[   16.364531] RDX: 0000000000000000 RSI: 0000000000000008 RDI: ffff8881187a8108
+[   16.365714] RBP: ffff888111c37ac8 R08: ffffed10230f5022 R09: ffffed10230f5021
+[   16.366809] R10: ffffed10230f5021 R11: ffff8881187a810f R12: ffff888111c37af8
+[   16.367904] R13: ffff8881187a8068 R14: ffff888119306d00 R15: ffff8881187a8108
+[   16.369092]  ? notify_change+0x9ef/0xd10
+[   16.369759]  ? cap_inode_need_killpriv+0x40/0x60
+[   16.370551]  file_remove_privs+0x23c/0x410
+[   16.371237]  ? dentry_needs_remove_privs.part.33+0x50/0x50
+[   16.372151]  ? kernel_text_address+0x10f/0x130
+[   16.372877]  ? do_futex+0x1c8/0x1a20
+[   16.373487]  __generic_file_write_iter+0x159/0x550
+[   16.374286]  ? filemap_write_and_wait_range+0xd0/0xd0
+[   16.375193]  blkdev_write_iter+0x200/0x3e0
+[   16.375914]  ? __kasan_slab_free+0x125/0x170
+[   16.376635]  ? blkdev_get_block+0xb0/0xb0
+[   16.377366]  ? iov_iter_init+0xc2/0x1f0
+[   16.378037]  __vfs_write+0x4d2/0x6c0
+[   16.378667]  ? kernel_read+0x110/0x110
+[   16.379333]  ? avc_policy_seqno+0xd/0x70
+[   16.380008]  ? selinux_file_permission+0x2c/0x440
+[   16.380814]  vfs_write+0x16c/0x4a0
+[   16.381402]  ksys_write+0xbf/0x1a0
+[   16.382002]  ? __ia32_sys_read+0xb0/0xb0
+[   16.382700]  do_syscall_64+0x9e/0x2b0
+[   16.383328]  ? prepare_exit_to_usermode+0xc0/0x160
+[   16.384184]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+[   16.385088] RIP: 0033:0x45479d
+[   16.385617] Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 b8 ff ff ff f7 d8 64 89 01 48
+[   16.388723] RSP: 002b:00007f2f06e5bd88 EFLAGS: 00000246 ORIG_RAX: 0000000000000001
+[   16.389999] RAX: ffffffffffffffda RBX: 00000000004e0400 RCX: 000000000045479d
+[   16.391187] RDX: 0000000000000001 RSI: 00000000200000b0 RDI: 0000000000000004
+[   16.392336] RBP: 00000000004e0408 R08: 0000000000000000 R09: 0000000000000000
+[   16.393500] R10: 0000000000000000 R11: 0000000000000246 R12: 00000000004b0078
+[   16.394775] R13: 00000000004e040c R14: 7974697275636573 R15: 00007f2f06e5be80
+[   16.396125] Dumping ftrace buffer:
+[   16.396709]    (ftrace buffer empty)
+[   16.397336] Kernel Offset: 0x25c00000 from 0xffffffff81000000 (relocation range: 0xffffffff80000000-0xffffffffbfffffff)
+[   16.399128] Rebooting in 1 seconds..

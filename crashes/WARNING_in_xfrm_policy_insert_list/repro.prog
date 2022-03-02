@@ -1,0 +1,8 @@
+# {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:false Trace:false}
+r0 = socket$nl_xfrm(0x10, 0x3, 0x6)
+sendmsg$nl_xfrm(r0, &(0x7f0000000500)={0x0, 0x0, &(0x7f00000004c0)={&(0x7f0000000100)=@updpolicy={0xd0, 0x19, 0x1, 0x0, 0x0, {{@in=@local, @in6=@empty, 0x0, 0x0, 0x0, 0x0, 0xa}, {0x1ff}}, [@sec_ctx={0xc, 0x8, {0x8}}, @mark={0xc, 0x15, {0x0, 0x9}}]}, 0xd0}}, 0x0)
+r1 = socket$nl_xfrm(0x10, 0x3, 0x6)
+sendmsg$nl_xfrm(r1, &(0x7f0000000500)={0x0, 0x0, &(0x7f00000004c0)={&(0x7f0000000100)=ANY=[@ANYBLOB="b80000001900010000000000001c0000ac1414aa0000000000000000000000000000000000000000000000000000000000000000000000000a00000000000000", @ANYRES32=0x0, @ANYRES32=0x0, @ANYBLOB], 0xb8}}, 0x0)
+r2 = syz_open_procfs(0xffffffffffffffff, 0x0)
+ioctl$sock_inet_SIOCRTMSG(r2, 0x890d, 0x0)
+sendmsg$nl_xfrm(0xffffffffffffffff, &(0x7f0000000500)={0x0, 0x0, &(0x7f00000004c0)={&(0x7f0000000000)=ANY=[@ANYBLOB="d0000000190001000000000000000000ac1414aa0000000000000000000000000000000000000000000000000000000000000000000000000a00000000000000", @ANYRES32=0x0, @ANYRES32=0x0, @ANYBLOB="00000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000a3000000000000000000000000000000000000000000000c0008000806000000da79000000003e37a2fe7cbfbec217ff0000000000"], 0xd0}}, 0x0)

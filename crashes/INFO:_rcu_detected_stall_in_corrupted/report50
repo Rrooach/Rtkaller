@@ -1,0 +1,54 @@
+000: tmpfs: Bad value for 'mpol'
+000: tmpfs: Bad value for 'mpol'
+001: rcu: INFO: rcu_sched self-detected stall on CPU
+001: rcu: 	1-....: (20999 ticks this GP) idle=0fe/1/0x4000000000000002 softirq=91908/91908 fqs=5245 
+001: 	(t=21000 jiffies g=121345 q=216)
+001: NMI backtrace for cpu 1
+001: CPU: 1 PID: 18187 Comm: syz-executor.0 Not tainted 5.6.0-rt1+ #2
+001: Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+001: Call Trace:
+001:  <IRQ>
+001:  dump_stack+0x95/0xce
+001:  nmi_cpu_backtrace.cold+0x55/0x94
+001:  nmi_trigger_cpumask_backtrace+0x155/0x19b
+001:  rcu_dump_cpu_stacks+0x15d/0x1a7
+001:  rcu_sched_clock_irq.cold+0x4c8/0x90b
+001:  update_process_times+0x24/0x60
+001:  tick_sched_handle+0x10f/0x150
+001:  tick_sched_timer+0x41/0x120
+001:  __hrtimer_run_queues+0x308/0x7c0
+001:  hrtimer_interrupt+0x2c9/0x6c0
+001:  smp_apic_timer_interrupt+0xd4/0x380
+001:  apic_timer_interrupt+0xf/0x20
+001:  </IRQ>
+001: RIP: 0010:io_ring_ctx_wait_and_kill+0x96/0x9c0
+001: Code: 00 00 00 4d 89 f4 48 b8 00 00 00 00 00 fc ff df 4c 89 eb 49 c1 ec 03 48 c1 eb 03 49 01 c4 48 01 c3 eb 1c e8 1c d3 c6 ff f3 90 <41> 80 3c 24 00 0f 85 ee 07 00 00 48 83 bd d0 00 00 00 00 74 20 e8
+001: RSP: 0018:ffff8881112c7a60 EFLAGS: 00000293 ORIG_RAX: ffffffffffffff13
+001: RAX: ffff888116ff9640 RBX: ffffed102303ac1d RCX: ffffffff854f3364
+001: RDX: 0000000000000000 RSI: 0000000000000008 RDI: ffff8881181d61c0
+001: RBP: ffff8881181d6000 R08: 0000000000000001 R09: ffffed102303ac39
+001: R10: ffffed102303ac38 R11: ffff8881181d61c7 R12: ffffed102303ac1a
+001: R13: ffff8881181d60e8 R14: ffff8881181d60d0 R15: ffff88811aa367a0
+001:  io_uring_release+0x3e/0x50
+001:  __fput+0x223/0x6d0
+001:  task_work_run+0x144/0x1c0
+001:  do_exit+0x970/0x2750
+001:  do_group_exit+0xee/0x310
+001:  get_signal+0x3bd/0x1b60
+001:  do_signal+0x88/0x1350
+001:  exit_to_usermode_loop+0xc0/0x180
+001:  do_syscall_64+0x2bb/0x390
+001:  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+001: RIP: 0033:0x4686dd
+001: Code: Bad RIP value.
+001: RSP: 002b:00007f4c82740cd8 EFLAGS: 00000246 ORIG_RAX: 00000000000000ca
+001: RAX: fffffffffffffe00 RBX: 000000000057cf00 RCX: 00000000004686dd
+001: RDX: 0000000000000000 RSI: 0000000000000080 RDI: 000000000057cf08
+001: RBP: 000000000057cf08 R08: 0000000000000000 R09: 0000000000000000
+001: R10: 0000000000000000 R11: 0000000000000246 R12: 000000000057cf0c
+001: R13: 00007ffed754326f R14: 00007ffed7543430 R15: 00007f4c82740dc0
+000: rcu: INFO: rcu_sched detected expedited stalls on CPUs/tasks: { 1-... } 21133 jiffies s: 5521 root: 0x2/.
+000: rcu: blocking rcu_node structures:
+000: Task dump for CPU 1:
+000: syz-executor.0  R  running task    29608 18187    317 0x8000400a
+000: Call Trace:

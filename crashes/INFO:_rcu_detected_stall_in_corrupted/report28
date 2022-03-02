@@ -1,0 +1,55 @@
+000: ata1.00: exception Emask 0x0 SAct 0x0 SErr 0x0 action 0x6 frozen
+000: ata1.00: failed command: WRITE DMA
+000: ata1.00: cmd ca/00:80:00:80:01/00:00:00:00:00/e0 tag 0 dma 65536 out
+000:          res 40/00:01:00:00:00/00:00:00:00:00/a0 Emask 0x4 (timeout)
+000: ata1.00: status: { DRDY }
+000: rcu: INFO: rcu_sched detected stalls on CPUs/tasks:
+000: 	(detected by 0, t=27232 jiffies, g=164185, q=4)
+000: rcu: All QSes seen, last rcu_sched kthread activity 25204 (4295039088-4295013884), jiffies_till_next_fqs=3, root ->qsmask 0x0
+000: scsi_eh_0       R  running task    28704    84      2 0x80004008
+000: Call Trace:
+000:  <IRQ>
+000:  sched_show_task.cold+0x243/0x2b1
+000:  rcu_sched_clock_irq.cold+0x853/0x90b
+000:  update_process_times+0x24/0x60
+000:  tick_sched_handle+0x10f/0x150
+000:  tick_sched_timer+0x41/0x120
+000:  __hrtimer_run_queues+0x308/0x7c0
+000:  hrtimer_interrupt+0x2c9/0x6c0
+000:  smp_apic_timer_interrupt+0xd4/0x380
+000:  apic_timer_interrupt+0xf/0x20
+000:  </IRQ>
+000: RIP: 0010:_raw_spin_unlock_irqrestore+0x2c/0x50
+000: Code: ec 10 48 b8 00 00 00 00 00 fc ff df 48 89 fa 48 c1 ea 03 0f b6 04 02 48 89 fa 83 e2 07 38 d0 7f 04 84 c0 75 0a c6 07 00 56 9d <48> 83 c4 10 c3 48 89 74 24 08 48 89 3c 24 e8 c1 e7 06 fe 48 8b 74
+000: RSP: 0018:ffff888118fef868 EFLAGS: 00000246 ORIG_RAX: ffffffffffffff13
+000: RAX: 0000000000000004 RBX: ffff888118f964c0 RCX: ffffffffb7bf5cef
+000: RDX: 0000000000000000 RSI: 0000000000000246 RDI: ffffffffbaf033c0
+000: RBP: ffff888118f94000 R08: 0000000000000001 R09: ffffed10231fdeea
+000: R10: ffffed10231fdee9 R11: 0000000000000003 R12: 0000000000000040
+000: R13: ffff888119e0c000 R14: 000000000000c004 R15: ffff888118f9402c
+000:  piix_set_timings+0x320/0x580
+000:  ata_eh_reset+0x43b/0x2290
+000:  ata_eh_recover+0x7ff/0x3a30
+000:  ata_do_eh+0x43/0xb0
+000:  ata_scsi_port_error_handler+0x6bd/0x1460
+000:  ata_scsi_error+0x22e/0x3e0
+000:  scsi_error_handler+0x255/0xed0
+000:  kthread+0x2ce/0x3d0
+000:  ret_from_fork+0x35/0x40
+000: rcu: rcu_sched kthread starved for 25204 jiffies! g164185 f0x2 RCU_GP_WAIT_FQS(5) ->state=0x0 ->cpu=0
+000: rcu: RCU grace-period kthread stack dump:
+000: rcu_sched       R  running task    29752    10      2 0x80004000
+000: Call Trace:
+000:  schedule+0xc6/0x290
+000:  schedule_timeout+0x2f3/0x860
+000:  rcu_gp_kthread+0x9e6/0x20c0
+000:  kthread+0x2ce/0x3d0
+000:  ret_from_fork+0x35/0x40
+000: ata1: soft resetting link
+000: ata1.00: configured for MWDMA2
+000: ata1: EH complete
+001: EXT4-fs (sda): Unrecognized mount option "d" or missing value
+000: EXT4-fs (sda): Unrecognized mount option "d" or missing value
+001: EXT4-fs (loop1): VFS: Can't find ext4 filesystem
+001: netlink: 24 bytes leftover after parsing attributes in process `syz-executor.1'.
+001: netlink: 24 bytes leftover after parsing attributes in process `syz-executor.1'.

@@ -1,0 +1,46 @@
+BUG: unable to handle kernel paging request at 0000000fffffffe0
+IP: [<ffffffff81153342>] kmem_cache_alloc_trace+0x62/0x150
+PGD 131e70067 PUD 0 
+Oops: 0000 [#1] SMP 
+Dumping ftrace buffer:
+   (ftrace buffer empty)
+Modules linked in:
+CPU: 1 PID: 13277 Comm: syz-executor.1 Not tainted 3.10.108-rt123+ #14
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+task: ffff88013a2807d0 ti: ffff880131e0a000 task.ti: ffff880131e0a000
+RIP: 0010:[<ffffffff81153342>]  [<ffffffff81153342>] kmem_cache_alloc_trace+0x62/0x150
+RSP: 0018:ffff880131e0bac8  EFLAGS: 00010202
+RAX: 0000000000000000 RBX: ffff880128b67800 RCX: 00000000000030a8
+RDX: 00000000000030a7 RSI: 00000000000080d0 RDI: 00000000000145e0
+RBP: ffff880131e0baf8 R08: ffff88013fd145e0 R09: 0000000000000231
+R10: ffffffff8134cb29 R11: ffff88013fd11870 R12: 0000000fffffffe0
+R13: 00000000000080d0 R14: ffffffff81405f77 R15: ffff88013b001500
+FS:  00007fa180514700(0000) GS:ffff88013fd00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000fffffffe0 CR3: 000000013a3f3000 CR4: 00000000003407e0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Stack:
+ 00000000000002f8 ffff880128b67800 ffff880128b67800 ffffffff81405f50
+ ffff880138d7c640 0000000000000016 ffff880131e0bb20 ffffffff81405f77
+ ffff880128b67800 0000000000000000 ffffffff81405f50 ffff880131e0bb48
+Call Trace:
+ [<ffffffff81405f77>] n_tty_open+0x27/0x180
+ [<ffffffff8140abc3>] tty_ldisc_open.isra.3+0x43/0x90
+ [<ffffffff8140be77>] tty_ldisc_setup+0x27/0xa0
+ [<ffffffff81401913>] tty_init_dev+0xe3/0x240
+ [<ffffffff81402de1>] tty_open+0x741/0x870
+ [<ffffffff8116232c>] chrdev_open+0xbc/0x1d0
+ [<ffffffff81159c45>] do_dentry_open+0x2a5/0x360
+ [<ffffffff81159fd6>] finish_open+0x46/0x80
+ [<ffffffff8116fb6f>] do_last+0x6df/0x1310
+ [<ffffffff81170b80>] path_openat+0x3e0/0x650
+ [<ffffffff81171671>] do_filp_open+0x41/0xd0
+ [<ffffffff8115b8ff>] do_sys_open+0x14f/0x290
+ [<ffffffff8115bab0>] SyS_openat+0x30/0x40
+ [<ffffffff819a0df2>] system_call_fastpath+0x16/0x1b
+Code: 25 28 bc 00 00 49 8b 50 08 49 83 78 10 00 4d 8b 20 0f 84 ba 00 00 00 4d 85 e4 0f 84 b1 00 00 00 49 63 47 20 49 8b 3f 48 8d 4a 01 <49> 8b 1c 04 4c 89 e0 65 48 0f c7 0f 0f 94 c0 84 c0 74 bb 49 63 
+RIP  [<ffffffff81153342>] kmem_cache_alloc_trace+0x62/0x150
+ RSP <ffff880131e0bac8>
+CR2: 0000000fffffffe0
+---[ end trace 60113199c8eec65d ]---

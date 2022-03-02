@@ -1,0 +1,21 @@
+001: Out of memory: Killed process 31456 (syz-executor.1) total-vm:85212kB, anon-rss:28572kB, file-rss:34628kB, shmem-rss:0kB, UID:0 pgtables:164kB oom_score_adj:1000
+001: oom_reaper: reaped process 31456 (syz-executor.1), now anon-rss:0kB, file-rss:34624kB, shmem-rss:0kB
+001: rcu: INFO: rcu_sched detected expedited stalls on CPUs/tasks: { 0-... } 21361 jiffies s: 9089 root: 0x1/.
+001: rcu: blocking rcu_node structures:
+001: Task dump for CPU 0:
+001: task:printk          state:R  running task     stack:29304 pid:   67 ppid:     2 flags:0x00004008
+001: Call Trace:
+001: Out of memory: Killed process 32569 (syz-executor.1) total-vm:85212kB, anon-rss:28196kB, file-rss:45860kB, shmem-rss:0kB, UID:0 pgtables:192kB oom_score_adj:1000
+001: oom_reaper: reaped process 32569 (syz-executor.1), now anon-rss:28336kB, file-rss:46744kB, shmem-rss:0kB
+001: Out of memory: Killed process 32565 (syz-executor.1) total-vm:85068kB, anon-rss:28432kB, file-rss:35056kB, shmem-rss:0kB, UID:0 pgtables:164kB oom_score_adj:1000
+001: oom_reaper: reaped process 32565 (syz-executor.1), now anon-rss:0kB, file-rss:34816kB, shmem-rss:0kB
+000: hpet: Lost 1 RTC interrupts
+000: hpet: Lost 4 RTC interrupts
+000: hpet: Lost 1 RTC interrupts
+000: hpet: Lost 1 RTC interrupts
+000: hpet: Lost 1 RTC interrupts
+000: hpet: Lost 1 RTC interrupts
+000: hpet: Lost 1 RTC interrupts
+000: hpet: Lost 1 RTC interrupts
+000: hpet: Lost 2 RTC interrupts
+000: hpet: Lost 1 RTC interrupts

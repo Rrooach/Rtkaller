@@ -1,0 +1,22 @@
+------------[ cut here ]------------
+WARNING: at mm/page_alloc.c:2480 __alloc_pages_nodemask+0x54d/0xa60()
+Modules linked in:
+CPU: 1 PID: 1535 Comm: syz-executor119 Not tainted 3.10.108-rt123+ #14
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+ 0000000000000009 ffff88013883bc58 ffffffff81991617 ffff88013883bc90
+ ffffffff8103b93c 0000000000000000 0000000000000000 0000000000000000
+ 0000000000000000 00000000001040d0 ffff88013883bca0 ffffffff8103ba15
+Call Trace:
+ [<ffffffff81991617>] dump_stack+0x1e/0x20
+ [<ffffffff8103b93c>] warn_slowpath_common+0x5c/0x80
+ [<ffffffff8103ba15>] warn_slowpath_null+0x15/0x20
+ [<ffffffff81105bbd>] __alloc_pages_nodemask+0x54d/0xa60
+ [<ffffffff8114bc84>] alloc_pages_current+0xc4/0x1a0
+ [<ffffffff81100f49>] __get_free_pages+0x9/0x40
+ [<ffffffff811522c9>] kmalloc_order_trace+0x29/0xc0
+ [<ffffffff81153941>] __kmalloc+0x1a1/0x1b0
+ [<ffffffff814e35a4>] vga_arb_write+0x34/0x720
+ [<ffffffff8115c92f>] vfs_write+0xef/0x260
+ [<ffffffff8115d643>] SyS_write+0x53/0xa0
+ [<ffffffff819a0df2>] system_call_fastpath+0x16/0x1b
+---[ end trace e374fefec3e993e8 ]---

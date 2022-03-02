@@ -1,0 +1,37 @@
+audit: type=1400 audit(1612972229.001:8): avc:  denied  { execmem } for  pid=393 comm="syz-executor017" scontext=system_u:system_r:kernel_t:s0 tcontext=system_u:system_r:kernel_t:s0 tclass=process permissive=1
+rcu: INFO: rcu_sched self-detected stall on CPU
+rcu: 	0-....: (20941 ticks this GP) idle=b52/1/0x4000000000000002 softirq=2800/2801 fqs=5048 
+	(t=21003 jiffies g=2757 q=37)
+NMI backtrace for cpu 0
+CPU: 0 PID: 21 Comm: kworker/0:1 Not tainted 5.3.0+ #3
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+Workqueue: events rtc_timer_do_work
+Call Trace:
+ <IRQ>
+ dump_stack+0x64/0x8e
+ nmi_cpu_backtrace.cold.7+0x18/0x65
+ nmi_trigger_cpumask_backtrace+0xc8/0xed
+ rcu_dump_cpu_stacks+0x80/0xac
+ rcu_sched_clock_irq.cold.87+0x1ae/0x39b
+ update_process_times+0x28/0x60
+ tick_sched_handle+0x55/0x70
+ tick_sched_timer+0x3c/0xa0
+ __hrtimer_run_queues+0x149/0x330
+ hrtimer_interrupt+0x10f/0x250
+ smp_apic_timer_interrupt+0x68/0x130
+ apic_timer_interrupt+0xf/0x20
+ </IRQ>
+RIP: 0010:rtc_uie_update_irq+0x17/0x20
+Code: 20 00 00 00 5b be 01 00 00 00 e9 64 ff ff ff 0f 1f 40 00 53 48 89 fb e8 b7 4a 7b ff 48 89 df ba 10 00 00 00 5b be 01 00 00 00 <e9> 44 ff ff ff 0f 1f 40 00 55 53 48 89 fb e8 96 4a 7b ff 48 63 8b
+RSP: 0018:ffffa28f800bfd88 EFLAGS: 00000293 ORIG_RAX: ffffffffffffff13
+RAX: ffff8d84bb183e40 RBX: ffff8d84ba0073f8 RCX: ffffffffa0fa0209
+RDX: 0000000000000010 RSI: 0000000000000001 RDI: ffff8d84ba007000
+RBP: ffffa28f800bfe70 R08: 0000000000000000 R09: ffffa28f800bfd00
+R10: ffffa28f800bfe88 R11: 0000000000000000 R12: ffff8d84ba007480
+R13: ffff8d84ba0073a8 R14: ffffffffa0fa0200 R15: 000000003b9aca00
+ rtc_timer_do_work+0x114/0x450
+ process_one_work+0x290/0x510
+ worker_thread+0x39/0x500
+ kthread+0x12c/0x150
+ ret_from_fork+0x35/0x40
+hpet: Lost 2 RTC interrupts

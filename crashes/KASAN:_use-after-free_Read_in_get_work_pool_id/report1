@@ -1,0 +1,74 @@
+==================================================================
+BUG: KASAN: use-after-free in get_work_pool_id+0x16/0xc0
+Read of size 8 at addr ffff8880b4ec9b08 by task syz-executor.1/4195
+
+CPU: 1 PID: 4195 Comm: syz-executor.1 Not tainted 5.0.0 #3
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+Call Trace:
+ dump_stack+0x79/0xba
+ print_address_description+0x60/0x229
+ kasan_report.cold.3+0x1a/0x35
+ get_work_pool_id+0x16/0xc0
+ __cancel_work_timer+0xc0/0x340
+ release_tty+0x254/0x4a0
+ tty_release_struct+0x36/0x50
+ tty_release+0xb05/0xe00
+ __fput+0x25f/0x6f0
+ task_work_run+0x145/0x1c0
+ exit_to_usermode_loop+0x14e/0x180
+ do_syscall_64+0x221/0x2b0
+ entry_SYSCALL_64_after_hwframe+0x44/0xa9
+RIP: 0033:0x41897b
+Code: 03 00 00 00 0f 05 48 3d 00 f0 ff ff 77 41 c3 48 83 ec 18 89 7c 24 0c e8 63 fc ff ff 8b 7c 24 0c 41 89 c0 b8 03 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 2f 44 89 c7 89 44 24 0c e8 a1 fc ff ff 8b 44
+RSP: 002b:00007fffae29bb60 EFLAGS: 00000293 ORIG_RAX: 0000000000000003
+RAX: 0000000000000000 RBX: 0000000000000001 RCX: 000000000041897b
+RDX: 0000001b2f920000 RSI: 00000000000019b1 RDI: 0000000000000007
+RBP: 0000000000000008 R08: 0000000000000000 R09: 00000000a07c99b5
+R10: 00007fffae29bcb0 R11: 0000000000000293 R12: 000000000050b3c0
+R13: 0000000000580dc0 R14: 000000000057cf0c R15: 0000000000580db8
+
+Allocated by task 4196:
+ __kasan_kmalloc.constprop.6+0xc1/0xd0
+ vc_allocate+0x1d6/0x5d0
+ con_install+0x53/0x3f0
+ tty_init_dev+0xe9/0x410
+ tty_open+0x596/0x9d0
+ chrdev_open+0x20c/0x520
+ do_dentry_open+0x400/0xe70
+ path_openat+0x988/0x41c0
+ do_filp_open+0x19b/0x270
+ do_sys_open+0x2cb/0x450
+ do_syscall_64+0x9e/0x2b0
+ entry_SYSCALL_64_after_hwframe+0x44/0xa9
+
+Freed by task 4198:
+ __kasan_slab_free+0x125/0x170
+ kfree+0x8f/0x1a0
+ vt_disallocate_all+0x258/0x360
+ vt_ioctl+0x17ee/0x2470
+ tty_ioctl+0x486/0x1340
+ do_vfs_ioctl+0x1a4/0x1000
+ ksys_ioctl+0x7b/0xa0
+ __x64_sys_ioctl+0x73/0xb0
+ do_syscall_64+0x9e/0x2b0
+ entry_SYSCALL_64_after_hwframe+0x44/0xa9
+
+The buggy address belongs to the object at ffff8880b4ec9b00
+ which belongs to the cache kmalloc-1k of size 1024
+The buggy address is located 8 bytes inside of
+ 1024-byte region [ffff8880b4ec9b00, ffff8880b4ec9f00)
+The buggy address belongs to the page:
+page:ffffea0002d3b200 count:1 mapcount:0 mapping:ffff888116801140 index:0x0 compound_mapcount: 0
+flags: 0x100000000010200(slab|head)
+raw: 0100000000010200 dead000000000100 dead000000000200 ffff888116801140
+raw: 0000000000000000 00000000800e000e 00000001ffffffff 0000000000000000
+page dumped because: kasan: bad access detected
+
+Memory state around the buggy address:
+ ffff8880b4ec9a00: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
+ ffff8880b4ec9a80: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
+>ffff8880b4ec9b00: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+                      ^
+ ffff8880b4ec9b80: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+ ffff8880b4ec9c00: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+==================================================================

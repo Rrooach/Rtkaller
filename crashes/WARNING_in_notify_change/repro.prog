@@ -1,0 +1,6 @@
+# {Threaded:true Collide:true Repeat:false RepeatTimes:0 Procs:1 Sandbox: Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:false KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:false HandleSegv:false Repro:false Trace:false}
+r0 = open(&(0x7f00000000a0)='fallocate04.txt\x00', 0x12b342, 0x0)
+syz_mount_image$nfs(&(0x7f0000000300)='nfs\x00', &(0x7f0000000340)='fallocate04.txt\x00', 0x0, 0x3, &(0x7f0000000540)=[{0x0, 0x0, 0xffff}, {0x0, 0x0, 0x4}, {0x0, 0x0, 0x200}], 0xaa5805, &(0x7f00000005c0)='security.evm\x00')
+read$usbmon(r0, 0x0, 0x0)
+setxattr$security_capability(&(0x7f00000000c0)='fallocate04.txt\x00', &(0x7f0000000100)='security.capability\x00', &(0x7f0000000280)=@v3, 0x18, 0x0)
+write(r0, &(0x7f00000000b0)='a', 0x1)

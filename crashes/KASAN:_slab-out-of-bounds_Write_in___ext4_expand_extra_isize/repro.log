@@ -1,0 +1,151 @@
+Warning: Permanently added '[localhost]:18804' (ECDSA) to the list of known hosts.
+executing program
+syzkaller login: [   21.136788] EXT4-fs (sda): re-mounted. Opts: debug_want_extra_isize=0x02000000,,errors=continue
+[   21.139088] ==================================================================
+[   21.140141] BUG: KASAN: slab-out-of-bounds in __ext4_expand_extra_isize+0x13f/0x200
+[   21.141148] Write of size 33554400 at addr ffff88811669dea0 by task rs:main Q:Reg/1860
+[   21.142526] 
+[   21.142741] CPU: 1 PID: 1860 Comm: rs:main Q:Reg Not tainted 5.0.0 #3
+[   21.143555] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[   21.144656] Call Trace:
+[   21.144996]  dump_stack+0x79/0xba
+[   21.145454]  ? __ext4_expand_extra_isize+0x13f/0x200
+[   21.146117]  print_address_description+0x60/0x229
+[   21.146729]  ? __ext4_expand_extra_isize+0x13f/0x200
+[   21.147345]  ? __ext4_expand_extra_isize+0x13f/0x200
+[   21.148005]  kasan_report.cold.3+0x1a/0x35
+[   21.148520]  ? __ext4_expand_extra_isize+0x13f/0x200
+[   21.149170]  memset+0x23/0x40
+[   21.149573]  __ext4_expand_extra_isize+0x13f/0x200
+[   21.150177]  ext4_mark_inode_dirty+0x522/0x640
+[   21.150765]  ? ext4_dirty_inode+0x75/0xa0
+[   21.151259]  ? ext4_expand_extra_isize+0x4a0/0x4a0
+[   21.151846]  ? fault_in_user_writeable+0x90/0x90
+[   21.152407]  ? get_futex_key+0x401/0xb30
+[   21.152881]  ? __ext4_journal_stop+0x141/0x1e0
+[   21.153431]  ? __ext4_journal_start_sb+0xd8/0x2b0
+[   21.153997]  ? ext4_dirty_inode+0x53/0xa0
+[   21.154482]  ? ext4_setattr+0x20e0/0x20e0
+[   21.154966]  ext4_dirty_inode+0x75/0xa0
+[   21.155538]  __mark_inode_dirty+0x3bd/0xc70
+[   21.156081]  generic_update_time+0x1b8/0x2e0
+[   21.156644]  ? file_remove_privs+0x410/0x410
+[   21.157174]  file_update_time+0x2a9/0x450
+[   21.157658]  ? current_time+0x160/0x160
+[   21.158138]  ? generic_write_checks+0x20c/0x2e0
+[   21.158694]  ? ktime_get_coarse_real_ts64+0x56/0xd0
+[   21.159281]  __generic_file_write_iter+0x1c0/0x550
+[   21.159919]  ext4_file_write_iter+0x4fa/0xe30
+[   21.160484]  ? __mnt_drop_write_file+0xd/0x60
+[   21.161062]  ? ext4_file_mmap+0x1f0/0x1f0
+[   21.161551]  ? current_time+0x160/0x160
+[   21.162030]  ? __sb_end_write+0x75/0xa0
+[   21.162497]  ? pipe_write+0x9ca/0xd00
+[   21.162975]  ? iov_iter_init+0xc2/0x1f0
+[   21.163452]  __vfs_write+0x4d2/0x6c0
+[   21.163885]  ? _copy_to_user+0x5f/0xa0
+[   21.164341]  ? kernel_read+0x110/0x110
+[   21.164793]  ? vfs_statx+0x190/0x190
+[   21.165245]  ? fsnotify+0x73a/0xa30
+[   21.165697]  ? avc_policy_seqno+0xd/0x70
+[   21.166179]  ? selinux_file_permission+0x2c/0x440
+[   21.166805]  vfs_write+0x16c/0x4a0
+[   21.167237]  ksys_write+0xbf/0x1a0
+[   21.167694]  ? __ia32_sys_read+0xb0/0xb0
+[   21.168217]  do_syscall_64+0x9e/0x2b0
+[   21.168668]  ? prepare_exit_to_usermode+0xc0/0x160
+[   21.169256]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+[   21.169925] RIP: 0033:0x7f8af5dcea3d
+[   21.170385] Code: d9 20 00 00 75 10 b8 01 00 00 00 0f 05 48 3d 01 f0 ff ff 73 31 c3 48 83 ec 08 e8 7e fc ff ff 48 89 04 24 b8 01 00 00 00 0f 05 <48> 8b 3c 24 48 89 c2 e8 c7 fc ff ff 48 89 d0 48 83 c4 08 48 3d 01
+[   21.172697] RSP: 002b:00007f8af2b1e600 EFLAGS: 00000293 ORIG_RAX: 0000000000000001
+[   21.173647] RAX: ffffffffffffffda RBX: 00007f8ae80217d0 RCX: 00007f8af5dcea3d
+[   21.174582] RDX: 0000000000000085 RSI: 00007f8ae80217d0 RDI: 0000000000000006
+[   21.175577] RBP: 0000000000000000 R08: fffffffffffe09e0 R09: fffffffffffe09d0
+[   21.176503] R10: fffffffffffe09c0 R11: 0000000000000293 R12: 00007f8ae8021560
+[   21.177419] R13: 00007f8af2b1e620 R14: 0000000000000000 R15: 0000000000000085
+[   21.178384] 
+[   21.178599] The buggy address belongs to the page:
+[   21.179215] page:ffffea000459a740 count:2 mapcount:0 mapping:ffff88811a828d78 index:0x6801e
+[   21.180301] 0xffffffffa40aa280 
+[   21.180307] flags: 0x200000000002032(referenced|lru|active|private)
+[   21.181538] raw: 0200000000002032 ffffea000459ff48 ffffea000459ba88 ffff88811a828d78
+[   21.182524] raw: 000000000006801e ffff888116a64888 00000002ffffffff 0000000000000000
+[   21.183530] page dumped because: kasan: bad access detected
+[   21.184254] 
+[   21.184448] Memory state around the buggy address:
+[   21.185051]  ffff8881167fff80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[   21.185930]  ffff888116800000: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[   21.186872] >ffff888116800080: 00 00 00 00 00 00 00 00 fc fc fc fc fc fc fc fc
+[   21.187817]                                            ^
+[   21.188539]  ffff888116800100: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[   21.189494]  ffff888116800180: 00 00 00 00 00 00 00 00 fc fc fc fc fc fc fc fc
+[   21.190445] ==================================================================
+[   21.191365] Disabling lock debugging due to kernel taint
+[   21.192250] Kernel panic - not syncing: panic_on_warn set ...
+[   21.193222] CPU: 1 PID: 1860 Comm: rs:main Q:Reg Tainted: G    B             5.0.0 #3
+[   21.194282] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[   21.195568] Call Trace:
+[   21.195905]  dump_stack+0x79/0xba
+[   21.196412]  ? __ext4_expand_extra_isize+0x50/0x200
+[   21.197083]  panic+0x226/0x47c
+[   21.197558]  ? __warn_printk+0xdf/0xdf
+[   21.198058]  ? __ext4_expand_extra_isize+0x13f/0x200
+[   21.198994]  ? add_taint+0x19/0x50
+[   21.199473]  ? add_taint+0x19/0x50
+[   21.200136]  ? __ext4_expand_extra_isize+0x13f/0x200
+[   21.201112]  ? __ext4_expand_extra_isize+0x13f/0x200
+[   21.202087]  end_report+0x43/0x49
+[   21.202758]  kasan_report.cold.3+0xd/0x35
+[   21.203457]  ? __ext4_expand_extra_isize+0x13f/0x200
+[   21.204189]  memset+0x23/0x40
+[   21.204738]  __ext4_expand_extra_isize+0x13f/0x200
+[   21.205657]  ext4_mark_inode_dirty+0x522/0x640
+[   21.206517]  ? ext4_dirty_inode+0x75/0xa0
+[   21.207255]  ? ext4_expand_extra_isize+0x4a0/0x4a0
+[   21.208268]  ? fault_in_user_writeable+0x90/0x90
+[   21.209143]  ? get_futex_key+0x401/0xb30
+[   21.209971]  ? __ext4_journal_stop+0x141/0x1e0
+[   21.210775]  ? __ext4_journal_start_sb+0xd8/0x2b0
+[   21.211715]  ? ext4_dirty_inode+0x53/0xa0
+[   21.212379]  ? ext4_setattr+0x20e0/0x20e0
+[   21.212939]  ext4_dirty_inode+0x75/0xa0
+[   21.213422]  __mark_inode_dirty+0x3bd/0xc70
+[   21.213986]  generic_update_time+0x1b8/0x2e0
+[   21.214550]  ? file_remove_privs+0x410/0x410
+[   21.215160]  file_update_time+0x2a9/0x450
+[   21.215728]  ? current_time+0x160/0x160
+[   21.216263]  ? generic_write_checks+0x20c/0x2e0
+[   21.216967]  ? ktime_get_coarse_real_ts64+0x56/0xd0
+[   21.217903]  __generic_file_write_iter+0x1c0/0x550
+[   21.218545]  ext4_file_write_iter+0x4fa/0xe30
+[   21.219224]  ? __mnt_drop_write_file+0xd/0x60
+[   21.219818]  ? ext4_file_mmap+0x1f0/0x1f0
+[   21.220378]  ? current_time+0x160/0x160
+[   21.220932]  ? __sb_end_write+0x75/0xa0
+[   21.221460]  ? pipe_write+0x9ca/0xd00
+[   21.222140]  ? iov_iter_init+0xc2/0x1f0
+[   21.222789]  __vfs_write+0x4d2/0x6c0
+[   21.223500]  ? _copy_to_user+0x5f/0xa0
+[   21.224135]  ? kernel_read+0x110/0x110
+[   21.224768]  ? vfs_statx+0x190/0x190
+[   21.225420]  ? fsnotify+0x73a/0xa30
+[   21.226020]  ? avc_policy_seqno+0xd/0x70
+[   21.226793]  ? selinux_file_permission+0x2c/0x440
+[   21.227678]  vfs_write+0x16c/0x4a0
+[   21.228200]  ksys_write+0xbf/0x1a0
+[   21.228867]  ? __ia32_sys_read+0xb0/0xb0
+[   21.229692]  do_syscall_64+0x9e/0x2b0
+[   21.230430]  ? prepare_exit_to_usermode+0xc0/0x160
+[   21.231427]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+[   21.232384] RIP: 0033:0x7f8af5dcea3d
+[   21.233043] Code: d9 20 00 00 75 10 b8 01 00 00 00 0f 05 48 3d 01 f0 ff ff 73 31 c3 48 83 ec 08 e8 7e fc ff ff 48 89 04 24 b8 01 00 00 00 0f 05 <48> 8b 3c 24 48 89 c2 e8 c7 fc ff ff 48 89 d0 48 83 c4 08 48 3d 01
+[   21.236841] RSP: 002b:00007f8af2b1e600 EFLAGS: 00000293 ORIG_RAX: 0000000000000001
+[   21.238034] RAX: ffffffffffffffda RBX: 00007f8ae80217d0 RCX: 00007f8af5dcea3d
+[   21.239576] RDX: 0000000000000085 RSI: 00007f8ae80217d0 RDI: 0000000000000006
+[   21.241026] RBP: 0000000000000000 R08: fffffffffffe09e0 R09: fffffffffffe09d0
+[   21.242268] R10: fffffffffffe09c0 R11: 0000000000000293 R12: 00007f8ae8021560
+[   21.243721] R13: 00007f8af2b1e620 R14: 0000000000000000 R15: 0000000000000085
+[   21.245237] Dumping ftrace buffer:
+[   21.245935]    (ftrace buffer empty)
+[   21.246653] Kernel Offset: 0x20800000 from 0xffffffff81000000 (relocation range: 0xffffffff80000000-0xffffffffbfffffff)
+[   21.248713] Rebooting in 1 seconds..

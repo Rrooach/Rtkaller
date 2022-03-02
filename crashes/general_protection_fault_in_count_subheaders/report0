@@ -1,0 +1,41 @@
+001: general protection fault: 0000 [#1] SMP KASAN PTI
+001: CPU: 1 PID: 1577 Comm: kworker/u4:4 Not tainted 5.4.0-rt1+ #2
+001: Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+001: Workqueue: netns cleanup_net
+001: 
+001: RIP: 0010:count_subheaders.part.0+0x71/0x110
+001: Code: e4 c0 ff 48 8d 7b 18 48 89 f8 48 c1 e8 03 42 80 3c 20 00 75 7f 48 8b 6b 18 48 85 ed 74 67 e8 36 e4 c0 ff 48 89 e8 48 c1 e8 03 <42> 80 3c 20 00 75 77 48 83 7d 00 00 74 55 e8 1c e4 c0 ff 48 89 ef
+001: RSP: 0000:ffff8881144ef7f8 EFLAGS: 00010206
+001: 
+001: RAX: 00e400e400e400e4 RBX: ffff88811a8b0000 RCX: ffffffff9b346c8a
+001: RDX: 0000000000000000 RSI: ffff8881137ba1d8 RDI: ffff88811a8b0018
+001: RBP: 0720072007200720 R08: 0000000000000001 R09: ffffed102289df06
+001: R10: ffffed102289df05 R11: 0000000000000003 R12: dffffc0000000000
+001: R13: 0000000000000000 R14: 0000000000000000 R15: 0000000000000000
+001: FS:  0000000000000000(0000) GS:ffff88811b300000(0000) knlGS:0000000000000000
+001: CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+001: CR2: 00007fe751d8b000 CR3: 000000011151c006 CR4: 0000000000760ee0
+001: DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+001: DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+001: PKRU: 55555554
+001: Call Trace:
+001:  unregister_sysctl_table+0x80/0x170
+001:  __addrconf_sysctl_unregister.isra.0+0x61/0xd0
+001:  addrconf_sysctl_unregister+0x87/0xf0
+001:  addrconf_ifdown+0xb1a/0xff0
+001:  addrconf_notify+0x135/0x1e20
+001:  notifier_call_chain+0xd8/0x160
+001:  rollback_registered_many+0x7ac/0xce0
+001:  unregister_netdevice_many.part.0+0x18/0x280
+001:  unregister_netdevice_many+0x36/0x50
+001:  sit_exit_batch_net+0x2e2/0x3f0
+001:  ops_exit_list.isra.0+0xfd/0x150
+001:  cleanup_net+0x43b/0x840
+001:  process_one_work+0x880/0x1210
+001:  worker_thread+0x97/0xf90
+001:  kthread+0x2ce/0x3d0
+001:  ret_from_fork+0x35/0x40
+001: Modules linked in:
+001: 
+001: Dumping ftrace buffer:
+001:    (ftrace buffer empty)

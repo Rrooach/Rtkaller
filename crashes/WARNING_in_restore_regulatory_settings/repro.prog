@@ -1,0 +1,10 @@
+# {Threaded:true Collide:true Repeat:false RepeatTimes:0 Procs:1 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:false Cgroups:false BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:false Trace:false}
+r0 = socket$nl_generic(0x10, 0x3, 0x10)
+sendmsg$NL80211_CMD_REQ_SET_REG(r0, 0x0, 0x4000000)
+clock_gettime(0x0, &(0x7f0000000080))
+sendmmsg$inet6(0xffffffffffffffff, 0x0, 0x0, 0x0)
+close(0xffffffffffffffff)
+sendmsg$NFT_MSG_GETSET(0xffffffffffffffff, &(0x7f0000000400)={0x0, 0x0, &(0x7f00000003c0)={0x0}, 0x1, 0x0, 0x0, 0x20000084}, 0x2044)
+r1 = socket$nl_generic(0x10, 0x3, 0x10)
+r2 = syz_genetlink_get_family_id$nl80211(&(0x7f0000000040)='nl80211\x00')
+sendmsg$NL80211_CMD_REQ_SET_REG(r1, &(0x7f0000000140)={0x0, 0x0, &(0x7f0000000100)={&(0x7f0000000080)={0x34, r2, 0x1, 0x0, 0x0, {}, [@NL80211_ATTR_REG_RULES={0xc, 0x22, 0x0, 0x1, [@NL80211_ATTR_FREQ_RANGE_START={0x8, 0x2, 0x3}]}, @NL80211_ATTR_REG_RULES={0xc, 0x22, 0x0, 0x1, [@NL80211_ATTR_POWER_RULE_MAX_EIRP={0x8, 0x6, 0x10001}]}, @NL80211_ATTR_REG_ALPHA2={0x6, 0x21, 'a\x00'}]}, 0x34}, 0x1, 0x0, 0x0, 0x4008000}, 0x4000000)

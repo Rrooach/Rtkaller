@@ -1,0 +1,140 @@
+Warning: Permanently added '[localhost]:51421' (ECDSA) to the list of known hosts.
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+syzkaller login: [   16.045722] ==================================================================
+[   16.045767] BUG: KASAN: use-after-free in con_shutdown+0x83/0x90
+[   16.045772] Write of size 8 at addr ffff888112203b08 by task syz-executor249/1960
+[   16.045773] 
+[   16.045783] CPU: 0 PID: 1960 Comm: syz-executor249 Not tainted 5.0.0 #3
+[   16.045786] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[   16.045791] Call Trace:
+[   16.045815]  dump_stack+0x79/0xba
+[   16.045820]  ? con_shutdown+0x83/0x90
+[   16.045842]  print_address_description+0x60/0x229
+[   16.045848]  ? con_shutdown+0x83/0x90
+[   16.045852]  ? con_shutdown+0x83/0x90
+[   16.045857]  kasan_report.cold.3+0x1a/0x35
+[   16.045862]  ? con_shutdown+0x83/0x90
+[   16.045866]  ? set_palette+0x1a0/0x1a0
+[   16.045871]  con_shutdown+0x83/0x90
+[   16.045891]  release_tty+0xc4/0x4a0
+[   16.045895]  tty_release_struct+0x36/0x50
+[   16.045900]  tty_release+0xb05/0xe00
+[   16.045907]  ? kmem_cache_free+0x72/0x190
+[   16.045912]  ? tty_release_struct+0x50/0x50
+[   16.045931]  __fput+0x25f/0x6f0
+[   16.045947]  task_work_run+0x145/0x1c0
+[   16.045959]  do_exit+0x773/0x29b0
+[   16.045972]  ? replace_page_cache_page+0x491/0x570
+[   16.045987]  ? __pmd_alloc+0x2d0/0x2d0
+[   16.045992]  ? release_task.part.21+0x12e0/0x12e0
+[   16.045999]  do_group_exit+0xf2/0x320
+[   16.046005]  __x64_sys_exit_group+0x3e/0x50
+[   16.046013]  do_syscall_64+0x9e/0x2b0
+[   16.046017]  ? prepare_exit_to_usermode+0xc0/0x160
+[   16.046028]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+[   16.046041] RIP: 0033:0x449676
+[   16.046069] Code: Bad RIP value.
+[   16.046073] RSP: 002b:00007ffd64e493a8 EFLAGS: 00000246 ORIG_RAX: 00000000000000e7
+[   16.046078] RAX: ffffffffffffffda RBX: 00000000004c43b0 RCX: 0000000000449676
+[   16.046081] RDX: 0000000000000000 RSI: 000000000000003c RDI: 0000000000000000
+[   16.046084] RBP: 0000000000000000 R08: 00000000000000e7 R09: ffffffffffffffc0
+[   16.046087] R10: 0000000000497038 R11: 0000000000000246 R12: 00000000004c43b0
+[   16.046091] R13: 0000000000000001 R14: 0000000000000000 R15: 0000000000000001
+[   16.046093] 
+[   16.046100] Allocated by task 1960:
+[   16.046107]  __kasan_kmalloc.constprop.6+0xc1/0xd0
+[   16.046112]  vc_allocate+0x1d6/0x5d0
+[   16.046115]  con_install+0x53/0x3f0
+[   16.046122]  tty_init_dev+0xe9/0x410
+[   16.046126]  tty_open+0x596/0x9d0
+[   16.046132]  chrdev_open+0x20c/0x520
+[   16.046137]  do_dentry_open+0x400/0xe70
+[   16.046146]  path_openat+0x988/0x41c0
+[   16.046151]  do_filp_open+0x19b/0x270
+[   16.046157]  do_sys_open+0x2cb/0x450
+[   16.046161]  do_syscall_64+0x9e/0x2b0
+[   16.046167]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+[   16.046168] 
+[   16.046170] Freed by task 1964:
+[   16.046176]  __kasan_slab_free+0x125/0x170
+[   16.046179]  kfree+0x8f/0x1a0
+[   16.046185]  vt_disallocate_all+0x258/0x360
+[   16.046188]  vt_ioctl+0x17ee/0x2470
+[   16.046191]  tty_ioctl+0x486/0x1340
+[   16.046196]  do_vfs_ioctl+0x1a4/0x1000
+[   16.046199]  ksys_ioctl+0x7b/0xa0
+[   16.046201]  __x64_sys_ioctl+0x73/0xb0
+[   16.046209]  do_syscall_64+0x9e/0x2b0
+[   16.046215]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+[   16.046216] 
+[   16.046224] The buggy address belongs to the object at ffff888112203a80
+[   16.046224]  which belongs to the cache kmalloc-1k of size 1024
+[   16.046228] The buggy address is located 136 bytes inside of
+[   16.046228]  1024-byte region [ffff888112203a80, ffff888112203e80)
+[   16.046229] The buggy address belongs to the page:
+[   16.046240] page:ffffea0004488000 count:1 mapcount:0 mapping:ffff88811ac01140 index:0x0 compound_mapcount: 0
+[   16.046250] flags: 0x200000000010200(slab|head)
+[   16.046259] raw: 0200000000010200 dead000000000100 dead000000000200 ffff88811ac01140
+[   16.046266] raw: 0000000000000000 00000000000e000e 00000001ffffffff 0000000000000000
+[   16.046267] page dumped because: kasan: bad access detected
+[   16.046268] 
+[   16.046269] Memory state around the buggy address:
+[   16.046273]  ffff888112203a00: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
+[   16.046277]  ffff888112203a80: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+[   16.046280] >ffff888112203b00: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+[   16.046281]                       ^
+[   16.046286]  ffff888112203b80: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+[   16.046289]  ffff888112203c00: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+[   16.046290] ==================================================================
+[   16.046292] Disabling lock debugging due to kernel taint
+[   16.046326] Kernel panic - not syncing: panic_on_warn set ...
+[   16.046332] CPU: 0 PID: 1960 Comm: syz-executor249 Tainted: G    B             5.0.0 #3
+[   16.046335] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[   16.046336] Call Trace:
+[   16.046346]  dump_stack+0x79/0xba
+[   16.046350]  ? con_shutdown+0x80/0x90
+[   16.046355]  panic+0x226/0x47c
+[   16.046361]  ? __warn_printk+0xdf/0xdf
+[   16.046365]  ? con_shutdown+0x83/0x90
+[   16.046371]  ? add_taint+0x19/0x50
+[   16.046376]  ? con_shutdown+0x83/0x90
+[   16.046381]  ? con_shutdown+0x83/0x90
+[   16.046387]  end_report+0x43/0x49
+[   16.046392]  kasan_report.cold.3+0xd/0x35
+[   16.046396]  ? con_shutdown+0x83/0x90
+[   16.046400]  ? set_palette+0x1a0/0x1a0
+[   16.046405]  con_shutdown+0x83/0x90
+[   16.046410]  release_tty+0xc4/0x4a0
+[   16.046416]  tty_release_struct+0x36/0x50
+[   16.046421]  tty_release+0xb05/0xe00
+[   16.046428]  ? kmem_cache_free+0x72/0x190
+[   16.046432]  ? tty_release_struct+0x50/0x50
+[   16.046436]  __fput+0x25f/0x6f0
+[   16.046441]  task_work_run+0x145/0x1c0
+[   16.046447]  do_exit+0x773/0x29b0
+[   16.046452]  ? replace_page_cache_page+0x491/0x570
+[   16.046459]  ? __pmd_alloc+0x2d0/0x2d0
+[   16.046464]  ? release_task.part.21+0x12e0/0x12e0
+[   16.046470]  do_group_exit+0xf2/0x320
+[   16.046476]  __x64_sys_exit_group+0x3e/0x50
+[   16.046481]  do_syscall_64+0x9e/0x2b0
+[   16.046486]  ? prepare_exit_to_usermode+0xc0/0x160
+[   16.046493]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+[   16.046497] RIP: 0033:0x449676
+[   16.046502] Code: Bad RIP value.
+[   16.046505] RSP: 002b:00007ffd64e493a8 EFLAGS: 00000246 ORIG_RAX: 00000000000000e7
+[   16.046510] RAX: ffffffffffffffda RBX: 00000000004c43b0 RCX: 0000000000449676
+[   16.046513] RDX: 0000000000000000 RSI: 000000000000003c RDI: 0000000000000000
+[   16.046516] RBP: 0000000000000000 R08: 00000000000000e7 R09: ffffffffffffffc0
+[   16.046518] R10: 0000000000497038 R11: 0000000000000246 R12: 00000000004c43b0
+[   16.046520] R13: 0000000000000001 R14: 0000000000000000 R15: 0000000000000001
+[   16.046615] Dumping ftrace buffer:
+[   16.046627]    (ftrace buffer empty)
+[   16.046632] Kernel Offset: 0x7000000 from 0xffffffff81000000 (relocation range: 0xffffffff80000000-0xffffffffbfffffff)
+[   16.165539] Rebooting in 1 seconds..

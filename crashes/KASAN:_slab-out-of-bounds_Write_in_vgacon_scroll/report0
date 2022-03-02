@@ -1,0 +1,47 @@
+==================================================================
+BUG: KASAN: slab-out-of-bounds in vgacon_scroll+0x6a5/0x890
+Write of size 5216 at addr ffff88811b0af480 by task syz-executor.0/4521
+
+CPU: 1 PID: 4521 Comm: syz-executor.0 Not tainted 4.14.103+ #2
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+Call Trace:
+ dump_stack+0x64/0x86
+ print_address_description+0x65/0x280
+ kasan_report+0x223/0x330
+ memcpy+0x34/0x50
+ vgacon_scroll+0x6a5/0x890
+ con_scroll+0x2bb/0x310
+ lf+0x234/0x280
+ do_con_trol+0x132/0x5150
+ do_con_write.part.20+0x540/0x1ad0
+ con_write+0xa7/0xc0
+ n_tty_write+0x4e1/0xd80
+ tty_write+0x46a/0x840
+ do_iter_write+0x3dd/0x560
+ vfs_writev+0x155/0x2c0
+ do_writev+0xbc/0x200
+ do_syscall_64+0x18e/0x480
+ entry_SYSCALL_64_after_hwframe+0x3d/0xa2
+RIP: 0033:0x4686dd
+RSP: 002b:00007f9863458c58 EFLAGS: 00000246 ORIG_RAX: 0000000000000014
+RAX: ffffffffffffffda RBX: 0000000000544f80 RCX: 00000000004686dd
+RDX: 0000000000000006 RSI: 0000000020000380 RDI: 0000000000000003
+RBP: 00000000004c4725 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 000000000057cf00
+R13: 00007ffeef86d7bf R14: 000000000057cf00 R15: 00007f9863458dc0
+
+The buggy address belongs to the page:
+page:ffffea00046c2800 count:1 mapcount:0 mapping:          (null) index:0x0 compound_mapcount: 0
+flags: 0x200000000008000(head)
+raw: 0200000000008000 0000000000000000 0000000000000000 00000001ffffffff
+raw: dead000000000100 dead000000000200 0000000000000000 0000000000000000
+page dumped because: kasan: bad access detected
+
+Memory state around the buggy address:
+ ffff88811b0aff00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ ffff88811b0aff80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>ffff88811b0b0000: 00 00 00 00 00 fc fc 00 00 00 00 00 fc fc 00 00
+                                  ^
+ ffff88811b0b0080: 00 00 00 fc fc 00 00 00 00 00 fc fc 00 00 00 00
+ ffff88811b0b0100: 00 fc fc 00 00 00 00 00 fc fc 00 00 00 00 00 fc
+==================================================================

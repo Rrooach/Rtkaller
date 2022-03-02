@@ -1,0 +1,2 @@
+001: audit: type=1400 audit(1613903244.109:8): avc:  denied  { execmem } for  pid=372 comm="syz-executor306" scontext=system_u:system_r:kernel_t:s0 tcontext=system_u:system_r:kernel_t:s0 tclass=process permissive=1
+000: tmpfs: Unknown parameter 'mpanic:'

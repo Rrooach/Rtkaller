@@ -1,0 +1,46 @@
+syzkaller login: [    9.462647] scp (1525) used greatest stack depth: 3760 bytes left
+Warning: Permanently added '[localhost]:24027' (ECDSA) to the list of known hosts.
+executing program
+[    9.677199] ------------[ cut here ]------------
+[    9.677852] WARNING: at drivers/ata/libata-core.c:5108 ata_qc_issue+0x425/0x450()
+[    9.678922] Modules linked in:
+[    9.679389] CPU: 1 PID: 1535 Comm: syz-executor164 Not tainted 3.10.108-rt123+ #14
+[    9.680440] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[    9.681656]  0000000000000009 ffff88013a2c1a68 ffffffff81991617 ffff88013a2c1aa0
+[    9.682681]  ffffffff8103b93c ffff88013a774158 0000000000000001 ffff88013a774000
+[    9.683759]  0000000000000002 ffff88013a775c80 ffff88013a2c1ab0 ffffffff8103ba15
+[    9.684754] Call Trace:
+[    9.685084]  [<ffffffff81991617>] dump_stack+0x1e/0x20
+[    9.685738]  [<ffffffff8103b93c>] warn_slowpath_common+0x5c/0x80
+[    9.686513]  [<ffffffff8103ba15>] warn_slowpath_null+0x15/0x20
+[    9.687314]  [<ffffffff8152c895>] ata_qc_issue+0x425/0x450
+[    9.688266]  [<ffffffff81533b2e>] ? ata_scsi_rw_xlat+0x9e/0x290
+[    9.689312]  [<ffffffff81533a90>] ? ata_scsi_invalid_field+0x40/0x40
+[    9.690424]  [<ffffffff81533ddc>] ata_scsi_translate+0xbc/0x1c0
+[    9.691460]  [<ffffffff81533a90>] ? ata_scsi_invalid_field+0x40/0x40
+[    9.692532]  [<ffffffff8153767c>] ata_scsi_queuecmd+0xcc/0x340
+[    9.693482]  [<ffffffff815031ed>] scsi_dispatch_cmd+0xed/0x460
+[    9.694494]  [<ffffffff8150b0d2>] scsi_request_fn+0x3e2/0x5e0
+[    9.695529]  [<ffffffff813243b0>] __blk_run_queue+0x40/0x50
+[    9.696544]  [<ffffffff8132385a>] __elv_add_request+0x13a/0x370
+[    9.697532]  [<ffffffff81330754>] blk_execute_rq_nowait+0x84/0x130
+[    9.698522]  [<ffffffff81330884>] blk_execute_rq+0x84/0xf0
+[    9.699512]  [<ffffffff812e836f>] ? security_capable+0x2f/0x40
+[    9.700243]  [<ffffffff810478a4>] ? ns_capable+0x24/0x50
+[    9.700914]  [<ffffffff81047cd2>] ? nsown_capable+0x12/0x20
+[    9.701642]  [<ffffffff81337350>] sg_scsi_ioctl+0x2f0/0x430
+[    9.702344]  [<ffffffff81526af6>] sg_ioctl+0xfb6/0x1050
+[    9.703036]  [<ffffffff8117168a>] ? do_filp_open+0x5a/0xd0
+[    9.703771]  [<ffffffff81525b40>] ? sg_new_write.isra.19+0x340/0x340
+[    9.704603]  [<ffffffff81173ccc>] do_vfs_ioctl+0x35c/0x640
+[    9.705323]  [<ffffffff812f2256>] ? selinux_file_ioctl+0x106/0x180
+[    9.706128]  [<ffffffff81174047>] SyS_ioctl+0x97/0xd0
+[    9.706815]  [<ffffffff819a0df2>] system_call_fastpath+0x16/0x1b
+[    9.707576] ---[ end trace a7284ba331a2aaed ]---
+[    9.708332] ata1.00: exception Emask 0x0 SAct 0x0 SErr 0x0 action 0x0
+[    9.710441] ata1.00: failed command: READ DMA
+[    9.711165] ata1.00: cmd c8/00:00:00:00:00/00:00:00:00:00/e0 tag 0
+[    9.711165]          res 50/00:00:18:04:00/00:00:00:00:00/e0 Emask 0x40 (internal error)
+[    9.713597] ata1.00: status: { DRDY }
+[    9.715175] ata1.00: configured for MWDMA2
+[    9.715968] ata1: EH complete

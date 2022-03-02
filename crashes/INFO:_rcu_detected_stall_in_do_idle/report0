@@ -1,0 +1,37 @@
+rcu: INFO: rcu_sched detected stalls on CPUs/tasks:
+	(detected by 0, t=21002 jiffies, g=86941, q=15)
+rcu: All QSes seen, last rcu_sched kthread activity 21002 (4295363434-4295342432), jiffies_till_next_fqs=3, root ->qsmask 0x0
+swapper/0       R  running task    14424     0      0 0x80004000
+Call Trace:
+ <IRQ>
+ sched_show_task.cold.113+0xb1/0xd3
+ rcu_sched_clock_irq.cold.87+0x32b/0x39b
+ update_process_times+0x28/0x60
+ tick_sched_handle+0x55/0x70
+ tick_sched_timer+0x3c/0xa0
+ __hrtimer_run_queues+0x149/0x330
+ hrtimer_interrupt+0x10f/0x250
+ smp_apic_timer_interrupt+0x68/0x130
+ apic_timer_interrupt+0xf/0x20
+ </IRQ>
+RIP: 0010:default_idle+0x20/0x140
+Code: ff 90 90 90 90 90 90 90 90 90 41 55 41 54 55 65 8b 2d 74 7a 23 76 53 0f 1f 44 00 00 e9 07 00 00 00 0f 00 2d 94 c7 42 00 fb f4 <65> 8b 2d 59 7a 23 76 0f 1f 44 00 00 5b 5d 41 5c 41 5d c3 65 8b 05
+RSP: 0018:ffffffff8a603e98 EFLAGS: 00000246 ORIG_RAX: ffffffffffffff13
+RAX: ffffffff89dd88d0 RBX: 0000000000000000 RCX: ffffffff890b8dd4
+RDX: 0000000000000001 RSI: ffffffff8a603e30 RDI: 000000a29587957c
+RBP: 0000000000000000 R08: 000000c38ac895d6 R09: 0000000000000001
+R10: 00000000000003b9 R11: 0000000000000400 R12: 0000000000000000
+R13: 0000000000000000 R14: ffffffff8adb62e0 R15: 0000000000000000
+ do_idle+0x19e/0x210
+ cpu_startup_entry+0x14/0x20
+ start_kernel+0x586/0x5a8
+ secondary_startup_64+0xa4/0xb0
+rcu: rcu_sched kthread starved for 21002 jiffies! g86941 f0x2 RCU_GP_WAIT_FQS(5) ->state=0x200 ->cpu=1
+rcu: RCU grace-period kthread stack dump:
+rcu_sched       R14896    10      2 0x80004000
+Call Trace:
+ schedule+0x2a/0x90
+ schedule_timeout+0x1a0/0x3e0
+ rcu_gp_kthread+0x4c9/0xe50
+ kthread+0x12c/0x150
+ ret_from_fork+0x35/0x40

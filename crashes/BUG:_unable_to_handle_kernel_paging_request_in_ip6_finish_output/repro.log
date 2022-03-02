@@ -1,0 +1,56 @@
+Warning: Permanently added '[localhost]:13219' (ECDSA) to the list of known hosts.
+syzkaller login: [   10.895705] BUG: unable to handle kernel paging request at ffff88023a0c73f8
+[   10.896649] IP: [<ffffffff813585f6>] memcpy+0x6/0x110
+[   10.897350] PGD 20d1067 PUD 0 
+[   10.897979] Oops: 0002 [#1] SMP 
+[   10.898457] Dumping ftrace buffer:
+[   10.898912]    (ftrace buffer empty)
+[   10.899383] Modules linked in:
+[   10.899822] CPU: 1 PID: 1535 Comm: syz-executor312 Not tainted 3.10.108-rt123+ #14
+[   10.900788] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[   10.901957] task: ffff88013abed5f0 ti: ffff88013a298000 task.ti: ffff88013a298000
+[   10.902901] RIP: 0010:[<ffffffff813585f6>]  [<ffffffff813585f6>] memcpy+0x6/0x110
+[   10.903877] RSP: 0018:ffff88013a299888  EFLAGS: 00010283
+[   10.904552] RAX: ffff88023a0c73f8 RBX: ffff88013a275400 RCX: 00000000000000b0
+[   10.905458] RDX: 00000000000000b0 RSI: ffff88013a7e9300 RDI: ffff88023a0c73f8
+[   10.906390] RBP: ffff88013a299938 R08: 00000000876c7c37 R09: ffff88013a29980e
+[   10.907331] R10: 00000000cc0d911c R11: 00000000d845f3f6 R12: ffff88013a275900
+[   10.908251] R13: 0000000000000000 R14: 00000000ffffffff R15: ffff88013a0c74b0
+[   10.909203] FS:  0000000001409880(0063) GS:ffff88013fd00000(0000) knlGS:0000000000000000
+[   10.910276] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[   10.911027] CR2: ffff88023a0c73f8 CR3: 000000013a2f3000 CR4: 00000000003407e0
+[   10.912218] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+[   10.913261] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+[   10.914183] Stack:
+[   10.914454]  ffffffff81858db9 ffff8801389bd380 ffff88013a275900 ffff88013a2998f0
+[   10.915440]  01ffffff8179f39b ffffffff818551c0 ffff8801389e5800 ffff880138ac8000
+[   10.916437]  000000000000000a ffff8801389e1800 ffff8801ffffff48 ffff8801000000b8
+[   10.917490] Call Trace:
+[   10.917830]  [<ffffffff81858db9>] ? ip6_fragment+0xb69/0xda0
+[   10.918916]  [<ffffffff818551c0>] ? ip6_flush_pending_frames+0x100/0x100
+[   10.920269]  [<ffffffff818590dc>] ip6_finish_output+0xec/0x120
+[   10.921428]  [<ffffffff818591a5>] ip6_output+0x95/0x100
+[   10.922459]  [<ffffffff81857211>] ip6_local_out+0x31/0x50
+[   10.923444]  [<ffffffff818575de>] ip6_push_pending_frames+0x3ae/0x550
+[   10.924641]  [<ffffffff81879303>] rawv6_sendmsg+0xde3/0x1030
+[   10.925781]  [<ffffffff81105102>] ? get_page_from_freelist+0x552/0x8f0
+[   10.927013]  [<ffffffff812ec4fc>] ? sock_has_perm+0x9c/0xb0
+[   10.928021]  [<ffffffff8180b3bb>] inet_sendmsg+0xab/0xf0
+[   10.929026]  [<ffffffff81749b74>] sock_sendmsg+0xa4/0xf0
+[   10.930146]  [<ffffffff811537c9>] ? __kmalloc+0x29/0x1b0
+[   10.931146]  [<ffffffff818882bf>] ? ipv6_renew_option+0x9f/0x140
+[   10.932202]  [<ffffffff8174a098>] ___sys_sendmsg+0x458/0x470
+[   10.933296]  [<ffffffff811372cb>] ? page_add_new_anon_rmap+0xab/0x150
+[   10.934539]  [<ffffffff8112bf41>] ? handle_mm_fault+0x161/0x240
+[   10.935601]  [<ffffffff8174ae9d>] __sys_sendmsg+0x4d/0xa0
+[   10.936592]  [<ffffffff8174af1d>] SyS_sendmsg+0x2d/0x50
+[   10.937690]  [<ffffffff819a0df2>] system_call_fastpath+0x16/0x1b
+[   10.938846] Code: 50 88 43 4e 5b 5d f3 c3 0f 1f 44 00 00 e8 b3 fa ff ff 48 8b 43 58 48 2b 43 50 88 43 4e 5b 5d eb e5 90 90 90 90 48 89 f8 48 89 d1 <f3> a4 c3 03 83 e2 07 f3 48 a5 89 d1 f3 a4 c3 20 4c 8b 06 4c 8b 
+[   10.943972] RIP  [<ffffffff813585f6>] memcpy+0x6/0x110
+[   10.944985]  RSP <ffff88013a299888>
+[   10.945737] CR2: ffff88023a0c73f8
+[   10.946358] ---[ end trace 00140bdef28cdff5 ]---
+[   10.947250] Kernel panic - not syncing: Fatal exception
+[   10.948230] Dumping ftrace buffer:
+[   10.948879]    (ftrace buffer empty)
+[   10.949608] Rebooting in 1 seconds..

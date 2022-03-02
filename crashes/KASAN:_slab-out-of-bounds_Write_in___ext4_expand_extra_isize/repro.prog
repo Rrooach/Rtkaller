@@ -1,0 +1,4 @@
+# {Threaded:true Collide:true Repeat:false RepeatTimes:0 Procs:1 Sandbox: Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:false KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:false HandleSegv:false Repro:false Trace:false}
+open(0x0, 0x24542, 0x0)
+mount$9p_unix(&(0x7f0000000040)='fallocate04.txt\x00', &(0x7f00000010c0)='fallocate04.txt\x00', 0x0, 0x204740a, 0x0)
+syz_mount_image$ext4(&(0x7f0000000080)='ext3\x00', &(0x7f00000000c0)='fallocate04.txt\x00', 0x0, 0x0, 0x0, 0x820020, &(0x7f00000001c0)=ANY=[@ANYBLOB="64656275675f77616e745f65787472615f6973697a653d307830323030303030302c00b7c44e67bdfb7f9b411a12287984a480ac009dd303f85bd63c69d24f9772f621bf591bcb518c295cf1d5e89cd70309783629d38a321baf716eee172947ab4bcef3019f35e1014f3c5c38ea4a05961627805822b9aa50a19dfa01253dde8988afbb3f48021caf125c5c85cb073f516d7d8d62"])

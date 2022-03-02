@@ -1,0 +1,43 @@
+swap_free: Bad swap file entry 100000c008000040
+BUG: unable to handle kernel paging request at 0000000000048014
+IP: [<ffffffff81140646>] free_pages_and_swap_cache+0x76/0x100
+PGD 128d0b067 PUD 128d0c067 PMD 0 
+Oops: 0000 [#1] SMP 
+Dumping ftrace buffer:
+   (ftrace buffer empty)
+Modules linked in:
+CPU: 0 PID: 5359 Comm: syz-executor.0 Not tainted 3.10.108-rt123+ #14
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+task: ffff88013ab3be80 ti: ffff880138bcc000 task.ti: ffff880138bcc000
+RIP: 0010:[<ffffffff81140646>]  [<ffffffff81140646>] free_pages_and_swap_cache+0x76/0x100
+RSP: 0018:ffff880138bcdbd0  EFLAGS: 00010293
+RAX: 0000000000000000 RBX: ffff880128dfb010 RCX: 0000000000000000
+RDX: ffff88013ab3be80 RSI: ffffffff81140643 RDI: 000000000000da60
+RBP: ffff880138bcdc00 R08: 0000000000000098 R09: 0000000000000006
+R10: ffff88013fbf8f80 R11: 0000000000000002 R12: ffff880128dfb080
+R13: 000000000000000e R14: 0000000000048014 R15: ffff880128dfb010
+FS:  00007f50b619e700(0000) GS:ffff88013fc00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000000048014 CR3: 0000000128d0a000 CR4: 00000000003407f0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Stack:
+ 000280147516efff ffff880128dfb000 ffff880138bcdc60 ffff880138bcdc88
+ ffff88013ab3be80 ffff88013ab3be80 ffff880138bcdc28 ffffffff81126239
+ ffff88012982c170 ffff880138a25f80 ffff880138bcdc60 ffff880138bcdc50
+Call Trace:
+ [<ffffffff81126239>] tlb_flush_mmu.part.73+0x69/0xb0
+ [<ffffffff81126aed>] tlb_finish_mmu+0x6d/0x70
+ [<ffffffff81133e06>] exit_mmap+0xf6/0x180
+ [<ffffffff81038b10>] mmput+0x30/0xe0
+ [<ffffffff810406e0>] do_exit+0x290/0xb50
+ [<ffffffff81041e8e>] do_group_exit+0x3e/0xa0
+ [<ffffffff810506a8>] get_signal_to_deliver+0x278/0x5d0
+ [<ffffffff81002333>] do_signal+0x43/0x6b0
+ [<ffffffff810029ff>] do_notify_resume+0x5f/0x70
+ [<ffffffff81998b26>] retint_signal+0x41/0x7b
+Code: 8d 45 ff 4c 89 fb 4d 8d 64 c7 08 eb 16 0f 1f 84 00 00 00 00 00 48 83 c3 08 e8 b7 98 f7 ff 4c 39 e3 74 5a e8 ad 98 f7 ff 4c 8b 33 <49> 8b 06 a9 00 00 01 00 74 e0 e8 9b 98 f7 ff 41 8b 46 18 85 c0 
+RIP  [<ffffffff81140646>] free_pages_and_swap_cache+0x76/0x100
+ RSP <ffff880138bcdbd0>
+CR2: 0000000000048014
+---[ end trace 6cb9d0acaf6628da ]---

@@ -1,0 +1,169 @@
+
+Debian GNU/Linux 8 syzkaller ttyS0
+
+Warning: Permanently added '[localhost]:32215' (ECDSA) to the list of known hosts.
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+syzkaller login: [    9.740542] ==================================================================
+[    9.740565] BUG: KASAN: slab-out-of-bounds in vgacon_scroll+0x6a5/0x890
+[    9.740568] Write of size 5216 at addr ffff88811b0af480 by task syz-executor089/1817
+[    9.740569] 
+[    9.740574] CPU: 1 PID: 1817 Comm: syz-executor089 Not tainted 4.14.103+ #2
+[    9.740576] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[    9.740579] Call Trace:
+[    9.740596]  dump_stack+0x64/0x86
+[    9.740600]  ? vgacon_scroll+0x6a5/0x890
+[    9.740608]  print_address_description+0x65/0x280
+[    9.740611]  ? vgacon_scroll+0x6a5/0x890
+[    9.740613]  kasan_report+0x223/0x330
+[    9.740617]  memcpy+0x34/0x50
+[    9.740619]  vgacon_scroll+0x6a5/0x890
+[    9.740628]  con_scroll+0x2bb/0x310
+[    9.740631]  lf+0x234/0x280
+[    9.740634]  ? con_scroll+0x310/0x310
+[    9.740642]  ? load_balance+0x1d50/0x1d50
+[    9.740650]  ? notifier_call_chain+0x11b/0x160
+[    9.740653]  do_con_trol+0x132/0x5150
+[    9.740656]  ? reset_palette+0x1b0/0x1b0
+[    9.740659]  ? up+0x12/0xe0
+[    9.740662]  ? vgacon_set_cursor_size.isra.8+0xae/0x130
+[    9.740665]  ? notifier_call_chain+0x11b/0x160
+[    9.740668]  do_con_write.part.20+0x540/0x1ad0
+[    9.740672]  ? do_con_write.part.20+0x568/0x1ad0
+[    9.740675]  ? do_con_trol+0x5150/0x5150
+[    9.740677]  ? up+0x12/0xe0
+[    9.740683]  ? __printk_safe_exit+0x5/0x10
+[    9.740686]  ? __printk_safe_exit+0x5/0x10
+[    9.740688]  ? console_unlock+0x404/0x9f0
+[    9.740692]  con_write+0xa7/0xc0
+[    9.740697]  do_output_char+0x4ba/0x770
+[    9.740700]  n_tty_write+0x579/0xd80
+[    9.740704]  ? n_tty_open+0x150/0x150
+[    9.740707]  ? kernel_text_address+0xf7/0x110
+[    9.740710]  ? do_wait_intr_irq+0x220/0x220
+[    9.740714]  ? unwind_get_return_address+0x5a/0xa0
+[    9.740717]  tty_write+0x46a/0x840
+[    9.740720]  ? n_tty_open+0x150/0x150
+[    9.740724]  do_iter_write+0x3dd/0x560
+[    9.740727]  vfs_writev+0x155/0x2c0
+[    9.740730]  ? vfs_iter_write+0xa0/0xa0
+[    9.740736]  ? fsnotify+0x94e/0xb40
+[    9.740739]  ? __fsnotify_inode_delete+0x20/0x20
+[    9.740742]  ? kasan_slab_free+0x88/0xc0
+[    9.740745]  ? putname+0xf7/0x130
+[    9.740748]  ? do_writev+0xbc/0x200
+[    9.740750]  do_writev+0xbc/0x200
+[    9.740753]  ? vfs_writev+0x2c0/0x2c0
+[    9.740759]  ? selinux_bprm_set_creds+0xc60/0xc60
+[    9.740762]  ? SyS_ioctl+0x5a/0xb0
+[    9.740765]  ? SyS_readv+0x30/0x30
+[    9.740768]  do_syscall_64+0x18e/0x480
+[    9.740771]  ? do_page_fault+0x28/0x220
+[    9.740774]  ? prepare_exit_to_usermode+0xbc/0x150
+[    9.740782]  entry_SYSCALL_64_after_hwframe+0x3d/0xa2
+[    9.740788] RIP: 0033:0x44aa1d
+[    9.740790] RSP: 002b:00007ffc3a727e28 EFLAGS: 00000246 ORIG_RAX: 0000000000000014
+[    9.740794] RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 000000000044aa1d
+[    9.740795] RDX: 0000000000000006 RSI: 0000000020000380 RDI: 0000000000000004
+[    9.740797] RBP: 00007ffc3a727e34 R08: 000000000000000d R09: 000000003a727f98
+[    9.740799] R10: 0000000000497038 R11: 0000000000000246 R12: 00000000ffffffff
+[    9.740801] R13: 00000000000024de R14: 00000000004c2018 R15: 0000000000000000
+[    9.740802] 
+[    9.740803] The buggy address belongs to the page:
+[    9.740812] page:ffffea00046c2800 count:1 mapcount:0 mapping:          (null) index:0x0 compound_mapcount: 0
+[    9.740816] flags: 0x200000000008000(head)
+[    9.740821] raw: 0200000000008000 0000000000000000 0000000000000000 00000001ffffffff
+[    9.740825] raw: dead000000000100 dead000000000200 0000000000000000 0000000000000000
+[    9.740826] page dumped because: kasan: bad access detected
+[    9.740826] 
+[    9.740827] Memory state around the buggy address:
+[    9.740829]  ffff88811b0aff00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[    9.740831]  ffff88811b0aff80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[    9.740834] >ffff88811b0b0000: 00 00 00 00 00 fc fc 00 00 00 00 00 fc fc 00 00
+[    9.740835]                                   ^
+[    9.740837]  ffff88811b0b0080: 00 00 00 fc fc 00 00 00 00 00 fc fc 00 00 00 00
+[    9.740839]  ffff88811b0b0100: 00 fc fc 00 00 00 00 00 fc fc 00 00 00 00 00 fc
+[    9.740840] ==================================================================
+[    9.740841] Disabling lock debugging due to kernel taint
+[    9.740843] Kernel panic - not syncing: panic_on_warn set ...
+[    9.740843] 
+[    9.740846] CPU: 1 PID: 1817 Comm: syz-executor089 Tainted: G    B           4.14.103+ #2
+[    9.740848] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[    9.740848] Call Trace:
+[    9.740852]  dump_stack+0x64/0x86
+[    9.740856]  panic+0x1a9/0x39a
+[    9.740860]  ? refcount_error_report+0x296/0x296
+[    9.740863]  ? vgacon_scroll+0x6a5/0x890
+[    9.740866]  kasan_end_report+0x4a/0x50
+[    9.740869]  kasan_report+0x135/0x330
+[    9.740871]  memcpy+0x34/0x50
+[    9.740874]  vgacon_scroll+0x6a5/0x890
+[    9.740877]  con_scroll+0x2bb/0x310
+[    9.740880]  lf+0x234/0x280
+[    9.740882]  ? con_scroll+0x310/0x310
+[    9.740885]  ? load_balance+0x1d50/0x1d50
+[    9.740888]  ? notifier_call_chain+0x11b/0x160
+[    9.740891]  do_con_trol+0x132/0x5150
+[    9.740894]  ? reset_palette+0x1b0/0x1b0
+[    9.740896]  ? up+0x12/0xe0
+[    9.740899]  ? vgacon_set_cursor_size.isra.8+0xae/0x130
+[    9.740902]  ? notifier_call_chain+0x11b/0x160
+[    9.740906]  do_con_write.part.20+0x540/0x1ad0
+[    9.740909]  ? do_con_write.part.20+0x568/0x1ad0
+[    9.740912]  ? do_con_trol+0x5150/0x5150
+[    9.740914]  ? up+0x12/0xe0
+[    9.740917]  ? __printk_safe_exit+0x5/0x10
+[    9.740920]  ? __printk_safe_exit+0x5/0x10
+[    9.740923]  ? console_unlock+0x404/0x9f0
+[    9.740925]  con_write+0xa7/0xc0
+[    9.740928]  do_output_char+0x4ba/0x770
+[    9.740932]  n_tty_write+0x579/0xd80
+[    9.740935]  ? n_tty_open+0x150/0x150
+[    9.740938]  ? kernel_text_address+0xf7/0x110
+[    9.740940]  ? do_wait_intr_irq+0x220/0x220
+[    9.740943]  ? unwind_get_return_address+0x5a/0xa0
+[    9.740946]  tty_write+0x46a/0x840
+[    9.740949]  ? n_tty_open+0x150/0x150
+[    9.740952]  do_iter_write+0x3dd/0x560
+[    9.740955]  vfs_writev+0x155/0x2c0
+[    9.740957]  ? vfs_iter_write+0xa0/0xa0
+[    9.740960]  ? fsnotify+0x94e/0xb40
+[    9.740963]  ? __fsnotify_inode_delete+0x20/0x20
+[    9.740967]  ? kasan_slab_free+0x88/0xc0
+[    9.740969]  ? putname+0xf7/0x130
+[    9.740972]  ? do_writev+0xbc/0x200
+[    9.740974]  do_writev+0xbc/0x200
+[    9.740976]  ? vfs_writev+0x2c0/0x2c0
+[    9.740979]  ? selinux_bprm_set_creds+0xc60/0xc60
+[    9.740981]  ? SyS_ioctl+0x5a/0xb0
+[    9.740984]  ? SyS_readv+0x30/0x30
+[    9.740986]  do_syscall_64+0x18e/0x480
+[    9.740989]  ? do_page_fault+0x28/0x220
+[    9.740992]  ? prepare_exit_to_usermode+0xbc/0x150
+[    9.740995]  entry_SYSCALL_64_after_hwframe+0x3d/0xa2
+[    9.741001] RIP: 0033:0x44aa1d
+[    9.741002] RSP: 002b:00007ffc3a727e28 EFLAGS: 00000246 ORIG_RAX: 0000000000000014
+[    9.741005] RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 000000000044aa1d
+[    9.741007] RDX: 0000000000000006 RSI: 0000000020000380 RDI: 0000000000000004
+[    9.741008] RBP: 00007ffc3a727e34 R08: 000000000000000d R09: 000000003a727f98
+[    9.741010] R10: 0000000000497038 R11: 0000000000000246 R12: 00000000ffffffff
+[    9.741011] R13: 00000000000024de R14: 00000000004c2018 R15: 0000000000000000
+[    9.741083] Dumping ftrace buffer:
+[    9.741088]    (ftrace buffer empty)
+[    9.741091] Kernel Offset: 0x9200000 from 0xffffffff81000000 (relocation range: 0xffffffff80000000-0xffffffffbfffffff)
+[    9.821909] Rebooting in 1 seconds..

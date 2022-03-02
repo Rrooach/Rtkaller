@@ -1,0 +1,130 @@
+001: rcu: INFO: rcu_sched detected stalls on CPUs/tasks:
+001: rcu: 	0-...0: (1 GPs behind) idle=316/1/0x4000000000000000 softirq=148514/148520 fqs=2321 
+001: 	(detected by 1, t=21002 jiffies, g=228841, q=28)
+001: Sending NMI from CPU 1 to CPUs 0:
+000: NMI backtrace for cpu 0
+000: CPU: 0 PID: 100 Comm: kworker/0:4 Not tainted 5.9.0-rc7-rt10+ #2
+000: Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+000: Workqueue: events_freezable_power_ disk_events_workfn
+000: RIP: 0010:iowrite8+0x3d/0x60
+000: Code: 76 0f e8 f6 07 6a ff 88 5d 00 5b 5d e9 ec 07 6a ff e8 e7 07 6a ff 48 81 fd 00 00 01 00 76 12 e8 d9 07 6a ff 0f b7 d5 89 d8 ee <5b> 5d e9 cc 07 6a ff e8 c7 07 6a ff 48 89 ef 48 c7 c6 c0 9d b5 a1
+000: RSP: 0018:ffff8881117df4a0 EFLAGS: 00000093
+000: RAX: 00000000000000a0 RBX: 00000000000000a0 RCX: ffffffff9facfe87
+000: RDX: 0000000000000176 RSI: 0000000000010176 RDI: 00000000000000a0
+000: RBP: 0000000000010176 R08: 00000292580b5ccc R09: 0000000000000000
+000: R10: ffff8881139e0179 R11: ffffed102273c02f R12: 00000000000000a0
+000: R13: ffff8881139e0008 R14: 00000000000003e8 R15: dffffc0000000000
+000: FS:  0000000000000000(0000) GS:ffff888116600000(0000) knlGS:0000000000000000
+000: CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+000: CR2: 00007f4c412bedb8 CR3: 00000000b569a005 CR4: 0000000000770ef0
+000: DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+000: DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000600
+000: PKRU: 55555554
+000: Call Trace:
+000:  ata_sff_dev_select+0x4c/0x70
+000:  ata_dev_select.constprop.0+0x135/0x240
+000:  ata_sff_qc_issue+0xfc/0x7d0
+000:  ata_bmdma_qc_issue+0x40d/0x540
+000:  ata_qc_issue+0x520/0xb40
+000:  __ata_scsi_queuecmd+0x542/0xc20
+000:  ata_scsi_queuecmd+0xad/0x190
+000:  scsi_queue_rq+0x1550/0x2840
+000:  blk_mq_dispatch_rq_list+0x33b/0x1b60
+000:  __blk_mq_sched_dispatch_requests+0x2f3/0x550
+000:  blk_mq_sched_dispatch_requests+0xd8/0x140
+000:  __blk_mq_run_hw_queue+0x95/0x250
+000:  __blk_mq_delay_run_hw_queue+0x443/0x490
+000:  blk_mq_run_hw_queue+0x135/0x330
+000:  blk_mq_sched_insert_request+0x45b/0x570
+000:  blk_execute_rq+0xc5/0x120
+000:  __scsi_execute+0x297/0x5b0
+000:  sr_check_events+0x174/0x8c0
+000:  cdrom_check_events+0x64/0x110
+000:  sr_block_check_events+0x179/0x260
+000:  disk_check_events+0x13d/0x560
+000:  kthread+0x2f1/0x400
+000:  ret_from_fork+0x22/0x30
+001: rcu: INFO: rcu_sched detected stalls on CPUs/tasks:
+001: rcu: 	0-....: (62 ticks this GP) idle=316/1/0x4000000000000000 softirq=148521/148521 fqs=2572 
+001: 	(detected by 1, t=99284 jiffies, g=228841, q=28)
+001: Sending NMI from CPU 1 to CPUs 0:
+000: NMI backtrace for cpu 0
+000: CPU: 0 PID: 66 Comm: printk Not tainted 5.9.0-rc7-rt10+ #2
+000: Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+000: RIP: 0010:io_serial_in+0x60/0x80
+000: Code: 48 8d 7d 08 0f b6 8d b9 00 00 00 48 b8 00 00 00 00 00 fc ff df 48 89 fa 48 c1 ea 03 d3 e3 80 3c 02 00 75 13 03 5d 08 89 da ec <0f> b6 c0 5b 5d c3 e8 55 7b 5c ff eb c9 e8 7e 7b 5c ff eb e6 66 66
+000: RSP: 0018:ffff888112bf7ac0 EFLAGS: 00000002
+000: RAX: dffffc0000000000 RBX: 00000000000003fd RCX: 0000000000000000
+000: RDX: 00000000000003fd RSI: 0000000000000005 RDI: ffffffffa3933428
+000: RBP: ffffffffa3933420 R08: 0000000000000001 R09: fffffbfff4459ff9
+000: R10: ffffffffa22cffc3 R11: fffffbfff4459ff8 R12: 0000000000000020
+000: R13: fffffbfff47266cb R14: fffffbfff4726687 R15: ffffffffa3933438
+000: FS:  0000000000000000(0000) GS:ffff888116600000(0000) knlGS:0000000000000000
+000: CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+000: CR2: 00007f4c412bedb8 CR3: 00000001022f6006 CR4: 0000000000770ef0
+000: DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+000: DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000600
+000: PKRU: 55555554
+000: Call Trace:
+000:  wait_for_xmitr+0x86/0x1c0
+000:  serial8250_console_putchar+0x6e/0xf0
+000:  uart_console_write+0x47/0xd0
+000:  serial8250_console_write+0x3ac/0xb90
+000:  printk_kthread_func+0x59f/0xd20
+000:  kthread+0x2f1/0x400
+000:  ret_from_fork+0x22/0x30
+001: rcu: rcu_sched kthread starved for 31908 jiffies! g228841 f0x0 RCU_GP_WAIT_FQS(5) ->state=0x402 ->cpu=1
+001: rcu: 	Unless rcu_sched kthread gets sufficient CPU time, OOM is now expected behavior.
+001: rcu: RCU grace-period kthread stack dump:
+001: task:rcu_sched       state:I stack:29472 pid:   10 ppid:     2 flags:0x00004000
+001: Call Trace:
+001:  __schedule+0x840/0x1820
+001:  rcu_gp_kthread+0xa26/0x2430
+001:  kthread+0x2f1/0x400
+001:  ret_from_fork+0x22/0x30
+001: rcu: INFO: rcu_sched detected stalls on CPUs/tasks:
+001: rcu: 	0-....: (63 ticks this GP) idle=316/1/0x4000000000000000 softirq=148521/148521 fqs=3195 
+001: 	(detected by 1, t=435200 jiffies, g=228841, q=91)
+001: Sending NMI from CPU 1 to CPUs 0:
+000: NMI backtrace for cpu 0
+000: CPU: 0 PID: 66 Comm: printk Not tainted 5.9.0-rc7-rt10+ #2
+000: Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+000: RIP: 0010:delay_tsc+0x1b/0x60
+000: Code: 8d 3c bf e9 77 ff ff ff 0f 1f 80 00 00 00 00 65 44 8b 0d 18 a9 48 60 0f 01 f9 66 90 48 c1 e2 20 48 09 c2 49 89 d0 eb 11 f3 90 <65> 8b 35 fe a8 48 60 41 39 f1 75 1b 41 89 f1 0f 01 f9 66 90 48 c1
+000: RSP: 0018:ffff888112bf7ad0 EFLAGS: 00000097
+000: RAX: 00000384f81d1f24 RBX: ffffffffa3933420 RCX: 0000000000000000
+000: RDX: 0000000000000578 RSI: 0000000000000000 RDI: 000000000000095b
+000: RBP: 0000000000000ae7 R08: 00000384f81d19ac R09: 0000000000000000
+000: R10: ffffffffa22cffc3 R11: fffffbfff4459ff8 R12: 0000000000000020
+000: R13: fffffbfff47266cb R14: fffffbfff4726687 R15: ffffffffa3933438
+000: FS:  0000000000000000(0000) GS:ffff888116600000(0000) knlGS:0000000000000000
+000: CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+000: CR2: 00007f4c412bedb8 CR3: 00000001022f6006 CR4: 0000000000770ef0
+000: DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+000: DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000600
+000: PKRU: 55555554
+000: Call Trace:
+000:  wait_for_xmitr+0x66/0x1c0
+000:  serial8250_console_putchar+0x6e/0xf0
+000:  uart_console_write+0x47/0xd0
+000:  serial8250_console_write+0x3ac/0xb90
+000:  printk_kthread_func+0x59f/0xd20
+000:  kthread+0x2f1/0x400
+000:  ret_from_fork+0x22/0x30
+001: rcu: rcu_sched kthread starved for 312334 jiffies! g228841 f0x0 RCU_GP_WAIT_FQS(5) ->state=0x0 ->cpu=1
+001: rcu: 	Unless rcu_sched kthread gets sufficient CPU time, OOM is now expected behavior.
+001: rcu: RCU grace-period kthread stack dump:
+001: task:rcu_sched       state:R  running task     stack:29472 pid:   10 ppid:     2 flags:0x00004000
+001: Call Trace:
+001:  __schedule+0x840/0x1820
+001:  schedule+0xc6/0x290
+001:  schedule_timeout+0x3d5/0x770
+001:  rcu_gp_kthread+0xa26/0x2430
+001:  kthread+0x2f1/0x400
+001:  ret_from_fork+0x22/0x30
+000: systemd-journald[104]: Received SIGTERM from PID 1 (systemd).
+000: systemd[1]: Unit systemd-journald.service entered failed state.
+000: systemd[1]: systemd-journald.service has no holdoff time, scheduling restart.
+000: systemd[1]: Stopping Journal Service...
+000: systemd[1]: Starting Journal Service...
+000: systemd[1]: Started Journal Service.

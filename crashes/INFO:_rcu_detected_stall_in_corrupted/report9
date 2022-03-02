@@ -1,0 +1,244 @@
+001: rcu: INFO: rcu_sched self-detected stall on CPU
+001: rcu: 	1-...!: (1 ticks this GP) idle=99a/1/0x4000000000000000 softirq=12733/12733 fqs=0 
+001: 	(t=32379 jiffies g=24621 q=34)
+001: rcu: rcu_sched kthread starved for 32379 jiffies! g24621 f0x0 RCU_GP_WAIT_FQS(5) ->state=0x402 ->cpu=0
+001: rcu: 	Unless rcu_sched kthread gets sufficient CPU time, OOM is now expected behavior.
+001: rcu: RCU grace-period kthread stack dump:
+001: task:rcu_sched       state:I stack:29472 pid:   10 ppid:     2 flags:0x00004000
+001: Call Trace:
+001:  __schedule+0x840/0x1820
+001:  schedule+0xc6/0x290
+001:  schedule_timeout+0x3d5/0x770
+001:  rcu_gp_kthread+0xa26/0x2430
+001:  kthread+0x2f1/0x400
+001:  ret_from_fork+0x22/0x30
+001: Sending NMI from CPU 1 to CPUs 0:
+000: NMI backtrace for cpu 0
+000: CPU: 0 PID: 73 Comm: kworker/0:1H Not tainted 5.9.0-rc7-rt10+ #2
+000: Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+000: Workqueue: kblockd blk_mq_requeue_work
+000: RIP: 0010:e1000_intr+0xcf/0x3c0
+000: Code: 48 b8 00 00 00 00 00 fc ff df 48 c1 ea 03 80 3c 02 00 0f 85 a8 02 00 00 48 8b 93 40 0d 00 00 b8 ff ff ff ff 89 82 d8 00 00 00 <48> 8b 83 40 0d 00 00 8b 40 08 48 8d ab 70 0b 00 00 48 89 ef e8 98
+000: RSP: 0018:ffff88811b209d08 EFLAGS: 00000046
+000: RAX: 00000000ffffffff RBX: ffff888117528000 RCX: ffffffffb5f92982
+000: RDX: ffffc90000440000 RSI: 0000000000000008 RDI: ffff888117529128
+000: RBP: 0000000000000000 R08: 0000000000000001 R09: ffffed1022ea5226
+000: R10: ffff88811752912f R11: ffffed1022ea5225 R12: ffff888117529128
+000: R13: ffff888117528d40 R14: dffffc0000000000 R15: ffff88811a8e5c38
+000: FS:  0000000000000000(0000) GS:ffff88811b200000(0000) knlGS:0000000000000000
+000: CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+000: CR2: 000000000052ffd0 CR3: 000000011a21e006 CR4: 0000000000770ef0
+000: DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+000: DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000600
+000: PKRU: 55555554
+000: Call Trace:
+000:  <IRQ>
+000:  __handle_irq_event_percpu+0xfa/0x4f0
+000:  handle_irq_event_percpu+0xb4/0x1a0
+000:  handle_irq_event+0xc7/0x15c
+000:  handle_fasteoi_irq+0x19a/0x5c0
+000:  common_interrupt+0x5f/0x110
+000:  asm_common_interrupt+0x1e/0x40
+000: RIP: 0010:__do_softirq+0x113/0x624
+000: Code: 24 20 48 c1 e8 03 4c 01 f0 c7 44 24 38 0a 00 00 00 48 89 44 24 30 65 66 c7 05 77 ca e2 48 00 00 fb 48 c7 44 24 08 c0 90 c0 b7 <b8> ff ff ff ff 0f bc 44 24 04 83 c0 01 89 44 24 10 0f 84 a8 00 00
+000: RSP: 0018:ffff88811b209f78 EFLAGS: 00000282
+000: RAX: ffffed1022e0ab40 RBX: ffff888117055a00 RCX: 1ffffffff703d306
+000: RDX: 0000000000000000 RSI: ffffffffb7200000 RDI: ffff888117055a2c
+000: RBP: ffff8881171c7800 R08: 0000000000000001 R09: ffffed10236413bd
+000: R10: 0000000000000003 R11: ffffed10236413bc R12: 0000000000000000
+000: R13: 0000000000000000 R14: dffffc0000000000 R15: 0000000000000000
+000:  asm_call_irq_on_stack+0x12/0x20
+000:  </IRQ>
+000:  do_softirq_own_stack+0x32/0x40
+000:  irq_exit_rcu+0x110/0x140
+000:  sysvec_apic_timer_interrupt+0x2e/0x80
+000:  asm_sysvec_apic_timer_interrupt+0x12/0x20
+000: RIP: 0010:_raw_spin_unlock_irqrestore+0x2c/0x50
+000: Code: ec 10 48 b8 00 00 00 00 00 fc ff df 48 89 fa 48 c1 ea 03 0f b6 04 02 48 89 fa 83 e2 07 38 d0 7f 04 84 c0 75 0a c6 07 00 56 9d <48> 83 c4 10 c3 48 89 74 24 08 48 89 3c 24 e8 71 02 fa fd 48 8b 74
+000: RSP: 0018:ffff8881171c78f8 EFLAGS: 00000246
+000: RAX: 0000000000000000 RBX: ffff8881185bc000 RCX: ffffffffb5e9a4d5
+000: RDX: 0000000000000000 RSI: 0000000000000246 RDI: ffff888118565400
+000: RBP: ffff888118058110 R08: 0000009557d24d8a R09: 0000000000000000
+000: R10: ffff8881185bc16f R11: ffffed10230b782d R12: 0000000000000000
+000: R13: 0000000000000246 R14: ffff8881185bc010 R15: ffff88811857a000
+000:  ata_scsi_queuecmd+0xdc/0x190
+000:  scsi_queue_rq+0x1550/0x2840
+000:  blk_mq_dispatch_rq_list+0x33b/0x1b60
+000:  __blk_mq_sched_dispatch_requests+0x2f3/0x550
+000:  blk_mq_sched_dispatch_requests+0xd8/0x140
+000:  __blk_mq_run_hw_queue+0x95/0x250
+000:  __blk_mq_delay_run_hw_queue+0x443/0x490
+000:  blk_mq_run_hw_queue+0x135/0x330
+000:  blk_mq_run_hw_queues+0xea/0x160
+000:  blk_mq_requeue_work+0x41e/0x6b0
+000:  process_one_work+0x880/0x1250
+000:  worker_thread+0x97/0xf90
+000:  kthread+0x2f1/0x400
+000:  ret_from_fork+0x22/0x30
+001: NMI backtrace for cpu 1
+001: CPU: 1 PID: 277 Comm: sshd Not tainted 5.9.0-rc7-rt10+ #2
+001: Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+001: Call Trace:
+001:  <IRQ>
+001:  dump_stack+0x9c/0xde
+001:  nmi_cpu_backtrace.cold+0x55/0x94
+001:  nmi_trigger_cpumask_backtrace+0x155/0x19b
+001:  rcu_dump_cpu_stacks+0x192/0x1dc
+001:  rcu_sched_clock_irq.cold+0x56e/0x9d6
+001:  update_process_times+0x24/0x90
+001:  tick_sched_handle.isra.0+0x105/0x150
+001:  tick_sched_timer+0xe7/0x120
+001:  __hrtimer_run_queues+0x308/0x7b0
+001:  hrtimer_interrupt+0x2c9/0x6c0
+001:  __sysvec_apic_timer_interrupt+0xcf/0x310
+001:  asm_call_irq_on_stack+0x12/0x20
+001:  </IRQ>
+001:  sysvec_apic_timer_interrupt+0x6f/0x80
+001:  asm_sysvec_apic_timer_interrupt+0x12/0x20
+001: RIP: 0010:e1000_xmit_frame+0x249b/0x4440
+001: Code: c1 ea 03 48 01 c3 48 b8 00 00 00 00 00 fc ff df 0f b6 04 02 84 c0 74 08 3c 03 0f 8e a0 19 00 00 48 8b 44 24 08 8b 40 18 89 03 <e9> 2a f4 ff ff e8 7b 1b bd fe bb 3c 00 00 00 48 8b 3c 24 ba 01 00
+001: RSP: 0018:ffff88811178ef90 EFLAGS: 00000246
+001: RAX: 0000000000000031 RBX: ffffc90000443818 RCX: ffffffffb5f9ea39
+001: RDX: 1ffff11022ea1033 RSI: ffff888117508180 RDI: ffff8881175081aa
+001: RBP: 00000000ffffffff R08: ffffc9000054d788 R09: 0000000000000002
+001: R10: ffff8880bd709bcb R11: ffffed1017ae1379 R12: 0000000000000018
+001: R13: dffffc0000000000 R14: 0000000000000031 R15: ffff8880bb802300
+001:  dev_hard_start_xmit+0x137/0x5b0
+001:  sch_direct_xmit+0x25e/0x7d0
+001:  __qdisc_run+0x405/0x16b0
+001:  __dev_queue_xmit+0xf9e/0x1db0
+001:  ip_finish_output2+0xabf/0x1800
+001:  __ip_finish_output+0x37d/0x800
+001:  ip_output+0x1c0/0x350
+001:  ip_local_out+0x7f/0xc0
+001:  __ip_queue_xmit+0x7d7/0x1490
+001:  __tcp_transmit_skb+0x2889/0x3330
+001:  tcp_write_xmit+0xd5c/0x5620
+001:  __tcp_push_pending_frames+0x9e/0x300
+001:  tcp_push+0x3f5/0x660
+001:  tcp_sendmsg_locked+0x23dc/0x2d10
+001:  tcp_sendmsg+0x2b/0x40
+001:  inet_sendmsg+0xaa/0x130
+001:  sock_sendmsg+0x121/0x170
+001:  sock_write_iter+0x23b/0x390
+001:  new_sync_write+0x3d0/0x5d0
+001:  vfs_write+0x484/0x600
+001:  ksys_write+0x198/0x210
+001:  do_syscall_64+0x33/0x40
+001:  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+001: RIP: 0033:0x7ff3d2231c00
+001: Code: 73 01 c3 48 8b 0d 88 92 2c 00 f7 d8 64 89 01 48 83 c8 ff c3 66 0f 1f 44 00 00 83 3d dd eb 2c 00 00 75 10 b8 01 00 00 00 0f 05 <48> 3d 01 f0 ff ff 73 31 c3 48 83 ec 08 e8 ce 8f 01 00 48 89 04 24
+001: RSP: 002b:00007ffff2cd9fb8 EFLAGS: 00000246 ORIG_RAX: 0000000000000001
+001: RAX: ffffffffffffffda RBX: 00000000000003cc RCX: 00007ff3d2231c00
+001: RDX: 00000000000003cc RSI: 000055c400774efc RDI: 0000000000000003
+001: RBP: 000055c400774efc R08: 0000000000001af8 R09: 00000000000000e7
+001: R10: 0000000000000008 R11: 0000000000000246 R12: 00007ffff2cda014
+001: R13: 00007ffff2cda0b4 R14: 000055c3fe934e48 R15: 000055c3fe934e80
+001: rcu: INFO: rcu_sched detected stalls on CPUs/tasks:
+001: 	(detected by 1, t=101968 jiffies, g=24621, q=50)
+001: rcu: All QSes seen, last rcu_sched kthread activity 101968 (4295000688-4294898720), jiffies_till_next_fqs=3, root ->qsmask 0x0
+001: rcu: rcu_sched kthread starved for 101968 jiffies! g24621 f0x2 RCU_GP_WAIT_FQS(5) ->state=0x0 ->cpu=0
+001: rcu: 	Unless rcu_sched kthread gets sufficient CPU time, OOM is now expected behavior.
+001: rcu: RCU grace-period kthread stack dump:
+001: task:rcu_sched       state:R  running task     stack:29472 pid:   10 ppid:     2 flags:0x00004000
+001: Call Trace:
+001:  __schedule+0x840/0x1820
+001:  schedule+0xc6/0x290
+001:  schedule_timeout+0x3d5/0x770
+001:  rcu_gp_kthread+0xa26/0x2430
+001:  kthread+0x2f1/0x400
+001:  ret_from_fork+0x22/0x30
+001: EXT4-fs (sda): error count since last fsck: 3
+001: EXT4-fs (sda): initial error at time 1622039607: mb_free_blocks:1469: inode 106958: block 461312
+001: EXT4-fs (sda): last error at time 1622856255: ext4_mb_generate_buddy:805
+001: sd 0:0:0:0: [sda] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_TIMEOUT cmd_age=102s
+001: sd 0:0:0:0: [sda] tag#0 CDB: Synchronize Cache(10) 35 00 00 00 00 00 00 00 00 00
+001: blk_update_request: I/O error, dev sda, sector 0 op 0x1:(WRITE) flags 0x800 phys_seg 0 prio class 0
+001: cgroup: Unknown subsys name 'perf_event'
+001: cgroup: Unknown subsys name 'net_cls'
+001: rcu: INFO: rcu_sched detected stalls on CPUs/tasks:
+001: rcu: 	0-...!: (6 ticks this GP) idle=166/1/0x4000000000000000 softirq=13012/13012 fqs=0 
+001: 	(detected by 1, t=340144 jiffies, g=26281, q=1)
+001: Sending NMI from CPU 1 to CPUs 0:
+000: NMI backtrace for cpu 0
+000: CPU: 0 PID: 277 Comm: sshd Not tainted 5.9.0-rc7-rt10+ #2
+000: Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+000: RIP: 0010:___slab_alloc+0x54/0x660
+000: Code: 48 89 4c 24 40 4d 85 ff 0f 84 70 01 00 00 83 fb ff 0f 84 c1 00 00 00 49 8b 07 48 c1 e8 3a 89 44 24 48 39 c3 0f 85 9d 00 00 00 <49> 8b 57 08 48 8d 42 ff 83 e2 01 49 0f 44 c7 48 8b 00 a8 20 0f 85
+000: RSP: 0018:ffff88811b209ad0 EFLAGS: 00010046
+000: RAX: 0000000000000000 RBX: 00000000ffffffff RCX: ffffffffb64b3461
+000: RDX: 00000000ffffffff RSI: 0000000000000a20 RDI: ffff88811a90c780
+000: RBP: ffff88811b209b88 R08: ffff88811b2328a0 R09: ffff88811b209b98
+000: R10: 0000000000000a20 R11: ffffed10230ca892 R12: ffff88811b2328a0
+000: R13: ffff88811a90c780 R14: ffff88811b209b98 R15: ffffea00045f38c0
+000: FS:  00007ff3d3ec4800(0000) GS:ffff88811b200000(0000) knlGS:0000000000000000
+000: CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+000: CR2: 00000000014b9178 CR3: 000000011153c005 CR4: 0000000000770ef0
+000: DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+000: DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000600
+000: PKRU: 55555554
+000: Call Trace:
+000:  <IRQ>
+000:  __slab_alloc+0x2b/0x60
+000:  kmem_cache_alloc+0x1a9/0x1c0
+000:  __build_skb+0x21/0x60
+000:  __napi_alloc_skb+0x179/0x2a0
+000:  e1000_clean_rx_irq+0x6cd/0x1030
+000:  e1000_clean+0x824/0x1990
+000:  net_rx_action+0x3ca/0xd10
+000:  __do_softirq+0x18c/0x624
+000:  asm_call_irq_on_stack+0x12/0x20
+000:  </IRQ>
+000:  do_softirq_own_stack+0x32/0x40
+000:  do_softirq+0x34/0x40
+000:  __local_bh_enable_ip+0x46/0x50
+000:  ip_finish_output2+0x6a5/0x1800
+000:  __ip_finish_output+0x37d/0x800
+000:  ip_output+0x1c0/0x350
+000:  ip_local_out+0x7f/0xc0
+000:  __ip_queue_xmit+0x7d7/0x1490
+000:  __tcp_transmit_skb+0x2889/0x3330
+000:  tcp_write_xmit+0xd5c/0x5620
+000:  __tcp_push_pending_frames+0x9e/0x300
+000:  tcp_push+0x3f5/0x660
+000:  tcp_sendmsg_locked+0x23dc/0x2d10
+000:  tcp_sendmsg+0x2b/0x40
+000:  inet_sendmsg+0xaa/0x130
+000:  sock_sendmsg+0x121/0x170
+000:  sock_write_iter+0x23b/0x390
+000:  new_sync_write+0x3d0/0x5d0
+000:  vfs_write+0x484/0x600
+000:  ksys_write+0x198/0x210
+000:  do_syscall_64+0x33/0x40
+000:  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+000: RIP: 0033:0x7ff3d2231c00
+000: Code: 73 01 c3 48 8b 0d 88 92 2c 00 f7 d8 64 89 01 48 83 c8 ff c3 66 0f 1f 44 00 00 83 3d dd eb 2c 00 00 75 10 b8 01 00 00 00 0f 05 <48> 3d 01 f0 ff ff 73 31 c3 48 83 ec 08 e8 ce 8f 01 00 48 89 04 24
+000: RSP: 002b:00007ffff2cd9fb8 EFLAGS: 00000246 ORIG_RAX: 0000000000000001
+000: RAX: ffffffffffffffda RBX: 000000000000098c RCX: 00007ff3d2231c00
+000: RDX: 000000000000098c RSI: 000055c4007737d0 RDI: 0000000000000003
+000: RBP: 000055c4007737d0 R08: 000000000000098c R09: 0000000000000151
+000: R10: 0000000000000008 R11: 0000000000000246 R12: 00007ffff2cda014
+000: R13: 00007ffff2cda0b4 R14: 000055c3fe934e48 R15: 000055c3fe934e80
+001: rcu: rcu_sched kthread starved for 340144 jiffies! g26281 f0x0 RCU_GP_WAIT_FQS(5) ->state=0x0 ->cpu=0
+001: rcu: 	Unless rcu_sched kthread gets sufficient CPU time, OOM is now expected behavior.
+001: rcu: RCU grace-period kthread stack dump:
+001: task:rcu_sched       state:R  running task     stack:29472 pid:   10 ppid:     2 flags:0x00004000
+001: Call Trace:
+001:  __schedule+0x840/0x1820
+001:  schedule+0xc6/0x290
+001:  schedule_timeout+0x3d5/0x770
+001:  rcu_gp_kthread+0xa26/0x2430
+001:  kthread+0x2f1/0x400
+001:  ret_from_fork+0x22/0x30
+001: systemd[1]: Starting Journal Service...
+001: systemd-journald[109]: Received SIGTERM from PID 1 (systemd).
+001: systemd[1]: Unit systemd-journald.service entered failed state.
+001: systemd[1]: systemd-journald.service has no holdoff time, scheduling restart.
+001: systemd[1]: Stopping Journal Service...
+001: systemd[1]: Starting Journal Service...
+001: systemd[1]: Started Journal Service.
+001: systemd[1]: systemd-journald.service has no holdoff time, scheduling restart.
+001: systemd[1]: Stopping Journal Service...
+001: systemd[1]: Starting Journal Service...
+001: systemd[1]: Started Journal Service.
+001: systemd-journald[4208]: Received request to flush runtime journal from PID 1

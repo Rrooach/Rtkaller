@@ -1,0 +1,331 @@
+syzkaller login: [  336.930575] EXT4-fs (sda): error count since last fsck: 3
+[  336.931401] EXT4-fs (sda): initial error at time 1622039607: mb_free_blocks:1469: inode 106958: block 461312
+[  336.932632] EXT4-fs (sda): last error at time 1622483667: ext4_mb_generate_buddy:747
+Warning: Permanently added '[localhost]:64465' (ECDSA) to the list of known hosts.
+executing program
+[  503.685619] ata1.00: exception Emask 0x0 SAct 0x0 SErr 0x0 action 0x0
+[  503.686431] ata1.00: BMDMA stat 0x5
+[  503.686933] ata1.00: failed command: WRITE DMA FUA EXT
+[  503.687623] ata1.00: cmd 3d/00:00:7f:31:61/00:71:de:00:00/e0 tag 0 dma 14811136 out
+[  503.687623]          res 41/04:00:7f:31:61/04:00:7f:31:61/e0 Emask 0x1 (device error)
+[  503.689597] ata1.00: status: { DRDY ERR }
+[  503.690162] ata1.00: error: { ABRT }
+[  503.691564] ata1.00: configured for MWDMA2
+[  503.692200] ata1: EH complete
+[  566.323609] ata1: lost interrupt (Status 0x50)
+[  566.324349] ata1.00: exception Emask 0x0 SAct 0x0 SErr 0x0 action 0x6 frozen
+[  566.325512] ata1.00: failed command: READ DMA
+[  566.326275] ata1.00: cmd c8/00:00:00:00:00/00:00:00:00:00/e0 tag 0 dma 131072 in
+[  566.326275]          res 40/00:00:7f:31:61/04:00:7f:31:61/e0 Emask 0x4 (timeout)
+[  566.328486] ata1.00: status: { DRDY }
+[  566.329095] ata1: soft resetting link
+[  566.484029] ata1.00: configured for MWDMA2
+[  566.484795] ata1: EH complete
+executing program
+[  566.503588] ata1.00: exception Emask 0x0 SAct 0x0 SErr 0x0 action 0x0
+[  566.504632] ata1.00: BMDMA stat 0x5
+[  566.505049] ata1.00: failed command: WRITE DMA FUA EXT
+[  566.505704] ata1.00: cmd 3d/00:00:7f:31:61/00:71:de:00:00/e0 tag 0 dma 14811136 out
+[  566.505704]          res 41/04:00:7f:31:61/04:00:7f:31:61/e0 Emask 0x1 (device error)
+[  566.507626] ata1.00: status: { DRDY ERR }
+[  566.508160] ata1.00: error: { ABRT }
+[  566.509355] ata1.00: configured for MWDMA2
+[  566.509953] ata1: EH complete
+[  627.763565] ata1: lost interrupt (Status 0x50)
+[  627.764463] ata1.00: exception Emask 0x0 SAct 0x0 SErr 0x0 action 0x6 frozen
+[  627.765671] ata1.00: failed command: READ DMA
+[  627.766246] ata1.00: cmd c8/00:00:00:00:00/00:00:00:00:00/e0 tag 0 dma 131072 in
+[  627.766246]          res 40/00:00:7f:31:61/04:00:7f:31:61/e0 Emask 0x4 (timeout)
+[  627.768841] ata1.00: status: { DRDY }
+[  627.769475] ata1: soft resetting link
+[  627.923767] ata1.00: configured for MWDMA2
+[  627.924417] ata1: EH complete
+executing program
+[  627.949605] ata1.00: exception Emask 0x0 SAct 0x0 SErr 0x0 action 0x0
+[  627.950902] ata1.00: BMDMA stat 0x5
+[  627.951632] ata1.00: failed command: WRITE DMA FUA EXT
+[  627.952676] ata1.00: cmd 3d/00:00:7f:31:61/00:71:de:00:00/e0 tag 0 dma 14811136 out
+[  627.952676]          res 41/04:00:7f:31:61/04:00:7f:31:61/e0 Emask 0x1 (device error)
+[  627.955618] ata1.00: status: { DRDY ERR }
+[  627.956380] ata1.00: error: { ABRT }
+[  627.958022] ata1.00: configured for MWDMA2
+[  627.958896] ata1: EH complete
+[  689.203600] ata1: lost interrupt (Status 0x50)
+[  689.204455] ata1.00: exception Emask 0x0 SAct 0x0 SErr 0x0 action 0x6 frozen
+[  689.205720] ata1.00: failed command: READ DMA
+[  689.206494] ata1.00: cmd c8/00:00:00:00:00/00:00:00:00:00/e0 tag 0 dma 131072 in
+[  689.206494]          res 40/00:00:7f:31:61/04:00:7f:31:61/e0 Emask 0x4 (timeout)
+[  689.209017] ata1.00: status: { DRDY }
+[  689.209811] ata1: soft resetting link
+[  689.363771] ata1.00: configured for MWDMA2
+[  689.364383] ata1: EH complete
+executing program
+[  689.384573] ata1.00: exception Emask 0x0 SAct 0x0 SErr 0x0 action 0x0
+[  689.385683] ata1.00: BMDMA stat 0x5
+[  689.386266] ata1.00: failed command: WRITE DMA FUA EXT
+[  689.387136] ata1.00: cmd 3d/00:00:7f:31:61/00:71:de:00:00/e0 tag 0 dma 14811136 out
+[  689.387136]          res 41/04:00:7f:31:61/04:00:7f:31:61/e0 Emask 0x1 (device error)
+[  689.389676] ata1.00: status: { DRDY ERR }
+[  689.390347] ata1.00: error: { ABRT }
+[  689.391713] ata1.00: configured for MWDMA2
+[  689.392459] ata1: EH complete
+[  750.643547] ata1: lost interrupt (Status 0x50)
+[  750.644442] ata1.00: limiting speed to MWDMA1:PIO4
+[  750.645250] ata1.00: exception Emask 0x0 SAct 0x0 SErr 0x0 action 0x6 frozen
+[  750.646549] ata1.00: failed command: READ DMA
+[  750.647273] ata1.00: cmd c8/00:00:00:00:00/00:00:00:00:00/e0 tag 0 dma 131072 in
+[  750.647273]          res 40/00:00:7f:31:61/04:00:7f:31:61/e0 Emask 0x4 (timeout)
+[  750.649997] ata1.00: status: { DRDY }
+[  750.650788] ata1: soft resetting link
+[  750.811973] ata1.00: configured for MWDMA1
+[  750.812607] ata1: EH complete
+executing program
+[  750.834563] ata1.00: exception Emask 0x0 SAct 0x0 SErr 0x0 action 0x0
+[  750.835363] ata1.00: BMDMA stat 0x5
+[  750.835838] ata1.00: failed command: WRITE DMA FUA EXT
+[  750.836532] ata1.00: cmd 3d/00:00:7f:31:61/00:71:de:00:00/e0 tag 0 dma 14811136 out
+[  750.836532]          res 41/04:00:7f:31:61/04:00:7f:31:61/e0 Emask 0x1 (device error)
+[  750.838685] ata1.00: status: { DRDY ERR }
+[  750.839266] ata1.00: error: { ABRT }
+[  750.840608] ata1.00: configured for MWDMA1
+[  750.841212] ata1: EH complete
+[  812.083575] ata1: lost interrupt (Status 0x50)
+[  812.084539] ata1.00: exception Emask 0x0 SAct 0x0 SErr 0x0 action 0x6 frozen
+[  812.085838] ata1.00: failed command: READ DMA
+[  812.086637] ata1.00: cmd c8/00:00:00:00:00/00:00:00:00:00/e0 tag 0 dma 131072 in
+[  812.086637]          res 40/00:00:7f:31:61/04:00:7f:31:61/e0 Emask 0x4 (timeout)
+[  812.089143] ata1.00: status: { DRDY }
+[  812.089926] ata1: soft resetting link
+[  812.244043] ata1.00: configured for MWDMA1
+[  812.244925] ata1: EH complete
+executing program
+[  812.264582] ata1.00: exception Emask 0x0 SAct 0x0 SErr 0x0 action 0x0
+[  812.265843] ata1.00: BMDMA stat 0x5
+[  812.266545] ata1.00: failed command: WRITE DMA FUA EXT
+[  812.267587] ata1.00: cmd 3d/00:00:7f:31:61/00:71:de:00:00/e0 tag 0 dma 14811136 out
+[  812.267587]          res 41/04:00:7f:31:61/04:00:7f:31:61/e0 Emask 0x1 (device error)
+[  812.270283] ata1.00: status: { DRDY ERR }
+[  812.270992] ata1.00: error: { ABRT }
+[  812.272564] ata1.00: configured for MWDMA1
+[  812.273399] ata1: EH complete
+[  873.523666] ata1: lost interrupt (Status 0x50)
+[  873.524483] ata1.00: exception Emask 0x0 SAct 0x0 SErr 0x0 action 0x6 frozen
+[  873.525723] ata1.00: failed command: READ DMA
+[  873.526486] ata1.00: cmd c8/00:00:00:00:00/00:00:00:00:00/e0 tag 0 dma 131072 in
+[  873.526486]          res 40/00:00:7f:31:61/04:00:7f:31:61/e0 Emask 0x4 (timeout)
+[  873.528771] ata1.00: status: { DRDY }
+[  873.529405] ata1: soft resetting link
+[  873.684174] ata1.00: configured for MWDMA1
+[  873.685159] ata1: EH complete
+executing program
+[  873.705591] ata1.00: exception Emask 0x0 SAct 0x0 SErr 0x0 action 0x0
+[  873.706392] ata1.00: BMDMA stat 0x5
+[  873.706955] ata1.00: failed command: WRITE DMA FUA EXT
+[  873.707606] ata1.00: cmd 3d/00:00:7f:31:61/00:71:de:00:00/e0 tag 0 dma 14811136 out
+[  873.707606]          res 41/04:00:7f:31:61/04:00:7f:31:61/e0 Emask 0x1 (device error)
+[  873.709815] ata1.00: status: { DRDY ERR }
+[  873.710523] ata1.00: error: { ABRT }
+[  873.712752] ata1.00: configured for MWDMA1
+[  873.713543] ata1: EH complete
+[  934.963567] ata1: lost interrupt (Status 0x50)
+[  934.964410] ata1.00: exception Emask 0x0 SAct 0x0 SErr 0x0 action 0x6 frozen
+[  934.965711] ata1.00: failed command: READ DMA
+[  934.966491] ata1.00: cmd c8/00:00:00:00:00/00:00:00:00:00/e0 tag 0 dma 131072 in
+[  934.966491]          res 40/00:00:7f:31:61/04:00:7f:31:61/e0 Emask 0x4 (timeout)
+[  934.969280] ata1.00: status: { DRDY }
+[  934.970167] ata1: soft resetting link
+[  935.123729] ata1.00: configured for MWDMA1
+[  935.124293] ata1: EH complete
+executing program
+[  935.146617] ata1.00: exception Emask 0x0 SAct 0x0 SErr 0x0 action 0x0
+[  935.147424] ata1.00: BMDMA stat 0x5
+[  935.147937] ata1.00: failed command: WRITE DMA FUA EXT
+[  935.148581] ata1.00: cmd 3d/00:00:7f:31:61/00:71:de:00:00/e0 tag 0 dma 14811136 out
+[  935.148581]          res 41/04:00:7f:31:61/04:00:7f:31:61/e0 Emask 0x1 (device error)
+[  935.150519] ata1.00: status: { DRDY ERR }
+[  935.151070] ata1.00: error: { ABRT }
+[  935.152250] ata1.00: configured for MWDMA1
+[  935.152897] ata1: EH complete
+[  996.403550] ata1: lost interrupt (Status 0x50)
+[  996.404407] ata1.00: limiting speed to PIO4
+[  996.405193] ata1.00: exception Emask 0x0 SAct 0x0 SErr 0x0 action 0x6 frozen
+[  996.406469] ata1.00: failed command: READ DMA
+[  996.407224] ata1.00: cmd c8/00:00:00:00:00/00:00:00:00:00/e0 tag 0 dma 131072 in
+[  996.407224]          res 40/00:00:7f:31:61/04:00:7f:31:61/e0 Emask 0x4 (timeout)
+[  996.409560] ata1.00: status: { DRDY }
+[  996.410269] ata1: soft resetting link
+[  996.563995] ata1.00: configured for PIO4
+[  996.564775] ata1: EH complete
+executing program
+[  996.600540] ata1.00: exception Emask 0x0 SAct 0x0 SErr 0x0 action 0x0
+[  996.601635] ata1.00: failed command: WRITE MULTIPLE FUA EXT
+[  996.602563] ata1.00: cmd ce/00:00:7f:31:61/00:71:de:00:00/e0 tag 0 pio 14811136 out
+[  996.602563]          res 41/04:00:7f:31:61/04:00:7f:31:61/e0 Emask 0x1 (device error)
+[  996.605283] ata1.00: status: { DRDY ERR }
+[  996.606000] ata1.00: error: { ABRT }
+[  996.607557] ata1.00: configured for PIO4
+[  996.608341] ata1: EH complete
+executing program
+[  996.711549] ata1.00: exception Emask 0x0 SAct 0x0 SErr 0x0 action 0x0
+[  996.712726] ata1.00: failed command: WRITE MULTIPLE FUA EXT
+[  996.713776] ata1.00: cmd ce/00:00:7f:31:61/00:71:de:00:00/e0 tag 0 pio 14811136 out
+[  996.713776]          res 41/04:00:7f:31:61/04:00:7f:31:61/e0 Emask 0x1 (device error)
+[  996.716571] ata1.00: status: { DRDY ERR }
+[  996.717298] ata1.00: error: { ABRT }
+[  996.718911] ata1.00: configured for PIO4
+[  996.719705] ata1: EH complete
+executing program
+[  996.775533] ata1.00: exception Emask 0x0 SAct 0x0 SErr 0x0 action 0x0
+[  996.776350] ata1.00: failed command: WRITE MULTIPLE FUA EXT
+[  996.777068] ata1.00: cmd ce/00:00:7f:31:61/00:71:de:00:00/e0 tag 0 pio 14811136 out
+[  996.777068]          res 41/04:00:7f:31:61/04:00:7f:31:61/e0 Emask 0x1 (device error)
+[  996.778930] ata1.00: status: { DRDY ERR }
+[  996.779425] ata1.00: error: { ABRT }
+[  996.780623] ata1.00: configured for PIO4
+[  996.781172] ata1: EH complete
+executing program
+[  996.794340] kasan: CONFIG_KASAN_INLINE enabled
+[  996.795364] kasan: GPF could be caused by NULL-ptr deref or user memory access
+[  996.796384] general protection fault: 0000 [#1] SMP KASAN PTI
+[  996.797135] CPU: 1 PID: 1960 Comm: systemd-tmpfile Not tainted 5.0.0 #3
+[  996.798207] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[  996.799481] RIP: 0010:path_init+0x59c/0xfe0
+[  996.800006] Code: 00 41 83 e5 01 80 3b 00 74 56 48 89 4c 24 58 e8 da 1d db ff 48 8b 4c 24 58 48 b8 00 00 00 00 00 fc ff df 48 89 ce 48 c1 ee 03 <0f> b6 34 06 48 89 c8 83 e0 07 83 c0 03 40 38 f0 7c 12 40 84 f6 74
+[  996.802432] RSP: 0018:ffff888111997ba0 EFLAGS: 00010246
+[  996.803085] RAX: dffffc0000000000 RBX: ffff8881119e8020 RCX: 0000000000000000
+[  996.803999] RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffff8881122833d8
+[  996.804941] RBP: ffff888111997c28 R08: ffffed10227f2a09 R09: ffffed10227f2a08
+[  996.805867] R10: ffffed10227f2a08 R11: ffff888113f95043 R12: 0000000000000040
+[  996.806796] R13: 0000000000000000 R14: ffff8881122833c0 R15: ffff888111997ca0
+[  996.807692] FS:  00007fa9650c1840(0000) GS:ffff88811b300000(0000) knlGS:0000000000000000
+[  996.808707] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[  996.809463] CR2: 00000000004c80f0 CR3: 00000001128fc005 CR4: 0000000000760ee0
+[  996.810372] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+[  996.811291] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+[  996.812243] PKRU: 55555554
+[  996.812590] Call Trace:
+[  996.812928]  ? free_rb_tree_fname+0xd0/0xd0
+[  996.813489]  path_parentat.isra.51+0x22/0x140
+[  996.814041]  filename_parentat.isra.67.part.68+0x174/0x3c0
+[  996.814791]  ? getname+0x20/0x20
+[  996.815237]  ? getname_flags+0xc8/0x570
+[  996.815866]  ? lockref_put_return+0xfc/0x170
+[  996.816482]  ? kasan_unpoison_shadow+0x34/0x40
+[  996.817044]  ? __kasan_kmalloc.constprop.6+0xc1/0xd0
+[  996.817726]  ? strncpy_from_user+0x23c/0x320
+[  996.818280]  ? getname_flags+0x236/0x570
+[  996.818792]  ? lockref_put_return+0xfc/0x170
+[  996.819310]  do_rmdir+0xec/0x3a0
+[  996.819735]  ? __ia32_sys_mkdir+0x80/0x80
+[  996.820228]  ? kmem_cache_free+0x72/0x190
+[  996.820746]  ? percpu_counter_add_batch+0xc5/0x120
+[  996.821362]  ? _raw_spin_lock_irq+0x7a/0xd0
+[  996.821892]  ? _raw_read_unlock_irqrestore+0x30/0x30
+[  996.822519]  ? task_work_run+0xf3/0x1c0
+[  996.823013]  __x64_sys_unlinkat+0xc4/0x100
+[  996.823540]  do_syscall_64+0x9e/0x2b0
+[  996.824038]  ? prepare_exit_to_usermode+0xc0/0x160
+[  996.824640]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+[  996.825286] RIP: 0033:0x7fa9649c232d
+[  996.825734] Code: 61 7b 2c 00 f7 d8 64 89 01 48 83 c8 ff c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 44 00 00 48 63 d2 48 63 ff b8 07 01 00 00 0f 05 <48> 3d 00 f0 ff ff 77 02 f3 c3 48 8b 15 2a 7b 2c 00 f7 d8 64 89 02
+[  996.827947] RSP: 002b:00007ffe3b4b5428 EFLAGS: 00000246 ORIG_RAX: 0000000000000107
+[  996.828989] RAX: ffffffffffffffda RBX: 000055b4ae7a0293 RCX: 00007fa9649c232d
+[  996.829884] RDX: 0000000000000200 RSI: 000055b4ae7a0293 RDI: 0000000000000004
+[  996.830771] RBP: 000055b4ae7a01d0 R08: 0005c3144da56340 R09: 00007fa964c8a670
+[  996.831702] R10: 000055b4ae7987c0 R11: 0000000000000246 R12: 00007ffe3b4b5520
+[  996.832549] R13: 0000000000000800 R14: 00007ffe3b4b5620 R15: 0005c3144da58efd
+[  996.833444] Modules linked in:
+[  996.833890] Dumping ftrace buffer:
+[  996.834313]    (ftrace buffer empty)
+[  996.834826] BUG: unable to handle kernel paging request at ffffed1030dbf50c
+[  996.834845] ---[ end trace 85f72062260f3e3c ]---
+[  996.835704] #PF error: [normal kernel read fault]
+[  996.835710] PGD 13fff3067 P4D 13fff3067 PUD 13fff2067 PMD 0 
+[  996.836309] RIP: 0010:path_init+0x59c/0xfe0
+[  996.836901] Oops: 0000 [#2] SMP KASAN PTI
+[  996.836908] CPU: 0 PID: 1946 Comm: sshd Tainted: G      D           5.0.0 #3
+[  996.837597] Code: 00 41 83 e5 01 80 3b 00 74 56 48 89 4c 24 58 e8 da 1d db ff 48 8b 4c 24 58 48 b8 00 00 00 00 00 fc ff df 48 89 ce 48 c1 ee 03 <0f> b6 34 06 48 89 c8 83 e0 07 83 c0 03 40 38 f0 7c 12 40 84 f6 74
+[  996.838117] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[  996.838610] RSP: 0018:ffff888111997ba0 EFLAGS: 00010246
+[  996.839490] RIP: 0010:__netlink_lookup+0x1de/0x3c0
+[  996.841720] RAX: dffffc0000000000 RBX: ffff8881119e8020 RCX: 0000000000000000
+[  996.842826] Code: fe 44 89 ee 49 8d 84 f7 80 00 00 00 48 89 04 24 48 8b 04 24 48 c1 e8 03 48 01 d8 48 89 44 24 18 e8 37 ca 76 fe 48 8b 44 24 18 <80> 38 00 0f 85 9c 01 00 00 48 8b 04 24 4c 8b 28 41 f6 c5 01 0f 85
+[  996.842831] RSP: 0018:ffff88811a06fa38 EFLAGS: 00010293
+[  996.843494] RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffff8881122833d8
+[  996.844089] RAX: ffffed1030dbf50c RBX: dffffc0000000000 RCX: ffffffffb95d3fb9
+[  996.844993] RBP: ffff888111997c28 R08: ffffed10227f2a09 R09: ffffed10227f2a08
+[  996.847266] RDX: 0000000000000000 RSI: 000000000e96df1c RDI: ffff88811228af04
+[  996.847269] RBP: ffff88811a080750 R08: ffffed102340df53 R09: ffff88811a06fa94
+[  996.847275] R10: ffffed102340df52 R11: ffff88811a06fa97 R12: 1ffff1102340df4d
+[  996.847939] R10: ffffed10227f2a08 R11: ffff888113f95043 R12: 0000000000000040
+[  996.849176] R13: 000000000e96df1c R14: ffff88811a080766 R15: ffff88811228af00
+[  996.849184] FS:  00007f887e7ab800(0000) GS:ffff88811b200000(0000) knlGS:0000000000000000
+[  996.850123] R13: 0000000000000000 R14: ffff8881122833c0 R15: ffff888111997ca0
+[  996.851303] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[  996.851309] CR2: ffffed1030dbf50c CR3: 00000001129ae001 CR4: 0000000000760ef0
+[  996.852199] FS:  00007fa9650c1840(0000) GS:ffff88811b300000(0000) knlGS:0000000000000000
+[  996.853368] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+[  996.853374] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+[  996.854247] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[  996.855390] PKRU: 55555554
+[  996.855394] Call Trace:
+[  996.855432]  ? unwind_next_frame+0xbf1/0x19e0
+[  996.856262] CR2: 00000000004c80f0 CR3: 00000001128fc005 CR4: 0000000000760ee0
+[  996.857539]  ? netlink_broadcast+0x50/0x50
+[  996.857576]  ? selinux_socket_getpeersec_dgram+0x1e8/0x2d0
+[  996.858421] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+[  996.859324]  ? kernel_text_address+0x10f/0x130
+[  996.859335]  netlink_autobind.isra.42+0xb8/0x170
+[  996.860273] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+[  996.861435]  ? security_socket_getpeersec_dgram+0x86/0xb0
+[  996.861441]  netlink_sendmsg+0x826/0xb60
+[  996.862376] PKRU: 55555554
+[  996.863267]  ? netlink_unicast+0x740/0x740
+[  996.863278]  ? netlink_unicast+0x740/0x740
+[  996.863988] Kernel panic - not syncing: Fatal exception
+[  996.864395]  sock_sendmsg+0xc7/0x100
+[  996.876619]  __sys_sendto+0x210/0x330
+[  996.877292]  ? __ia32_sys_getpeername+0xb0/0xb0
+[  996.878150]  ? do_wp_page+0x257/0x1690
+[  996.878844]  ? finish_mkwrite_fault+0x460/0x460
+[  996.879655]  ? _raw_spin_lock+0x79/0xd0
+[  996.880207]  ? _raw_read_lock_irq+0x30/0x30
+[  996.880825]  ? __kasan_slab_free+0x13a/0x170
+[  996.881463]  ? handle_mm_fault+0xee/0x350
+[  996.882034]  ? handle_mm_fault+0x103/0x350
+[  996.882717]  __x64_sys_sendto+0xe1/0x1b0
+[  996.883214]  do_syscall_64+0x9e/0x2b0
+[  996.883720]  ? prepare_exit_to_usermode+0xc0/0x160
+[  996.884345]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+[  996.884980] RIP: 0033:0x7f887cb266f3
+[  996.885436] Code: 48 8b 0d 98 b7 2b 00 f7 d8 64 89 01 48 83 c8 ff c3 66 0f 1f 44 00 00 83 3d ed 10 2c 00 00 75 13 49 89 ca b8 2c 00 00 00 0f 05 <48> 3d 01 f0 ff ff 73 34 c3 48 83 ec 08 e8 db b4 00 00 48 89 04 24
+[  996.888301] RSP: 002b:00007ffe5cc86528 EFLAGS: 00000246 ORIG_RAX: 000000000000002c
+[  996.889549] RAX: ffffffffffffffda RBX: 0000000000000084 RCX: 00007f887cb266f3
+[  996.890583] RDX: 0000000000000084 RSI: 00007ffe5cc86560 RDI: 0000000000000007
+[  996.891715] RBP: 0000000000000007 R08: 00007ffe5cc86550 R09: 000000000000000c
+[  996.892856] R10: 0000000000000000 R11: 0000000000000246 R12: 00007ffe5cc86560
+[  996.893871] R13: 00007ffe5cc86550 R14: 0000000000000452 R15: 0000000000000071
+[  996.894940] Modules linked in:
+[  996.895442] Dumping ftrace buffer:
+[  996.896002]    (ftrace buffer empty)
+[  996.896581] CR2: ffffed1030dbf50c
+[  996.897041] ---[ end trace 85f72062260f3e3d ]---
+[  996.897740] RIP: 0010:path_init+0x59c/0xfe0
+[  996.898274] Code: 00 41 83 e5 01 80 3b 00 74 56 48 89 4c 24 58 e8 da 1d db ff 48 8b 4c 24 58 48 b8 00 00 00 00 00 fc ff df 48 89 ce 48 c1 ee 03 <0f> b6 34 06 48 89 c8 83 e0 07 83 c0 03 40 38 f0 7c 12 40 84 f6 74
+[  996.901082] RSP: 0018:ffff888111997ba0 EFLAGS: 00010246
+[  996.901937] RAX: dffffc0000000000 RBX: ffff8881119e8020 RCX: 0000000000000000
+[  996.903014] RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffff8881122833d8
+[  996.904074] RBP: ffff888111997c28 R08: ffffed10227f2a09 R09: ffffed10227f2a08
+[  996.905261] R10: ffffed10227f2a08 R11: ffff888113f95043 R12: 0000000000000040
+[  996.906400] R13: 0000000000000000 R14: ffff8881122833c0 R15: ffff888111997ca0
+[  996.907396] FS:  00007f887e7ab800(0000) GS:ffff88811b200000(0000) knlGS:0000000000000000
+[  996.908642] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[  996.909583] CR2: ffffed1030dbf50c CR3: 00000001129ae001 CR4: 0000000000760ef0
+[  996.910744] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+[  996.911937] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+[  996.913088] PKRU: 55555554
+[  997.919179] Shutting down cpus with NMI
+[  997.919865] Dumping ftrace buffer:
+[  997.920313]    (ftrace buffer empty)
+[  997.920790] Kernel Offset: 0x36a00000 from 0xffffffff81000000 (relocation range: 0xffffffff80000000-0xffffffffbfffffff)
+[  997.922247] Rebooting in 1 seconds..

@@ -1,0 +1,38 @@
+001: Out of memory: Killed process 27856 (syz-executor.0) total-vm:85212kB, anon-rss:356kB, file-rss:39644kB, shmem-rss:0kB, UID:0 pgtables:128kB oom_score_adj:1000
+001: oom_reaper: reaped process 27856 (syz-executor.0), now anon-rss:364kB, file-rss:39644kB, shmem-rss:0kB
+000: rcu: INFO: rcu_sched self-detected stall on CPU
+000: rcu: 	0-....: (10608 ticks this GP) idle=70e/1/0x4000000000000000 softirq=83210/83210 fqs=4833 
+000: 	(t=21000 jiffies g=166501 q=1419)
+000: NMI backtrace for cpu 0
+000: CPU: 0 PID: 67 Comm: printk Not tainted 5.9.0-rc7-rt10+ #2
+000: Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+000: Call Trace:
+000:  <IRQ>
+000:  dump_stack+0x9c/0xde
+000:  nmi_cpu_backtrace.cold+0x55/0x94
+000:  nmi_trigger_cpumask_backtrace+0x155/0x19b
+000:  rcu_dump_cpu_stacks+0x192/0x1dc
+000:  rcu_sched_clock_irq.cold+0x56e/0x9d6
+000:  update_process_times+0x24/0x90
+000:  tick_sched_handle.isra.0+0x105/0x150
+000:  tick_sched_timer+0xe7/0x120
+000:  __hrtimer_run_queues+0x308/0x7b0
+000:  hrtimer_interrupt+0x2c9/0x6c0
+000:  __sysvec_apic_timer_interrupt+0xcf/0x310
+000:  asm_call_irq_on_stack+0x12/0x20
+000:  </IRQ>
+000:  sysvec_apic_timer_interrupt+0x6f/0x80
+000:  asm_sysvec_apic_timer_interrupt+0x12/0x20
+000: RIP: 0010:_raw_spin_unlock_irqrestore+0x2c/0x50
+000: Code: ec 10 48 b8 00 00 00 00 00 fc ff df 48 89 fa 48 c1 ea 03 0f b6 04 02 48 89 fa 83 e2 07 38 d0 7f 04 84 c0 75 0a c6 07 00 56 9d <48> 83 c4 10 c3 48 89 74 24 08 48 89 3c 24 e8 71 02 fa fd 48 8b 74
+000: RSP: 0018:ffff8881177ffbc8 EFLAGS: 00000246
+000: RAX: 0000000000000000 RBX: 0000000000000000 RCX: ffffffff82a02d22
+000: RDX: 0000000000000000 RSI: 0000000000000246 RDI: ffffffff86533420
+000: RBP: ffffffff86533420 R08: 0000000000000001 R09: fffffbfff09d9ff9
+000: R10: ffffffff84ecffc3 R11: fffffbfff09d9ff8 R12: 0000000000000005
+000: R13: 000000000000006b R14: ffffffff86533440 R15: ffffffff86533520
+000:  serial8250_console_write+0x58e/0xb90
+000:  printk_kthread_func+0x59f/0xd20
+000:  kthread+0x2f1/0x400
+000:  ret_from_fork+0x22/0x30
+001: systemd-journald[111]: /dev/kmsg buffer overrun, some messages lost.

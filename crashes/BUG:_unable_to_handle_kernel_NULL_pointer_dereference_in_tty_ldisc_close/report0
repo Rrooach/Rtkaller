@@ -1,0 +1,37 @@
+BUG: unable to handle kernel NULL pointer dereference at 0000000000000020
+IP: [<ffffffff8140ab3f>] tty_ldisc_close.isra.2+0x2f/0x70
+PGD 124861067 PUD 13a35e067 PMD 0 
+Oops: 0000 [#1] SMP 
+Dumping ftrace buffer:
+   (ftrace buffer empty)
+Modules linked in:
+CPU: 1 PID: 4125 Comm: syz-executor.0 Not tainted 3.10.108-rt123+ #14
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+task: ffff88013a62ddc0 ti: ffff88012557c000 task.ti: ffff88012557c000
+RIP: 0010:[<ffffffff8140ab3f>]  [<ffffffff8140ab3f>] tty_ldisc_close.isra.2+0x2f/0x70
+RSP: 0018:ffff88012557dd88  EFLAGS: 00010202
+RAX: 0000000000000000 RBX: ffff88013a1b4400 RCX: ffffc90000769000
+RDX: 0000000000040000 RSI: ffffffff8140ab33 RDI: ffff88013a1b4400
+RBP: ffff88012557dd98 R08: ffff88012557c000 R09: 000000000000b7ce
+R10: 000000000000b900 R11: ffff88013fd11870 R12: ffff8801395ec9c0
+R13: ffff88013a1b4428 R14: ffff88013a1b44a8 R15: ffff88013a177600
+FS:  00007f87a928c700(0000) GS:ffff88013fd00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000000000020 CR3: 0000000124a17000 CR4: 00000000003407e0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Stack:
+ ffff88013a1b4400 ffff8801395ec9c0 ffff88012557de10 ffffffff8140b5c8
+ 0000000000000000 0000000281408f2b ffffffff82072f70 00000000000017a0
+ ffff88012557de20 ffffffff81095332 000f42403a347a20 ffff88012557de10
+Call Trace:
+ [<ffffffff8140b5c8>] tty_set_ldisc+0x208/0x6f0
+ [<ffffffff814037ff>] tty_ioctl+0x8af/0xee0
+ [<ffffffff81173ccc>] do_vfs_ioctl+0x35c/0x640
+ [<ffffffff81174047>] SyS_ioctl+0x97/0xd0
+ [<ffffffff819a0df2>] system_call_fastpath+0x16/0x1b
+Code: 41 54 53 48 89 fb 49 89 f4 e8 ce f3 ca ff 48 8b 83 88 01 00 00 f6 c4 08 74 32 e8 bd f3 ca ff f0 80 a3 89 01 00 00 f7 49 8b 04 24 <4c> 8b 60 20 4d 85 e4 74 0b e8 a3 f3 ca ff 48 89 df 41 ff d4 e8 
+RIP  [<ffffffff8140ab3f>] tty_ldisc_close.isra.2+0x2f/0x70
+ RSP <ffff88012557dd88>
+CR2: 0000000000000020
+---[ end trace 30638680bc230dbf ]---

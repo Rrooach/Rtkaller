@@ -1,0 +1,6 @@
+# {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:false Trace:false}
+creat(&(0x7f0000000040)='./file0\x00', 0x0)
+acct(&(0x7f0000000000)='./file0\x00')
+mkdir(&(0x7f000000014f)='/tmp/lstw7aVdE\x00', 0x0)
+chdir(&(0x7f000000017c)='/tmp/lstw7aVdE\x00')
+rmdir(&(0x7f00000006c7)='/tmp/lstw7aVdE\x00')

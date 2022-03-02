@@ -1,0 +1,202 @@
+Extracting prog: 8m7.967211023s
+Minimizing prog: 7m16.810584439s
+Simplifying prog options: 0s
+Extracting C: 2m50.08719889s
+Simplifying C: 45m17.8599805s
+
+
+16 programs, 2 VMs, timeouts [6m0s]
+extracting reproducer from 16 programs
+single: executing 2 programs separately with timeout 6m0s
+testing program (duration=6m0s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): syz_mount_image$tmpfs-dup-fsconfig$FSCONFIG_SET_PATH
+detailed listing:
+executing program 0:
+r0 = syz_mount_image$tmpfs(&(0x7f0000000040)='tmpfs\x00', &(0x7f0000000080)='./file0\x00', 0x0, 0x0, 0x0, 0x0, &(0x7f0000000140)=ANY=[@ANYBLOB="6e725f696e6f6421ee1c6fd194de8b0a65733d2c00"])
+r1 = dup(r0)
+fsconfig$FSCONFIG_SET_PATH(r1, 0x3, &(0x7f00000000c0)='&-\\)([\x00', &(0x7f0000000100)='./file0\x00', 0xffffffffffffffff)
+
+program did not crash
+testing program (duration=6m0s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): socket$inet6-setsockopt$inet6_opts-ioctl$PIO_FONTX
+detailed listing:
+executing program 0:
+r0 = socket$inet6(0xa, 0x3, 0x8)
+setsockopt$inet6_opts(r0, 0x29, 0x40, &(0x7f0000000040)=ANY=[@ANYBLOB="386f638a720b5fb2e2ceed6317ce5ec637817b4e44bc755942cf5ad1562d09badb0cd2a132d2c0a04ce4db1ae295f6a56ce41e10230bc8b9a34baeffb266fbc67a193d471f87c28e35ddf8d6355b04f3375186fbbd"], 0x8)
+ioctl$PIO_FONTX(0xffffffffffffffff, 0x4b6c, &(0x7f0000000000)={0x80, 0x9, &(0x7f00000000c0)="5c8fd21cb7e25c09ebfab228e45543bc3f098fa3201a733a6c6c0c7fcfb5deac793e6c36b1422679ca42942a8c22c281bd73adcb260dd0cfc6450aa10e355c1aae5590bb81fc2c124e1d06667e18dc5cb4515ac5d6d417a4290639038195f3a8b75bb7a6722aaecf1a2088f1d98ee95e5a74595f0c06540091eb4f0b9952f75be15cbca30d4f5ae8fb1d83000593534aca6df296483a403735d8db12ce852b65d4a8f7ebefeebe1bc3e641491b4fd887386c3e67226375d993ce3f787118aff17ee6782d6a455472820d2b4a0b36f7aaaee17d4e70dcdcc709ee105ab1ef2435de2f0b81fb24946c7ed714ba8e18df7156b9fd883fcff22eef5f3dce5a9e7ca4db85d799dbfd067f05141cbd3c4b13162485a9d34a3c5324c82dd28f85fd5630c3865bddf2224c535709926bc35f91b882ebfec27a39337519fc2df5c2bf8c71d4a8e64a239431e60afa95659ef2711bbe68ac162a535fa654050ed8a75be3e83c1d5a6d852b3f0d2ccd135ae166eec08abbd5e01ebd5c03bc3c75c319051c41b042c18a1de8141d0cde8b50a5ab5a578ffe83c25408fa91beefbba4de122be835d6e7dc2319f7b233469c2446828f24976100327e461e30fc0993eb5bb9522b471c291ccf50e51c415155408129523cdbcbff26cca0e9767e300f23c0b37d2853f994a3d1c849ddae278b2a5bdd32741d958e2fe6a83e5c71f485f1d5b1672d2af4e465962851e1a295d37443b396c83e6d2b0451ff9bc177055f5e7a4c76e85a309b2f8a349b72bc04c87124e13c812b66e84da3f4c552da21bcf6162ac01f72364a1b00667efeb71e9b0d58461010aedc589372f4a6c8277da581ae4885ceab918564f8865c4ba0062df32deb1722f1cbc07a88f966ab7a384de210c01368fef6f1862345372746516701e5db87d9b45e0de797edb7db62167f998501c609ac20b904bf811a48afc45639bcba6edf3a909cbeb13bbd21b96d4a1dba392a467f4e08735c2d16395085fa6d7a4417ad9fa17c362324507607915cef9378853399976e0d762788e594013015b713fe48964690dddd11ff7fb68a3959b08742061d15817e1ea4c30143b33da141ae39a099685c06c80c01e4b0e20d448cf3a515aeb79b964aa6711dcfa34f6a9572f724cad77f0b0b67fca461cc5e7a6148161bb037e8e3713761442aefdc4a0ff69b17d870bf89ebf3956d5ef5edf6acd5eaec95857633917973acdc443be2ccc15fa9535464cfa04caa24787395b3f1841cdaa84da8b39dd44dbeb50da41142a1789553fcb96cbf57bb5023734629c1724d5c829ba8307cc9d3c2d5f87b1d8bf71d85715937e3571e286e4dbe9cfd949fa2aafc94fe22eaf148eaefccc72b84a9f9b402542f2730b930d275c64813729686c7ef612b991f37415d5592e1029aedd014311c5ac31570b846d54fa50e27e2fc34"})
+
+program crashed: INFO: rcu detected stall in rawv6_setsockopt
+single: successfully extracted reproducer
+found reproducer with 3 syscalls
+minimizing guilty program
+testing program (duration=9m0s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): socket$inet6-setsockopt$inet6_opts
+detailed listing:
+executing program 0:
+r0 = socket$inet6(0xa, 0x3, 0x8)
+setsockopt$inet6_opts(r0, 0x29, 0x40, &(0x7f0000000040)=ANY=[@ANYBLOB="386f638a720b5fb2e2ceed6317ce5ec637817b4e44bc755942cf5ad1562d09badb0cd2a132d2c0a04ce4db1ae295f6a56ce41e10230bc8b9a34baeffb266fbc67a193d471f87c28e35ddf8d6355b04f3375186fbbd"], 0x8)
+
+program crashed: INFO: rcu detected stall in corrupted
+testing program (duration=9m0s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): socket$inet6
+detailed listing:
+executing program 0:
+socket$inet6(0xa, 0x3, 0x8)
+
+program crashed: INFO: rcu detected stall in corrupted
+testing program (duration=9m0s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): 
+detailed listing:
+executing program 0:
+
+program did not crash
+extracting C reproducer
+testing compiled C program (duration=9m0s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): socket$inet6
+program crashed: INFO: rcu detected stall in sys_clone
+simplifying C reproducer
+testing compiled C program (duration=9m0s, {Threaded:true Collide:false Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): socket$inet6
+program crashed: INFO: rcu detected stall in alloc_pages_vma
+testing compiled C program (duration=9m0s, {Threaded:false Collide:false Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): socket$inet6
+program did not crash
+testing compiled C program (duration=9m0s, {Threaded:true Collide:false Repeat:false RepeatTimes:0 Procs:1 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:false Cgroups:false BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): socket$inet6
+program did not crash
+testing compiled C program (duration=9m0s, {Threaded:true Collide:false Repeat:true RepeatTimes:0 Procs:1 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): socket$inet6
+program did not crash
+testing compiled C program (duration=9m0s, {Threaded:true Collide:false Repeat:true RepeatTimes:0 Procs:2 Sandbox: Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:false KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): socket$inet6
+program crashed: WARNING in dev_watchdog
+testing compiled C program (duration=9m0s, {Threaded:true Collide:false Repeat:true RepeatTimes:0 Procs:2 Sandbox: Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:false KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:false HandleSegv:true Repro:true Trace:false}): socket$inet6
+program did not crash
+testing compiled C program (duration=9m0s, {Threaded:true Collide:false Repeat:true RepeatTimes:0 Procs:2 Sandbox: Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:false KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:false Repro:true Trace:false}): socket$inet6
+program did not crash
+reproducing took 1h3m32.725290352s
+repro crashed as (corrupted=false):
+------------[ cut here ]------------
+NETDEV WATCHDOG: eth0 (e1000): transmit queue 0 timed out
+WARNING: CPU: 0 PID: 10706 at net/sched/sch_generic.c:448 dev_watchdog+0x2e0/0x2f0
+Kernel panic - not syncing: panic_on_warn set ...
+CPU: 0 PID: 10706 Comm: syz-executor585 Not tainted 5.3.0+ #3
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+Call Trace:
+ <IRQ>
+ dump_stack+0x64/0x8e
+ panic+0x138/0x3b0
+ __warn.cold.15+0x40/0x40
+ report_bug+0xff/0x150
+ do_error_trap+0x9a/0xc0
+ do_invalid_op+0x31/0x40
+ invalid_op+0x1e/0x30
+RIP: 0010:dev_watchdog+0x2e0/0x2f0
+Code: ff ff e8 c3 86 64 ff 4c 89 f7 c6 05 7e 72 c2 00 01 e8 04 90 fb ff 89 d9 4c 89 f6 48 c7 c7 40 fe 2a 89 48 89 c2 e8 c7 04 57 ff <0f> 0b e9 53 ff ff ff 66 0f 1f 84 00 00 00 00 00 41 55 41 54 49 89
+RSP: 0018:ffffa84e40003e68 EFLAGS: 00010286
+RAX: 0000000000000000 RBX: 0000000000000000 RCX: ffffffff87ee14f9
+RDX: 0000000000000100 RSI: ffff95f03ba164d8 RDI: ffff95f03ba164d8
+RBP: ffff95f03b22e440 R08: ffffa84e40003ce0 R09: 0000000000000039
+R10: 0000000000012c00 R11: 0000000000000000 R12: 0000000000001388
+R13: ffff95f03a07fe00 R14: ffff95f03b22e000 R15: ffffffff8890c340
+ call_timer_fn+0x3c/0x1a0
+ run_timer_softirq+0x5c1/0x610
+ __do_softirq+0xd4/0x2d4
+ irq_exit+0x98/0xa0
+ smp_apic_timer_interrupt+0x72/0x130
+ apic_timer_interrupt+0xf/0x20
+ </IRQ>
+RIP: 0010:inode_init_once+0x16/0x110
+Code: c7 43 28 00 00 00 00 5b c3 66 66 2e 0f 1f 84 00 00 00 00 00 53 48 89 fb e8 27 c9 ee ff 48 8d 7b 08 48 89 d9 31 c0 48 83 e7 f8 <48> c7 03 00 00 00 00 48 c7 c2 a4 ab c8 89 48 c7 c6 5f eb 20 89 48
+RSP: 0018:ffffa84e43537aa8 EFLAGS: 00010286 ORIG_RAX: ffffffffffffff13
+RAX: 0000000000000000 RBX: ffff95f027010048 RCX: ffff95f027010048
+RDX: 0000000000000000 RSI: ffff95f027010000 RDI: ffff95f027010050
+RBP: ffff95f027010000 R08: 000000000002cfa6 R09: ffffdfdc049c0409
+R10: 000000000002cfa0 R11: 000000000000000b R12: ffff95f027010000
+R13: 0000000000000001 R14: 00000000ffffffff R15: ffff95f03b0a3800
+ new_slab+0x301/0x360
+ ___slab_alloc+0x367/0x4f0
+ __slab_alloc+0x9/0x10
+ kmem_cache_alloc+0x1b9/0x1d0
+ proc_alloc_inode+0x17/0x70
+ alloc_inode+0x2a/0xd0
+ new_inode_pseudo+0x11/0x60
+ new_inode+0x18/0x40
+ proc_pid_make_inode+0x1f/0xc0
+ proc_pident_instantiate+0x2e/0xe0
+ proc_pident_lookup+0xc7/0xd0
+ path_openat+0xbc0/0x1a10
+ do_filp_open+0xac/0x130
+ do_sys_open+0x272/0x340
+ do_syscall_64+0x57/0x180
+ entry_SYSCALL_64_after_hwframe+0x44/0xa9
+RIP: 0033:0x40705b
+Code: 25 00 00 41 00 3d 00 00 41 00 74 4b 64 8b 04 25 18 00 00 00 85 c0 75 67 44 89 e2 48 89 ee bf 9c ff ff ff b8 01 01 00 00 0f 05 <48> 3d 00 f0 ff ff 0f 87 91 00 00 00 48 8b 4c 24 28 64 48 33 0c 25
+RSP: 002b:00007ffe6613e5c0 EFLAGS: 00000246 ORIG_RAX: 0000000000000101
+RAX: ffffffffffffffda RBX: 0000000000000004 RCX: 000000000040705b
+RDX: 0000000000080001 RSI: 00000000004b100f RDI: 00000000ffffff9c
+RBP: 00000000004b100f R08: 0000000000000000 R09: 00007ffe6613e5b0
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000080001
+R13: 0000000000000000 R14: 000000000003fd26 R15: 00000000004022e0
+Dumping ftrace buffer:
+   (ftrace buffer empty)
+Kernel Offset: 0x6e00000 from 0xffffffff81000000 (relocation range: 0xffffffff80000000-0xffffffffbfffffff)
+Rebooting in 1 seconds..
+
+final repro crashed as (corrupted=false):
+------------[ cut here ]------------
+NETDEV WATCHDOG: eth0 (e1000): transmit queue 0 timed out
+WARNING: CPU: 0 PID: 10706 at net/sched/sch_generic.c:448 dev_watchdog+0x2e0/0x2f0
+Kernel panic - not syncing: panic_on_warn set ...
+CPU: 0 PID: 10706 Comm: syz-executor585 Not tainted 5.3.0+ #3
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+Call Trace:
+ <IRQ>
+ dump_stack+0x64/0x8e
+ panic+0x138/0x3b0
+ __warn.cold.15+0x40/0x40
+ report_bug+0xff/0x150
+ do_error_trap+0x9a/0xc0
+ do_invalid_op+0x31/0x40
+ invalid_op+0x1e/0x30
+RIP: 0010:dev_watchdog+0x2e0/0x2f0
+Code: ff ff e8 c3 86 64 ff 4c 89 f7 c6 05 7e 72 c2 00 01 e8 04 90 fb ff 89 d9 4c 89 f6 48 c7 c7 40 fe 2a 89 48 89 c2 e8 c7 04 57 ff <0f> 0b e9 53 ff ff ff 66 0f 1f 84 00 00 00 00 00 41 55 41 54 49 89
+RSP: 0018:ffffa84e40003e68 EFLAGS: 00010286
+RAX: 0000000000000000 RBX: 0000000000000000 RCX: ffffffff87ee14f9
+RDX: 0000000000000100 RSI: ffff95f03ba164d8 RDI: ffff95f03ba164d8
+RBP: ffff95f03b22e440 R08: ffffa84e40003ce0 R09: 0000000000000039
+R10: 0000000000012c00 R11: 0000000000000000 R12: 0000000000001388
+R13: ffff95f03a07fe00 R14: ffff95f03b22e000 R15: ffffffff8890c340
+ call_timer_fn+0x3c/0x1a0
+ run_timer_softirq+0x5c1/0x610
+ __do_softirq+0xd4/0x2d4
+ irq_exit+0x98/0xa0
+ smp_apic_timer_interrupt+0x72/0x130
+ apic_timer_interrupt+0xf/0x20
+ </IRQ>
+RIP: 0010:inode_init_once+0x16/0x110
+Code: c7 43 28 00 00 00 00 5b c3 66 66 2e 0f 1f 84 00 00 00 00 00 53 48 89 fb e8 27 c9 ee ff 48 8d 7b 08 48 89 d9 31 c0 48 83 e7 f8 <48> c7 03 00 00 00 00 48 c7 c2 a4 ab c8 89 48 c7 c6 5f eb 20 89 48
+RSP: 0018:ffffa84e43537aa8 EFLAGS: 00010286 ORIG_RAX: ffffffffffffff13
+RAX: 0000000000000000 RBX: ffff95f027010048 RCX: ffff95f027010048
+RDX: 0000000000000000 RSI: ffff95f027010000 RDI: ffff95f027010050
+RBP: ffff95f027010000 R08: 000000000002cfa6 R09: ffffdfdc049c0409
+R10: 000000000002cfa0 R11: 000000000000000b R12: ffff95f027010000
+R13: 0000000000000001 R14: 00000000ffffffff R15: ffff95f03b0a3800
+ new_slab+0x301/0x360
+ ___slab_alloc+0x367/0x4f0
+ __slab_alloc+0x9/0x10
+ kmem_cache_alloc+0x1b9/0x1d0
+ proc_alloc_inode+0x17/0x70
+ alloc_inode+0x2a/0xd0
+ new_inode_pseudo+0x11/0x60
+ new_inode+0x18/0x40
+ proc_pid_make_inode+0x1f/0xc0
+ proc_pident_instantiate+0x2e/0xe0
+ proc_pident_lookup+0xc7/0xd0
+ path_openat+0xbc0/0x1a10
+ do_filp_open+0xac/0x130
+ do_sys_open+0x272/0x340
+ do_syscall_64+0x57/0x180
+ entry_SYSCALL_64_after_hwframe+0x44/0xa9
+RIP: 0033:0x40705b
+Code: 25 00 00 41 00 3d 00 00 41 00 74 4b 64 8b 04 25 18 00 00 00 85 c0 75 67 44 89 e2 48 89 ee bf 9c ff ff ff b8 01 01 00 00 0f 05 <48> 3d 00 f0 ff ff 0f 87 91 00 00 00 48 8b 4c 24 28 64 48 33 0c 25
+RSP: 002b:00007ffe6613e5c0 EFLAGS: 00000246 ORIG_RAX: 0000000000000101
+RAX: ffffffffffffffda RBX: 0000000000000004 RCX: 000000000040705b
+RDX: 0000000000080001 RSI: 00000000004b100f RDI: 00000000ffffff9c
+RBP: 00000000004b100f R08: 0000000000000000 R09: 00007ffe6613e5b0
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000080001
+R13: 0000000000000000 R14: 000000000003fd26 R15: 00000000004022e0
+Dumping ftrace buffer:
+   (ftrace buffer empty)
+Kernel Offset: 0x6e00000 from 0xffffffff81000000 (relocation range: 0xffffffff80000000-0xffffffffbfffffff)
+Rebooting in 1 seconds..
+

@@ -1,0 +1,39 @@
+BUG: unable to handle kernel paging request at ffff8c013a298c30
+IP: [<ffffffff8179a016>] netlink_lookup+0xb6/0xf0
+PGD 0 
+Oops: 0000 [#1] SMP 
+Dumping ftrace buffer:
+   (ftrace buffer empty)
+Modules linked in:
+CPU: 1 PID: 7963 Comm: systemd-udevd Not tainted 3.10.108-rt123+ #14
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+task: ffff880121b36590 ti: ffff88012885a000 task.ti: ffff88012885a000
+RIP: 0010:[<ffffffff8179a016>]  [<ffffffff8179a016>] netlink_lookup+0xb6/0xf0
+RSP: 0018:ffff88012885bb00  EFLAGS: 00010293
+RAX: 0000000000000000 RBX: ffff8c013a298c00 RCX: 000000004bb8231f
+RDX: ffff880121b36590 RSI: ffffffff8179a016 RDI: ffffffff81e0aac0
+RBP: ffff88012885bb18 R08: 0000000000000000 R09: 0000003a8bdb7361
+R10: 000000000000b477 R11: 0000000000000000 R12: ffffffff81e85d00
+R13: 0000000000000000 R14: 0000000000000000 R15: 0000000000000040
+FS:  00007f8c6ada4880(0000) GS:ffff88013fd00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffff8c013a298c30 CR3: 00000001288ee000 CR4: 00000000003407e0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Stack:
+ 0000000000000000 ffff880121bd2400 ffff88011941ee00 ffff88012885bb60
+ ffffffff8179c0d4 0000000000000001 0000000000000000 ffff88012885bef8
+ ffff88011941ee00 ffff88012885bbf0 ffff880121bd2400 0000000000000000
+Call Trace:
+ [<ffffffff8179c0d4>] netlink_unicast+0xf4/0x260
+ [<ffffffff8179c576>] netlink_sendmsg+0x336/0x430
+ [<ffffffff81749b74>] sock_sendmsg+0xa4/0xf0
+ [<ffffffff8174a098>] ___sys_sendmsg+0x458/0x470
+ [<ffffffff8174ae9d>] __sys_sendmsg+0x4d/0xa0
+ [<ffffffff8174af1d>] SyS_sendmsg+0x2d/0x50
+ [<ffffffff819a0df2>] system_call_fastpath+0x16/0x1b
+Code: 85 db 75 17 eb 47 0f 1f 80 00 00 00 00 e8 f3 fe 91 ff 48 8b 5b 38 48 85 db 74 32 e8 e5 fe 91 ff 48 83 eb 38 74 27 e8 da fe 91 ff <4c> 3b 63 30 75 dc e8 cf fe 91 ff 44 3b ab 78 02 00 00 75 ce e8 
+RIP  [<ffffffff8179a016>] netlink_lookup+0xb6/0xf0
+ RSP <ffff88012885bb00>
+CR2: ffff8c013a298c30
+---[ end trace 7fed97d95c09300d ]---

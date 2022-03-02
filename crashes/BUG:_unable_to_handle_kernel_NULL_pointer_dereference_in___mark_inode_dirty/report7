@@ -1,0 +1,38 @@
+BUG: unable to handle kernel NULL pointer dereference at 0000000000000010
+IP: [<ffffffff8118f7c1>] __mark_inode_dirty+0x1e1/0x3a0
+PGD 128cfa067 PUD 1285e2067 PMD 0 
+Oops: 0000 [#1] SMP 
+Dumping ftrace buffer:
+   (ftrace buffer empty)
+Modules linked in:
+CPU: 0 PID: 2980 Comm: syz-executor.1 Not tainted 3.10.108-rt123+ #14
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+task: ffff88013a5487d0 ti: ffff880128152000 task.ti: ffff880128152000
+RIP: 0010:[<ffffffff8118f7c1>]  [<ffffffff8118f7c1>] __mark_inode_dirty+0x1e1/0x3a0
+RSP: 0018:ffff880128153e10  EFLAGS: 00010287
+RAX: 0000000000000000 RBX: 0000000000000007 RCX: ffffc90000769000
+RDX: 0000000000040000 RSI: ffffffff8118f7bd RDI: ffff88013af62f88
+RBP: ffff880128153e38 R08: 00000000000003e0 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: ffff88013af62f88
+R13: 0000000000000000 R14: ffff8801254f7480 R15: ffff88012237d000
+FS:  00007fd3263a7700(0000) GS:ffff88013fc00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000000000010 CR3: 0000000128bff000 CR4: 00000000003407f0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000600
+Stack:
+ ffff88013af62f88 ffff880128153ec8 0000000000000000 ffff8801254f7480
+ 0000000000000000 ffff880128153e60 ffffffff8118ba73 0000000000001842
+ ffff880128153ec8 0000000000000000 ffff880128153eb8 ffffffff8117f2e0
+Call Trace:
+ [<ffffffff8118ba73>] simple_setattr+0x53/0x80
+ [<ffffffff8117f2e0>] notify_change+0x430/0x4d0
+ [<ffffffff81159f56>] chown_common.isra.12+0x96/0xd0
+ [<ffffffff8115b54d>] SyS_fchown+0xdd/0xf0
+ [<ffffffff819a0df2>] system_call_fastpath+0x16/0x1b
+Code: ff e9 d8 fe ff ff 0f 1f 40 00 e8 4b a7 f2 ff 8b 05 7d f6 d1 00 4d 8b 7c 24 28 85 c0 0f 85 98 00 00 00 e8 33 a7 f2 ff 49 8b 47 30 <4c> 8b 68 10 4d 85 ed 74 0d e8 21 a7 f2 ff 89 de 4c 89 e7 41 ff 
+RIP  [<ffffffff8118f7c1>] __mark_inode_dirty+0x1e1/0x3a0
+ RSP <ffff880128153e10>
+CR2: 0000000000000010
+hpet1: lost 2 rtc interrupts
+---[ end trace 2fcfaea2df4c4133 ]---

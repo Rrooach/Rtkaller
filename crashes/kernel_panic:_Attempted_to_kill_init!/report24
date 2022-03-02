@@ -1,0 +1,26 @@
+systemd: 54 output lines suppressed due to ratelimiting
+Kernel panic - not syncing: Attempted to kill init! exitcode=0x0000000b
+
+CPU: 1 PID: 1 Comm: systemd Not tainted 4.14.103+ #2
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+Call Trace:
+ dump_stack+0x64/0x86
+ panic+0x1a9/0x39a
+ do_exit+0x2328/0x2a40
+ do_group_exit+0xed/0x320
+ get_signal+0x377/0x1770
+ do_signal+0x83/0x16b0
+ exit_to_usermode_loop+0xff/0x140
+ prepare_exit_to_usermode+0xf5/0x150
+ retint_user+0x8/0x8
+RIP: 0033:0x7fa48ddf8da0
+RSP: 002b:00007ffdcc34c558 EFLAGS: 00010246
+RAX: 0000000000000000 RBX: 0000000000000007 RCX: 00007fa48de26be3
+RDX: 00007ffdcc34c6c0 RSI: 00007ffdcc34c7f0 RDI: 0000000000000007
+RBP: 00007ffdccb4b250 R08: 0000000000005797 R09: afeca0a44c176f6b
+R10: 00000000ffffffff R11: 0000000000000246 R12: 000055fc788ace00
+R13: 000055fc788ace20 R14: 000055fc788acde0 R15: 00007ffdccb4b010
+Dumping ftrace buffer:
+   (ftrace buffer empty)
+Kernel Offset: 0x21600000 from 0xffffffff81000000 (relocation range: 0xffffffff80000000-0xffffffffbfffffff)
+Rebooting in 1 seconds..

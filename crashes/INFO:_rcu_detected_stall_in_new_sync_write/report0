@@ -1,0 +1,53 @@
+rcu: INFO: rcu_sched self-detected stall on CPU
+rcu: 	1-...0: (1 GPs behind) idle=ce6/1/0x4000000000000002 softirq=5496/5497 fqs=2 
+	(t=23390 jiffies g=8057 q=19)
+NMI backtrace for cpu 1
+CPU: 1 PID: 2194 Comm: syz-executor.1 Not tainted 5.3.0+ #3
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+Call Trace:
+ <IRQ>
+ dump_stack+0x64/0x8e
+ nmi_cpu_backtrace.cold.7+0x18/0x65
+ nmi_trigger_cpumask_backtrace+0xc8/0xed
+ rcu_dump_cpu_stacks+0x80/0xac
+ rcu_sched_clock_irq.cold.87+0x1ae/0x39b
+ update_process_times+0x28/0x60
+ tick_sched_handle+0x55/0x70
+ tick_sched_timer+0x3c/0xa0
+ __hrtimer_run_queues+0x149/0x330
+ hrtimer_interrupt+0x10f/0x250
+ smp_apic_timer_interrupt+0x68/0x130
+ apic_timer_interrupt+0xf/0x20
+ </IRQ>
+RIP: 0010:copy_user_enhanced_fast_string+0xe/0x20
+Code: 89 d1 c1 e9 03 83 e2 07 f3 48 a5 89 d1 f3 a4 31 c0 0f 01 ca c3 0f 1f 80 00 00 00 00 0f 01 cb 83 fa 40 0f 82 70 ff ff ff 89 d1 <f3> a4 31 c0 0f 01 ca c3 66 2e 0f 1f 84 00 00 00 00 00 89 d1 f3 a4
+RSP: 0018:ffff9fc2048bbc50 EFLAGS: 00050206 ORIG_RAX: ffffffffffffff13
+RAX: 0000000000040000 RBX: 0000000000001000 RCX: 0000000000001000
+RDX: 0000000000001000 RSI: 0000000020e62540 RDI: ffff90f15f200000
+RBP: 0000000020e62540 R08: 000000000002cf40 R09: 000000000002022b
+R10: 0000000000000000 R11: ffffcd3e847c8000 R12: ffff90f15f200000
+R13: 0000000020e63540 R14: 00007ffffffff000 R15: ffff9fc2048bbdf8
+ copyin+0x5a/0x70
+ iov_iter_copy_from_user_atomic+0x15c/0x510
+ generic_perform_write+0x144/0x1f0
+ __generic_file_write_iter+0x18d/0x220
+ generic_file_write_iter+0xe6/0x1d0
+ new_sync_write+0x183/0x220
+ __vfs_write+0x78/0x90
+ vfs_write+0xca/0x1f0
+ ksys_pwrite64+0x83/0xc0
+ do_syscall_64+0x57/0x180
+ entry_SYSCALL_64_after_hwframe+0x44/0xa9
+RIP: 0033:0x418d1f
+Code: 08 89 3c 24 48 89 4c 24 18 e8 cd f8 ff ff 4c 8b 54 24 18 48 8b 54 24 10 41 89 c0 48 8b 74 24 08 8b 3c 24 b8 12 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 2d 44 89 c7 48 89 04 24 e8 fd f8 ff ff 48 8b
+RSP: 002b:00007f0b3cc4d9e0 EFLAGS: 00000293 ORIG_RAX: 0000000000000012
+RAX: ffffffffffffffda RBX: 0000000000000003 RCX: 0000000000418d1f
+RDX: 0000000008100000 RSI: 0000000020000540 RDI: 0000000000000004
+RBP: 000000000000000a R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000293 R12: 0000000000000004
+R13: 0000000000000004 R14: 0000000000000000 R15: 0000000020001908
+SELinux: unrecognized netlink message: protocol=0 nlmsg_type=0 sclass=netlink_route_socket pig=2215 comm=syz-executor.1
+SELinux: unrecognized netlink message: protocol=0 nlmsg_type=0 sclass=netlink_route_socket pig=2216 comm=syz-executor.1
+audit: type=1326 audit(1613044973.638:16): auid=0 uid=0 gid=0 ses=4 subj=system_u:system_r:kernel_t:s0 pid=2264 comm="syz-executor.1" exe="/syz-executor.1" sig=31 arch=c000003e syscall=202 compat=0 ip=0x4686dd code=0x0
+audit: type=1326 audit(1613044974.438:17): auid=0 uid=0 gid=0 ses=4 subj=system_u:system_r:kernel_t:s0 pid=2264 comm="syz-executor.1" exe="/syz-executor.1" sig=31 arch=c000003e syscall=202 compat=0 ip=0x4686dd code=0x0
+syz-executor.0 (424) used greatest stack depth: 12104 bytes left

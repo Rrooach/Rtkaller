@@ -1,0 +1,40 @@
+WARNING: CPU: 1 PID: 5026 at fs/attr.c:234 notify_change+0x9ef/0xd10
+Kernel panic - not syncing: panic_on_warn set ...
+CPU: 1 PID: 5026 Comm: syz-executor.0 Not tainted 5.0.0 #3
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+Call Trace:
+ dump_stack+0x79/0xba
+ panic+0x226/0x47c
+ __warn.cold.11+0x20/0x45
+ report_bug+0x1f4/0x270
+ do_error_trap+0x105/0x180
+ do_invalid_op+0x35/0x40
+ invalid_op+0x14/0x20
+RIP: 0010:notify_change+0x9ef/0xd10
+Code: 89 e2 e8 04 9e 07 00 45 31 c9 45 31 c0 b9 02 00 00 00 48 89 da 44 89 e6 48 89 df e8 4b 90 07 00 e9 52 fb ff ff e8 c1 77 d7 ff <0f> 0b e9 ea f6 ff ff e8 b5 77 d7 ff 44 89 fb 4c 89 ea 48 b8 00 00
+RSP: 0018:ffff8881181cfa70 EFLAGS: 00010282
+RAX: 0000000000040000 RBX: 0000000000004200 RCX: ffffffff815c922f
+RDX: 000000000000009f RSI: ffffc9000087d000 RDI: ffff888118790108
+RBP: ffff8881181cfac8 R08: ffffed10230f2022 R09: ffffed10230f2021
+R10: ffffed10230f2021 R11: ffff88811879010f R12: ffff8881181cfaf8
+R13: ffff888118790068 R14: ffff888119308f00 R15: ffff888118790108
+ file_remove_privs+0x23c/0x410
+ __generic_file_write_iter+0x159/0x550
+ blkdev_write_iter+0x200/0x3e0
+ __vfs_write+0x4d2/0x6c0
+ vfs_write+0x16c/0x4a0
+ ksys_write+0xbf/0x1a0
+ do_syscall_64+0x9e/0x2b0
+ entry_SYSCALL_64_after_hwframe+0x44/0xa9
+RIP: 0033:0x4686dd
+Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 bc ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007fdd848c1c58 EFLAGS: 00000246 ORIG_RAX: 0000000000000001
+RAX: ffffffffffffffda RBX: 0000000000541b40 RCX: 00000000004686dd
+RDX: 0000000000000001 RSI: 00000000200000b0 RDI: 0000000000000003
+RBP: 00000000004c4725 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 000000000057cf00
+R13: 00007ffedb196c4f R14: 000000000057cf00 R15: 00007fdd848c1dc0
+Dumping ftrace buffer:
+   (ftrace buffer empty)
+Kernel Offset: 0x25200000 from 0xffffffff81000000 (relocation range: 0xffffffff80000000-0xffffffffbfffffff)
+Rebooting in 1 seconds..

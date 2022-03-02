@@ -1,0 +1,6 @@
+001: 
+001: syz-executor697[329]: segfault at 0 ip 0000000000000000 sp 00007ffe6cc481a0 error 14 in syz-executor697781539[400000+1000]
+001: Code: Bad RIP value.
+001: BUG: Bad rss-counter state mm:0000000054b36ff1 idx:0 val:1
+001: BUG: Bad rss-counter state mm:0000000054b36ff1 idx:1 val:2
+001: BUG: non-zero pgtables_bytes on freeing mm: 8192

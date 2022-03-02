@@ -1,0 +1,97 @@
+Warning: Permanently added '[localhost]:17216' (ECDSA) to the list of known hosts.
+executing program
+syzkaller login: [   26.080961] audit: type=1400 audit(1613160513.283:8): avc:  denied  { execmem } for  pid=413 comm="syz-executor142" scontext=system_u:system_r:kernel_t:s0 tcontext=system_u:system_r:kernel_t:s0 tclass=process permissive=1
+[   26.102094] general protection fault: 0000 [#1] SMP PTI
+[   26.103128] CPU: 0 PID: 407 Comm: sshd Not tainted 5.3.0+ #3
+[   26.104319] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[   26.106292] RIP: 0010:ipv4_dst_check+0x1f/0x40
+[   26.107068] Code: 66 66 2e 0f 1f 84 00 00 00 00 00 53 48 89 fb e8 57 36 60 ff 66 83 7b 3a ff 75 24 e8 4b 36 60 ff 48 8b 03 48 8b 80 a8 04 00 00 <8b> 80 9c 05 00 00 39 43 70 75 0a e8 31 36 60 ff 48 89 d8 5b c3 e8
+[   26.110127] RSP: 0018:ffffbbc3c0003c00 EFLAGS: 00010206
+[   26.110974] RAX: ff6fff53ab1d1bc3 RBX: ffff9fc8ba3b63c0 RCX: ffffffffaaf51675
+[   26.112088] RDX: 0000000000000100 RSI: 0000000000000000 RDI: ffff9fc8ba3b63c0
+[   26.113224] RBP: ffff9fc8b6498000 R08: 0000000000007cd7 R09: 0000000000000016
+[   26.114353] R10: 0000000000000000 R11: ffffbbc3c01f7908 R12: ffff9fc8ba3b63c0
+[   26.115513] R13: ffff9fc8b654024e R14: 0000000000000000 R15: 0000000000000028
+[   26.116825] FS:  00007fbb0b0d38c0(0000) GS:ffff9fc8bba00000(0000) knlGS:0000000000000000
+[   26.118050] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[   26.119000] CR2: 00007ffd04b079c8 CR3: 00000001371ba003 CR4: 0000000000760ef0
+[   26.120417] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+[   26.121818] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+[   26.123196] PKRU: 55555554
+[   26.123768] Call Trace:
+[   26.124332]  <IRQ>
+[   26.124787]  tcp_v4_early_demux+0x12c/0x1b0
+[   26.125535]  ? tcp_v4_send_synack+0xe0/0xe0
+[   26.126308]  ip_rcv_finish_core.isra.21+0x14f/0x440
+[   26.127207]  ip_rcv_finish+0x2a/0x60
+[   26.127767]  ip_rcv+0xf3/0x100
+[   26.128332]  ? ip_rcv_finish_core.isra.21+0x440/0x440
+[   26.129203]  ? ip_local_deliver+0x120/0x120
+[   26.130024]  __netif_receive_skb_one_core+0xc5/0xf0
+[   26.130978]  __netif_receive_skb+0x25/0x90
+[   26.131737]  netif_receive_skb_internal+0x43/0xf0
+[   26.132662]  napi_gro_receive+0x14e/0x1c0
+[   26.133362]  e1000_clean_rx_irq+0x1d6/0x620
+[   26.134142]  e1000_clean+0x309/0x760
+[   26.134680]  net_rx_action+0x177/0x480
+[   26.135237]  __do_softirq+0xd4/0x2d4
+[   26.135772]  do_softirq_own_stack+0x2a/0x40
+[   26.136531]  </IRQ>
+[   26.136935]  do_softirq.part.22+0x26/0x30
+[   26.137775]  __local_bh_enable_ip+0x46/0x50
+[   26.138681]  ip_finish_output2+0x207/0x690
+[   26.139430]  __ip_finish_output+0xf5/0x250
+[   26.140091]  ip_output+0x72/0x130
+[   26.140623]  ? __ip_finish_output+0x250/0x250
+[   26.141315]  ip_local_out+0x46/0x70
+[   26.141886]  __ip_queue_xmit+0x1c4/0x500
+[   26.142546]  ? tcp_options_write+0xb7/0x300
+[   26.143252]  ? __tcp_select_window+0x140/0x1d0
+[   26.143996]  __tcp_transmit_skb+0x627/0xd50
+[   26.144660]  tcp_write_xmit+0x46d/0x1550
+[   26.145246]  __tcp_push_pending_frames+0x42/0xf0
+[   26.146028]  tcp_push+0x140/0x180
+[   26.146526]  tcp_sendmsg_locked+0xe99/0x1010
+[   26.147143]  tcp_sendmsg+0x2a/0x40
+[   26.147655]  ? tcp_sendmsg_locked+0x1010/0x1010
+[   26.148326]  inet_sendmsg+0x52/0xa0
+[   26.148849]  ? inet_send_prepare+0xd0/0xd0
+[   26.149476]  sock_sendmsg+0x9b/0xc0
+[   26.150014]  sock_write_iter+0xb4/0x130
+[   26.150575]  new_sync_write+0x183/0x220
+[   26.151147]  __vfs_write+0x78/0x90
+[   26.151675]  vfs_write+0xca/0x1f0
+[   26.152163]  ksys_write+0x6b/0x110
+[   26.152666]  do_syscall_64+0x57/0x180
+[   26.153214]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+[   26.153974] RIP: 0033:0x7fbb0923c970
+[   26.154472] Code: 73 01 c3 48 8b 0d 28 d5 2b 00 f7 d8 64 89 01 48 83 c8 ff c3 66 0f 1f 44 00 00 83 3d 99 2d 2c 00 00 75 10 b8 01 00 00 00 0f 05 <48> 3d 01 f0 ff ff 73 31 c3 48 83 ec 08 e8 7e 9b 01 00 48 89 04 24
+[   26.157231] RSP: 002b:00007ffd04b0c418 EFLAGS: 00000246 ORIG_RAX: 0000000000000001
+[   26.158506] RAX: ffffffffffffffda RBX: 0000000000000024 RCX: 00007fbb0923c970
+[   26.159718] RDX: 0000000000000024 RSI: 000056400ea8440c RDI: 0000000000000003
+[   26.160713] RBP: 000056400ea72fc0 R08: 00007ffd04b0c3c8 R09: 00007ffd04b0c3c0
+[   26.161841] R10: 00007ffd04b4b0f0 R11: 0000000000000246 R12: 0000000000000000
+[   26.162868] R13: 00007ffd04b0c4af R14: 000056400d0f1be7 R15: 0000000000000003
+[   26.163893] Modules linked in:
+[   26.164382] Dumping ftrace buffer:
+[   26.164945]    (ftrace buffer empty)
+[   26.165490] ---[ end trace cc4014e6a0c40fe8 ]---
+[   26.166430] RIP: 0010:ipv4_dst_check+0x1f/0x40
+[   26.167334] Code: 66 66 2e 0f 1f 84 00 00 00 00 00 53 48 89 fb e8 57 36 60 ff 66 83 7b 3a ff 75 24 e8 4b 36 60 ff 48 8b 03 48 8b 80 a8 04 00 00 <8b> 80 9c 05 00 00 39 43 70 75 0a e8 31 36 60 ff 48 89 d8 5b c3 e8
+[   26.170854] RSP: 0018:ffffbbc3c0003c00 EFLAGS: 00010206
+[   26.171898] RAX: ff6fff53ab1d1bc3 RBX: ffff9fc8ba3b63c0 RCX: ffffffffaaf51675
+[   26.173312] RDX: 0000000000000100 RSI: 0000000000000000 RDI: ffff9fc8ba3b63c0
+[   26.174717] RBP: ffff9fc8b6498000 R08: 0000000000007cd7 R09: 0000000000000016
+[   26.176173] R10: 0000000000000000 R11: ffffbbc3c01f7908 R12: ffff9fc8ba3b63c0
+[   26.177566] R13: ffff9fc8b654024e R14: 0000000000000000 R15: 0000000000000028
+[   26.178891] FS:  00007fbb0b0d38c0(0000) GS:ffff9fc8bba00000(0000) knlGS:0000000000000000
+[   26.180108] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[   26.180975] CR2: 00007ffd04b079c8 CR3: 00000001371ba003 CR4: 0000000000760ef0
+[   26.182021] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+[   26.183134] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+[   26.184192] PKRU: 55555554
+[   26.184647] Kernel panic - not syncing: Fatal exception in interrupt
+[   26.185667] Dumping ftrace buffer:
+[   26.186182]    (ftrace buffer empty)
+[   26.186700] Kernel Offset: 0x29400000 from 0xffffffff81000000 (relocation range: 0xffffffff80000000-0xffffffffbfffffff)
+[   26.188366] Rebooting in 1 seconds..

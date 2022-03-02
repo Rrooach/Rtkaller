@@ -1,0 +1,151 @@
+Warning: Permanently added '[localhost]:32948' (ECDSA) to the list of known hosts.
+2021/06/05 23:06:59 fuzzer started
+2021/06/05 23:06:59 dialing manager at 10.0.2.10:45969
+2021/06/05 23:06:59 syscalls: 1840
+2021/06/05 23:06:59 code coverage: enabled
+2021/06/05 23:06:59 comparison tracing: CONFIG_KCOV_ENABLE_COMPARISONS is not enabled
+2021/06/05 23:06:59 extra coverage: enabled
+2021/06/05 23:06:59 setuid sandbox: enabled
+2021/06/05 23:06:59 namespace sandbox: /proc/self/ns/user does not exist
+2021/06/05 23:06:59 Android sandbox: /sys/fs/selinux/policy can't be opened (open /sys/fs/selinux/policy: invalid argument)
+2021/06/05 23:06:59 fault injection: CONFIG_FAULT_INJECTION is not enabled
+2021/06/05 23:06:59 leak checking: CONFIG_DEBUG_KMEMLEAK is not enabled
+2021/06/05 23:06:59 net packet injection: /dev/net/tun does not exist
+2021/06/05 23:06:59 net device setup: enabled
+2021/06/05 23:06:59 concurrency sanitizer: /sys/kernel/debug/kcsan does not exist
+2021/06/05 23:06:59 devlink PCI setup: PCI device 0000:00:10.0 is not available
+2021/06/05 23:06:59 USB emulation: /dev/raw-gadget does not exist
+2021/06/05 23:06:59 hci packet injection: /dev/vhci does not exist
+23:07:12 executing program 1:
+r0 = socket$nl_generic(0x10, 0x3, 0x10)
+sendmsg$TIPC_NL_PUBL_GET(r0, &(0x7f0000000100)={&(0x7f0000000000)={0x10, 0x0, 0x0, 0x800000}, 0xc, &(0x7f00000000c0)={&(0x7f0000000040)={0x60, 0x0, 0x800, 0x70bd2b, 0x25dfdbff, {}, [@TIPC_NLA_LINK={0x10, 0x4, 0x0, 0x1, [@TIPC_NLA_LINK_NAME={0x9, 0x1, 'syz0\x00'}]}, @TIPC_NLA_LINK={0x10, 0x4, 0x0, 0x1, [@TIPC_NLA_LINK_NAME={0x9, 0x1, 'syz1\x00'}]}, @TIPC_NLA_PUBL={0x2c, 0x3, 0x0, 0x1, [@TIPC_NLA_PUBL_TYPE={0x8, 0x1, 0xbe8a}, @TIPC_NLA_PUBL_LOWER={0x8, 0x2, 0x6}, @TIPC_NLA_PUBL_UPPER={0x8, 0x3, 0x7ff}, @TIPC_NLA_PUBL_LOWER={0x8, 0x2, 0x6}, @TIPC_NLA_PUBL_UPPER={0x8, 0x3, 0x8001}]}]}, 0x60}, 0x1, 0x0, 0x0, 0x4000000}, 0x40000)
+ioctl$sock_SIOCGIFVLAN_SET_VLAN_EGRESS_PRIORITY_CMD(0xffffffffffffffff, 0x8982, &(0x7f0000000140)={0x3, 'ip6erspan0\x00', {}, 0x2})
+setgid(0xffffffffffffffff)
+r1 = syz_open_dev$vcsa(&(0x7f0000000180)='/dev/vcsa#\x00', 0xfffffffffffffffd, 0x2000)
+fsconfig$FSCONFIG_SET_FD(r1, 0x5, &(0x7f00000001c0)='syz1\x00', 0x0, r0)
+r2 = openat$cgroup_ro(r1, &(0x7f0000000200)='cgroup.stat\x00', 0x0, 0x0)
+setsockopt$inet6_opts(r2, 0x29, 0x0, &(0x7f0000000240)=@hopopts={0x2, 0x5, [], [@pad1, @hao={0xc9, 0x10, @initdev={0xfe, 0x88, [], 0x1, 0x0}}, @jumbo={0xc2, 0x4, 0x4}, @padn={0x1, 0x9, [0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0]}, @pad1]}, 0x38)
+r3 = openat$vcsa(0xffffffffffffff9c, &(0x7f0000000280)='/dev/vcsa\x00', 0x400080, 0x0)
+write$cgroup_pid(r3, &(0x7f00000002c0), 0x12)
+ioctl$SNDRV_SEQ_IOCTL_SET_QUEUE_TIMER(r3, 0x40605346, &(0x7f0000000300)={0x3, 0x1, {0x0, 0x1, 0x8, 0x0, 0x3ff}, 0xff})
+fremovexattr(r1, &(0x7f0000000380)=@known='security.apparmor\x00')
+getsockopt$inet6_tcp_int(r3, 0x6, 0x11, &(0x7f00000003c0), &(0x7f0000000400)=0x4)
+r4 = openat$nvram(0xffffffffffffff9c, &(0x7f0000000440)='/dev/nvram\x00', 0x4000, 0x0)
+ioctl$SNDRV_SEQ_IOCTL_SET_PORT_INFO(r4, 0x40a85323, &(0x7f0000000480)={{0x39, 0xa7}, 'port0\x00', 0x80, 0x1008, 0x0, 0x12a, 0x400, 0xffffffff, 0x8, 0x0, 0x0, 0xfb})
+getsockopt$sock_cred(r1, 0x1, 0x11, &(0x7f0000000600)={0x0, <r5=>0x0}, &(0x7f0000000640)=0xc)
+mount$9p_virtio(&(0x7f0000000540)='syz\x00', &(0x7f0000000580)='./file0\x00', &(0x7f00000005c0)='9p\x00', 0x900008, &(0x7f0000000680)={'trans=virtio,', {[{@nodevmap='nodevmap'}, {@uname={'uname', 0x3d, '-'}}, {@afid={'afid', 0x3d, 0x7}}, {@access_user='access=user'}, {@uname={'uname', 0x3d, '/'}}, {@posixacl='posixacl'}, {@afid={'afid', 0x3d, 0x2}}, {@cache_mmap='cache=mmap'}], [{@fscontext={'fscontext', 0x3d, 'unconfined_u'}}, {@uid_gt={'uid>', r5}}, {@subj_role={'subj_role', 0x3d, '^'}}, {@hash='hash'}, {@pcr={'pcr', 0x3d, 0x3b}}]}})
+r6 = openat$null(0xffffffffffffff9c, &(0x7f0000000780)='/dev/null\x00', 0x80002, 0x0)
+fcntl$F_SET_RW_HINT(r6, 0x40c, &(0x7f00000007c0))
+ioctl$FS_IOC_REMOVE_ENCRYPTION_KEY(0xffffffffffffffff, 0xc0406618, &(0x7f0000000840)={{0x0, 0x0, @reserved="2507c25d65e83802983c40aad9f9a48f9a7aecb4458e16e060fe15ba5ead3136"}})
+
+23:07:12 executing program 0:
+sendmsg$AUDIT_DEL_RULE(0xffffffffffffffff, &(0x7f00000004c0)={&(0x7f0000000000)={0x10, 0x0, 0x0, 0x8000000}, 0xc, &(0x7f0000000480)={&(0x7f0000000040)={0x42c, 0x3f4, 0x200, 0x70bd2c, 0x25dfdbfe, {0x1, 0x0, 0x3, [0x3, 0x40, 0x8, 0x7d04, 0x401, 0x4, 0x2, 0xfbf678ea, 0x7, 0x1, 0x80000000, 0x8000, 0xffff8000, 0x4cd, 0x40, 0x100, 0xd4, 0x1000, 0xffc00000, 0xa13f, 0x8001, 0x7, 0xfbf1, 0x6, 0x0, 0x1, 0x0, 0x0, 0x10001, 0x6, 0x7, 0x824b, 0x200, 0x300, 0x8, 0x3, 0x8, 0x0, 0x2aa, 0x7fffffff, 0x0, 0xffffff3c, 0x2d, 0x1, 0x200, 0xb31, 0x5ae9, 0x10000, 0xffff, 0xffff, 0x5, 0x2, 0x3, 0x5, 0x80, 0x4, 0x7fff, 0x4ed, 0x6, 0x7fffffff, 0x401, 0x7, 0x3ff, 0xfffffffc], [0xb46400, 0x4, 0x1, 0x0, 0x80000000, 0x4, 0x1000, 0x80, 0x8001, 0xfffffff9, 0x98, 0xac7, 0x5e, 0x545c, 0x6, 0x200, 0x5, 0x4, 0x401, 0x9, 0x7, 0x1e, 0x2, 0x80000001, 0x7f, 0xb850, 0x1f, 0x101, 0xfffffffd, 0x302, 0x4, 0xfff, 0x8781, 0x0, 0x0, 0x5, 0x2, 0x400, 0x5, 0x785f, 0x5, 0x8, 0x7ff, 0xf3a5, 0x6, 0x5, 0x40, 0x1000, 0x6, 0x200, 0x2, 0xfffffff9, 0x67a3, 0x100, 0x4, 0xffff8000, 0x2, 0x10001, 0xf67, 0x0, 0x6, 0x9, 0x0, 0x6], [0x2, 0x0, 0x2, 0x200, 0x40, 0x3f, 0x9, 0xc69, 0x3425b050, 0x3, 0x1, 0x80000001, 0x6, 0x3, 0x0, 0x2, 0xdad, 0x1, 0x0, 0x6, 0x100, 0xffffffff, 0x0, 0x1, 0x8, 0x47, 0x6a, 0x8, 0x400, 0x4, 0xa4, 0x4, 0x3, 0x4, 0x0, 0x4, 0x1000000, 0x2, 0x10000, 0x3f, 0x7, 0x6, 0xfffff000, 0x80000001, 0x7, 0x7, 0x0, 0x2, 0x7, 0x8, 0x10000, 0x755, 0x95f, 0x6, 0x0, 0x9, 0x75, 0xfff, 0x10000, 0x3ff, 0x0, 0x1, 0x1, 0x8], [0x4, 0x7, 0x400, 0x7ff, 0x0, 0xe7, 0x8, 0x4, 0x9, 0x4, 0x10001, 0x9, 0x8f4, 0x9, 0x7fffffff, 0x7, 0x7, 0x4, 0x98, 0x8, 0x7, 0x794, 0xfb8, 0x0, 0x4, 0x1ff, 0x3f, 0x1, 0x0, 0x3768, 0x3, 0xff, 0x8, 0x1, 0x80000000, 0x3ff, 0x1, 0x0, 0x3, 0x80000001, 0xa220, 0x1, 0x5, 0x6, 0x2, 0x802000, 0xf9, 0x8, 0xe9f3, 0x3013, 0x5, 0x0, 0xfffff800, 0x5, 0x7, 0x9, 0x2, 0x2, 0x4d, 0xf6, 0x80, 0x400, 0x8, 0x6], 0xb, ['\xd0/%\x7f\x00', '-$(\x00', '\x00', '\x00']}, ["", "", "", "", "", "", "", "", "", ""]}, 0x42c}, 0x1, 0x0, 0x0, 0x20000840}, 0x1080)
+socketpair(0x6, 0x2, 0x8, &(0x7f0000000500)={<r0=>0xffffffffffffffff, <r1=>0xffffffffffffffff})
+sendmsg$IPSET_CMD_TYPE(r0, &(0x7f0000000680)={&(0x7f0000000540)={0x10, 0x0, 0x0, 0x800}, 0xc, &(0x7f0000000640)={&(0x7f0000000580)={0x88, 0xd, 0x6, 0x101, 0x0, 0x0, {0x5, 0x0, 0x4}, [@IPSET_ATTR_FAMILY={0x5, 0x5, 0x1}, @IPSET_ATTR_TYPENAME={0x11, 0x3, 'hash:ip,mark\x00'}, @IPSET_ATTR_PROTOCOL={0x5}, @IPSET_ATTR_PROTOCOL={0x5}, @IPSET_ATTR_TYPENAME={0xd, 0x3, 'hash:net\x00'}, @IPSET_ATTR_FAMILY={0x5, 0x5, 0x5}, @IPSET_ATTR_TYPENAME={0xe, 0x3, 'bitmap:ip\x00'}, @IPSET_ATTR_FAMILY={0x5, 0x5, 0x5}, @IPSET_ATTR_TYPENAME={0xd, 0x3, 'list:set\x00'}, @IPSET_ATTR_FAMILY={0x5, 0x5, 0x3}]}, 0x88}, 0x1, 0x0, 0x0, 0x20000010}, 0x800)
+r2 = socket$inet6(0xa, 0x3, 0x1f)
+ioctl$sock_inet6_udp_SIOCOUTQ(r2, 0x5411, &(0x7f00000006c0))
+r3 = accept$inet6(r2, 0x0, &(0x7f0000000700))
+ioctl$sock_SIOCSIFVLAN_DEL_VLAN_CMD(r3, 0x8983, &(0x7f0000000740)={0x1, 'veth1_to_team\x00', {}, 0x3ff})
+times(&(0x7f0000000780))
+ioctl$F2FS_IOC_MOVE_RANGE(r2, 0xc020f509, &(0x7f00000007c0)={<r4=>r3, 0x15c0a0ee, 0x4, 0x2})
+sendmsg$IPSET_CMD_LIST(r4, &(0x7f0000000900)={&(0x7f0000000800)={0x10, 0x0, 0x0, 0x1}, 0xc, &(0x7f00000008c0)={&(0x7f0000000840)={0x5c, 0x7, 0x6, 0x101, 0x0, 0x0, {0x1, 0x0, 0x1}, [@IPSET_ATTR_SETNAME={0x9, 0x2, 'syz2\x00'}, @IPSET_ATTR_SETNAME={0x9, 0x2, 'syz2\x00'}, @IPSET_ATTR_SETNAME={0x9, 0x2, 'syz1\x00'}, @IPSET_ATTR_FLAGS={0x8, 0x6, 0x1, 0x0, 0x7}, @IPSET_ATTR_PROTOCOL={0x5}, @IPSET_ATTR_SETNAME={0x9, 0x2, 'syz2\x00'}, @IPSET_ATTR_FLAGS={0x8, 0x6, 0x1, 0x0, 0x7fff}]}, 0x5c}, 0x1, 0x0, 0x0, 0x4048814}, 0x40000)
+getsockopt$SO_TIMESTAMPING(r0, 0x1, 0x25, &(0x7f0000000940), &(0x7f0000000980)=0x4)
+ioctl$PTP_EXTTS_REQUEST(0xffffffffffffffff, 0x40103d02, &(0x7f00000009c0)={0x9})
+r5 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000a00)='/dev/ptmx\x00', 0x82800, 0x0)
+ioctl$TIOCGETD(r5, 0x5424, &(0x7f0000000a40))
+ioctl$CHAR_RAW_FRASET(r4, 0x1264, &(0x7f0000000a80))
+setsockopt$inet6_tcp_buf(r1, 0x6, 0xb, &(0x7f0000000ac0)="b8123775be8695203661ddd1f7e22c5eecb7be9a47d67a639a37d38abff8563dfee65e1fd1266edb1b4c49e6cd994a9b5f6c96d919b4cc5c2af1e96a39c784240a22262e8812ae610b97b7ea86c9b492315c9c4b2e4899832f43d84a800b00cd7df8ea2445f40968c2ed495935b10ec820a9ef1af6cd832b270c685a2ee39636f9dfdaaa657242ee486d9c899eadf9d251b2833bb2ae321a48c92abf88fb7ea28342d45972234df731f05517d113fdb5699c61304939a84880558181f7074b3ff99d", 0xc2)
+fsconfig$FSCONFIG_SET_BINARY(r4, 0x2, &(0x7f0000000bc0)='$%\x00', &(0x7f0000000c00)="53b8b44bbb4f3e261079208af5084e2274ef11fc60955fafcb2615da36ba79010c6d874ae881c049c8efd8aef5012286b087f34e70b36256242f71e05e956a8f6957185607e0a162352a582b60a3ed0fb20609a8ada1197317e51f01e0ee76eb87e1947d1613e983cbd7c09e1cf06f8075bc8e6fad103728270997f1fabc772a0034e16639c0836288e1d09ff896ed48ab40cdbbdbb028b43d1dc16f8f0f5096ce11eed7295363eea03de6f89fc10a53f7feeea7040b9d7b90173ac63231c73f645fbe16e95662dd7a9e085e0374a0057bed95737ae4bce388c38314b0879ad6", 0xe0)
+r6 = openat$procfs(0xffffffffffffff9c, &(0x7f0000000d00)='/proc/tty/drivers\x00', 0x0, 0x0)
+setsockopt$packet_int(r6, 0x107, 0x8, &(0x7f0000000d40)=0x401, 0x4)
+sendmsg$TIPC_CMD_GET_BEARER_NAMES(0xffffffffffffffff, &(0x7f0000000e80)={&(0x7f0000000dc0), 0xc, &(0x7f0000000e40)={&(0x7f0000000e00)={0x1c, 0x0, 0x400, 0x70bd25, 0x25dfdbfc, {}, [""]}, 0x1c}, 0x1, 0x0, 0x0, 0x200000d1}, 0x0)
+
+syzkaller login: [   74.114808] 001: cgroup: Unknown subsys name 'perf_event'
+[   74.117987] 000: cgroup: Unknown subsys name 'perf_event'
+[   74.123065] 000: cgroup: Unknown subsys name 'net_cls'
+[   74.124790] 001: cgroup: Unknown subsys name 'net_cls'
+[  129.570979] 001: ata1: lost interrupt (Status 0x58)
+[  169.797047] 001: rcu: INFO: rcu_sched detected stalls on CPUs/tasks:
+[  169.797059] 001: rcu: 	0-...!: (0 ticks this GP) idle=1ca/1/0x4000000000000000 softirq=4024/4024 fqs=0 
+[  169.797074] 001: 	(detected by 1, t=40227 jiffies, g=2693, q=0)
+[  169.797075] 001: Sending NMI from CPU 1 to CPUs 0:
+[  169.797558] 000: NMI backtrace for cpu 0
+[  169.797597] 000: CPU: 0 PID: 21 Comm: kworker/0:1 Not tainted 5.6.0-rt1+ #2
+[  169.797632] 000: Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[  169.797791] 000: Workqueue: events e1000_watchdog
+[  169.797799] 000: RIP: 0010:e1000_update_stats+0x1c5/0x1db0
+[  169.797850] 000: Code: 48 89 04 24 48 b8 00 00 00 00 00 fc ff df 48 c1 e9 03 80 3c 01 00 0f 85 45 15 00 00 48 8b 83 80 04 00 00 44 8b a8 00 40 00 00 <48> 8d 83 a0 05 00 00 48 89 c1 48 89 44 24 08 48 b8 00 00 00 00 00
+[  169.797880] 000: RSP: 0018:ffff88811aaefbe8 EFLAGS: 00000046
+[  169.797895] 000: RAX: ffffc90000040000 RBX: ffff888117b00880 RCX: 1ffff11022f601a0
+[  169.797911] 000: RDX: 0000000000000001 RSI: 0000000000000004 RDI: ffff88811aaefb88
+[  169.797922] 000: RBP: 1ffff1102355df8c R08: 0000000000000001 R09: ffffed102355df72
+[  169.797934] 000: R10: ffffed102355df71 R11: 0000000000000003 R12: ffff888117b00a98
+[  169.797946] 000: R13: 0000000000000000 R14: ffff888117b00000 R15: 0000000000000001
+[  169.797957] 000: FS:  0000000000000000(0000) GS:ffff88811b200000(0000) knlGS:0000000000000000
+[  169.797970] 000: CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[  169.797981] 000: CR2: 000000c00049e000 CR3: 0000000113548005 CR4: 0000000000760ef0
+[  169.798027] 000: DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+[  169.798037] 000: DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+[  169.798047] 000: PKRU: 55555554
+[  169.798054] 000: Call Trace:
+[  169.798079] 000:  ? __switch_to_asm+0x40/0x70
+[  169.798147] 000:  ? __switch_to_asm+0x34/0x70
+[  169.798162] 000:  ? __switch_to_asm+0x40/0x70
+[  169.798177] 000:  ? __switch_to_asm+0x34/0x70
+[  169.798193] 000:  ? __switch_to_asm+0x40/0x70
+[  169.798209] 000:  ? e1000_has_link+0x260/0x260
+[  169.798224] 000:  ? __switch_to_asm+0x40/0x70
+[  169.798240] 000:  ? __switch_to_asm+0x34/0x70
+[  169.798254] 000:  ? __switch_to_asm+0x40/0x70
+[  169.798270] 000:  ? __switch_to_asm+0x34/0x70
+[  169.798286] 000:  ? __switch_to_asm+0x40/0x70
+[  169.798301] 000:  ? __switch_to_asm+0x34/0x70
+[  169.798310] 000:  ? __switch_to_asm+0x40/0x70
+[  169.798318] 000:  ? __switch_to_asm+0x34/0x70
+[  169.798329] 000:  e1000_watchdog+0x2cf/0xf10
+[  169.798341] 000:  ? e1000_update_stats+0x1db0/0x1db0
+[  169.798369] 000:  ? read_word_at_a_time+0xe/0x20
+[  169.798398] 000:  ? strscpy+0x96/0x2a0
+[  169.798413] 000:  process_one_work+0x880/0x1260
+[  169.798496] 000:  worker_thread+0x97/0xf90
+[  169.798512] 000:  ? __kthread_parkme+0xa9/0x110
+[  169.798552] 000:  ? process_one_work+0x1260/0x1260
+[  169.798570] 000:  kthread+0x2ce/0x3d0
+[  169.798583] 000:  ? kthread_create_on_node+0xf0/0xf0
+[  169.798597] 000:  ret_from_fork+0x35/0x40
+[  169.799099] 001: rcu: rcu_sched kthread starved for 40227 jiffies! g2693 f0x0 RCU_GP_WAIT_FQS(5) ->state=0x402 ->cpu=1
+[  169.799110] 001: rcu: RCU grace-period kthread stack dump:
+[  169.799116] 001: rcu_sched       I29832    10      2 0x80004000
+[  169.799154] 001: Call Trace:
+[  169.799165] 001:  ? __schedule+0x837/0x15b0
+[  169.799175] 001:  ? __sched_text_start+0x8/0x8
+[  169.799180] 001:  ? try_to_del_timer_sync+0xb0/0x100
+[  169.799198] 001:  ? del_timer+0xf0/0xf0
+[  169.799204] 001:  ? __switch_to_asm+0x34/0x70
+[  169.799210] 001:  schedule+0xc6/0x290
+[  169.799215] 001:  schedule_timeout+0x2f3/0x860
+[  169.799222] 001:  ? usleep_range+0x110/0x110
+[  169.799227] 001:  ? _raw_spin_trylock_bh+0x120/0x120
+[  169.799233] 001:  ? __next_timer_interrupt+0x140/0x140
+[  169.799239] 001:  ? swake_up_one+0x60/0x60
+[  169.799248] 001:  rcu_gp_kthread+0x9e6/0x20c0
+[  169.799274] 001:  ? call_rcu+0x7a0/0x7a0
+[  169.799279] 001:  ? _raw_spin_lock_irqsave+0x7b/0xd0
+[  169.799284] 001:  ? _raw_spin_trylock_bh+0x120/0x120
+[  169.799291] 001:  ? call_rcu+0x7a0/0x7a0
+[  169.799296] 001:  kthread+0x2ce/0x3d0
+[  169.799302] 001:  ? kthread_create_on_node+0xf0/0xf0
+[  169.799307] 001:  ret_from_fork+0x35/0x40
+[  169.799519] 001: ata1.00: exception Emask 0x0 SAct 0x0 SErr 0x0 action 0x6 frozen
+[  169.799541] 001: ata1.00: failed command: WRITE DMA
+[  169.799548] 001: ata1.00: cmd ca/00:20:00:00:08/00:00:00:00:00/e0 tag 0 dma 16384 out
+[  169.799548] 001:          res 40/00:01:00:00:00/00:00:00:00:00/a0 Emask 0x4 (timeout)
+[  169.799566] 001: ata1.00: status: { DRDY }
+[  169.799852] 001: ata1: soft resetting link
+[  169.954084] 001: ata1.00: configured for MWDMA2
+[  169.954135] 001: ata1: EH complete
+[  170.978265] 001: cgroup: Unknown subsys name 'perf_event'
+[  170.978404] 001: cgroup: Unknown subsys name 'net_cls'
+[  171.002053] 001: cgroup: Unknown subsys name 'perf_event'
+[  171.004368] 001: cgroup: Unknown subsys name 'net_cls'
+[  173.976115] 001: syz-executor.0 (335) used greatest stack depth: 24976 bytes left

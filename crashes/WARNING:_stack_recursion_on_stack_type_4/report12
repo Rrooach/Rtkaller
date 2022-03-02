@@ -1,0 +1,34 @@
+WARNING: stack recursion on stack type 4
+WARNING: can't dereference registers at 00000000e19b2663 for ip swapgs_restore_regs_and_return_to_usermode+0x7a/0x80
+WARNING: CPU: 1 PID: 7 at net/xfrm/xfrm_policy.c:3873 xfrm_policy_fini+0x2a9/0x340
+Kernel panic - not syncing: panic_on_warn set ...
+CPU: 1 PID: 7 Comm: kworker/u4:0 Not tainted 5.0.0 #3
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+Workqueue: netns cleanup_net
+Call Trace:
+ dump_stack+0x79/0xba
+ panic+0x226/0x47c
+ __warn.cold.11+0x20/0x45
+ report_bug+0x1f4/0x270
+ do_error_trap+0x105/0x180
+ do_invalid_op+0x35/0x40
+ invalid_op+0x14/0x20
+RIP: 0010:xfrm_policy_fini+0x2a9/0x340
+Code: 00 e8 4b 44 55 fe 0f 0b e9 7a fe ff ff e8 3f 44 55 fe 0f 0b e9 0f fe ff ff e8 33 44 55 fe 0f 0b e9 0f ff ff ff e8 27 44 55 fe <0f> 0b e9 b0 fd ff ff e8 ab 3b 76 fe e9 9b fe ff ff 48 89 ef e8 be
+RSP: 0018:ffff88811a767c78 EFLAGS: 00010293
+RAX: ffff88811a751580 RBX: ffff8881169c8fd0 RCX: ffffffffa2bec5c9
+RDX: 0000000000000000 RSI: 00000000fffffe01 RDI: ffffffffa2bec2c4
+RBP: ffff8881169c8000 R08: ffffed10234ecf7b R09: ffffed10234ecf7a
+R10: ffffed10234ecf7a R11: 0000000000000003 R12: ffff88811a767d88
+R13: ffffffffa40a09b8 R14: dffffc0000000000 R15: fffffbfff4814137
+ xfrm_net_exit+0x1d/0x30
+ ops_exit_list.isra.12+0xa8/0x150
+ cleanup_net+0x383/0x710
+ process_one_work+0x92c/0x13c0
+ worker_thread+0x90/0xfb0
+ kthread+0x2ff/0x3c0
+ ret_from_fork+0x35/0x40
+Dumping ftrace buffer:
+   (ftrace buffer empty)
+Kernel Offset: 0x1fe00000 from 0xffffffff81000000 (relocation range: 0xffffffff80000000-0xffffffffbfffffff)
+Rebooting in 1 seconds..

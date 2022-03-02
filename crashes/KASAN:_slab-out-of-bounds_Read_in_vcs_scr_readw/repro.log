@@ -1,0 +1,143 @@
+Warning: Permanently added '[localhost]:35962' (ECDSA) to the list of known hosts.
+executing program
+syzkaller login: [   16.802311] ==================================================================
+[   16.802391] BUG: KASAN: slab-out-of-bounds in vcs_scr_readw+0x97/0xa0
+[   16.802394] Read of size 2 at addr ffff8881130e3396 by task syz-executor067/1933
+[   16.802395] 
+[   16.802408] CPU: 0 PID: 1933 Comm: syz-executor067 Not tainted 5.0.0 #3
+[   16.802410] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[   16.802415] Call Trace:
+[   16.802452]  dump_stack+0x79/0xba
+[   16.802456]  ? vcs_scr_readw+0x97/0xa0
+[   16.802487]  print_address_description+0x60/0x229
+[   16.802490]  ? vcs_scr_readw+0x97/0xa0
+[   16.802492]  ? vcs_scr_readw+0x97/0xa0
+[   16.802496]  kasan_report.cold.3+0x1a/0x35
+[   16.802515]  ? log_make_free_space+0x1e0/0x240
+[   16.802517]  ? vcs_scr_readw+0x97/0xa0
+[   16.802520]  vcs_scr_readw+0x97/0xa0
+[   16.802565]  vcs_write+0x4fc/0xaa0
+[   16.802570]  ? __kasan_slab_free+0x125/0x170
+[   16.802573]  ? vcs_size+0x200/0x200
+[   16.802577]  ? do_syscall_64+0x9e/0x2b0
+[   16.802583]  ? __alloc_pages_nodemask+0x1e2/0x4d0
+[   16.802586]  ? __alloc_pages_nodemask+0x1e2/0x4d0
+[   16.802596]  __vfs_write+0xf8/0x6c0
+[   16.802600]  ? vcs_size+0x200/0x200
+[   16.802603]  ? kernel_read+0x110/0x110
+[   16.802631]  ? do_filp_open+0x1b9/0x270
+[   16.802634]  ? may_open_dev+0xd0/0xd0
+[   16.802641]  ? _cond_resched+0x14/0x30
+[   16.802686]  ? __inode_security_revalidate+0x9f/0xd0
+[   16.802690]  ? avc_policy_seqno+0xd/0x70
+[   16.802696]  ? selinux_file_permission+0x2c/0x440
+[   16.802700]  ? security_file_permission+0x233/0x2a0
+[   16.802704]  vfs_write+0x16c/0x4a0
+[   16.802707]  ksys_write+0xbf/0x1a0
+[   16.802711]  ? __ia32_sys_read+0xb0/0xb0
+[   16.802714]  ? ksys_ioctl+0x58/0xa0
+[   16.802717]  do_syscall_64+0x9e/0x2b0
+[   16.802720]  ? prepare_exit_to_usermode+0xc0/0x160
+[   16.802725]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+[   16.802733] RIP: 0033:0x44e0ed
+[   16.802737] Code: 28 c3 e8 06 2a 00 00 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 c0 ff ff ff f7 d8 64 89 01 48
+[   16.802739] RSP: 002b:00007ffcbccace98 EFLAGS: 00000246 ORIG_RAX: 0000000000000001
+[   16.802751] RAX: ffffffffffffffda RBX: 0000000000400530 RCX: 000000000044e0ed
+[   16.802753] RDX: 0000000000000068 RSI: 00000000200000c0 RDI: 0000000000000004
+[   16.802755] RBP: 0000000000403410 R08: 0023757363762f76 R09: 0000000000400530
+[   16.802757] R10: 000000000000000f R11: 0000000000000246 R12: 00000000004034b0
+[   16.802759] R13: 0000000000000000 R14: 00000000004c5018 R15: 0000000000000000
+[   16.802761] 
+[   16.802793] Allocated by task 1933:
+[   16.802798]  __kasan_kmalloc.constprop.6+0xc1/0xd0
+[   16.802800]  vc_do_resize+0x1fb/0x12c0
+[   16.802803]  vt_ioctl+0x1fc6/0x2470
+[   16.802806]  tty_ioctl+0x486/0x1340
+[   16.802809]  do_vfs_ioctl+0x1a4/0x1000
+[   16.802812]  ksys_ioctl+0x7b/0xa0
+[   16.802814]  __x64_sys_ioctl+0x73/0xb0
+[   16.802817]  do_syscall_64+0x9e/0x2b0
+[   16.802820]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+[   16.802820] 
+[   16.802822] Freed by task 1456:
+[   16.802825]  __kasan_slab_free+0x125/0x170
+[   16.802828]  kfree+0x8f/0x1a0
+[   16.802838]  kernfs_fop_release+0x107/0x240
+[   16.802840]  __fput+0x25f/0x6f0
+[   16.802844]  task_work_run+0x145/0x1c0
+[   16.802847]  exit_to_usermode_loop+0x14e/0x180
+[   16.802849]  do_syscall_64+0x221/0x2b0
+[   16.802853]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+[   16.802853] 
+[   16.802856] The buggy address belongs to the object at ffff8881130e3300
+[   16.802856]  which belongs to the cache kmalloc-192 of size 192
+[   16.802859] The buggy address is located 150 bytes inside of
+[   16.802859]  192-byte region [ffff8881130e3300, ffff8881130e33c0)
+[   16.802860] The buggy address belongs to the page:
+[   16.802867] page:ffffea00044c38c0 count:1 mapcount:0 mapping:ffff88811ac01500 index:0x0
+[   16.802871] flags: 0x200000000000200(slab)
+[   16.802876] raw: 0200000000000200 ffffea00044c10c0 0000000200000002 ffff88811ac01500
+[   16.802879] raw: 0000000000000000 0000000080100010 00000001ffffffff 0000000000000000
+[   16.802881] page dumped because: kasan: bad access detected
+[   16.802881] 
+[   16.802882] Memory state around the buggy address:
+[   16.802885]  ffff8881130e3280: 00 00 06 fc fc fc fc fc fc fc fc fc fc fc fc fc
+[   16.802887]  ffff8881130e3300: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[   16.802890] >ffff8881130e3380: 00 00 06 fc fc fc fc fc fc fc fc fc fc fc fc fc
+[   16.802891]                          ^
+[   16.802893]  ffff8881130e3400: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[   16.802895]  ffff8881130e3480: 00 00 06 fc fc fc fc fc fc fc fc fc fc fc fc fc
+[   16.802896] ==================================================================
+[   16.802897] Disabling lock debugging due to kernel taint
+[   16.803025] Kernel panic - not syncing: panic_on_warn set ...
+[   16.803030] CPU: 0 PID: 1933 Comm: syz-executor067 Tainted: G    B             5.0.0 #3
+[   16.803032] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[   16.803033] Call Trace:
+[   16.803037]  dump_stack+0x79/0xba
+[   16.803040]  ? vcs_scr_readw+0x10/0xa0
+[   16.803044]  panic+0x226/0x47c
+[   16.803047]  ? __warn_printk+0xdf/0xdf
+[   16.803053]  ? vcs_scr_readw+0x97/0xa0
+[   16.803057]  ? add_taint+0x19/0x50
+[   16.803059]  ? vcs_scr_readw+0x97/0xa0
+[   16.803075]  ? vcs_scr_readw+0x97/0xa0
+[   16.803081]  end_report+0x43/0x49
+[   16.803085]  kasan_report.cold.3+0xd/0x35
+[   16.803113]  ? log_make_free_space+0x1e0/0x240
+[   16.803116]  ? vcs_scr_readw+0x97/0xa0
+[   16.803142]  vcs_scr_readw+0x97/0xa0
+[   16.803160]  vcs_write+0x4fc/0xaa0
+[   16.803198]  ? __kasan_slab_free+0x125/0x170
+[   16.803203]  ? vcs_size+0x200/0x200
+[   16.803210]  ? do_syscall_64+0x9e/0x2b0
+[   16.803213]  ? __alloc_pages_nodemask+0x1e2/0x4d0
+[   16.803216]  ? __alloc_pages_nodemask+0x1e2/0x4d0
+[   16.803257]  __vfs_write+0xf8/0x6c0
+[   16.803260]  ? vcs_size+0x200/0x200
+[   16.803263]  ? kernel_read+0x110/0x110
+[   16.803266]  ? do_filp_open+0x1b9/0x270
+[   16.803269]  ? may_open_dev+0xd0/0xd0
+[   16.803271]  ? _cond_resched+0x14/0x30
+[   16.803277]  ? __inode_security_revalidate+0x9f/0xd0
+[   16.803281]  ? avc_policy_seqno+0xd/0x70
+[   16.803284]  ? selinux_file_permission+0x2c/0x440
+[   16.803287]  ? security_file_permission+0x233/0x2a0
+[   16.803294]  vfs_write+0x16c/0x4a0
+[   16.803297]  ksys_write+0xbf/0x1a0
+[   16.803301]  ? __ia32_sys_read+0xb0/0xb0
+[   16.803304]  ? ksys_ioctl+0x58/0xa0
+[   16.803310]  do_syscall_64+0x9e/0x2b0
+[   16.803313]  ? prepare_exit_to_usermode+0xc0/0x160
+[   16.803320]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+[   16.803323] RIP: 0033:0x44e0ed
+[   16.803329] Code: 28 c3 e8 06 2a 00 00 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 c0 ff ff ff f7 d8 64 89 01 48
+[   16.803331] RSP: 002b:00007ffcbccace98 EFLAGS: 00000246 ORIG_RAX: 0000000000000001
+[   16.803334] RAX: ffffffffffffffda RBX: 0000000000400530 RCX: 000000000044e0ed
+[   16.803336] RDX: 0000000000000068 RSI: 00000000200000c0 RDI: 0000000000000004
+[   16.803341] RBP: 0000000000403410 R08: 0023757363762f76 R09: 0000000000400530
+[   16.803343] R10: 000000000000000f R11: 0000000000000246 R12: 00000000004034b0
+[   16.803345] R13: 0000000000000000 R14: 00000000004c5018 R15: 0000000000000000
+[   16.803438] Dumping ftrace buffer:
+[   16.803460]    (ftrace buffer empty)
+[   16.803479] Kernel Offset: 0xde00000 from 0xffffffff81000000 (relocation range: 0xffffffff80000000-0xffffffffbfffffff)
+[   16.898372] Rebooting in 1 seconds..

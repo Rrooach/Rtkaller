@@ -1,0 +1,27 @@
+------------[ cut here ]------------
+WARNING: at mm/page_alloc.c:2480 __alloc_pages_nodemask+0x54d/0xa60()
+Modules linked in:
+CPU: 0 PID: 21278 Comm: syz-executor.1 Not tainted 3.10.108-rt123+ #14
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+ 0000000000000009 ffff880114adfaa0 ffffffff81991617 ffff880114adfad8
+ ffffffff8103b93c 0000000000000000 0000000000000000 0000000000000000
+ 0000000000000000 00000000001040d0 ffff880114adfae8 ffffffff8103ba15
+Call Trace:
+ [<ffffffff81991617>] dump_stack+0x1e/0x20
+ [<ffffffff8103b93c>] warn_slowpath_common+0x5c/0x80
+ [<ffffffff8103ba15>] warn_slowpath_null+0x15/0x20
+ [<ffffffff81105bbd>] __alloc_pages_nodemask+0x54d/0xa60
+ [<ffffffff8114bc84>] alloc_pages_current+0xc4/0x1a0
+ [<ffffffff81100f49>] __get_free_pages+0x9/0x40
+ [<ffffffff811522c9>] kmalloc_order_trace+0x29/0xc0
+ [<ffffffff81153941>] __kmalloc+0x1a1/0x1b0
+ [<ffffffff81414515>] set_selection+0x325/0x850
+ [<ffffffff81420416>] tioclinux+0xc6/0x310
+ [<ffffffff81411c71>] vt_ioctl+0xd41/0x1870
+ [<ffffffff814031dd>] tty_ioctl+0x28d/0xee0
+ [<ffffffff81173ccc>] do_vfs_ioctl+0x35c/0x640
+ [<ffffffff81174047>] SyS_ioctl+0x97/0xd0
+ [<ffffffff819a0df2>] system_call_fastpath+0x16/0x1b
+---[ end trace 43ca93a847e63e96 ]---
+selection: kmalloc() failed
+selection: kmalloc() failed

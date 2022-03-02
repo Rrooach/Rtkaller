@@ -1,0 +1,25 @@
+ata1.00: status: { DRDY }
+ata1: soft resetting link
+ata1.00: configured for MWDMA2
+ata1: EH complete
+------------[ cut here ]------------
+WARNING: at mm/mmap.c:2785 exit_mmap+0x175/0x180()
+Modules linked in:
+CPU: 1 PID: 1535 Comm: syz-executor293 Not tainted 3.10.108-rt123+ #14
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+ 0000000000000009 ffff88013a2d5db8 ffffffff81991617 ffff88013a2d5df0
+ ffffffff8103b93c 0000000000000000 ffff88013a079180 000000000000104b
+ ffff88013abff530 0000000000000001 ffff88013a2d5e00 ffffffff8103ba15
+Call Trace:
+ [<ffffffff81991617>] dump_stack+0x1e/0x20
+ [<ffffffff8103b93c>] warn_slowpath_common+0x5c/0x80
+ [<ffffffff8103ba15>] warn_slowpath_null+0x15/0x20
+ [<ffffffff81133e85>] exit_mmap+0x175/0x180
+ [<ffffffff81038b10>] mmput+0x30/0xe0
+ [<ffffffff810406e0>] do_exit+0x290/0xb50
+ [<ffffffff81041e8e>] do_group_exit+0x3e/0xa0
+ [<ffffffff81041eff>] SyS_exit_group+0xf/0x10
+ [<ffffffff819a0df2>] system_call_fastpath+0x16/0x1b
+---[ end trace 69952b560f8aeee7 ]---
+BUG: Bad rss-counter state mm:ffff88013a079180 idx:0 val:1
+BUG: Bad rss-counter state mm:ffff88013a079180 idx:1 val:4

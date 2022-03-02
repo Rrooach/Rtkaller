@@ -1,0 +1,2 @@
+001: WARNING: stack recursion on stack type 4
+001: WARNING: can't dereference registers at 0000000029242702 for ip swapgs_restore_regs_and_return_to_usermode+0x79/0x80

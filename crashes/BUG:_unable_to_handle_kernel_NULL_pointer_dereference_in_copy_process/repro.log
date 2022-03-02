@@ -1,0 +1,124 @@
+Warning: Permanently added '[localhost]:17366' (ECDSA) to the list of known hosts.
+2021/05/29 11:44:42 parsed 1 programs
+2021/05/29 11:44:42 executed programs: 0
+syzkaller login: [  332.767017] EXT4-fs (sda): error count since last fsck: 3
+[  332.767774] EXT4-fs (sda): initial error at time 1622039607: mb_free_blocks:1469: inode 106958: block 461312
+[  332.768996] EXT4-fs (sda): last error at time 1622288383: ext4_mb_generate_buddy:757
+[  369.648140] ata1: lost interrupt (Status 0x50)
+[  369.649046] ata1.00: exception Emask 0x0 SAct 0x0 SErr 0x0 action 0x6 frozen
+[  369.650166] ata1.00: failed command: READ DMA
+[  369.650863] ata1.00: cmd c8/00:5b:00:00:00/00:00:00:00:00/e0 tag 0 dma 46592 out
+[  369.650863]          res 40/00:01:00:00:00/00:00:00:00:00/a0 Emask 0x4 (timeout)
+[  369.653166] ata1.00: status: { DRDY }
+[  369.653868] ata1: soft resetting link
+[  369.809159] ata1.00: configured for MWDMA2
+[  369.810019] ata1: EH complete
+2021/05/29 11:45:45 executed programs: 2
+[  431.088101] ata1: lost interrupt (Status 0x50)
+[  431.088689] ata1.00: exception Emask 0x0 SAct 0x0 SErr 0x0 action 0x6 frozen
+[  431.089550] ata1.00: failed command: READ DMA
+[  431.090092] ata1.00: cmd c8/00:5b:00:00:00/00:00:00:00:00/e0 tag 0 dma 46592 out
+[  431.090092]          res 40/00:01:00:00:00/00:00:00:00:00/a0 Emask 0x4 (timeout)
+[  431.091813] ata1.00: status: { DRDY }
+[  431.092419] ata1: soft resetting link
+[  431.248260] ata1.00: configured for MWDMA2
+[  431.248863] ata1: EH complete
+2021/05/29 11:46:47 result: hanged=false err=executor 0: failed to write control pipe: write |1: broken pipe
+
+2021/05/29 11:46:47 executed programs: 3
+2021/05/29 11:46:47 result: hanged=false err=executor 1: failed to write control pipe: write |1: broken pipe
+
+[  496.624051] ata1: lost interrupt (Status 0x50)
+[  496.624609] ata1.00: exception Emask 0x0 SAct 0x0 SErr 0x0 action 0x6 frozen
+[  496.625453] ata1.00: failed command: READ DMA
+[  496.625995] ata1.00: cmd c8/00:5b:00:00:00/00:00:00:00:00/e0 tag 0 dma 46592 out
+[  496.625995]          res 40/00:01:00:00:00/00:00:00:00:00/a0 Emask 0x4 (timeout)
+[  496.627627] ata1.00: status: { DRDY }
+[  496.628156] ata1: soft resetting link
+[  496.784369] ata1.00: configured for MWDMA2
+[  496.784901] ata1: EH complete
+[  558.064078] ata1: lost interrupt (Status 0x50)
+[  558.064674] ata1.00: limiting speed to MWDMA1:PIO4
+[  558.065282] ata1.00: exception Emask 0x0 SAct 0x0 SErr 0x0 action 0x6 frozen
+[  558.066121] ata1.00: failed command: READ DMA
+[  558.066622] ata1.00: cmd c8/00:5b:00:00:00/00:00:00:00:00/e0 tag 0 dma 46592 out
+[  558.066622]          res 40/00:01:00:00:00/00:00:00:00:00/a0 Emask 0x4 (timeout)
+[  558.068434] ata1.00: status: { DRDY }
+[  558.068935] ata1: soft resetting link
+[  558.224193] ata1.00: configured for MWDMA1
+[  558.224777] ata1: EH complete
+[  619.504045] ata1: lost interrupt (Status 0x50)
+[  619.504624] ata1.00: exception Emask 0x0 SAct 0x0 SErr 0x0 action 0x6 frozen
+[  619.505503] ata1.00: failed command: READ DMA
+[  619.506024] ata1.00: cmd c8/00:5b:00:00:00/00:00:00:00:00/e0 tag 0 dma 46592 out
+[  619.506024]          res 40/00:01:00:00:00/00:00:00:00:00/a0 Emask 0x4 (timeout)
+[  619.507817] ata1.00: status: { DRDY }
+[  619.508402] ata1: soft resetting link
+[  619.664254] ata1.00: configured for MWDMA1
+[  619.664839] ata1: EH complete
+2021/05/29 11:49:55 executed programs: 6
+[  680.944050] ata1: lost interrupt (Status 0x50)
+[  680.944682] ata1.00: limiting speed to PIO4
+[  680.945226] ata1.00: exception Emask 0x0 SAct 0x0 SErr 0x0 action 0x6 frozen
+[  680.946099] ata1.00: failed command: READ DMA
+[  680.946635] ata1.00: cmd c8/00:5b:00:00:00/00:00:00:00:00/e0 tag 0 dma 46592 out
+[  680.946635]          res 40/00:01:00:00:00/00:00:00:00:00/a0 Emask 0x4 (timeout)
+[  680.948461] ata1.00: status: { DRDY }
+[  680.949026] ata1: soft resetting link
+[  681.104142] ata1.00: configured for PIO4
+[  681.104722] ata1: EH complete
+2021/05/29 11:50:57 executed programs: 7
+2021/05/29 11:50:57 result: hanged=false err=executor 0: failed to write control pipe: write |1: broken pipe
+
+2021/05/29 11:50:57 result: hanged=false err=executor 1: failed to write control pipe: write |1: broken pipe
+
+[  682.102938] BUG: unable to handle kernel NULL pointer dereference at 0000000000000150
+[  682.103985] IP: copy_process.part.57+0x2b20/0x5b70
+[  682.104566] PGD 800000011b102067 P4D 800000011b102067 PUD 119de2067 PMD 0 
+[  682.105507] Oops: 0002 [#1] SMP KASAN PTI
+[  682.105992] Dumping ftrace buffer:
+[  682.106523]    (ftrace buffer empty)
+[  682.106971] Modules linked in:
+[  682.107347] CPU: 0 PID: 3675 Comm: syz-executor.0 Not tainted 4.14.103+ #2
+[  682.108168] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[  682.109276] task: ffff88811193d600 task.stack: ffff888111fc8000
+[  682.109991] RIP: 0010:copy_process.part.57+0x2b20/0x5b70
+[  682.110633] RSP: 0018:ffff888111fcfc58 EFLAGS: 00010297
+[  682.111297] RAX: 0000000000000000 RBX: ffff8881151a7200 RCX: 0000000000000000
+[  682.112142] RDX: 0000000000000000 RSI: dffffc0000000000 RDI: ffff888111a76230
+[  682.113002] RBP: ffff888111fcfe38 R08: 00000000f03c29ff R09: 00000000051198c2
+[  682.113855] R10: ffffed10223f9f14 R11: ffff888111fcff58 R12: ffff888117cd9f00
+[  682.114718] R13: ffff8881151a7250 R14: 0000000000000000 R15: ffff888111a76140
+[  682.115662] FS:  0000000001c14940(0000) GS:ffff88811b400000(0000) knlGS:0000000000000000
+[  682.116646] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[  682.117355] CR2: 0000000000000150 CR3: 0000000119048005 CR4: 00000000007606f0
+[  682.118210] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+[  682.119087] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+[  682.119946] PKRU: 55555554
+[  682.120266] Call Trace:
+[  682.120567]  ? __cleanup_sighand+0x30/0x30
+[  682.121075]  ? rw_verify_area+0xdd/0x290
+[  682.121532]  _do_fork+0x164/0x800
+[  682.121922]  ? fork_idle+0x170/0x170
+[  682.122343]  ? bad_area_access_error+0x240/0x240
+[  682.122875]  ? sys_vfork+0x20/0x20
+[  682.123277]  do_syscall_64+0x18e/0x480
+[  682.123714]  ? do_page_fault+0x28/0x220
+[  682.124160]  ? prepare_exit_to_usermode+0xbc/0x150
+[  682.124741]  entry_SYSCALL_64_after_hwframe+0x3d/0xa2
+[  682.125325] RIP: 0033:0x466c4f
+[  682.125680] RSP: 002b:00007ffd840281e0 EFLAGS: 00000246 ORIG_RAX: 0000000000000038
+[  682.126541] RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 0000000000466c4f
+[  682.127351] RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000001200011
+[  682.128176] RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000001c14940
+[  682.129022] R10: 0000000001c14c10 R11: 0000000000000246 R12: 0000000000000000
+[  682.129854] R13: 0000000000000001 R14: 0000000000000000 R15: 0000000000000000
+[  682.130678] Code: e8 48 be 00 00 00 00 00 fc ff df 48 c1 e8 03 80 3c 30 00 0f 85 2b 06 00 00 f6 43 51 08 74 13 e8 a7 e8 1f 00 48 8b 85 40 fe ff ff <f0> ff 88 50 01 00 00 e8 94 e8 1f 00 49 8d 46 30 48 89 c7 49 89 
+[  682.132903] RIP: copy_process.part.57+0x2b20/0x5b70 RSP: ffff888111fcfc58
+[  682.133676] CR2: 0000000000000150
+[  682.134076] ---[ end trace 8376ac45908f2bbe ]---
+[  682.134613] Kernel panic - not syncing: Fatal exception
+[  682.135291] Dumping ftrace buffer:
+[  682.135705]    (ftrace buffer empty)
+[  682.136140] Kernel Offset: 0x7a00000 from 0xffffffff81000000 (relocation range: 0xffffffff80000000-0xffffffffbfffffff)
+[  682.137407] Rebooting in 1 seconds..

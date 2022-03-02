@@ -1,0 +1,1 @@
+KASAN: slab-out-of-bounds Write in vgacon_scroll

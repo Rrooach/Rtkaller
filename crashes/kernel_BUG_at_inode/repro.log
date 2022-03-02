@@ -1,0 +1,49 @@
+Warning: Permanently added '[localhost]:27215' (ECDSA) to the list of known hosts.
+2021/05/27 22:39:28 parsed 1 programs
+2021/05/27 22:39:28 executed programs: 0
+2021/05/27 22:39:33 executed programs: 3771
+2021/05/27 22:39:38 executed programs: 7490
+2021/05/27 22:39:43 executed programs: 11428
+2021/05/27 22:39:48 executed programs: 15656
+syzkaller login: [   35.190307] ------------[ cut here ]------------
+[   35.190398] ------------[ cut here ]------------
+[   35.190401] kernel BUG at fs/inode.c:1435!
+[   35.190409] invalid opcode: 0000 [#1] SMP 
+[   35.190411] Dumping ftrace buffer:
+[   35.190435]    (ftrace buffer empty)
+[   35.190436] Modules linked in:
+[   35.190441] CPU: 0 PID: 7071 Comm: syz-executor.0 Not tainted 3.10.108-rt123+ #14
+[   35.190444] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[   35.190448] task: ffff88013a46ddc0 ti: ffff8801348c4000 task.ti: ffff8801348c4000
+[   35.190461] RIP: 0010:[<ffffffff8117d975>]  [<ffffffff8117d975>] iput+0x175/0x240
+[   35.190463] RSP: 0018:ffff8801348c5e08  EFLAGS: 00010293
+[   35.190466] RAX: 0000000000000000 RBX: ffff8801341e28e0 RCX: 0000000000000908
+[   35.190468] RDX: ffff88013a46ddc0 RSI: ffffffff8117d975 RDI: ffff8801341e28e0
+[   35.190471] RBP: ffff8801348c5e28 R08: ffffea0004e87d00 R09: 00000000000144e0
+[   35.190474] R10: ffffffff812ebe84 R11: 0000000000000293 R12: ffff8801341e28e0
+[   35.190480] R13: 0000000000000000 R14: 0000000000000000 R15: ffff880135102ed0
+[   35.190484] FS:  0000000002bbb940(0063) GS:ffff88013fc00000(0000) knlGS:0000000000000000
+[   35.190488] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[   35.190490] CR2: 0000000000000000 CR3: 000000013504a000 CR4: 00000000003407f0
+[   35.190496] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+[   35.190499] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+[   35.190500] Stack:
+[   35.190504]  ffff8801346869c0 ffff8801341e28e0 0000000000000000 0000000000000000
+[   35.190509]  ffff8801348c5e60 ffffffff81178025 ffff8801346869c0 ffff8801341e28e0
+[   35.190513]  ffff880134686a1c 0000000000000000 ffff8801341e28e0 ffff8801348c5e90
+[   35.190514] Call Trace:
+[   35.190520]  [<ffffffff81178025>] d_kill+0x115/0x160
+[   35.190525]  [<ffffffff8117986a>] dput+0x15a/0x2b0
+[   35.190531]  [<ffffffff8115ebbe>] __fput+0x19e/0x2d0
+[   35.190535]  [<ffffffff8115ed55>] ____fput+0x15/0x20
+[   35.190543]  [<ffffffff8105d387>] task_work_run+0xa7/0xe0
+[   35.190549]  [<ffffffff81002a0d>] do_notify_resume+0x6d/0x70
+[   35.190556]  [<ffffffff819a1077>] int_signal+0x12/0x17
+[   35.190614] Code: 84 00 00 00 00 00 e8 9b c5 f3 ff 8b 43 48 85 c0 0f 85 88 00 00 00 e8 8b c5 f3 ff 4c 8b a3 98 00 00 00 eb 8b 66 90 e8 7b c5 f3 ff <0f> 0b 66 0f 1f 84 00 00 00 00 00 e8 6b c5 f3 ff 48 8b 83 98 00 
+[   35.190619] RIP  [<ffffffff8117d975>] iput+0x175/0x240
+[   35.190620]  RSP <ffff8801348c5e08>
+[   35.190637] ---[ end trace 8c03a5f1f8188e8c ]---
+[   35.190639] Kernel panic - not syncing: Fatal exception
+[   35.221327] Dumping ftrace buffer:
+[   35.222110]    (ftrace buffer empty)
+[   35.222921] Rebooting in 1 seconds..

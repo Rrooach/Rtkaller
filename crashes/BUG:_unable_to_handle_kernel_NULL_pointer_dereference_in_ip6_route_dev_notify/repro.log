@@ -1,0 +1,66 @@
+Warning: Permanently added '[localhost]:23067' (ECDSA) to the list of known hosts.
+syzkaller login: [   26.482658] audit: type=1400 audit(1613058551.874:8): avc:  denied  { execmem } for  pid=414 comm="syz-executor857" scontext=system_u:system_r:kernel_t:s0 tcontext=system_u:system_r:kernel_t:s0 tclass=process permissive=1
+executing program
+[   26.915358] syz-executor857 (415) used greatest stack depth: 12256 bytes left
+[   26.923478] BUG: kernel NULL pointer dereference, address: 00000000000000d7
+[   26.924476] #PF: supervisor write access in kernel mode
+[   26.925292] #PF: error_code(0x0002) - not-present page
+[   26.926082] PGD 0 P4D 0 
+[   26.926495] Oops: 0002 [#1] SMP PTI
+[   26.927064] CPU: 0 PID: 26 Comm: kworker/u4:1 Not tainted 5.3.0+ #3
+[   26.927969] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[   26.929385] Workqueue: netns cleanup_net
+[   26.930115] RIP: 0010:ip6_route_dev_notify+0x73/0x110
+[   26.931025] Code: e5 52 ff 80 bb 90 04 00 00 03 74 e3 e8 e6 e5 52 ff 49 8b ac 24 d8 06 00 00 48 8b 9d b0 00 00 00 48 85 db 74 ca e8 cd e5 52 ff <f0> ff 8b d8 00 00 00 0f 88 b6 b5 1a 00 74 72 e8 b9 e5 52 ff 48 c7
+[   26.934150] RSP: 0018:ffffb451400e7ca0 EFLAGS: 00010293
+[   26.935069] RAX: ffff8f0afb28a980 RBX: ffffffffffffffff RCX: ffffffffbc8266f3
+[   26.936271] RDX: 0000000000000000 RSI: 0000000000000006 RDI: ffffffffbd2fef10
+[   26.937539] RBP: ffff8f0af9b6bd00 R08: 0000000000000000 R09: 0000000000000036
+[   26.938702] R10: ffffb451400e7cc0 R11: 0000000000000001 R12: ffff8f0af7ac0000
+[   26.939858] R13: 0000000000000000 R14: ffffffffbd2fef10 R15: ffffb451400e7d10
+[   26.940986] FS:  0000000000000000(0000) GS:ffff8f0afba00000(0000) knlGS:0000000000000000
+[   26.942325] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[   26.943380] CR2: 00000000000000d7 CR3: 00000001378b6006 CR4: 0000000000760ef0
+[   26.944458] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+[   26.945670] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+[   26.946917] PKRU: 55555554
+[   26.947413] Call Trace:
+[   26.947932]  notifier_call_chain+0x6a/0xb0
+[   26.948679]  rollback_registered_many+0x332/0x5b0
+[   26.949528]  unregister_netdevice_many+0x26/0xc0
+[   26.950399]  default_device_exit_batch+0x18a/0x1c0
+[   26.951252]  ? do_wait_intr_irq+0x80/0x80
+[   26.951916]  ? unregister_netdevice_many+0xc0/0xc0
+[   26.952715]  ? dev_change_net_namespace+0x4b0/0x4b0
+[   26.953523]  ops_exit_list.isra.16+0x70/0x80
+[   26.954300]  cleanup_net+0x24f/0x370
+[   26.954906]  process_one_work+0x290/0x510
+[   26.955562]  worker_thread+0x39/0x500
+[   26.956231]  ? process_one_work+0x510/0x510
+[   26.956905]  kthread+0x12c/0x150
+[   26.957397]  ? kthread_create_on_node+0x90/0x90
+[   26.958114]  ret_from_fork+0x35/0x40
+[   26.958669] Modules linked in:
+[   26.959132] Dumping ftrace buffer:
+[   26.959683]    (ftrace buffer empty)
+[   26.960279] CR2: 00000000000000d7
+[   26.960818] ---[ end trace 731f34ecb254f50a ]---
+[   26.961662] RIP: 0010:ip6_route_dev_notify+0x73/0x110
+[   26.962594] Code: e5 52 ff 80 bb 90 04 00 00 03 74 e3 e8 e6 e5 52 ff 49 8b ac 24 d8 06 00 00 48 8b 9d b0 00 00 00 48 85 db 74 ca e8 cd e5 52 ff <f0> ff 8b d8 00 00 00 0f 88 b6 b5 1a 00 74 72 e8 b9 e5 52 ff 48 c7
+[   26.966037] RSP: 0018:ffffb451400e7ca0 EFLAGS: 00010293
+[   26.967009] RAX: ffff8f0afb28a980 RBX: ffffffffffffffff RCX: ffffffffbc8266f3
+[   26.968318] RDX: 0000000000000000 RSI: 0000000000000006 RDI: ffffffffbd2fef10
+[   26.969665] RBP: ffff8f0af9b6bd00 R08: 0000000000000000 R09: 0000000000000036
+[   26.970971] R10: ffffb451400e7cc0 R11: 0000000000000001 R12: ffff8f0af7ac0000
+[   26.972265] R13: 0000000000000000 R14: ffffffffbd2fef10 R15: ffffb451400e7d10
+[   26.973539] FS:  0000000000000000(0000) GS:ffff8f0afba00000(0000) knlGS:0000000000000000
+[   26.975012] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[   26.976046] CR2: 00000000000000d7 CR3: 00000001378b6006 CR4: 0000000000760ef0
+[   26.977358] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+[   26.978660] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+[   26.979996] PKRU: 55555554
+[   26.980519] Kernel panic - not syncing: Fatal exception
+[   26.981654] Dumping ftrace buffer:
+[   26.982299]    (ftrace buffer empty)
+[   26.982933] Kernel Offset: 0x3ac00000 from 0xffffffff81000000 (relocation range: 0xffffffff80000000-0xffffffffbfffffff)
+[   26.984684] Rebooting in 1 seconds..

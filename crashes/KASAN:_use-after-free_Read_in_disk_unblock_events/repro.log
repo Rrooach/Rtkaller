@@ -1,0 +1,246 @@
+Warning: Permanently added '[localhost]:2507' (ECDSA) to the list of known hosts.
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+syzkaller login: [   15.085343] ==================================================================
+[   15.086559] BUG: KASAN: use-after-free in disk_unblock_events+0x4b/0x50
+[   15.087387] Read of size 8 at addr ffff888110dc6178 by task syz-executor983/1998
+[   15.088437] 
+[   15.088671] CPU: 1 PID: 1998 Comm: syz-executor983 Not tainted 4.14.103+ #2
+[   15.089534] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[   15.090656] Call Trace:
+[   15.090974]  dump_stack+0x64/0x86
+[   15.091383]  ? disk_unblock_events+0x4b/0x50
+[   15.091907]  print_address_description+0x65/0x280
+[   15.092470]  ? disk_unblock_events+0x4b/0x50
+[   15.092977]  kasan_report+0x223/0x330
+[   15.093414]  disk_unblock_events+0x4b/0x50
+[   15.093951]  __blkdev_get+0x453/0xf20
+[   15.094398]  ? memcpy+0x34/0x50
+[   15.094777]  ? memcpy+0x34/0x50
+[   15.095156]  ? __blkdev_put+0x6f0/0x6f0
+[   15.095624]  ? avc_has_perm_noaudit+0x2e0/0x2e0
+[   15.096175]  ? fsnotify+0x94e/0xb40
+[   15.096595]  blkdev_get+0x293/0x790
+[   15.097019]  ? __fsnotify_inode_delete+0x20/0x20
+[   15.097563]  ? bdev_evict_inode+0x1b0/0x1b0
+[   15.098070]  ? selinux_mount+0x460/0x460
+[   15.098537]  ? __fsnotify_parent+0xa5/0x2e0
+[   15.099036]  ? __fsnotify_update_child_dentry_flags.part.1+0x330/0x330
+[   15.099838]  ? __d_lookup_rcu+0x27e/0x680
+[   15.100351]  ? selinux_socket_create+0x590/0x590
+[   15.100896]  ? selinux_inode_permission+0x2ab/0x470
+[   15.101482]  ? ihold+0x9/0x40
+[   15.101839]  blkdev_open+0x1b5/0x250
+[   15.102271]  ? security_file_open+0x88/0x190
+[   15.102778]  do_dentry_open+0x756/0xd50
+[   15.103356]  ? bd_acquire+0x290/0x290
+[   15.104005]  vfs_open+0x107/0x220
+[   15.104454]  path_openat+0x634/0x3f70
+[   15.104984]  ? __save_stack_trace+0x7e/0xd0
+[   15.105487]  ? depot_save_stack+0x127/0x460
+[   15.105998]  ? vfs_rename+0x14a0/0x14a0
+[   15.106468]  ? save_stack+0x92/0xa0
+[   15.106895]  ? save_stack+0x33/0xa0
+[   15.107316]  ? kasan_kmalloc+0xa0/0xd0
+[   15.107772]  ? kmem_cache_alloc+0xad/0x170
+[   15.108265]  ? do_sys_open+0x19d/0x3f0
+[   15.108713]  ? do_syscall_64+0x18e/0x480
+[   15.109194]  ? entry_SYSCALL_64_after_hwframe+0x3d/0xa2
+[   15.109820]  ? __alloc_pages_nodemask+0x1c6/0x470
+[   15.110384]  ? __alloc_pages_slowpath+0x1ca0/0x1ca0
+[   15.110968]  ? kasan_unpoison_shadow+0x30/0x40
+[   15.111505]  ? anon_vma_interval_tree_insert+0x183/0x2e0
+[   15.112140]  do_filp_open+0x19e/0x280
+[   15.112579]  ? may_open_dev+0xd0/0xd0
+[   15.113028]  ? kasan_unpoison_shadow+0x30/0x40
+[   15.113586]  ? _find_next_bit+0xdc/0x110
+[   15.114071]  ? do_sys_open+0x1da/0x3f0
+[   15.114518]  do_sys_open+0x1da/0x3f0
+[   15.114948]  ? filp_open+0x60/0x60
+[   15.115364]  ? bad_area_access_error+0x240/0x240
+[   15.115908]  ? SyS_open+0x30/0x30
+[   15.116332]  do_syscall_64+0x18e/0x480
+[   15.116781]  ? do_page_fault+0x28/0x220
+[   15.117248]  ? prepare_exit_to_usermode+0xbc/0x150
+[   15.117821]  entry_SYSCALL_64_after_hwframe+0x3d/0xa2
+[   15.118458] RIP: 0033:0x44a8dd
+[   15.118843] RSP: 002b:00007ffe26d45fd8 EFLAGS: 00000246 ORIG_RAX: 0000000000000101
+[   15.119734] RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 000000000044a8dd
+[   15.120575] RDX: 0000000000000000 RSI: 0000000020000280 RDI: ffffffffffffff9c
+[   15.121408] RBP: 00007ffe26d45fe4 R08: 00007ffe26d45a40 R09: 0000000026d46148
+[   15.122241] R10: 0000000000000000 R11: 0000000000000246 R12: 00000000ffffffff
+[   15.123076] R13: 0000000000003ad9 R14: 00000000004c2018 R15: 0000000000000000
+[   15.123949] 
+[   15.124142] Allocated by task 1794:
+[   15.124560]  save_stack+0x33/0xa0
+[   15.125022]  kasan_kmalloc+0xa0/0xd0
+[   15.125448]  kmem_cache_alloc_node_trace+0x115/0x190
+[   15.126057]  alloc_disk_node+0x66/0x3b0
+[   15.126656]  md_alloc+0x224/0x7b0
+[   15.127060]  md_probe+0x1f/0x30
+[   15.127466]  kobj_lookup+0x2c2/0x420
+[   15.127898]  get_gendisk+0x32/0x220
+[   15.128321]  __blkdev_get+0x313/0xf20
+[   15.128764]  blkdev_get+0x293/0x790
+[   15.129185]  blkdev_open+0x1b5/0x250
+[   15.129613]  do_dentry_open+0x756/0xd50
+[   15.130077]  vfs_open+0x107/0x220
+[   15.130496]  path_openat+0x634/0x3f70
+[   15.130939]  do_filp_open+0x19e/0x280
+[   15.131388]  do_sys_open+0x1da/0x3f0
+[   15.131817]  do_syscall_64+0x18e/0x480
+[   15.132280]  entry_SYSCALL_64_after_hwframe+0x3d/0xa2
+[   15.132876] 
+[   15.133065] Freed by task 1998:
+[   15.133449]  save_stack+0x33/0xa0
+[   15.133852]  kasan_slab_free+0x72/0xc0
+[   15.134305]  kfree+0x88/0x190
+[   15.134680]  device_release+0x78/0x200
+[   15.135134]  kobject_put+0x138/0x240
+[   15.135574]  put_disk+0x1f/0x30
+[   15.135953]  __blkdev_get+0x3c4/0xf20
+[   15.136413]  blkdev_get+0x293/0x790
+[   15.136864]  blkdev_open+0x1b5/0x250
+[   15.137315]  do_dentry_open+0x756/0xd50
+[   15.137777]  vfs_open+0x107/0x220
+[   15.138179]  path_openat+0x634/0x3f70
+[   15.138702]  do_filp_open+0x19e/0x280
+[   15.139190]  do_sys_open+0x1da/0x3f0
+[   15.139618]  do_syscall_64+0x18e/0x480
+[   15.140067]  entry_SYSCALL_64_after_hwframe+0x3d/0xa2
+[   15.140669] 
+[   15.140864] The buggy address belongs to the object at ffff888110dc5d80
+[   15.140864]  which belongs to the cache kmalloc-2048 of size 2048
+[   15.142360] The buggy address is located 1016 bytes inside of
+[   15.142360]  2048-byte region [ffff888110dc5d80, ffff888110dc6580)
+[   15.143751] The buggy address belongs to the page:
+[   15.144327] page:ffffea0004437000 count:1 mapcount:0 mapping:          (null) index:0x0 compound_mapcount: 0
+[   15.145467] flags: 0x200000000008100(slab|head)
+[   15.146007] raw: 0200000000008100 0000000000000000 0000000000000000 00000001800f000f
+[   15.146942] raw: dead000000000100 dead000000000200 ffff88811b002000 0000000000000000
+[   15.147838] page dumped because: kasan: bad access detected
+[   15.148491] 
+[   15.148677] Memory state around the buggy address:
+[   15.149276]  ffff888110dc6000: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+[   15.150110]  ffff888110dc6080: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+[   15.150969] >ffff888110dc6100: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+[   15.151809]                                                                 ^
+[   15.152642]  ffff888110dc6180: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+[   15.153486]  ffff888110dc6200: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+[   15.154345] ==================================================================
+[   15.155173] Disabling lock debugging due to kernel taint
+[   15.155878] Kernel panic - not syncing: panic_on_warn set ...
+[   15.155878] 
+[   15.156749] CPU: 1 PID: 1998 Comm: syz-executor983 Tainted: G    B           4.14.103+ #2
+[   15.157720] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[   15.158792] Call Trace:
+[   15.159105]  dump_stack+0x64/0x86
+[   15.159517]  panic+0x1a9/0x39a
+[   15.159898]  ? refcount_error_report+0x296/0x296
+[   15.160459]  ? disk_unblock_events+0x4b/0x50
+[   15.160988]  ? disk_unblock_events+0x4b/0x50
+[   15.161503]  kasan_end_report+0x4a/0x50
+[   15.161972]  kasan_report+0x135/0x330
+[   15.162412]  disk_unblock_events+0x4b/0x50
+[   15.162911]  __blkdev_get+0x453/0xf20
+[   15.163353]  ? memcpy+0x34/0x50
+[   15.163747]  ? memcpy+0x34/0x50
+[   15.164128]  ? __blkdev_put+0x6f0/0x6f0
+[   15.164592]  ? avc_has_perm_noaudit+0x2e0/0x2e0
+[   15.165133]  ? fsnotify+0x94e/0xb40
+[   15.165559]  blkdev_get+0x293/0x790
+[   15.165984]  ? __fsnotify_inode_delete+0x20/0x20
+[   15.166563]  ? bdev_evict_inode+0x1b0/0x1b0
+[   15.167081]  ? selinux_mount+0x460/0x460
+[   15.167555]  ? __fsnotify_parent+0xa5/0x2e0
+[   15.168057]  ? __fsnotify_update_child_dentry_flags.part.1+0x330/0x330
+[   15.168829]  ? __d_lookup_rcu+0x27e/0x680
+[   15.169308]  ? selinux_socket_create+0x590/0x590
+[   15.169862]  ? selinux_inode_permission+0x2ab/0x470
+[   15.170450]  ? ihold+0x9/0x40
+[   15.170805]  blkdev_open+0x1b5/0x250
+[   15.171236]  ? security_file_open+0x88/0x190
+[   15.171744]  do_dentry_open+0x756/0xd50
+[   15.172207]  ? bd_acquire+0x290/0x290
+[   15.172646]  vfs_open+0x107/0x220
+[   15.173046]  path_openat+0x634/0x3f70
+[   15.173497]  ? __save_stack_trace+0x7e/0xd0
+[   15.173996]  ? depot_save_stack+0x127/0x460
+[   15.174497]  ? vfs_rename+0x14a0/0x14a0
+[   15.174954]  ? save_stack+0x92/0xa0
+[   15.175375]  ? save_stack+0x33/0xa0
+[   15.175791]  ? kasan_kmalloc+0xa0/0xd0
+[   15.176248]  ? kmem_cache_alloc+0xad/0x170
+[   15.176737]  ? do_sys_open+0x19d/0x3f0
+[   15.177184]  ? do_syscall_64+0x18e/0x480
+[   15.177653]  ? entry_SYSCALL_64_after_hwframe+0x3d/0xa2
+[   15.178272]  ? __alloc_pages_nodemask+0x1c6/0x470
+[   15.178829]  ? __alloc_pages_slowpath+0x1ca0/0x1ca0
+[   15.179403]  ? kasan_unpoison_shadow+0x30/0x40
+[   15.179952]  ? anon_vma_interval_tree_insert+0x183/0x2e0
+[   15.180583]  do_filp_open+0x19e/0x280
+[   15.181020]  ? may_open_dev+0xd0/0xd0
+[   15.181460]  ? kasan_unpoison_shadow+0x30/0x40
+[   15.181988]  ? _find_next_bit+0xdc/0x110
+[   15.182469]  ? do_sys_open+0x1da/0x3f0
+[   15.182915]  do_sys_open+0x1da/0x3f0
+[   15.183342]  ? filp_open+0x60/0x60
+[   15.183754]  ? bad_area_access_error+0x240/0x240
+[   15.184298]  ? SyS_open+0x30/0x30
+[   15.184695]  do_syscall_64+0x18e/0x480
+[   15.185151]  ? do_page_fault+0x28/0x220
+[   15.185715]  ? prepare_exit_to_usermode+0xbc/0x150
+[   15.186556]  entry_SYSCALL_64_after_hwframe+0x3d/0xa2
+[   15.187461] RIP: 0033:0x44a8dd
+[   15.187998] RSP: 002b:00007ffe26d45fd8 EFLAGS: 00000246 ORIG_RAX: 0000000000000101
+[   15.189025] RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 000000000044a8dd
+[   15.189886] RDX: 0000000000000000 RSI: 0000000020000280 RDI: ffffffffffffff9c
+[   15.190739] RBP: 00007ffe26d45fe4 R08: 00007ffe26d45a40 R09: 0000000026d46148
+[   15.191567] R10: 0000000000000000 R11: 0000000000000246 R12: 00000000ffffffff
+[   15.192444] R13: 0000000000003ad9 R14: 00000000004c2018 R15: 0000000000000000
+[   15.193363] Dumping ftrace buffer:
+[   15.193802]    (ftrace buffer empty)
+[   15.194234] Kernel Offset: 0x28c00000 from 0xffffffff81000000 (relocation range: 0xffffffff80000000-0xffffffffbfffffff)
+[   15.195487] Rebooting in 1 seconds..

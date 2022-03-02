@@ -1,0 +1,14 @@
+001: rcu: INFO: rcu_sched detected stalls on CPUs/tasks:
+001: 	(detected by 1, t=32209 jiffies, g=5277, q=37)
+001: rcu: All QSes seen, last rcu_sched kthread activity 32209 (4294825000-4294792791), jiffies_till_next_fqs=3, root ->qsmask 0x0
+001: rcu: rcu_sched kthread starved for 32209 jiffies! g5277 f0x2 RCU_GP_WAIT_FQS(5) ->state=0x0 ->cpu=0
+001: rcu: 	Unless rcu_sched kthread gets sufficient CPU time, OOM is now expected behavior.
+001: rcu: RCU grace-period kthread stack dump:
+001: task:rcu_sched       state:R  running task     stack:29536 pid:   10 ppid:     2 flags:0x00004000
+001: Call Trace:
+001:  __schedule+0x840/0x1820
+001:  schedule+0xc6/0x290
+001:  schedule_timeout+0x3d5/0x770
+001:  rcu_gp_kthread+0xa26/0x2430
+001:  kthread+0x2f1/0x400
+001:  ret_from_fork+0x22/0x30

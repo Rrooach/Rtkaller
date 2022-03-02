@@ -1,0 +1,7 @@
+# {Threaded:true Collide:true Repeat:false RepeatTimes:0 Procs:1 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:false Cgroups:false BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:false Trace:false}
+mkdir(&(0x7f000000014f)='/tmp/lstw7aVdE\x00', 0x0)
+r0 = openat$mice(0xffffffffffffff9c, 0x0, 0x0)
+ioctl$PERF_EVENT_IOC_REFRESH(r0, 0x2402, 0x80)
+chdir(&(0x7f000000017c)='/tmp/lstw7aVdE\x00')
+open(&(0x7f000000018b)='test_dir/test_eacces\x00', 0x0, 0x1b6)
+rmdir(&(0x7f00000006c7)='/tmp/lstw7aVdE\x00')

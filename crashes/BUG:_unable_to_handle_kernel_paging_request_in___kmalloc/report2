@@ -1,0 +1,46 @@
+BUG: unable to handle kernel paging request at 0000000fffffffe0
+IP: [<ffffffff8115381d>] __kmalloc+0x7d/0x1b0
+PGD 123107067 PUD 0 
+Oops: 0000 [#1] SMP 
+Dumping ftrace buffer:
+   (ftrace buffer empty)
+Modules linked in:
+CPU: 1 PID: 12195 Comm: syz-executor.0 Not tainted 3.10.108-rt123+ #14
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+task: ffff88013a490000 ti: ffff8801249a0000 task.ti: ffff8801249a0000
+RIP: 0010:[<ffffffff8115381d>]  [<ffffffff8115381d>] __kmalloc+0x7d/0x1b0
+RSP: 0018:ffff8801249a1bc0  EFLAGS: 00010202
+RAX: 0000000000000000 RBX: 00000000000000d0 RCX: 000000000000366c
+RDX: 000000000000366b RSI: 0000000000000000 RDI: 00000000000145e0
+RBP: ffff8801249a1bf0 R08: ffff88013fd145e0 R09: ffffffff8174c72c
+R10: 00000000000214b8 R11: ffff88013fd11870 R12: 00000000000080d0
+R13: 0000000000000308 R14: ffff88013b001500 R15: 0000000fffffffe0
+FS:  00007f3aaef1b700(0000) GS:ffff88013fd00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000fffffffe0 CR3: 0000000124a77000 CR4: 00000000003407e0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Stack:
+ ffffffff8174c72c 00000000000000d0 00000000000080d0 0000000000000000
+ ffffffff81e88e60 0000000000000010 ffff8801249a1c30 ffffffff8174c72c
+ 0000000000000002 00000000000000d0 ffffffff81e88e60 ffffffff81e85d00
+Call Trace:
+ [<ffffffff8174c72c>] sk_prot_alloc+0x10c/0x1e0
+ [<ffffffff8174c82e>] sk_alloc+0x2e/0xa0
+ [<ffffffff81798d0e>] __netlink_create+0x3e/0xf0
+ [<ffffffff8179b4d6>] __netlink_kernel_create+0x96/0x320
+ [<ffffffff81813b65>] fib_net_init+0x85/0x120
+ [<ffffffff8175d63c>] ops_init+0x4c/0x170
+ [<ffffffff8175d7e5>] setup_net+0x85/0x150
+ [<ffffffff8175de2f>] copy_net_ns+0x9f/0x150
+ [<ffffffff81064a84>] create_new_namespaces+0xf4/0x1d0
+ [<ffffffff81064ca3>] copy_namespaces+0x93/0xd0
+ [<ffffffff81039ed2>] copy_process.part.42+0x842/0x13c0
+ [<ffffffff8103ab24>] do_fork+0xa4/0x3d0
+ [<ffffffff8103aed1>] SyS_clone+0x11/0x20
+ [<ffffffff819a1119>] stub_clone+0x69/0x90
+Code: 25 28 bc 00 00 49 8b 50 08 49 83 78 10 00 4d 8b 38 0f 84 d7 00 00 00 4d 85 ff 0f 84 ce 00 00 00 49 63 46 20 49 8b 3e 48 8d 4a 01 <49> 8b 1c 07 4c 89 f8 65 48 0f c7 0f 0f 94 c0 84 c0 74 bb 49 63 
+RIP  [<ffffffff8115381d>] __kmalloc+0x7d/0x1b0
+ RSP <ffff8801249a1bc0>
+CR2: 0000000fffffffe0
+---[ end trace a8d9cf18e9f6a950 ]---

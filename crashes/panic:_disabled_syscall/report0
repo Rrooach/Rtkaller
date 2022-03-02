@@ -1,0 +1,11 @@
+2021/06/04 18:43:15 concurrency sanitizer: /sys/kernel/debug/kcsan does not exist
+2021/06/04 18:43:15 devlink PCI setup: PCI device 0000:00:10.0 is not available
+2021/06/04 18:43:15 USB emulation: /dev/raw-gadget does not exist
+2021/06/04 18:43:15 hci packet injection: /dev/vhci does not exist
+corpus contains disabled syscall socket$inet6_udplitepanic: disabled syscall
+
+goroutine 1 [running]:
+github.com/google/syzkaller/prog.(*Target).BuildChoiceTable(0xc00009b520, 0xc000880000, 0x2028, 0x2400, 0xc000729e80, 0x2)
+	/root/fuzz/fuzzer/rtkaller/prog/prio.go:250 +0x8f8
+main.main()
+	/root/fuzz/fuzzer/rtkaller/syz-fuzzer/fuzzer.go:

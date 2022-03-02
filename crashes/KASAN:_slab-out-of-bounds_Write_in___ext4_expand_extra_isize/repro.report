@@ -1,0 +1,50 @@
+EXT4-fs (sda): re-mounted. Opts: debug_want_extra_isize=0x02000000,,errors=continue
+==================================================================
+BUG: KASAN: slab-out-of-bounds in __ext4_expand_extra_isize+0x13f/0x200
+Write of size 33554400 at addr ffff88811669dea0 by task rs:main Q:Reg/1860
+
+CPU: 1 PID: 1860 Comm: rs:main Q:Reg Not tainted 5.0.0 #3
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+Call Trace:
+ dump_stack+0x79/0xba
+ print_address_description+0x60/0x229
+ kasan_report.cold.3+0x1a/0x35
+ memset+0x23/0x40
+ __ext4_expand_extra_isize+0x13f/0x200
+ ext4_mark_inode_dirty+0x522/0x640
+ ext4_dirty_inode+0x75/0xa0
+ __mark_inode_dirty+0x3bd/0xc70
+ generic_update_time+0x1b8/0x2e0
+ file_update_time+0x2a9/0x450
+ __generic_file_write_iter+0x1c0/0x550
+ ext4_file_write_iter+0x4fa/0xe30
+ __vfs_write+0x4d2/0x6c0
+ vfs_write+0x16c/0x4a0
+ ksys_write+0xbf/0x1a0
+ do_syscall_64+0x9e/0x2b0
+ entry_SYSCALL_64_after_hwframe+0x44/0xa9
+RIP: 0033:0x7f8af5dcea3d
+Code: d9 20 00 00 75 10 b8 01 00 00 00 0f 05 48 3d 01 f0 ff ff 73 31 c3 48 83 ec 08 e8 7e fc ff ff 48 89 04 24 b8 01 00 00 00 0f 05 <48> 8b 3c 24 48 89 c2 e8 c7 fc ff ff 48 89 d0 48 83 c4 08 48 3d 01
+RSP: 002b:00007f8af2b1e600 EFLAGS: 00000293 ORIG_RAX: 0000000000000001
+RAX: ffffffffffffffda RBX: 00007f8ae80217d0 RCX: 00007f8af5dcea3d
+RDX: 0000000000000085 RSI: 00007f8ae80217d0 RDI: 0000000000000006
+RBP: 0000000000000000 R08: fffffffffffe09e0 R09: fffffffffffe09d0
+R10: fffffffffffe09c0 R11: 0000000000000293 R12: 00007f8ae8021560
+R13: 00007f8af2b1e620 R14: 0000000000000000 R15: 0000000000000085
+
+The buggy address belongs to the page:
+page:ffffea000459a740 count:2 mapcount:0 mapping:ffff88811a828d78 index:0x6801e
+0xffffffffa40aa280 
+flags: 0x200000000002032(referenced|lru|active|private)
+raw: 0200000000002032 ffffea000459ff48 ffffea000459ba88 ffff88811a828d78
+raw: 000000000006801e ffff888116a64888 00000002ffffffff 0000000000000000
+page dumped because: kasan: bad access detected
+
+Memory state around the buggy address:
+ ffff8881167fff80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ ffff888116800000: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>ffff888116800080: 00 00 00 00 00 00 00 00 fc fc fc fc fc fc fc fc
+                                           ^
+ ffff888116800100: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ ffff888116800180: 00 00 00 00 00 00 00 00 fc fc fc fc fc fc fc fc
+==================================================================

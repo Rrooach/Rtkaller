@@ -1,0 +1,38 @@
+kernel tried to execute NX-protected page - exploit attempt? (uid: 0)
+BUG: unable to handle kernel paging request at ffffffff81e86bc0
+IP: [<ffffffff81e86bc0>] 0xffffffff81e86bbf
+PGD 1e0c067 PUD 1e0d063 PMD 13aa3d063 PTE 8000000001e86163
+Oops: 0011 [#1] SMP 
+Dumping ftrace buffer:
+   (ftrace buffer empty)
+Modules linked in:
+CPU: 0 PID: 9194 Comm: ip6_vti0 Not tainted 3.10.108-rt123+ #14
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+task: ffff8801226addc0 ti: ffff880128f52000 task.ti: ffff880128f52000
+RIP: 0010:[<ffffffff81e86bc0>]  [<ffffffff81e86bc0>] 0xffffffff81e86bbf
+RSP: 0018:ffff880128f53e08  EFLAGS: 00010287
+RAX: 0000000000000078 RBX: 0000000000000007 RCX: ffffc900032a0000
+RDX: 0000000000040000 RSI: 0000000000000007 RDI: ffff880138e06000
+RBP: ffff880128f53e38 R08: 0000000000000000 R09: ffff880128f53d2c
+R10: 0000000000000000 R11: 0000000000000246 R12: ffff880138e06000
+R13: ffffffff81e86bc0 R14: ffff880138f56780 R15: ffff880138a9b000
+FS:  00007f3579d21700(0000) GS:ffff88013fc00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffffffff81e86bc0 CR3: 0000000128f5b000 CR4: 00000000003407f0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Stack:
+ ffffffff8118f7d7 ffff880138e06000 ffff880128f53ec8 0000000000000000
+ ffff880138f56780 0000000000000000 ffff880128f53e60 ffffffff8118ba73
+ 0000000000001842 ffff880128f53ec8 0000000000000000 ffff880128f53eb8
+Call Trace:
+ [<ffffffff8118ba73>] simple_setattr+0x53/0x80
+ [<ffffffff8117f2e0>] notify_change+0x430/0x4d0
+ [<ffffffff81159f56>] chown_common.isra.12+0x96/0xd0
+ [<ffffffff8115b54d>] SyS_fchown+0xdd/0xf0
+ [<ffffffff819a0df2>] system_call_fastpath+0x16/0x1b
+Code: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 <10> 5d e8 81 ff ff ff ff 10 80 f7 28 01 88 ff ff 00 00 00 00 00 
+RIP  [<ffffffff81e86bc0>] 0xffffffff81e86bbf
+ RSP <ffff880128f53e08>
+CR2: ffffffff81e86bc0
+---[ end trace 067e379d575f6ea4 ]---

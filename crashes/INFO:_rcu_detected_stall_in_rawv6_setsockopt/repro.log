@@ -1,0 +1,67 @@
+Warning: Permanently added '[localhost]:34503' (ECDSA) to the list of known hosts.
+syzkaller login: [   32.891568] audit: type=1400 audit(1613090956.135:8): avc:  denied  { execmem } for  pid=406 comm="syz-executor261" scontext=system_u:system_r:kernel_t:s0 tcontext=system_u:system_r:kernel_t:s0 tclass=process permissive=1
+executing program
+[   55.027040] rcu: INFO: rcu_sched self-detected stall on CPU
+[   55.029151] rcu: 	1-...!: (374 ticks this GP) idle=07e/1/0x4000000000000002 softirq=2436/2437 fqs=13 
+[   55.030904] 	(t=21335 jiffies g=2533 q=1)
+[   55.031498] rcu: rcu_sched kthread starved for 18366 jiffies! g2533 f0x0 RCU_GP_WAIT_FQS(5) ->state=0x0 ->cpu=0
+[   55.033168] rcu: RCU grace-period kthread stack dump:
+[   55.033910] rcu_sched       R  running task    14920    10      2 0x80004000
+[   55.035061] Call Trace:
+[   55.035708]  ? __schedule+0x2a3/0x520
+[   55.036485]  schedule+0x2a/0x90
+[   55.037133]  schedule_timeout+0x1a0/0x3e0
+[   55.037903]  ? __next_timer_interrupt+0x110/0x110
+[   55.038661]  rcu_gp_kthread+0x4c9/0xe50
+[   55.039281]  ? __schedule+0x2ab/0x520
+[   55.039839]  ? call_rcu+0x10/0x10
+[   55.040516]  kthread+0x12c/0x150
+[   55.041185]  ? kthread_create_on_node+0x90/0x90
+[   55.042070]  ret_from_fork+0x35/0x40
+[   55.042830] NMI backtrace for cpu 1
+[   55.043546] CPU: 1 PID: 407 Comm: syz-executor261 Not tainted 5.3.0+ #3
+[   55.044853] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[   55.046579] Call Trace:
+[   55.047092]  <IRQ>
+[   55.047520]  dump_stack+0x64/0x8e
+[   55.048217]  ? lapic_can_unplug_cpu+0x11/0x63
+[   55.049087]  nmi_cpu_backtrace.cold.7+0x18/0x65
+[   55.049917]  ? lapic_can_unplug_cpu.cold.28+0x39/0x39
+[   55.050721]  nmi_trigger_cpumask_backtrace+0xc8/0xed
+[   55.051617]  rcu_dump_cpu_stacks+0x80/0xac
+[   55.052303]  rcu_sched_clock_irq.cold.87+0x1ae/0x39b
+[   55.053127]  ? tick_sched_do_timer+0x80/0x80
+[   55.053820]  ? tick_sched_do_timer+0x80/0x80
+[   55.054515]  update_process_times+0x28/0x60
+[   55.055260]  tick_sched_handle+0x55/0x70
+[   55.055959]  tick_sched_timer+0x3c/0xa0
+[   55.056629]  __hrtimer_run_queues+0x149/0x330
+[   55.057292]  hrtimer_interrupt+0x10f/0x250
+[   55.058020]  smp_apic_timer_interrupt+0x68/0x130
+[   55.058961]  apic_timer_interrupt+0xf/0x20
+[   55.059844]  </IRQ>
+[   55.060316] RIP: 0010:memset_erms+0x9/0x10
+[   55.061126] Code: c1 e9 03 40 0f b6 f6 48 b8 01 01 01 01 01 01 01 01 48 0f af c6 f3 48 ab 89 d1 f3 aa 4c 89 c8 c3 90 49 89 f9 40 88 f0 48 89 d1 <f3> aa 4c 89 c8 c3 90 49 89 fa 40 0f b6 ce 48 b8 01 01 01 01 01 01
+[   55.064878] RSP: 0018:ffffa64640137d88 EFLAGS: 00010246 ORIG_RAX: ffffffffffffff13
+[   55.066170] RAX: ffff990679290000 RBX: 0000000019dbe4ec RCX: 000000000e20a48c
+[   55.067339] RDX: 0000000019dbe4ec RSI: 0000000000000000 RDI: ffffa6464d05d000
+[   55.068440] RBP: 0000000019dbe4ec R08: ffff990679290000 R09: ffffa646414a8fa0
+[   55.069570] R10: 0000000000000000 R11: ffffe716045fb800 R12: ffffa646414a8fa0
+[   55.070670] R13: 000000003adbe4ec R14: 00007ffffffff000 R15: 0000000000000000
+[   55.071859]  _copy_from_user+0x8c/0xa0
+[   55.072520]  do_ip6t_set_ctl+0x11e/0x1e9
+[   55.073098]  nf_setsockopt+0x4a/0x80
+[   55.073681]  ipv6_setsockopt+0xb4/0xe0
+[   55.074249]  rawv6_setsockopt+0x43/0xc0
+[   55.074863]  __sys_setsockopt+0x99/0x120
+[   55.075479]  __x64_sys_setsockopt+0x22/0x30
+[   55.076251]  do_syscall_64+0x57/0x180
+[   55.076794]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+[   55.077517] RIP: 0033:0x45452d
+[   55.077986] Code: c3 e8 97 29 00 00 0f 1f 80 00 00 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 b8 ff ff ff f7 d8 64 89 01 48
+[   55.080747] RSP: 002b:00007f3e37bb0d88 EFLAGS: 00000246 ORIG_RAX: 0000000000000036
+[   55.081916] RAX: ffffffffffffffda RBX: 00000000004e0508 RCX: 000000000045452d
+[   55.083208] RDX: 0000000000000040 RSI: 0000000000000029 RDI: 0000000000000003
+[   55.084664] RBP: 00000000004e0500 R08: 0000000000000008 R09: 0000000000000000
+[   55.086347] R10: 0000000020000040 R11: 0000000000000246 R12: 00000000004e050c
+[   55.087930] R13: 00000000004b0004 R14: 6f6f6c2f7665642f R15: 00007f3e37bb0e80

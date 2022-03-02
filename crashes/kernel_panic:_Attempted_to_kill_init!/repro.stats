@@ -1,0 +1,400 @@
+Extracting prog: 21.444281713s
+Minimizing prog: 4m10.895081865s
+Simplifying prog options: 0s
+Extracting C: 11.228015611s
+Simplifying C: 1m4.614514643s
+
+
+301 programs, 2 VMs, timeouts [15s 1m0s 6m0s]
+extracting reproducer from 301 programs
+single: executing 2 programs separately with timeout 15s
+testing program (duration=15s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): futimesat-open-openat$bsg-openat$cgroup_subtree-socket$nl_route-open-futimesat-open-fstat-open-fchownat-lgetxattr-open-fstat-chown-sendmsg$unix-openat$loop_ctrl-openat$null-accept-ioctl$BTRFS_IOC_LOGICAL_INO_V2
+detailed listing:
+executing program 0:
+futimesat(0xffffffffffffffff, &(0x7f000000005a)='futimesattestfile.txt\x00', &(0x7f0000000070)={{0x5af515a2, 0xa4ba2}, {0x5af515a2, 0xa4ba2}})
+r0 = open(&(0x7f00000002c0)='./file0\x00', 0x20000, 0x22)
+r1 = openat$bsg(0xffffffffffffff9c, &(0x7f0000000300)='/dev/bsg\x00', 0xc0200, 0x0)
+r2 = openat$cgroup_subtree(0xffffffffffffffff, &(0x7f0000000340)='cgroup.subtree_control\x00', 0x2, 0x0)
+r3 = socket$nl_route(0x10, 0x3, 0x0)
+r4 = open(&(0x7f00000005c0)='futimesattestdir\x00', 0x357400, 0x1b2)
+futimesat(r4, &(0x7f000000005a)='futimesattestfile.txt\x00', &(0x7f0000000070)={{0x5af515a2, 0xa4ba2}, {0x5af515a2, 0xa4ba2}})
+r5 = open(&(0x7f0000000000)='/lib/x86_64-linux-gnu/libc.so.6\x00', 0x600, 0x12a)
+fstat(r5, &(0x7f0000000020)={0x0, 0x0, 0x0, 0x0, <r6=>0x0, <r7=>0x0})
+r8 = open(&(0x7f0000000064)='./\x00', 0x0, 0x0)
+fchownat(r8, &(0x7f000000008c)='testfile\x00', r6, 0x0, 0x0)
+lgetxattr(&(0x7f0000000240)='futimesattestdir\x00', &(0x7f0000000280)=ANY=[@ANYBLOB="747275737465642e2f6400012f62736700"], &(0x7f0000000380)=""/237, 0xed)
+r9 = open(&(0x7f0000000000)='./file0\x00', 0x80000, 0xff)
+fstat(r9, &(0x7f0000000020)={0x0, 0x0, 0x0, 0x0, 0x0, <r10=>0x0})
+chown(&(0x7f0000000073)='/tmp/ino22p1Jw\x00', 0xffffffffffffffff, r10)
+sendmsg$unix(0xffffffffffffffff, &(0x7f0000000480)={&(0x7f0000000140)=@abs={0x1, 0x0, 0x4e24}, 0x6e, &(0x7f0000000200)=[{&(0x7f00000001c0)="b898a5c4e5937fb78e5cb411db31c1fd", 0x10}], 0x1, &(0x7f00000004c0)=ANY=[@ANYBLOB="1c000000000000000100000002000000", @ANYRES32=0x0, @ANYRES32, @ANYRES32=0x0, @ANYBLOB="000000001c000000000000000100000002000000", @ANYRES64, @ANYRES32=0xee01, @ANYRES32=0x0, @ANYRES32=r7, @ANYRES32, @ANYRES32, @ANYRES32, @ANYRES32, @ANYRES32, @ANYRES32=r0, @ANYRES32, @ANYBLOB="407efb4800204d38f8b50000007377", @ANYRES32, @ANYRES32, @ANYRES32=r1, @ANYRES32, @ANYRES32=r2, @ANYRES32=r3, @ANYRES32=r4, @ANYRES64=r9, @ANYBLOB="1c000000000000000100000001000000", @ANYRES64, @ANYRES32, @ANYRES32, @ANYBLOB="000000001c000000000000000100000002000000", @ANYRES32=0x0, @ANYRES32=r6, @ANYRES32=r10, @ANYBLOB="000000001c000000000000000100000002000000", @ANYRES32, @ANYRES32, @ANYRES32=0xee01, @ANYBLOB='\x00\x00m{'], 0x100, 0x10000000}, 0x4)
+openat$loop_ctrl(0xffffffffffffff9c, &(0x7f0000000100)='/dev/loop-control\x00', 0x440400, 0x0)
+r11 = openat$null(0xffffffffffffff9c, &(0x7f0000000000)='/dev/null\x00', 0x88800, 0x0)
+r12 = accept(r11, &(0x7f0000000040)=@pppol2tpv3={0x18, 0x1, {0x0, 0xffffffffffffffff, {0x2, 0x0, @multicast2}}}, &(0x7f00000000c0)=0x80)
+ioctl$BTRFS_IOC_LOGICAL_INO_V2(r12, 0xc038943b, 0x0)
+
+program crashed: kernel panic: Attempted to kill init!
+single: successfully extracted reproducer
+found reproducer with 20 syscalls
+minimizing guilty program
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): futimesat-open-openat$bsg-openat$cgroup_subtree-socket$nl_route-open-futimesat-open-fstat-open-fchownat-lgetxattr-open-fstat-chown-sendmsg$unix-openat$loop_ctrl-openat$null-accept
+detailed listing:
+executing program 0:
+futimesat(0xffffffffffffffff, &(0x7f000000005a)='futimesattestfile.txt\x00', &(0x7f0000000070)={{0x5af515a2, 0xa4ba2}, {0x5af515a2, 0xa4ba2}})
+r0 = open(&(0x7f00000002c0)='./file0\x00', 0x20000, 0x22)
+r1 = openat$bsg(0xffffffffffffff9c, &(0x7f0000000300)='/dev/bsg\x00', 0xc0200, 0x0)
+r2 = openat$cgroup_subtree(0xffffffffffffffff, &(0x7f0000000340)='cgroup.subtree_control\x00', 0x2, 0x0)
+r3 = socket$nl_route(0x10, 0x3, 0x0)
+r4 = open(&(0x7f00000005c0)='futimesattestdir\x00', 0x357400, 0x1b2)
+futimesat(r4, &(0x7f000000005a)='futimesattestfile.txt\x00', &(0x7f0000000070)={{0x5af515a2, 0xa4ba2}, {0x5af515a2, 0xa4ba2}})
+r5 = open(&(0x7f0000000000)='/lib/x86_64-linux-gnu/libc.so.6\x00', 0x600, 0x12a)
+fstat(r5, &(0x7f0000000020)={0x0, 0x0, 0x0, 0x0, <r6=>0x0, <r7=>0x0})
+r8 = open(&(0x7f0000000064)='./\x00', 0x0, 0x0)
+fchownat(r8, &(0x7f000000008c)='testfile\x00', r6, 0x0, 0x0)
+lgetxattr(&(0x7f0000000240)='futimesattestdir\x00', &(0x7f0000000280)=ANY=[@ANYBLOB="747275737465642e2f6400012f62736700"], &(0x7f0000000380)=""/237, 0xed)
+r9 = open(&(0x7f0000000000)='./file0\x00', 0x80000, 0xff)
+fstat(r9, &(0x7f0000000020)={0x0, 0x0, 0x0, 0x0, 0x0, <r10=>0x0})
+chown(&(0x7f0000000073)='/tmp/ino22p1Jw\x00', 0xffffffffffffffff, r10)
+sendmsg$unix(0xffffffffffffffff, &(0x7f0000000480)={&(0x7f0000000140)=@abs={0x1, 0x0, 0x4e24}, 0x6e, &(0x7f0000000200)=[{&(0x7f00000001c0)="b898a5c4e5937fb78e5cb411db31c1fd", 0x10}], 0x1, &(0x7f00000004c0)=ANY=[@ANYBLOB="1c000000000000000100000002000000", @ANYRES32=0x0, @ANYRES32, @ANYRES32=0x0, @ANYBLOB="000000001c000000000000000100000002000000", @ANYRES64, @ANYRES32=0xee01, @ANYRES32=0x0, @ANYRES32=r7, @ANYRES32, @ANYRES32, @ANYRES32, @ANYRES32, @ANYRES32, @ANYRES32=r0, @ANYRES32, @ANYBLOB="407efb4800204d38f8b50000007377", @ANYRES32, @ANYRES32, @ANYRES32=r1, @ANYRES32, @ANYRES32=r2, @ANYRES32=r3, @ANYRES32=r4, @ANYRES64=r9, @ANYBLOB="1c000000000000000100000001000000", @ANYRES64, @ANYRES32, @ANYRES32, @ANYBLOB="000000001c000000000000000100000002000000", @ANYRES32=0x0, @ANYRES32=r6, @ANYRES32=r10, @ANYBLOB="000000001c000000000000000100000002000000", @ANYRES32, @ANYRES32, @ANYRES32=0xee01, @ANYBLOB='\x00\x00m{'], 0x100, 0x10000000}, 0x4)
+openat$loop_ctrl(0xffffffffffffff9c, &(0x7f0000000100)='/dev/loop-control\x00', 0x440400, 0x0)
+r11 = openat$null(0xffffffffffffff9c, &(0x7f0000000000)='/dev/null\x00', 0x88800, 0x0)
+accept(r11, &(0x7f0000000040)=@pppol2tpv3={0x18, 0x1, {0x0, 0xffffffffffffffff, {0x2, 0x0, @multicast2}}}, &(0x7f00000000c0)=0x80)
+
+program crashed: kernel panic: Attempted to kill init!
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): futimesat-open-openat$bsg-openat$cgroup_subtree-socket$nl_route-open-futimesat-open-fstat-open-fchownat-lgetxattr-open-fstat-chown-sendmsg$unix-openat$loop_ctrl-openat$null
+detailed listing:
+executing program 0:
+futimesat(0xffffffffffffffff, &(0x7f000000005a)='futimesattestfile.txt\x00', &(0x7f0000000070)={{0x5af515a2, 0xa4ba2}, {0x5af515a2, 0xa4ba2}})
+r0 = open(&(0x7f00000002c0)='./file0\x00', 0x20000, 0x22)
+r1 = openat$bsg(0xffffffffffffff9c, &(0x7f0000000300)='/dev/bsg\x00', 0xc0200, 0x0)
+r2 = openat$cgroup_subtree(0xffffffffffffffff, &(0x7f0000000340)='cgroup.subtree_control\x00', 0x2, 0x0)
+r3 = socket$nl_route(0x10, 0x3, 0x0)
+r4 = open(&(0x7f00000005c0)='futimesattestdir\x00', 0x357400, 0x1b2)
+futimesat(r4, &(0x7f000000005a)='futimesattestfile.txt\x00', &(0x7f0000000070)={{0x5af515a2, 0xa4ba2}, {0x5af515a2, 0xa4ba2}})
+r5 = open(&(0x7f0000000000)='/lib/x86_64-linux-gnu/libc.so.6\x00', 0x600, 0x12a)
+fstat(r5, &(0x7f0000000020)={0x0, 0x0, 0x0, 0x0, <r6=>0x0, <r7=>0x0})
+r8 = open(&(0x7f0000000064)='./\x00', 0x0, 0x0)
+fchownat(r8, &(0x7f000000008c)='testfile\x00', r6, 0x0, 0x0)
+lgetxattr(&(0x7f0000000240)='futimesattestdir\x00', &(0x7f0000000280)=ANY=[@ANYBLOB="747275737465642e2f6400012f62736700"], &(0x7f0000000380)=""/237, 0xed)
+r9 = open(&(0x7f0000000000)='./file0\x00', 0x80000, 0xff)
+fstat(r9, &(0x7f0000000020)={0x0, 0x0, 0x0, 0x0, 0x0, <r10=>0x0})
+chown(&(0x7f0000000073)='/tmp/ino22p1Jw\x00', 0xffffffffffffffff, r10)
+sendmsg$unix(0xffffffffffffffff, &(0x7f0000000480)={&(0x7f0000000140)=@abs={0x1, 0x0, 0x4e24}, 0x6e, &(0x7f0000000200)=[{&(0x7f00000001c0)="b898a5c4e5937fb78e5cb411db31c1fd", 0x10}], 0x1, &(0x7f00000004c0)=ANY=[@ANYBLOB="1c000000000000000100000002000000", @ANYRES32=0x0, @ANYRES32, @ANYRES32=0x0, @ANYBLOB="000000001c000000000000000100000002000000", @ANYRES64, @ANYRES32=0xee01, @ANYRES32=0x0, @ANYRES32=r7, @ANYRES32, @ANYRES32, @ANYRES32, @ANYRES32, @ANYRES32, @ANYRES32=r0, @ANYRES32, @ANYBLOB="407efb4800204d38f8b50000007377", @ANYRES32, @ANYRES32, @ANYRES32=r1, @ANYRES32, @ANYRES32=r2, @ANYRES32=r3, @ANYRES32=r4, @ANYRES64=r9, @ANYBLOB="1c000000000000000100000001000000", @ANYRES64, @ANYRES32, @ANYRES32, @ANYBLOB="000000001c000000000000000100000002000000", @ANYRES32=0x0, @ANYRES32=r6, @ANYRES32=r10, @ANYBLOB="000000001c000000000000000100000002000000", @ANYRES32, @ANYRES32, @ANYRES32=0xee01, @ANYBLOB='\x00\x00m{'], 0x100, 0x10000000}, 0x4)
+openat$loop_ctrl(0xffffffffffffff9c, &(0x7f0000000100)='/dev/loop-control\x00', 0x440400, 0x0)
+openat$null(0xffffffffffffff9c, &(0x7f0000000000)='/dev/null\x00', 0x88800, 0x0)
+
+program crashed: kernel panic: Attempted to kill init!
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): futimesat-open-openat$bsg-openat$cgroup_subtree-socket$nl_route-open-futimesat-open-fstat-open-fchownat-lgetxattr-open-fstat-chown-sendmsg$unix-openat$loop_ctrl
+detailed listing:
+executing program 0:
+futimesat(0xffffffffffffffff, &(0x7f000000005a)='futimesattestfile.txt\x00', &(0x7f0000000070)={{0x5af515a2, 0xa4ba2}, {0x5af515a2, 0xa4ba2}})
+r0 = open(&(0x7f00000002c0)='./file0\x00', 0x20000, 0x22)
+r1 = openat$bsg(0xffffffffffffff9c, &(0x7f0000000300)='/dev/bsg\x00', 0xc0200, 0x0)
+r2 = openat$cgroup_subtree(0xffffffffffffffff, &(0x7f0000000340)='cgroup.subtree_control\x00', 0x2, 0x0)
+r3 = socket$nl_route(0x10, 0x3, 0x0)
+r4 = open(&(0x7f00000005c0)='futimesattestdir\x00', 0x357400, 0x1b2)
+futimesat(r4, &(0x7f000000005a)='futimesattestfile.txt\x00', &(0x7f0000000070)={{0x5af515a2, 0xa4ba2}, {0x5af515a2, 0xa4ba2}})
+r5 = open(&(0x7f0000000000)='/lib/x86_64-linux-gnu/libc.so.6\x00', 0x600, 0x12a)
+fstat(r5, &(0x7f0000000020)={0x0, 0x0, 0x0, 0x0, <r6=>0x0, <r7=>0x0})
+r8 = open(&(0x7f0000000064)='./\x00', 0x0, 0x0)
+fchownat(r8, &(0x7f000000008c)='testfile\x00', r6, 0x0, 0x0)
+lgetxattr(&(0x7f0000000240)='futimesattestdir\x00', &(0x7f0000000280)=ANY=[@ANYBLOB="747275737465642e2f6400012f62736700"], &(0x7f0000000380)=""/237, 0xed)
+r9 = open(&(0x7f0000000000)='./file0\x00', 0x80000, 0xff)
+fstat(r9, &(0x7f0000000020)={0x0, 0x0, 0x0, 0x0, 0x0, <r10=>0x0})
+chown(&(0x7f0000000073)='/tmp/ino22p1Jw\x00', 0xffffffffffffffff, r10)
+sendmsg$unix(0xffffffffffffffff, &(0x7f0000000480)={&(0x7f0000000140)=@abs={0x1, 0x0, 0x4e24}, 0x6e, &(0x7f0000000200)=[{&(0x7f00000001c0)="b898a5c4e5937fb78e5cb411db31c1fd", 0x10}], 0x1, &(0x7f00000004c0)=ANY=[@ANYBLOB="1c000000000000000100000002000000", @ANYRES32=0x0, @ANYRES32, @ANYRES32=0x0, @ANYBLOB="000000001c000000000000000100000002000000", @ANYRES64, @ANYRES32=0xee01, @ANYRES32=0x0, @ANYRES32=r7, @ANYRES32, @ANYRES32, @ANYRES32, @ANYRES32, @ANYRES32, @ANYRES32=r0, @ANYRES32, @ANYBLOB="407efb4800204d38f8b50000007377", @ANYRES32, @ANYRES32, @ANYRES32=r1, @ANYRES32, @ANYRES32=r2, @ANYRES32=r3, @ANYRES32=r4, @ANYRES64=r9, @ANYBLOB="1c000000000000000100000001000000", @ANYRES64, @ANYRES32, @ANYRES32, @ANYBLOB="000000001c000000000000000100000002000000", @ANYRES32=0x0, @ANYRES32=r6, @ANYRES32=r10, @ANYBLOB="000000001c000000000000000100000002000000", @ANYRES32, @ANYRES32, @ANYRES32=0xee01, @ANYBLOB='\x00\x00m{'], 0x100, 0x10000000}, 0x4)
+openat$loop_ctrl(0xffffffffffffff9c, &(0x7f0000000100)='/dev/loop-control\x00', 0x440400, 0x0)
+
+program crashed: kernel panic: Attempted to kill init!
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): futimesat-open-openat$bsg-openat$cgroup_subtree-socket$nl_route-open-futimesat-open-fstat-open-fchownat-lgetxattr-open-fstat-chown-sendmsg$unix
+detailed listing:
+executing program 0:
+futimesat(0xffffffffffffffff, &(0x7f000000005a)='futimesattestfile.txt\x00', &(0x7f0000000070)={{0x5af515a2, 0xa4ba2}, {0x5af515a2, 0xa4ba2}})
+r0 = open(&(0x7f00000002c0)='./file0\x00', 0x20000, 0x22)
+r1 = openat$bsg(0xffffffffffffff9c, &(0x7f0000000300)='/dev/bsg\x00', 0xc0200, 0x0)
+r2 = openat$cgroup_subtree(0xffffffffffffffff, &(0x7f0000000340)='cgroup.subtree_control\x00', 0x2, 0x0)
+r3 = socket$nl_route(0x10, 0x3, 0x0)
+r4 = open(&(0x7f00000005c0)='futimesattestdir\x00', 0x357400, 0x1b2)
+futimesat(r4, &(0x7f000000005a)='futimesattestfile.txt\x00', &(0x7f0000000070)={{0x5af515a2, 0xa4ba2}, {0x5af515a2, 0xa4ba2}})
+r5 = open(&(0x7f0000000000)='/lib/x86_64-linux-gnu/libc.so.6\x00', 0x600, 0x12a)
+fstat(r5, &(0x7f0000000020)={0x0, 0x0, 0x0, 0x0, <r6=>0x0, <r7=>0x0})
+r8 = open(&(0x7f0000000064)='./\x00', 0x0, 0x0)
+fchownat(r8, &(0x7f000000008c)='testfile\x00', r6, 0x0, 0x0)
+lgetxattr(&(0x7f0000000240)='futimesattestdir\x00', &(0x7f0000000280)=ANY=[@ANYBLOB="747275737465642e2f6400012f62736700"], &(0x7f0000000380)=""/237, 0xed)
+r9 = open(&(0x7f0000000000)='./file0\x00', 0x80000, 0xff)
+fstat(r9, &(0x7f0000000020)={0x0, 0x0, 0x0, 0x0, 0x0, <r10=>0x0})
+chown(&(0x7f0000000073)='/tmp/ino22p1Jw\x00', 0xffffffffffffffff, r10)
+sendmsg$unix(0xffffffffffffffff, &(0x7f0000000480)={&(0x7f0000000140)=@abs={0x1, 0x0, 0x4e24}, 0x6e, &(0x7f0000000200)=[{&(0x7f00000001c0)="b898a5c4e5937fb78e5cb411db31c1fd", 0x10}], 0x1, &(0x7f00000004c0)=ANY=[@ANYBLOB="1c000000000000000100000002000000", @ANYRES32=0x0, @ANYRES32, @ANYRES32=0x0, @ANYBLOB="000000001c000000000000000100000002000000", @ANYRES64, @ANYRES32=0xee01, @ANYRES32=0x0, @ANYRES32=r7, @ANYRES32, @ANYRES32, @ANYRES32, @ANYRES32, @ANYRES32, @ANYRES32=r0, @ANYRES32, @ANYBLOB="407efb4800204d38f8b50000007377", @ANYRES32, @ANYRES32, @ANYRES32=r1, @ANYRES32, @ANYRES32=r2, @ANYRES32=r3, @ANYRES32=r4, @ANYRES64=r9, @ANYBLOB="1c000000000000000100000001000000", @ANYRES64, @ANYRES32, @ANYRES32, @ANYBLOB="000000001c000000000000000100000002000000", @ANYRES32=0x0, @ANYRES32=r6, @ANYRES32=r10, @ANYBLOB="000000001c000000000000000100000002000000", @ANYRES32, @ANYRES32, @ANYRES32=0xee01, @ANYBLOB='\x00\x00m{'], 0x100, 0x10000000}, 0x4)
+
+program crashed: kernel panic: Attempted to kill init!
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): futimesat-open-openat$bsg-openat$cgroup_subtree-socket$nl_route-open-futimesat-open-fstat-open-fchownat-lgetxattr-open-fstat-chown
+detailed listing:
+executing program 0:
+futimesat(0xffffffffffffffff, &(0x7f000000005a)='futimesattestfile.txt\x00', &(0x7f0000000070)={{0x5af515a2, 0xa4ba2}, {0x5af515a2, 0xa4ba2}})
+open(&(0x7f00000002c0)='./file0\x00', 0x20000, 0x22)
+openat$bsg(0xffffffffffffff9c, &(0x7f0000000300)='/dev/bsg\x00', 0xc0200, 0x0)
+openat$cgroup_subtree(0xffffffffffffffff, &(0x7f0000000340)='cgroup.subtree_control\x00', 0x2, 0x0)
+socket$nl_route(0x10, 0x3, 0x0)
+r0 = open(&(0x7f00000005c0)='futimesattestdir\x00', 0x357400, 0x1b2)
+futimesat(r0, &(0x7f000000005a)='futimesattestfile.txt\x00', &(0x7f0000000070)={{0x5af515a2, 0xa4ba2}, {0x5af515a2, 0xa4ba2}})
+r1 = open(&(0x7f0000000000)='/lib/x86_64-linux-gnu/libc.so.6\x00', 0x600, 0x12a)
+fstat(r1, &(0x7f0000000020)={0x0, 0x0, 0x0, 0x0, <r2=>0x0})
+r3 = open(&(0x7f0000000064)='./\x00', 0x0, 0x0)
+fchownat(r3, &(0x7f000000008c)='testfile\x00', r2, 0x0, 0x0)
+lgetxattr(&(0x7f0000000240)='futimesattestdir\x00', &(0x7f0000000280)=ANY=[@ANYBLOB="747275737465642e2f6400012f62736700"], &(0x7f0000000380)=""/237, 0xed)
+r4 = open(&(0x7f0000000000)='./file0\x00', 0x80000, 0xff)
+fstat(r4, &(0x7f0000000020)={0x0, 0x0, 0x0, 0x0, 0x0, <r5=>0x0})
+chown(&(0x7f0000000073)='/tmp/ino22p1Jw\x00', 0xffffffffffffffff, r5)
+
+program crashed: kernel panic: Attempted to kill init!
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): futimesat-open-openat$bsg-openat$cgroup_subtree-socket$nl_route-open-futimesat-open-fstat-open-fchownat-lgetxattr-open-fstat
+detailed listing:
+executing program 0:
+futimesat(0xffffffffffffffff, &(0x7f000000005a)='futimesattestfile.txt\x00', &(0x7f0000000070)={{0x5af515a2, 0xa4ba2}, {0x5af515a2, 0xa4ba2}})
+open(&(0x7f00000002c0)='./file0\x00', 0x20000, 0x22)
+openat$bsg(0xffffffffffffff9c, &(0x7f0000000300)='/dev/bsg\x00', 0xc0200, 0x0)
+openat$cgroup_subtree(0xffffffffffffffff, &(0x7f0000000340)='cgroup.subtree_control\x00', 0x2, 0x0)
+socket$nl_route(0x10, 0x3, 0x0)
+r0 = open(&(0x7f00000005c0)='futimesattestdir\x00', 0x357400, 0x1b2)
+futimesat(r0, &(0x7f000000005a)='futimesattestfile.txt\x00', &(0x7f0000000070)={{0x5af515a2, 0xa4ba2}, {0x5af515a2, 0xa4ba2}})
+r1 = open(&(0x7f0000000000)='/lib/x86_64-linux-gnu/libc.so.6\x00', 0x600, 0x12a)
+fstat(r1, &(0x7f0000000020)={0x0, 0x0, 0x0, 0x0, <r2=>0x0})
+r3 = open(&(0x7f0000000064)='./\x00', 0x0, 0x0)
+fchownat(r3, &(0x7f000000008c)='testfile\x00', r2, 0x0, 0x0)
+lgetxattr(&(0x7f0000000240)='futimesattestdir\x00', &(0x7f0000000280)=ANY=[@ANYBLOB="747275737465642e2f6400012f62736700"], &(0x7f0000000380)=""/237, 0xed)
+r4 = open(&(0x7f0000000000)='./file0\x00', 0x80000, 0xff)
+fstat(r4, &(0x7f0000000020))
+
+program crashed: kernel panic: Attempted to kill init!
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): futimesat-open-openat$bsg-openat$cgroup_subtree-socket$nl_route-open-futimesat-open-fstat-open-fchownat-lgetxattr-open
+detailed listing:
+executing program 0:
+futimesat(0xffffffffffffffff, &(0x7f000000005a)='futimesattestfile.txt\x00', &(0x7f0000000070)={{0x5af515a2, 0xa4ba2}, {0x5af515a2, 0xa4ba2}})
+open(&(0x7f00000002c0)='./file0\x00', 0x20000, 0x22)
+openat$bsg(0xffffffffffffff9c, &(0x7f0000000300)='/dev/bsg\x00', 0xc0200, 0x0)
+openat$cgroup_subtree(0xffffffffffffffff, &(0x7f0000000340)='cgroup.subtree_control\x00', 0x2, 0x0)
+socket$nl_route(0x10, 0x3, 0x0)
+r0 = open(&(0x7f00000005c0)='futimesattestdir\x00', 0x357400, 0x1b2)
+futimesat(r0, &(0x7f000000005a)='futimesattestfile.txt\x00', &(0x7f0000000070)={{0x5af515a2, 0xa4ba2}, {0x5af515a2, 0xa4ba2}})
+r1 = open(&(0x7f0000000000)='/lib/x86_64-linux-gnu/libc.so.6\x00', 0x600, 0x12a)
+fstat(r1, &(0x7f0000000020)={0x0, 0x0, 0x0, 0x0, <r2=>0x0})
+r3 = open(&(0x7f0000000064)='./\x00', 0x0, 0x0)
+fchownat(r3, &(0x7f000000008c)='testfile\x00', r2, 0x0, 0x0)
+lgetxattr(&(0x7f0000000240)='futimesattestdir\x00', &(0x7f0000000280)=ANY=[@ANYBLOB="747275737465642e2f6400012f62736700"], &(0x7f0000000380)=""/237, 0xed)
+open(&(0x7f0000000000)='./file0\x00', 0x80000, 0xff)
+
+program crashed: kernel panic: Attempted to kill init!
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): futimesat-open-openat$bsg-openat$cgroup_subtree-socket$nl_route-open-futimesat-open-fstat-open-fchownat-lgetxattr
+detailed listing:
+executing program 0:
+futimesat(0xffffffffffffffff, &(0x7f000000005a)='futimesattestfile.txt\x00', &(0x7f0000000070)={{0x5af515a2, 0xa4ba2}, {0x5af515a2, 0xa4ba2}})
+open(&(0x7f00000002c0)='./file0\x00', 0x20000, 0x22)
+openat$bsg(0xffffffffffffff9c, &(0x7f0000000300)='/dev/bsg\x00', 0xc0200, 0x0)
+openat$cgroup_subtree(0xffffffffffffffff, &(0x7f0000000340)='cgroup.subtree_control\x00', 0x2, 0x0)
+socket$nl_route(0x10, 0x3, 0x0)
+r0 = open(&(0x7f00000005c0)='futimesattestdir\x00', 0x357400, 0x1b2)
+futimesat(r0, &(0x7f000000005a)='futimesattestfile.txt\x00', &(0x7f0000000070)={{0x5af515a2, 0xa4ba2}, {0x5af515a2, 0xa4ba2}})
+r1 = open(&(0x7f0000000000)='/lib/x86_64-linux-gnu/libc.so.6\x00', 0x600, 0x12a)
+fstat(r1, &(0x7f0000000020)={0x0, 0x0, 0x0, 0x0, <r2=>0x0})
+r3 = open(&(0x7f0000000064)='./\x00', 0x0, 0x0)
+fchownat(r3, &(0x7f000000008c)='testfile\x00', r2, 0x0, 0x0)
+lgetxattr(&(0x7f0000000240)='futimesattestdir\x00', &(0x7f0000000280)=ANY=[@ANYBLOB="747275737465642e2f6400012f62736700"], &(0x7f0000000380)=""/237, 0xed)
+
+program crashed: kernel panic: Attempted to kill init!
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): futimesat-open-openat$bsg-openat$cgroup_subtree-socket$nl_route-open-futimesat-open-fstat-open-fchownat
+detailed listing:
+executing program 0:
+futimesat(0xffffffffffffffff, &(0x7f000000005a)='futimesattestfile.txt\x00', &(0x7f0000000070)={{0x5af515a2, 0xa4ba2}, {0x5af515a2, 0xa4ba2}})
+open(&(0x7f00000002c0)='./file0\x00', 0x20000, 0x22)
+openat$bsg(0xffffffffffffff9c, &(0x7f0000000300)='/dev/bsg\x00', 0xc0200, 0x0)
+openat$cgroup_subtree(0xffffffffffffffff, &(0x7f0000000340)='cgroup.subtree_control\x00', 0x2, 0x0)
+socket$nl_route(0x10, 0x3, 0x0)
+r0 = open(&(0x7f00000005c0)='futimesattestdir\x00', 0x357400, 0x1b2)
+futimesat(r0, &(0x7f000000005a)='futimesattestfile.txt\x00', &(0x7f0000000070)={{0x5af515a2, 0xa4ba2}, {0x5af515a2, 0xa4ba2}})
+r1 = open(&(0x7f0000000000)='/lib/x86_64-linux-gnu/libc.so.6\x00', 0x600, 0x12a)
+fstat(r1, &(0x7f0000000020)={0x0, 0x0, 0x0, 0x0, <r2=>0x0})
+r3 = open(&(0x7f0000000064)='./\x00', 0x0, 0x0)
+fchownat(r3, &(0x7f000000008c)='testfile\x00', r2, 0x0, 0x0)
+
+program crashed: kernel panic: Attempted to kill init!
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): futimesat-open-openat$bsg-openat$cgroup_subtree-socket$nl_route-open-futimesat-open-fstat-open
+detailed listing:
+executing program 0:
+futimesat(0xffffffffffffffff, &(0x7f000000005a)='futimesattestfile.txt\x00', &(0x7f0000000070)={{0x5af515a2, 0xa4ba2}, {0x5af515a2, 0xa4ba2}})
+open(&(0x7f00000002c0)='./file0\x00', 0x20000, 0x22)
+openat$bsg(0xffffffffffffff9c, &(0x7f0000000300)='/dev/bsg\x00', 0xc0200, 0x0)
+openat$cgroup_subtree(0xffffffffffffffff, &(0x7f0000000340)='cgroup.subtree_control\x00', 0x2, 0x0)
+socket$nl_route(0x10, 0x3, 0x0)
+r0 = open(&(0x7f00000005c0)='futimesattestdir\x00', 0x357400, 0x1b2)
+futimesat(r0, &(0x7f000000005a)='futimesattestfile.txt\x00', &(0x7f0000000070)={{0x5af515a2, 0xa4ba2}, {0x5af515a2, 0xa4ba2}})
+r1 = open(&(0x7f0000000000)='/lib/x86_64-linux-gnu/libc.so.6\x00', 0x600, 0x12a)
+fstat(r1, &(0x7f0000000020))
+open(&(0x7f0000000064)='./\x00', 0x0, 0x0)
+
+program crashed: kernel panic: Attempted to kill init!
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): futimesat-open-openat$bsg-openat$cgroup_subtree-socket$nl_route-open-futimesat-open-fstat
+detailed listing:
+executing program 0:
+futimesat(0xffffffffffffffff, &(0x7f000000005a)='futimesattestfile.txt\x00', &(0x7f0000000070)={{0x5af515a2, 0xa4ba2}, {0x5af515a2, 0xa4ba2}})
+open(&(0x7f00000002c0)='./file0\x00', 0x20000, 0x22)
+openat$bsg(0xffffffffffffff9c, &(0x7f0000000300)='/dev/bsg\x00', 0xc0200, 0x0)
+openat$cgroup_subtree(0xffffffffffffffff, &(0x7f0000000340)='cgroup.subtree_control\x00', 0x2, 0x0)
+socket$nl_route(0x10, 0x3, 0x0)
+r0 = open(&(0x7f00000005c0)='futimesattestdir\x00', 0x357400, 0x1b2)
+futimesat(r0, &(0x7f000000005a)='futimesattestfile.txt\x00', &(0x7f0000000070)={{0x5af515a2, 0xa4ba2}, {0x5af515a2, 0xa4ba2}})
+r1 = open(&(0x7f0000000000)='/lib/x86_64-linux-gnu/libc.so.6\x00', 0x600, 0x12a)
+fstat(r1, &(0x7f0000000020))
+
+program crashed: kernel panic: Attempted to kill init!
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): futimesat-open-openat$bsg-openat$cgroup_subtree-socket$nl_route-open-futimesat-open
+detailed listing:
+executing program 0:
+futimesat(0xffffffffffffffff, &(0x7f000000005a)='futimesattestfile.txt\x00', &(0x7f0000000070)={{0x5af515a2, 0xa4ba2}, {0x5af515a2, 0xa4ba2}})
+open(&(0x7f00000002c0)='./file0\x00', 0x20000, 0x22)
+openat$bsg(0xffffffffffffff9c, &(0x7f0000000300)='/dev/bsg\x00', 0xc0200, 0x0)
+openat$cgroup_subtree(0xffffffffffffffff, &(0x7f0000000340)='cgroup.subtree_control\x00', 0x2, 0x0)
+socket$nl_route(0x10, 0x3, 0x0)
+r0 = open(&(0x7f00000005c0)='futimesattestdir\x00', 0x357400, 0x1b2)
+futimesat(r0, &(0x7f000000005a)='futimesattestfile.txt\x00', &(0x7f0000000070)={{0x5af515a2, 0xa4ba2}, {0x5af515a2, 0xa4ba2}})
+open(&(0x7f0000000000)='/lib/x86_64-linux-gnu/libc.so.6\x00', 0x600, 0x12a)
+
+program crashed: kernel panic: Attempted to kill init!
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): futimesat-open-openat$bsg-openat$cgroup_subtree-socket$nl_route-open-futimesat
+detailed listing:
+executing program 0:
+futimesat(0xffffffffffffffff, &(0x7f000000005a)='futimesattestfile.txt\x00', &(0x7f0000000070)={{0x5af515a2, 0xa4ba2}, {0x5af515a2, 0xa4ba2}})
+open(&(0x7f00000002c0)='./file0\x00', 0x20000, 0x22)
+openat$bsg(0xffffffffffffff9c, &(0x7f0000000300)='/dev/bsg\x00', 0xc0200, 0x0)
+openat$cgroup_subtree(0xffffffffffffffff, &(0x7f0000000340)='cgroup.subtree_control\x00', 0x2, 0x0)
+socket$nl_route(0x10, 0x3, 0x0)
+r0 = open(&(0x7f00000005c0)='futimesattestdir\x00', 0x357400, 0x1b2)
+futimesat(r0, &(0x7f000000005a)='futimesattestfile.txt\x00', &(0x7f0000000070)={{0x5af515a2, 0xa4ba2}, {0x5af515a2, 0xa4ba2}})
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): futimesat-open-openat$bsg-openat$cgroup_subtree-socket$nl_route-open-open
+detailed listing:
+executing program 0:
+futimesat(0xffffffffffffffff, &(0x7f000000005a)='futimesattestfile.txt\x00', &(0x7f0000000070)={{0x5af515a2, 0xa4ba2}, {0x5af515a2, 0xa4ba2}})
+open(&(0x7f00000002c0)='./file0\x00', 0x20000, 0x22)
+openat$bsg(0xffffffffffffff9c, &(0x7f0000000300)='/dev/bsg\x00', 0xc0200, 0x0)
+openat$cgroup_subtree(0xffffffffffffffff, &(0x7f0000000340)='cgroup.subtree_control\x00', 0x2, 0x0)
+socket$nl_route(0x10, 0x3, 0x0)
+open(&(0x7f00000005c0)='futimesattestdir\x00', 0x357400, 0x1b2)
+open(&(0x7f0000000000)='/lib/x86_64-linux-gnu/libc.so.6\x00', 0x600, 0x12a)
+
+program crashed: kernel panic: Attempted to kill init!
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): futimesat-open-openat$bsg-openat$cgroup_subtree-socket$nl_route-open
+detailed listing:
+executing program 0:
+futimesat(0xffffffffffffffff, &(0x7f000000005a)='futimesattestfile.txt\x00', &(0x7f0000000070)={{0x5af515a2, 0xa4ba2}, {0x5af515a2, 0xa4ba2}})
+open(&(0x7f00000002c0)='./file0\x00', 0x20000, 0x22)
+openat$bsg(0xffffffffffffff9c, &(0x7f0000000300)='/dev/bsg\x00', 0xc0200, 0x0)
+openat$cgroup_subtree(0xffffffffffffffff, &(0x7f0000000340)='cgroup.subtree_control\x00', 0x2, 0x0)
+socket$nl_route(0x10, 0x3, 0x0)
+open(&(0x7f0000000000)='/lib/x86_64-linux-gnu/libc.so.6\x00', 0x600, 0x12a)
+
+program crashed: kernel panic: Attempted to kill init!
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): futimesat-open-openat$bsg-openat$cgroup_subtree-open
+detailed listing:
+executing program 0:
+futimesat(0xffffffffffffffff, &(0x7f000000005a)='futimesattestfile.txt\x00', &(0x7f0000000070)={{0x5af515a2, 0xa4ba2}, {0x5af515a2, 0xa4ba2}})
+open(&(0x7f00000002c0)='./file0\x00', 0x20000, 0x22)
+openat$bsg(0xffffffffffffff9c, &(0x7f0000000300)='/dev/bsg\x00', 0xc0200, 0x0)
+openat$cgroup_subtree(0xffffffffffffffff, &(0x7f0000000340)='cgroup.subtree_control\x00', 0x2, 0x0)
+open(&(0x7f0000000000)='/lib/x86_64-linux-gnu/libc.so.6\x00', 0x600, 0x12a)
+
+program crashed: kernel panic: Attempted to kill init!
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): futimesat-open-openat$bsg-open
+detailed listing:
+executing program 0:
+futimesat(0xffffffffffffffff, &(0x7f000000005a)='futimesattestfile.txt\x00', &(0x7f0000000070)={{0x5af515a2, 0xa4ba2}, {0x5af515a2, 0xa4ba2}})
+open(&(0x7f00000002c0)='./file0\x00', 0x20000, 0x22)
+openat$bsg(0xffffffffffffff9c, &(0x7f0000000300)='/dev/bsg\x00', 0xc0200, 0x0)
+open(&(0x7f0000000000)='/lib/x86_64-linux-gnu/libc.so.6\x00', 0x600, 0x12a)
+
+program crashed: kernel panic: Attempted to kill init!
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): futimesat-open-open
+detailed listing:
+executing program 0:
+futimesat(0xffffffffffffffff, &(0x7f000000005a)='futimesattestfile.txt\x00', &(0x7f0000000070)={{0x5af515a2, 0xa4ba2}, {0x5af515a2, 0xa4ba2}})
+open(&(0x7f00000002c0)='./file0\x00', 0x20000, 0x22)
+open(&(0x7f0000000000)='/lib/x86_64-linux-gnu/libc.so.6\x00', 0x600, 0x12a)
+
+program crashed: kernel panic: Attempted to kill init!
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): futimesat-open
+detailed listing:
+executing program 0:
+futimesat(0xffffffffffffffff, &(0x7f000000005a)='futimesattestfile.txt\x00', &(0x7f0000000070)={{0x5af515a2, 0xa4ba2}, {0x5af515a2, 0xa4ba2}})
+open(&(0x7f0000000000)='/lib/x86_64-linux-gnu/libc.so.6\x00', 0x600, 0x12a)
+
+program crashed: kernel panic: Attempted to kill init!
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): open
+detailed listing:
+executing program 0:
+open(&(0x7f0000000000)='/lib/x86_64-linux-gnu/libc.so.6\x00', 0x600, 0x12a)
+
+program crashed: kernel panic: Attempted to kill init!
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): open
+detailed listing:
+executing program 0:
+open(0x0, 0x600, 0x12a)
+
+program did not crash
+extracting C reproducer
+testing compiled C program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): open
+program crashed: kernel panic: Attempted to kill init!
+simplifying C reproducer
+testing compiled C program (duration=22.5s, {Threaded:true Collide:false Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): open
+program crashed: kernel panic: Attempted to kill init!
+testing compiled C program (duration=22.5s, {Threaded:false Collide:false Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): open
+program crashed: kernel panic: Attempted to kill init!
+testing compiled C program (duration=22.5s, {Threaded:false Collide:false Repeat:false RepeatTimes:0 Procs:1 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:false Cgroups:false BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): open
+program crashed: kernel panic: Attempted to kill init!
+testing compiled C program (duration=22.5s, {Threaded:false Collide:false Repeat:false RepeatTimes:0 Procs:1 Sandbox: Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:false KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): open
+program crashed: kernel panic: Attempted to kill init!
+testing compiled C program (duration=22.5s, {Threaded:false Collide:false Repeat:false RepeatTimes:0 Procs:1 Sandbox: Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:false KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:false HandleSegv:true Repro:true Trace:false}): open
+program crashed: kernel panic: Attempted to kill init!
+testing compiled C program (duration=22.5s, {Threaded:false Collide:false Repeat:false RepeatTimes:0 Procs:1 Sandbox: Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:false KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:false HandleSegv:false Repro:true Trace:false}): open
+program crashed: kernel panic: Attempted to kill init!
+reproducing took 5m48.18203569s
+repro crashed as (corrupted=false):
+Kernel panic - not syncing: Attempted to kill init! exitcode=0x0000000b
+
+CPU: 1 PID: 1 Comm: systemd Not tainted 3.10.108-rt123+ #14
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+ ffff88013aa55d20 ffff88013aa55c90 ffffffff81991617 ffff88013aa55d10
+ ffffffff8198f425 ffffffff00000010 ffff88013aa55d20 ffff88013aa55cb8
+ 0000000000000001 000000000000000b ffff88013aa78358 ffff88013aa78000
+Call Trace:
+ [<ffffffff81991617>] dump_stack+0x1e/0x20
+ [<ffffffff8198f425>] panic+0xbb/0x1be
+ [<ffffffff81040f92>] do_exit+0xb42/0xb50
+ [<ffffffff81041e8e>] do_group_exit+0x3e/0xa0
+ [<ffffffff810506a8>] get_signal_to_deliver+0x278/0x5d0
+ [<ffffffff81002333>] do_signal+0x43/0x6b0
+ [<ffffffff810029ff>] do_notify_resume+0x5f/0x70
+ [<ffffffff81998b26>] retint_signal+0x41/0x7b
+Dumping ftrace buffer:
+   (ftrace buffer empty)
+Rebooting in 1 seconds..
+
+final repro crashed as (corrupted=false):
+Kernel panic - not syncing: Attempted to kill init! exitcode=0x0000000b
+
+CPU: 1 PID: 1 Comm: systemd Not tainted 3.10.108-rt123+ #14
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+ ffff88013aa55d20 ffff88013aa55c90 ffffffff81991617 ffff88013aa55d10
+ ffffffff8198f425 ffffffff00000010 ffff88013aa55d20 ffff88013aa55cb8
+ 0000000000000001 000000000000000b ffff88013aa78358 ffff88013aa78000
+Call Trace:
+ [<ffffffff81991617>] dump_stack+0x1e/0x20
+ [<ffffffff8198f425>] panic+0xbb/0x1be
+ [<ffffffff81040f92>] do_exit+0xb42/0xb50
+ [<ffffffff81041e8e>] do_group_exit+0x3e/0xa0
+ [<ffffffff810506a8>] get_signal_to_deliver+0x278/0x5d0
+ [<ffffffff81002333>] do_signal+0x43/0x6b0
+ [<ffffffff810029ff>] do_notify_resume+0x5f/0x70
+ [<ffffffff81998b26>] retint_signal+0x41/0x7b
+Dumping ftrace buffer:
+   (ftrace buffer empty)
+Rebooting in 1 seconds..
+

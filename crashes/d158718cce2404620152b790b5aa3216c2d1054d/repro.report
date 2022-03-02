@@ -1,0 +1,52 @@
+------------[ cut here ]------------
+WARNING: at fs/inode.c:396 ihold+0x46/0x50()
+Modules linked in:
+CPU: 1 PID: 8887 Comm: syz-executor332 Not tainted 3.10.108-rt123+ #14
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+ 0000000000000009 ffff880135959e50 ffffffff81991617 ffff880135959e88
+ ffffffff8103b93c ffff880135efc238 0000000000000000 ffff88013a0b0a00
+ ffffffff81a17380 ffffffff81b99234 ffff880135959e98 ffffffff8103ba15
+Call Trace:
+ [<ffffffff81991617>] dump_stack+0x1e/0x20
+ [<ffffffff8103b93c>] warn_slowpath_common+0x5c/0x80
+ [<ffffffff8103ba15>] warn_slowpath_null+0x15/0x20
+ [<ffffffff8117cec6>] ihold+0x46/0x50
+ [<ffffffff811b2c40>] anon_inode_getfile+0xc0/0x170
+ [<ffffffff811b2d32>] anon_inode_getfd+0x42/0x90
+ [<ffffffff811afcdb>] SyS_inotify_init1+0xbb/0x130
+ [<ffffffff811afd60>] sys_inotify_init+0x10/0x20
+ [<ffffffff819a0df2>] system_call_fastpath+0x16/0x1b
+---[ end trace 2754631d67b05150 ]---
+general protection fault: 0000 [#1] SMP 
+Dumping ftrace buffer:
+   (ftrace buffer empty)
+Modules linked in:
+CPU: 1 PID: 8887 Comm: syz-executor332 Tainted: G        W    3.10.108-rt123+ #14
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+task: ffff88013a29d5f0 ti: ffff880135958000 task.ti: ffff880135958000
+RIP: 0010:[<ffffffff8118f7c1>]  [<ffffffff8118f7c1>] __mark_inode_dirty+0x1e1/0x3a0
+RSP: 0018:ffff880135959e20  EFLAGS: 00010293
+RAX: 740a2d2d2d5d2030 RBX: 0000000000000007 RCX: 00000000039dfbfb
+RDX: ffff88013a29d5f0 RSI: ffffffff8118f7bd RDI: ffff880135efb630
+RBP: ffff880135959e48 R08: 0000000060b0ab02 R09: 00000000004a1366
+R10: 00000000004a1366 R11: 0000000000000246 R12: ffff880135efb630
+R13: 0000000000000000 R14: ffff880135e5d180 R15: ffff880138e1b400
+FS:  0000000002307880(0063) GS:ffff88013fd00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00000000004ce0f0 CR3: 0000000138da6000 CR4: 00000000003407e0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Stack:
+ ffff880135efb630 ffff880135959ed8 0000000000000000 ffff880135e5d180
+ 0000000000000000 ffff880135959e70 ffffffff8118ba73 0000000000000041
+ ffff880135959ed8 0000000000000000 ffff880135959ec8 ffffffff8117f2e0
+Call Trace:
+ [<ffffffff8118ba73>] simple_setattr+0x53/0x80
+ [<ffffffff8117f2e0>] notify_change+0x430/0x4d0
+ [<ffffffff81159973>] chmod_common+0x73/0xa0
+ [<ffffffff8115b175>] SyS_fchmod+0x65/0xa0
+ [<ffffffff819a0df2>] system_call_fastpath+0x16/0x1b
+Code: ff e9 d8 fe ff ff 0f 1f 40 00 e8 4b a7 f2 ff 8b 05 7d f6 d1 00 4d 8b 7c 24 28 85 c0 0f 85 98 00 00 00 e8 33 a7 f2 ff 49 8b 47 30 <4c> 8b 68 10 4d 85 ed 74 0d e8 21 a7 f2 ff 89 de 4c 89 e7 41 ff 
+RIP  [<ffffffff8118f7c1>] __mark_inode_dirty+0x1e1/0x3a0
+ RSP <ffff880135959e20>
+---[ end trace 2754631d67b05151 ]---

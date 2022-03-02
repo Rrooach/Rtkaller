@@ -1,0 +1,201 @@
+001: sd 0:0:0:0: [sg0] tag#0 CDB[d0]: a6 d2 81 d8 04 b1 15 0e 22 6a 05 8d e2 b8 2c
+000: sg_write: data in/out 622210/2 bytes for SCSI command 0x2f-- guessing data in;
+000:    program syz-executor.1 not setting count and/or reply_len properly
+000: sg_write: data in/out 622210/1 bytes for SCSI command 0x2f-- guessing data in;
+000:    program syz-executor.1 not setting count and/or reply_len properly
+000: rcu: INFO: rcu_sched self-detected stall on CPU
+000: rcu: 	0-...!: (3 ticks this GP) idle=a26/1/0x4000000000000000 softirq=69913/69913 fqs=1 
+000: 	(t=34672 jiffies g=137385 q=145)
+000: rcu: rcu_sched kthread starved for 30447 jiffies! g137385 f0x0 RCU_GP_WAIT_FQS(5) ->state=0x402 ->cpu=1
+000: rcu: 	Unless rcu_sched kthread gets sufficient CPU time, OOM is now expected behavior.
+000: rcu: RCU grace-period kthread stack dump:
+000: task:rcu_sched       state:I stack:29472 pid:   10 ppid:     2 flags:0x00004000
+000: Call Trace:
+000:  __schedule+0x840/0x1820
+000:  schedule+0xc6/0x290
+000:  schedule_timeout+0x3d5/0x770
+000:  rcu_gp_kthread+0xa26/0x2430
+000:  kthread+0x2f1/0x400
+000:  ret_from_fork+0x22/0x30
+000: NMI backtrace for cpu 0
+000: CPU: 0 PID: 9 Comm: ksoftirqd/0 Not tainted 5.9.0-rc7-rt10+ #2
+000: Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+000: Call Trace:
+000:  <IRQ>
+000:  dump_stack+0x9c/0xde
+000:  nmi_cpu_backtrace.cold+0x55/0x94
+000:  nmi_trigger_cpumask_backtrace+0x155/0x19b
+000:  rcu_dump_cpu_stacks+0x192/0x1dc
+000:  rcu_sched_clock_irq.cold+0x56e/0x9d6
+000:  update_process_times+0x24/0x90
+000:  tick_sched_handle.isra.0+0x105/0x150
+000:  tick_sched_timer+0xe7/0x120
+000:  __hrtimer_run_queues+0x308/0x7b0
+000:  hrtimer_interrupt+0x2c9/0x6c0
+000:  __sysvec_apic_timer_interrupt+0xcf/0x310
+000:  asm_call_irq_on_stack+0x12/0x20
+000:  </IRQ>
+000:  sysvec_apic_timer_interrupt+0x6f/0x80
+000:  asm_sysvec_apic_timer_interrupt+0x12/0x20
+000: RIP: 0010:e1000_xmit_frame+0x249b/0x4440
+000: Code: c1 ea 03 48 01 c3 48 b8 00 00 00 00 00 fc ff df 0f b6 04 02 84 c0 74 08 3c 03 0f 8e a0 19 00 00 48 8b 44 24 08 8b 40 18 89 03 <e9> 2a f4 ff ff e8 7b 1b bd fe bb 3c 00 00 00 48 8b 3c 24 ba 01 00
+000: RSP: 0018:ffff88811a9be8b0 EFLAGS: 00000246
+000: RAX: 000000000000003c RBX: ffffc90000443818 RCX: ffffffffb299ea39
+000: RDX: 1ffff11022e9f433 RSI: ffff8881174fa180 RDI: ffff8881174fa1aa
+000: RBP: 00000000ffffffff R08: ffffc9000054d940 R09: 0000000000000000
+000: R10: 0000000000000127 R11: 000000000002a016 R12: 0000000000000018
+000: R13: dffffc0000000000 R14: 000000000000003c R15: ffff8880bb8023b0
+000:  dev_hard_start_xmit+0x137/0x5b0
+000:  sch_direct_xmit+0x25e/0x7d0
+000:  __qdisc_run+0x405/0x16b0
+000:  __dev_queue_xmit+0xf9e/0x1db0
+000:  ip_finish_output2+0xabf/0x1800
+000:  __ip_finish_output+0x37d/0x800
+000:  ip_output+0x1c0/0x350
+000:  ip_local_out+0x7f/0xc0
+000:  __ip_queue_xmit+0x7d7/0x1490
+000:  __tcp_transmit_skb+0x2889/0x3330
+000:  tcp_write_xmit+0xd5c/0x5620
+000:  __tcp_push_pending_frames+0x9e/0x300
+000:  tcp_rcv_established+0x143b/0x19e0
+000:  tcp_v4_do_rcv+0x57e/0x810
+000:  tcp_v4_rcv+0x25a1/0x2fc0
+000:  ip_protocol_deliver_rcu+0x6e/0x5d0
+000:  ip_local_deliver_finish+0x1ab/0x210
+000:  ip_local_deliver+0x1ec/0x2f0
+000:  ip_sublist_rcv_finish+0x10a/0x1a0
+000:  ip_sublist_rcv+0x367/0x550
+000:  ip_list_rcv+0x2ce/0x3bb
+000:  __netif_receive_skb_list_core+0x4ae/0x910
+000:  netif_receive_skb_list_internal+0x663/0xba0
+000:  gro_normal_list.part.0+0x19/0xb0
+000:  napi_complete_done+0x1ad/0x580
+000:  e1000_clean+0x854/0x1990
+000:  net_rx_action+0x3ca/0xd10
+000:  __do_softirq+0x18c/0x624
+000:  run_ksoftirqd+0x15/0x20
+000:  smpboot_thread_fn+0x336/0x700
+000:  kthread+0x2f1/0x400
+000:  ret_from_fork+0x22/0x30
+000: rcu: INFO: rcu_sched self-detected stall on CPU
+000: rcu: 	0-...!: (1 GPs behind) idle=a26/1/0x4000000000000000 softirq=69913/69915 fqs=0 
+000: 	(t=57327 jiffies g=137389 q=197)
+000: rcu: rcu_sched kthread starved for 57327 jiffies! g137389 f0x0 RCU_GP_WAIT_FQS(5) ->state=0x402 ->cpu=1
+000: rcu: 	Unless rcu_sched kthread gets sufficient CPU time, OOM is now expected behavior.
+000: rcu: RCU grace-period kthread stack dump:
+000: task:rcu_sched       state:I stack:29472 pid:   10 ppid:     2 flags:0x00004000
+000: Call Trace:
+000:  __schedule+0x840/0x1820
+000:  schedule+0xc6/0x290
+000:  schedule_timeout+0x3d5/0x770
+000:  rcu_gp_kthread+0xa26/0x2430
+000:  kthread+0x2f1/0x400
+000:  ret_from_fork+0x22/0x30
+000: NMI backtrace for cpu 0
+000: CPU: 0 PID: 66 Comm: printk Not tainted 5.9.0-rc7-rt10+ #2
+000: Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+000: Call Trace:
+000:  <IRQ>
+000:  dump_stack+0x9c/0xde
+000:  nmi_cpu_backtrace.cold+0x55/0x94
+000:  nmi_trigger_cpumask_backtrace+0x155/0x19b
+000:  rcu_dump_cpu_stacks+0x192/0x1dc
+000:  rcu_sched_clock_irq.cold+0x56e/0x9d6
+000:  update_process_times+0x24/0x90
+000:  tick_sched_handle.isra.0+0x105/0x150
+000:  tick_sched_timer+0xe7/0x120
+000:  __hrtimer_run_queues+0x308/0x7b0
+000:  hrtimer_interrupt+0x2c9/0x6c0
+000:  __sysvec_apic_timer_interrupt+0xcf/0x310
+000:  asm_call_irq_on_stack+0x12/0x20
+000:  </IRQ>
+000:  sysvec_apic_timer_interrupt+0x6f/0x80
+000:  asm_sysvec_apic_timer_interrupt+0x12/0x20
+000: RIP: 0010:_raw_spin_unlock_irqrestore+0x2c/0x50
+000: Code: ec 10 48 b8 00 00 00 00 00 fc ff df 48 89 fa 48 c1 ea 03 0f b6 04 02 48 89 fa 83 e2 07 38 d0 7f 04 84 c0 75 0a c6 07 00 56 9d <48> 83 c4 10 c3 48 89 74 24 08 48 89 3c 24 e8 71 02 fa fd 48 8b 74
+000: RSP: 0018:ffff888117007bc8 EFLAGS: 00000246
+000: RAX: 0000000000000000 RBX: 0000000000000000 RCX: ffffffffb2202d22
+000: RDX: 0000000000000000 RSI: 0000000000000246 RDI: ffffffffb5d33420
+000: RBP: ffffffffb5d33420 R08: 0000000000000001 R09: fffffbfff68d9ff9
+000: R10: ffffffffb46cffc3 R11: fffffbfff68d9ff8 R12: 0000000000000005
+000: R13: 000000000000006d R14: ffffffffb5d33440 R15: ffffffffb5d33520
+000:  serial8250_console_write+0x58e/0xb90
+000:  printk_kthread_func+0x59f/0xd20
+000:  kthread+0x2f1/0x400
+000:  ret_from_fork+0x22/0x30
+000: rcu: INFO: rcu_sched self-detected stall on CPU
+000: rcu: 	0-....: (66 ticks this GP) idle=a26/1/0x4000000000000000 softirq=69916/69916 fqs=57 
+000: 	(t=122004 jiffies g=137389 q=1817)
+000: rcu: rcu_sched kthread starved for 27256 jiffies! g137389 f0x0 RCU_GP_WAIT_FQS(5) ->state=0x0 ->cpu=1
+000: rcu: 	Unless rcu_sched kthread gets sufficient CPU time, OOM is now expected behavior.
+000: rcu: RCU grace-period kthread stack dump:
+000: task:rcu_sched       state:R  running task     stack:29472 pid:   10 ppid:     2 flags:0x00004000
+000: Call Trace:
+000:  __schedule+0x840/0x1820
+000:  schedule+0xc6/0x290
+000:  schedule_timeout+0x3d5/0x770
+000:  rcu_gp_kthread+0xa26/0x2430
+000:  kthread+0x2f1/0x400
+000:  ret_from_fork+0x22/0x30
+000: NMI backtrace for cpu 0
+000: CPU: 0 PID: 9 Comm: ksoftirqd/0 Not tainted 5.9.0-rc7-rt10+ #2
+000: Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+000: Call Trace:
+000:  <IRQ>
+000:  dump_stack+0x9c/0xde
+000:  nmi_cpu_backtrace.cold+0x55/0x94
+000:  nmi_trigger_cpumask_backtrace+0x155/0x19b
+000:  rcu_dump_cpu_stacks+0x192/0x1dc
+000:  rcu_sched_clock_irq.cold+0x56e/0x9d6
+000:  update_process_times+0x24/0x90
+000:  tick_sched_handle.isra.0+0x105/0x150
+000:  tick_sched_timer+0xe7/0x120
+000:  __hrtimer_run_queues+0x308/0x7b0
+000:  hrtimer_interrupt+0x2c9/0x6c0
+000:  __sysvec_apic_timer_interrupt+0xcf/0x310
+000:  asm_call_irq_on_stack+0x12/0x20
+000:  </IRQ>
+000:  sysvec_apic_timer_interrupt+0x6f/0x80
+000:  asm_sysvec_apic_timer_interrupt+0x12/0x20
+000: RIP: 0010:e1000_clean+0xc5e/0x1990
+000: Code: 48 c1 ea 03 80 3c 02 00 0f 85 a6 08 00 00 49 8b 97 d0 01 00 00 b8 9d 00 00 00 89 82 d0 00 00 00 49 8b 87 d0 01 00 00 8b 40 08 <e8> 3d 50 bd fe 8b 84 24 d8 00 00 00 89 44 24 34 e8 2d 50 bd fe 48
+000: RSP: 0018:ffff88811a9bfb98 EFLAGS: 00000246
+000: RAX: 0000000080080783 RBX: 0000000000004e20 RCX: ffffffffb299b5e0
+000: RDX: ffffc90000440000 RSI: 0000000000000008 RDI: ffff888117518d40
+000: RBP: ffff888117519128 R08: 0000000000000001 R09: ffffed1022ea3226
+000: R10: ffff88811751912f R11: ffffed1022ea3225 R12: ffff888117518afa
+000: R13: ffff888117518af0 R14: 0000000000004e20 R15: ffff888117518b70
+000:  net_rx_action+0x3ca/0xd10
+000:  __do_softirq+0x18c/0x624
+000:  run_ksoftirqd+0x15/0x20
+000:  smpboot_thread_fn+0x336/0x700
+000:  kthread+0x2f1/0x400
+000:  ret_from_fork+0x22/0x30
+001: scsi_io_completion_action: 34 callbacks suppressed
+001: sd 0:0:0:0: [sda] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_TIMEOUT cmd_age=64s
+001: sd 0:0:0:0: [sda] tag#0 CDB: Write(10) 2a 00 00 00 04 08 00 00 20 00
+001: blk_update_request: I/O error, dev sda, sector 1032 op 0x1:(WRITE) flags 0x103000 phys_seg 4 prio class 0
+001: Buffer I/O error on dev sda, logical block 129, lost async page write
+001: Buffer I/O error on dev sda, logical block 130, lost async page write
+001: Buffer I/O error on dev sda, logical block 131, lost async page write
+001: Buffer I/O error on dev sda, logical block 132, lost async page write
+000: EXT4-fs error (device sda): ext4_check_bdev_write_error:215: comm rs:main Q:Reg: Error while async write back metadata
+001: systemd[1]: Starting Journal Service...
+001: systemd[1]: systemd-journald.service stop-sigterm timed out. Killing.
+001: systemd[1]: Starting Journal Service...
+001: systemd[1]: systemd-journald.service: main process exited, code=killed, status=9/KILL
+001: sd 0:0:0:0: [sda] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_TIMEOUT cmd_age=253s
+001: sd 0:0:0:0: [sda] tag#0 CDB: Read(10) 28 00 00 0c 04 10 00 00 08 00
+001: blk_update_request: I/O error, dev sda, sector 787472 op 0x0:(READ) flags 0x3000 phys_seg 1 prio class 0
+000: EXT4-fs error (device sda): ext4_read_inode_bitmap:199: comm syz-fuzzer: Cannot read inode bitmap - block_group = 3, inode_bitmap = 98434
+000: systemd[1]: Unit systemd-journald.service entered failed state.
+000: systemd[1]: systemd-journald.service has no holdoff time, scheduling restart.
+000: systemd[1]: Stopping Journal Service...
+000: systemd[1]: Starting Journal Service...
+000: systemd[1]: Started Journal Service.
+000: systemd[1]: systemd-journald.service has no holdoff time, scheduling restart.
+000: systemd[1]: Stopping Journal Service...
+000: systemd[1]: Starting Journal Service...
+000: systemd[1]: Started Journal Service.
+000: systemd-journald[17115]: File /run/log/journal/d40b1337ff3b481b960393a3cd2ddfd2/system.journal corrupted or uncleanly shut down, renaming and replacing.
+000: systemd-journald[17115]: Received request to flush runtime journal from PID 1

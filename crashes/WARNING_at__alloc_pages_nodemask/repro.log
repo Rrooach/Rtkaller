@@ -1,0 +1,29 @@
+Warning: Permanently added '[localhost]:13894' (ECDSA) to the list of known hosts.
+executing program
+syzkaller login: [    9.650127] ------------[ cut here ]------------
+[    9.650832] WARNING: at mm/page_alloc.c:2480 __alloc_pages_nodemask+0x54d/0xa60()
+[    9.651828] Modules linked in:
+[    9.652292] CPU: 1 PID: 1535 Comm: syz-executor119 Not tainted 3.10.108-rt123+ #14
+[    9.653388] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[    9.654609]  0000000000000009 ffff88013883bc58 ffffffff81991617 ffff88013883bc90
+[    9.655633]  ffffffff8103b93c 0000000000000000 0000000000000000 0000000000000000
+[    9.656904]  0000000000000000 00000000001040d0 ffff88013883bca0 ffffffff8103ba15
+[    9.657968] Call Trace:
+[    9.658308]  [<ffffffff81991617>] dump_stack+0x1e/0x20
+[    9.658960]  [<ffffffff8103b93c>] warn_slowpath_common+0x5c/0x80
+[    9.659765]  [<ffffffff8103ba15>] warn_slowpath_null+0x15/0x20
+[    9.660537]  [<ffffffff81105bbd>] __alloc_pages_nodemask+0x54d/0xa60
+[    9.661391]  [<ffffffff81169e0b>] ? terminate_walk+0x7b/0x80
+[    9.662102]  [<ffffffff8116f528>] ? do_last+0x98/0x1310
+[    9.662850]  [<ffffffff8114bc84>] alloc_pages_current+0xc4/0x1a0
+[    9.663652]  [<ffffffff81100f49>] __get_free_pages+0x9/0x40
+[    9.664335]  [<ffffffff811522c9>] kmalloc_order_trace+0x29/0xc0
+[    9.665182]  [<ffffffff81153941>] __kmalloc+0x1a1/0x1b0
+[    9.665893]  [<ffffffff814e35a4>] vga_arb_write+0x34/0x720
+[    9.666592]  [<ffffffff8115c56e>] ? rw_verify_area+0x9e/0x1a0
+[    9.667317]  [<ffffffff814e3570>] ? vga_get+0x210/0x210
+[    9.668001]  [<ffffffff8115c92f>] vfs_write+0xef/0x260
+[    9.668655]  [<ffffffff8117fdec>] ? fget_light+0xec/0x140
+[    9.669361]  [<ffffffff8115d643>] SyS_write+0x53/0xa0
+[    9.670028]  [<ffffffff819a0df2>] system_call_fastpath+0x16/0x1b
+[    9.670771] ---[ end trace e374fefec3e993e8 ]---

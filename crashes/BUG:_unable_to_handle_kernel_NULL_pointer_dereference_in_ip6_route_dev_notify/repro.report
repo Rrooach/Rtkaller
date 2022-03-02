@@ -1,0 +1,54 @@
+audit: type=1400 audit(1613058551.874:8): avc:  denied  { execmem } for  pid=414 comm="syz-executor857" scontext=system_u:system_r:kernel_t:s0 tcontext=system_u:system_r:kernel_t:s0 tclass=process permissive=1
+syz-executor857 (415) used greatest stack depth: 12256 bytes left
+BUG: kernel NULL pointer dereference, address: 00000000000000d7
+#PF: supervisor write access in kernel mode
+#PF: error_code(0x0002) - not-present page
+PGD 0 P4D 0 
+Oops: 0002 [#1] SMP PTI
+CPU: 0 PID: 26 Comm: kworker/u4:1 Not tainted 5.3.0+ #3
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+Workqueue: netns cleanup_net
+RIP: 0010:ip6_route_dev_notify+0x73/0x110
+Code: e5 52 ff 80 bb 90 04 00 00 03 74 e3 e8 e6 e5 52 ff 49 8b ac 24 d8 06 00 00 48 8b 9d b0 00 00 00 48 85 db 74 ca e8 cd e5 52 ff <f0> ff 8b d8 00 00 00 0f 88 b6 b5 1a 00 74 72 e8 b9 e5 52 ff 48 c7
+RSP: 0018:ffffb451400e7ca0 EFLAGS: 00010293
+RAX: ffff8f0afb28a980 RBX: ffffffffffffffff RCX: ffffffffbc8266f3
+RDX: 0000000000000000 RSI: 0000000000000006 RDI: ffffffffbd2fef10
+RBP: ffff8f0af9b6bd00 R08: 0000000000000000 R09: 0000000000000036
+R10: ffffb451400e7cc0 R11: 0000000000000001 R12: ffff8f0af7ac0000
+R13: 0000000000000000 R14: ffffffffbd2fef10 R15: ffffb451400e7d10
+FS:  0000000000000000(0000) GS:ffff8f0afba00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00000000000000d7 CR3: 00000001378b6006 CR4: 0000000000760ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ notifier_call_chain+0x6a/0xb0
+ rollback_registered_many+0x332/0x5b0
+ unregister_netdevice_many+0x26/0xc0
+ default_device_exit_batch+0x18a/0x1c0
+ ops_exit_list.isra.16+0x70/0x80
+ cleanup_net+0x24f/0x370
+ process_one_work+0x290/0x510
+ worker_thread+0x39/0x500
+ kthread+0x12c/0x150
+ ret_from_fork+0x35/0x40
+Modules linked in:
+Dumping ftrace buffer:
+   (ftrace buffer empty)
+CR2: 00000000000000d7
+---[ end trace 731f34ecb254f50a ]---
+RIP: 0010:ip6_route_dev_notify+0x73/0x110
+Code: e5 52 ff 80 bb 90 04 00 00 03 74 e3 e8 e6 e5 52 ff 49 8b ac 24 d8 06 00 00 48 8b 9d b0 00 00 00 48 85 db 74 ca e8 cd e5 52 ff <f0> ff 8b d8 00 00 00 0f 88 b6 b5 1a 00 74 72 e8 b9 e5 52 ff 48 c7
+RSP: 0018:ffffb451400e7ca0 EFLAGS: 00010293
+RAX: ffff8f0afb28a980 RBX: ffffffffffffffff RCX: ffffffffbc8266f3
+RDX: 0000000000000000 RSI: 0000000000000006 RDI: ffffffffbd2fef10
+RBP: ffff8f0af9b6bd00 R08: 0000000000000000 R09: 0000000000000036
+R10: ffffb451400e7cc0 R11: 0000000000000001 R12: ffff8f0af7ac0000
+R13: 0000000000000000 R14: ffffffffbd2fef10 R15: ffffb451400e7d10
+FS:  0000000000000000(0000) GS:ffff8f0afba00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00000000000000d7 CR3: 00000001378b6006 CR4: 0000000000760ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+PKRU: 55555554

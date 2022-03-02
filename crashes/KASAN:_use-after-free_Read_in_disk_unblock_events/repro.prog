@@ -1,0 +1,3 @@
+# {Threaded:false Collide:false Repeat:true RepeatTimes:0 Procs:1 Sandbox: Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:false KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:false HandleSegv:false Repro:false Trace:false}
+r0 = openat$md(0xffffffffffffff9c, &(0x7f0000000280)='/dev/md0\x00', 0x0, 0x0)
+ioctl$BLKROSET(r0, 0x125d, 0x0)

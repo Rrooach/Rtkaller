@@ -1,0 +1,56 @@
+cgroup1: Unknown subsys name 'perf_event'
+cgroup1: Unknown subsys name 'net_cls'
+rcu: INFO: rcu_sched self-detected stall on CPU
+rcu: 	0-...!: (14 ticks this GP) idle=666/1/0x4000000000000002 softirq=2868/2870 fqs=1 
+	(t=57929 jiffies g=2285 q=75)
+NMI backtrace for cpu 0
+CPU: 0 PID: 424 Comm: syz-executor.1 Not tainted 5.3.0+ #3
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+Call Trace:
+ <IRQ>
+ dump_stack+0x64/0x8e
+ nmi_cpu_backtrace.cold.7+0x18/0x65
+ nmi_trigger_cpumask_backtrace+0xc8/0xed
+ rcu_dump_cpu_stacks+0x80/0xac
+ rcu_sched_clock_irq.cold.87+0x1ae/0x39b
+ update_process_times+0x28/0x60
+ tick_sched_handle+0x55/0x70
+ tick_sched_timer+0x3c/0xa0
+ __hrtimer_run_queues+0x149/0x330
+ hrtimer_interrupt+0x10f/0x250
+ smp_apic_timer_interrupt+0x68/0x130
+ apic_timer_interrupt+0xf/0x20
+ </IRQ>
+RIP: 0010:clear_page_erms+0x7/0x10
+Code: 48 89 47 18 48 89 47 20 48 89 47 28 48 89 47 30 48 89 47 38 48 8d 7f 40 75 d9 90 c3 0f 1f 80 00 00 00 00 b9 00 10 00 00 31 c0 <f3> aa c3 90 90 90 90 90 90 41 57 49 89 f7 41 56 41 55 41 54 55 48
+RSP: 0018:ffffb1fb401c7b38 EFLAGS: 00010246 ORIG_RAX: ffffffffffffff13
+RAX: 0000000000000000 RBX: ffffd9cac4990040 RCX: 0000000000001000
+RDX: 0000000000002dc2 RSI: 0000000000000000 RDI: ffffa30ce6400000
+RBP: 0000000000000000 R08: ffffa30cf457d300 R09: ffffd9cac4990000
+R10: 0000000000000301 R11: ffffd9cac4990000 R12: 0000000000000000
+R13: ffffa30cffffaa00 R14: 0000000000000001 R15: ffffd9cac4990000
+ prep_new_page+0xee/0x110
+ get_page_from_freelist+0xe6a/0x10d0
+ __alloc_pages_nodemask+0x167/0x2c0
+ alloc_pages_current+0x8b/0x110
+ __vmalloc_node_range+0x1b9/0x310
+ vmalloc_user+0x49/0x50
+ kcov_mmap+0x27/0x110
+ mmap_region+0x455/0x810
+ do_mmap+0x444/0x6c0
+ vm_mmap_pgoff+0xe2/0x120
+ ksys_mmap_pgoff+0x1fa/0x2d0
+ do_syscall_64+0x57/0x180
+ entry_SYSCALL_64_after_hwframe+0x44/0xa9
+RIP: 0033:0x468726
+Code: 00 00 00 00 f3 0f 1e fa 41 f7 c1 ff 0f 00 00 75 2b 55 48 89 fd 53 89 cb 48 85 ff 74 37 41 89 da 48 89 ef b8 09 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 62 5b 5d c3 0f 1f 80 00 00 00 00 48 c7 c0 bc
+RSP: 002b:00007ffc829aba58 EFLAGS: 00000246 ORIG_RAX: 0000000000000009
+RAX: ffffffffffffffda RBX: 0000000000000001 RCX: 0000000000468726
+RDX: 0000000000000003 RSI: 0000000000200000 RDI: 0000000000000000
+RBP: 0000000000000000 R08: 00000000000000ee R09: 0000000000000000
+R10: 0000000000000001 R11: 0000000000000246 R12: 000000000057d988
+R13: 0000000000000000 R14: 0000000000548018 R15: 0000000000000000
+cgroup1: Unknown subsys name 'perf_event'
+cgroup1: Unknown subsys name 'net_cls'
+audit: type=1326 audit(1613036575.911:9): auid=0 uid=0 gid=0 ses=4 subj=system_u:system_r:kernel_t:s0 pid=1313 comm="syz-executor.1" exe="/syz-executor.1" sig=9 arch=c000003e syscall=231 compat=0 ip=0x4686dd code=0x0
+syz-executor.0 (425) used greatest stack depth: 12256 bytes left

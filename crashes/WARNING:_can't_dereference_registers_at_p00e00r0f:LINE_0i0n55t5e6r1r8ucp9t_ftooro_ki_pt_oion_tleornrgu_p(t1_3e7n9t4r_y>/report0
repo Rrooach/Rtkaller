@@ -1,0 +1,3 @@
+000: WARNING: can't dereference registers at p00e00r0f:0 0i0n55t5e6r1r8ucp9t  ftooro ki pt oion tleornrgu p(t1_3e7n9t4r y> +103xbf6/03x5c)0, 
+000: perf: interrupt took too long (13794 > 13635), lowering kernel.perf_event_max_sample_rate to 14000
+000: perf: interrupt took too long (17294 > 17242), lowering kernel.perf_event_max_sample_rate to 11000

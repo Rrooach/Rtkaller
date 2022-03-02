@@ -1,0 +1,37 @@
+BUG: unable to handle kernel NULL pointer dereference at 0000000000000010
+IP: [<ffffffff8118f7c1>] __mark_inode_dirty+0x1e1/0x3a0
+PGD 1291cb067 PUD 1309f3067 PMD 0 
+Oops: 0000 [#1] SMP 
+Dumping ftrace buffer:
+   (ftrace buffer empty)
+Modules linked in:
+CPU: 1 PID: 5518 Comm: syz-executor.0 Not tainted 3.10.108-rt123+ #14
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+task: ffff88012a08e590 ti: ffff8801309d4000 task.ti: ffff8801309d4000
+RIP: 0010:[<ffffffff8118f7c1>]  [<ffffffff8118f7c1>] __mark_inode_dirty+0x1e1/0x3a0
+RSP: 0018:ffff8801309d5e20  EFLAGS: 00010283
+RAX: 0000000000000000 RBX: 0000000000000007 RCX: ffffc90000b6b000
+RDX: 0000000000040000 RSI: ffffffff8118f7bd RDI: ffff8801210c2238
+RBP: ffff8801309d5e48 R08: 000000000000104d R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: ffff8801210c2238
+R13: 0000000000000000 R14: ffff88012115c480 R15: ffff88011e42c400
+FS:  00007fdb3138e700(0000) GS:ffff88013fd00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000000000010 CR3: 0000000127319000 CR4: 00000000003407e0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Stack:
+ ffff8801210c2238 ffff8801309d5ed8 0000000000000000 ffff88012115c480
+ 0000000000000000 ffff8801309d5e70 ffffffff8118ba73 0000000000000041
+ ffff8801309d5ed8 0000000000000000 ffff8801309d5ec8 ffffffff8117f2e0
+Call Trace:
+ [<ffffffff8118ba73>] simple_setattr+0x53/0x80
+ [<ffffffff8117f2e0>] notify_change+0x430/0x4d0
+ [<ffffffff81159973>] chmod_common+0x73/0xa0
+ [<ffffffff8115b175>] SyS_fchmod+0x65/0xa0
+ [<ffffffff819a0df2>] system_call_fastpath+0x16/0x1b
+Code: ff e9 d8 fe ff ff 0f 1f 40 00 e8 4b a7 f2 ff 8b 05 7d f6 d1 00 4d 8b 7c 24 28 85 c0 0f 85 98 00 00 00 e8 33 a7 f2 ff 49 8b 47 30 <4c> 8b 68 10 4d 85 ed 74 0d e8 21 a7 f2 ff 89 de 4c 89 e7 41 ff 
+RIP  [<ffffffff8118f7c1>] __mark_inode_dirty+0x1e1/0x3a0
+ RSP <ffff8801309d5e20>
+CR2: 0000000000000010
+---[ end trace 4e76ea73d1788106 ]---

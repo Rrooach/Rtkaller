@@ -1,0 +1,81 @@
+000: 9pnet: Unknown protocol version 9
+001: 9pnet: Could not find request transport: rdma
+001: 9pnet: Unknown protocol version 9
+001: ==================================================================
+001: BUG: KASAN: slab-out-of-bounds in vcs_scr_readw+0x97/0xa0
+001: Read of size 2 at addr ffff88811568e4a0 by task syz-executor.1/13921
+001: 
+001: CPU: 1 PID: 13921 Comm: syz-executor.1 Not tainted 5.2.0-rt1+ #2
+001: Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+001: Call Trace:
+001:  dump_stack+0x79/0xba
+001:  print_address_description+0x60/0x229
+001:  __kasan_report.cold.4+0x17/0x32
+001:  kasan_report+0x12/0x20
+001:  vcs_scr_readw+0x97/0xa0
+001:  vcs_write+0x4fc/0xaa0
+001:  do_iter_write+0x3dd/0x560
+001:  vfs_writev+0x19b/0x2d0
+001:  do_writev+0x105/0x2b0
+001:  do_syscall_64+0x9e/0x380
+001:  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+001: RIP: 0033:0x4686dd
+001: Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 bc ff ff ff f7 d8 64 89 01 48
+001: RSP: 002b:00007f2fb6894c58 EFLAGS: 00000246
+001:  ORIG_RAX: 0000000000000014
+001: RAX: ffffffffffffffda RBX: 0000000000544f80 RCX: 00000000004686dd
+001: RDX: 0000000000000005 RSI: 0000000020001580 RDI: 0000000000000003
+001: RBP: 00000000004c4725 R08: 0000000000000000 R09: 0000000000000000
+001: R10: 0000000000000000 R11: 0000000000000246 R12: 000000000057cf00
+001: R13: 00007ffd9190763f R14: 000000000057cf00 R15: 00007f2fb6894dc0
+001: 
+001: Allocated by task 278:
+001:  save_stack+0x19/0x80
+001:  __kasan_kmalloc.constprop.5+0xc1/0xd0
+001:  vc_allocate+0x385/0x6a0
+001:  con_install+0x53/0x3f0
+001:  tty_init_dev+0xe9/0x410
+001:  tty_open+0x596/0x9d0
+001:  chrdev_open+0x211/0x540
+001:  do_dentry_open+0x43c/0xf20
+001:  path_openat+0x988/0x4100
+001:  do_filp_open+0x19b/0x270
+001:  do_sys_open+0x2cb/0x450
+001:  do_syscall_64+0x9e/0x380
+001:  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+001: 
+001: Freed by task 136:
+001:  save_stack+0x19/0x80
+001:  __kasan_slab_free+0x125/0x170
+001:  kfree+0x98/0x1f0
+001:  kobject_uevent_env+0x291/0xc90
+001:  kobject_synth_uevent+0x6fb/0x84c
+001:  store_uevent+0x16/0x30
+001:  module_attr_store+0x57/0x80
+001:  sysfs_kf_write+0x134/0x190
+001:  kernfs_fop_write+0x2a3/0x440
+001:  __vfs_write+0x7c/0x100
+001:  vfs_write+0x16c/0x4a0
+001:  ksys_write+0xfd/0x200
+001:  do_syscall_64+0x9e/0x380
+001:  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+001: 
+001: The buggy address belongs to the object at ffff88811568d500
+001: The buggy address is located 4000 bytes inside of
+001: The buggy address belongs to the page:
+001: page:ffffea000455a200 refcount:1 mapcount:0 mapping:ffff88811ac02140 index:0x0
+001:  compound_mapcount: 0
+001: 
+001: flags: 0x200000000010200(slab|head)
+001: raw: 0200000000010200 dead000000000100 dead000000000200 ffff88811ac02140
+001: raw: 0000000000000000 0000000000070007 00000001ffffffff 0000000000000000
+001: page dumped because: kasan: bad access detected
+001: 
+001: Memory state around the buggy address:
+001:  ffff88811568e380: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+001:  ffff88811568e400: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+001: >ffff88811568e480: 00 00 00 00 fc fc fc fc fc fc fc fc fc fc fc fc
+001:                                ^
+001:  ffff88811568e500: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
+001:  ffff88811568e580: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
+001: ==================================================================

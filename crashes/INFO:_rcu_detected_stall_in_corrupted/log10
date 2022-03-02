@@ -1,0 +1,29 @@
+Warning: Permanently added '[localhost]:59018' (ECDSA) to the list of known hosts.
+2021/06/04 23:26:56 fuzzer started
+2021/06/04 23:27:33 dialing manager at 10.0.2.10:33313
+syzkaller login: [  158.197017] 001: rcu: INFO: rcu_sched detected stalls on CPUs/tasks:
+[  158.197074] 001: 	(detected by 1, t=32209 jiffies, g=5277, q=37)
+[  158.197077] 001: rcu: All QSes seen, last rcu_sched kthread activity 32209 (4294825000-4294792791), jiffies_till_next_fqs=3, root ->qsmask 0x0
+[  158.197090] 001: rcu: rcu_sched kthread starved for 32209 jiffies! g5277 f0x2 RCU_GP_WAIT_FQS(5) ->state=0x0 ->cpu=0
+[  158.197102] 001: rcu: 	Unless rcu_sched kthread gets sufficient CPU time, OOM is now expected behavior.
+[  158.197108] 001: rcu: RCU grace-period kthread stack dump:
+[  158.197116] 001: task:rcu_sched       state:R  running task     stack:29536 pid:   10 ppid:     2 flags:0x00004000
+[  158.197140] 001: Call Trace:
+[  158.197155] 001:  __schedule+0x840/0x1820
+[  158.197220] 001:  ? __sched_text_start+0x8/0x8
+[  158.197239] 001:  ? internal_add_timer+0xb7/0x100
+[  158.197283] 001:  ? del_timer+0x100/0x100
+[  158.197292] 001:  ? enqueue_timer+0x440/0x440
+[  158.197308] 001:  schedule+0xc6/0x290
+[  158.197319] 001:  schedule_timeout+0x3d5/0x770
+[  158.197331] 001:  ? usleep_range+0x110/0x110
+[  158.197344] 001:  ? __next_timer_interrupt+0x1b0/0x1b0
+[  158.197359] 001:  ? swake_up_one+0x60/0x60
+[  158.197377] 001:  rcu_gp_kthread+0xa26/0x2430
+[  158.197396] 001:  ? call_rcu+0xa80/0xa80
+[  158.197405] 001:  ? _raw_spin_lock_irqsave+0x7b/0xd0
+[  158.197419] 001:  ? _raw_write_lock_irqsave+0xd0/0xd0
+[  158.197430] 001:  ? call_rcu+0xa80/0xa80
+[  158.197439] 001:  kthread+0x2f1/0x400
+[  158.197451] 001:  ? kthread_create_on_node+0xf0/0xf0
+[  158.197467] 001:  ret_from_fork+0x22/0x30

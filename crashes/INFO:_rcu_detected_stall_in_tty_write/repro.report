@@ -1,0 +1,70 @@
+INFO: rcu_sched self-detected stall on CPU { 0}  (t=21002 jiffies g=176 c=175 q=6)
+sending NMI to all CPUs:
+NMI backtrace for cpu 0
+CPU: 0 PID: 1555 Comm: syz-executor445 Not tainted 3.10.108-rt123+ #14
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+task: ffff88013a542ee0 ti: ffff88013969e000 task.ti: ffff88013969e000
+RIP: 0010:[<ffffffff81028c10>]  [<ffffffff81028c10>] flat_send_IPI_all+0x80/0x90
+RSP: 0018:ffff88013fc03db8  EFLAGS: 00000006
+RAX: 0000000000000c00 RBX: 0000000000000800 RCX: 0000000000000055
+RDX: 0000000000005555 RSI: 0000000000000092 RDI: 0000000000000300
+RBP: ffff88013fc03dd0 R08: 0000000000000018 R09: 0000000000000000
+R10: 0000000000000004 R11: 00000000000371f0 R12: 0000000000000003
+R13: 0000000000000046 R14: 0000000000000006 R15: ffff88013fc0c720
+FS:  0000000000cc7880(0063) GS:ffff88013fc00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007ffdef6357e8 CR3: 000000013962a000 CR4: 00000000003407f0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Stack:
+ 0000000000002710 ffffffff81eb71a0 ffffffff81e374c0 ffff88013fc03df0
+ ffffffff81025a34 ffffffff81eb6fa0 ffffffff81e374c0 ffff88013fc03e58
+ ffffffff810c4655 0000000000011800 0000000000000000 ffff88013969e000
+Call Trace:
+ <IRQ> 
+ [<ffffffff81025a34>] arch_trigger_all_cpu_backtrace+0x54/0x90
+ [<ffffffff810c4655>] rcu_check_callbacks+0x335/0x670
+ [<ffffffff8104c877>] update_process_times+0x47/0x70
+ [<ffffffff81091f25>] tick_sched_handle.isra.14+0x55/0x70
+ [<ffffffff81091f89>] tick_sched_timer+0x49/0x70
+ [<ffffffff8106391b>] __run_hrtimer+0x7b/0x230
+ [<ffffffff810644c7>] hrtimer_interrupt+0xf7/0x220
+ [<ffffffff81024ce7>] smp_apic_timer_interrupt+0x67/0xa0
+ [<ffffffff819a198a>] apic_timer_interrupt+0x6a/0x70
+ <EOI> 
+ [<ffffffff8141bed7>] scrup+0x127/0x140
+ [<ffffffff8141bf9b>] lf+0xab/0xb0
+ [<ffffffff81422f30>] do_con_write.part.21+0x870/0xd10
+ [<ffffffff814234fa>] con_write+0xaa/0xc0
+ [<ffffffff81405115>] n_tty_write+0x265/0x650
+ [<ffffffff81400dce>] tty_write+0x1be/0x3b0
+ [<ffffffff8115c92f>] vfs_write+0xef/0x260
+ [<ffffffff8115d643>] SyS_write+0x53/0xa0
+ [<ffffffff819a0df2>] system_call_fastpath+0x16/0x1b
+Code: 5d fa 48 8b 05 4a e7 e8 00 8b 58 3c ff 90 50 01 00 00 44 89 e0 c1 e0 18 89 04 25 10 a3 5f ff 89 d8 80 cc 04 89 04 25 00 a3 5f ff <41> 55 9d 5b 41 5c 41 5d 5d c3 66 0f 1f 44 00 00 55 48 89 e5 41 
+NMI backtrace for cpu 1
+CPU: 1 PID: 0 Comm: swapper/1 Not tainted 3.10.108-rt123+ #14
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+task: ffff88013aa7ce20 ti: ffff88013aaaa000 task.ti: ffff88013aaaa000
+RIP: 0010:[<ffffffff8100a27e>]  [<ffffffff8100a27e>] default_idle+0x1e/0xf0
+RSP: 0018:ffff88013aaabeb8  EFLAGS: 00000246
+RAX: 0000000000000000 RBX: ffff88013aaabfd8 RCX: 0100000000000000
+RDX: ffff88013aa7ce20 RSI: ffffffff81684f97 RDI: ffff88013fd0c5a0
+RBP: ffff88013aaabed0 R08: 0000000000000000 R09: 0000000000000000
+R10: ffff88013b0048e0 R11: 0000000000000000 R12: 0000000000000001
+R13: 0000000000000000 R14: ffff88013aaaa000 R15: ffff88013aaabfd8
+FS:  0000000000000000(0000) GS:ffff88013fd00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000000cc7840 CR3: 000000013962a000 CR4: 00000000003407e0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Stack:
+ ffff88013aaabfd8 ffffffff81eb7680 0000000000000000 ffff88013aaabee0
+ ffffffff8100aa36 ffff88013aaabf30 ffffffff81085f25 ffff88013aaabfd8
+ ffff88013aaaa000 ffff88013aaaa000 0000000000000001 0000000000000000
+Call Trace:
+ [<ffffffff8100aa36>] arch_cpu_idle+0x16/0x20
+ [<ffffffff81085f25>] cpu_startup_entry+0xb5/0x2f0
+ [<ffffffff8198a446>] start_secondary+0x1b5/0x1b8
+Code: 5d c3 66 66 2e 0f 1f 84 00 00 00 00 00 8b 05 42 3d ea 00 55 48 89 e5 41 55 41 54 65 44 8b 24 25 30 a0 00 00 85 c0 53 75 24 fb f4 <8b> 05 24 3d ea 00 65 44 8b 24 25 30 a0 00 00 85 c0 75 5f 5b 41 
+INFO: rcu_sched detected stalls on CPUs/tasks: { 0} (detected by 1, t=21002 jiffies, g=176, c=175, q=6)

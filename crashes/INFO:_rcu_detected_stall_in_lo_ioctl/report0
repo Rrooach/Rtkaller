@@ -1,0 +1,137 @@
+INFO: rcu_sched self-detected stall on CPU { 1}  (t=21000 jiffies g=8240 c=8239 q=578)
+sending NMI to all CPUs:
+NMI backtrace for cpu 1
+CPU: 1 PID: 16880 Comm: syz-executor.0 Not tainted 3.10.108-rt123+ #14
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+task: ffff88013ab86d60 ti: ffff880127322000 task.ti: ffff880127322000
+RIP: 0010:[<ffffffff81028c10>]  [<ffffffff81028c10>] flat_send_IPI_all+0x80/0x90
+RSP: 0018:ffff88013fd03db8  EFLAGS: 00000006
+RAX: 0000000000000c00 RBX: 0000000000000800 RCX: 0000000000000006
+RDX: 0000000000000007 RSI: 0000000000000046 RDI: 0000000000000300
+RBP: ffff88013fd03dd0 R08: 000000000000000a R09: 0000000000000229
+R10: 0000000000000004 R11: 0000000000000000 R12: 0000000000000003
+R13: 0000000000000046 R14: 0000000000000242 R15: ffff88013fd0c720
+FS:  00007fc7feb66700(0000) GS:ffff88013fd00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00000000004c8f8b CR3: 000000011f5da000 CR4: 00000000003407e0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Stack:
+ 0000000000002710 ffffffff81eb71a0 ffffffff81e374c0 ffff88013fd03df0
+ ffffffff81025a34 ffffffff81eb6fa0 ffffffff81e374c0 ffff88013fd03e58
+ ffffffff810c4655 0000000000011800 0000000000000001 ffff880127322000
+Call Trace:
+ <IRQ> 
+ [<ffffffff81025a34>] arch_trigger_all_cpu_backtrace+0x54/0x90
+ [<ffffffff810c4655>] rcu_check_callbacks+0x335/0x670
+ [<ffffffff8104c877>] update_process_times+0x47/0x70
+ [<ffffffff81091f25>] tick_sched_handle.isra.14+0x55/0x70
+ [<ffffffff81091f89>] tick_sched_timer+0x49/0x70
+ [<ffffffff8106391b>] __run_hrtimer+0x7b/0x230
+ [<ffffffff810644c7>] hrtimer_interrupt+0xf7/0x220
+ [<ffffffff81024ce7>] smp_apic_timer_interrupt+0x67/0xa0
+ [<ffffffff819a198a>] apic_timer_interrupt+0x6a/0x70
+ <EOI> 
+ [<ffffffff814ff925>] lo_ioctl+0x485/0xa50
+ [<ffffffff81333922>] blkdev_ioctl+0x1e2/0x9d0
+ [<ffffffff811a3626>] block_ioctl+0x56/0x80
+ [<ffffffff81173ccc>] do_vfs_ioctl+0x35c/0x640
+ [<ffffffff81174047>] SyS_ioctl+0x97/0xd0
+ [<ffffffff819a0df2>] system_call_fastpath+0x16/0x1b
+Code: 5d fa 48 8b 05 4a e7 e8 00 8b 58 3c ff 90 50 01 00 00 44 89 e0 c1 e0 18 89 04 25 10 a3 5f ff 89 d8 80 cc 04 89 04 25 00 a3 5f ff <41> 55 9d 5b 41 5c 41 5d 5d c3 66 0f 1f 44 00 00 55 48 89 e5 41 
+NMI backtrace for cpu 0
+CPU: 0 PID: 0 Comm: swapper/0 Not tainted 3.10.108-rt123+ #14
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+task: ffffffff81e10440 ti: ffffffff81e00000 task.ti: ffffffff81e00000
+RIP: 0010:[<ffffffff8100a27e>]  [<ffffffff8100a27e>] default_idle+0x1e/0xf0
+RSP: 0018:ffffffff81e01ed0  EFLAGS: 00000246
+RAX: 0000000000000000 RBX: ffffffff81e01fd8 RCX: 0100000000000000
+RDX: ffffffff81e10440 RSI: ffffffff81684f97 RDI: ffff88013fc0c5a0
+RBP: ffffffff81e01ee8 R08: 0000000000000000 R09: 0000000000000000
+R10: ffff88013b004900 R11: 0000000000000000 R12: 0000000000000000
+R13: ffffffff81f882e0 R14: ffffffff81e00000 R15: ffffffff81e01fd8
+FS:  0000000000000000(0000) GS:ffff88013fc00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000001c058fc CR3: 000000013a364000 CR4: 00000000003407f0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Stack:
+ ffffffff81e01fd8 ffffffff81eb7680 ffffffff81f882e0 ffffffff81e01ef8
+ ffffffff8100aa36 ffffffff81e01f48 ffffffff81085f25 ffffffff81e01fd8
+ ffffffff81e00000 ffffffff81e00000 ffffffff81ed9a44 ffffffff81f80920
+Call Trace:
+ [<ffffffff8100aa36>] arch_cpu_idle+0x16/0x20
+ [<ffffffff81085f25>] cpu_startup_entry+0xb5/0x2f0
+ [<ffffffff819809f7>] rest_init+0x77/0x80
+ [<ffffffff81ed6f1a>] start_kernel+0x3c8/0x3d5
+ [<ffffffff81ed62f6>] x86_64_start_reservations+0x2a/0x2c
+ [<ffffffff81ed643c>] x86_64_start_kernel+0x144/0x154
+Code: 5d c3 66 66 2e 0f 1f 84 00 00 00 00 00 8b 05 42 3d ea 00 55 48 89 e5 41 55 41 54 65 44 8b 24 25 30 a0 00 00 85 c0 53 75 24 fb f4 <8b> 05 24 3d ea 00 65 44 8b 24 25 30 a0 00 00 85 c0 75 5f 5b 41 
+INFO: rcu_sched detected stalls on CPUs/tasks: { 1} (detected by 0, t=21072 jiffies, g=8240, c=8239, q=578)
+sending NMI to all CPUs:
+NMI backtrace for cpu 0
+CPU: 0 PID: 0 Comm: swapper/0 Not tainted 3.10.108-rt123+ #14
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+task: ffffffff81e10440 ti: ffffffff81e00000 task.ti: ffffffff81e00000
+RIP: 0010:[<ffffffff81028c10>]  [<ffffffff81028c10>] flat_send_IPI_all+0x80/0x90
+RSP: 0018:ffff88013fc03db8  EFLAGS: 00000006
+RAX: 0000000000000c00 RBX: 0000000000000800 RCX: 0000000000000006
+RDX: 0000000000000007 RSI: 0000000000000046 RDI: 0000000000000300
+RBP: ffff88013fc03dd0 R08: 000000000000000a R09: 0000000000000277
+R10: 0000000000000004 R11: 0000000000000000 R12: 0000000000000003
+R13: 0000000000000046 R14: 0000000000000242 R15: ffff88013fc0c720
+FS:  0000000000000000(0000) GS:ffff88013fc00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000001c058fc CR3: 000000013a364000 CR4: 00000000003407f0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Stack:
+ 0000000000002710 ffffffff81eb71a0 ffffffff81e374c0 ffff88013fc03df0
+ ffffffff81025a34 ffffffff81eb6fa0 ffffffff81e374c0 ffff88013fc03e58
+ ffffffff810c4948 0000000100011800 0000000000000083 ffffffff81e00000
+Call Trace:
+ <IRQ> 
+ [<ffffffff81025a34>] arch_trigger_all_cpu_backtrace+0x54/0x90
+ [<ffffffff810c4948>] rcu_check_callbacks+0x628/0x670
+ [<ffffffff8104c877>] update_process_times+0x47/0x70
+ [<ffffffff81091f25>] tick_sched_handle.isra.14+0x55/0x70
+ [<ffffffff81091f89>] tick_sched_timer+0x49/0x70
+ [<ffffffff8106391b>] __run_hrtimer+0x7b/0x230
+ [<ffffffff810644c7>] hrtimer_interrupt+0xf7/0x220
+ [<ffffffff81024ce7>] smp_apic_timer_interrupt+0x67/0xa0
+ [<ffffffff819a198a>] apic_timer_interrupt+0x6a/0x70
+ <EOI> 
+ [<ffffffff8100aa36>] arch_cpu_idle+0x16/0x20
+ [<ffffffff81085f25>] cpu_startup_entry+0xb5/0x2f0
+ [<ffffffff819809f7>] rest_init+0x77/0x80
+ [<ffffffff81ed6f1a>] start_kernel+0x3c8/0x3d5
+ [<ffffffff81ed62f6>] x86_64_start_reservations+0x2a/0x2c
+ [<ffffffff81ed643c>] x86_64_start_kernel+0x144/0x154
+Code: 5d fa 48 8b 05 4a e7 e8 00 8b 58 3c ff 90 50 01 00 00 44 89 e0 c1 e0 18 89 04 25 10 a3 5f ff 89 d8 80 cc 04 89 04 25 00 a3 5f ff <41> 55 9d 5b 41 5c 41 5d 5d c3 66 0f 1f 44 00 00 55 48 89 e5 41 
+NMI backtrace for cpu 1
+CPU: 1 PID: 16880 Comm: syz-executor.0 Not tainted 3.10.108-rt123+ #14
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+task: ffff88013ab86d60 ti: ffff880127322000 task.ti: ffff880127322000
+RIP: 0010:[<ffffffff814ff988>]  [<ffffffff814ff988>] lo_ioctl+0x4e8/0xa50
+RSP: 0018:ffff880127323dc8  EFLAGS: 00000246
+RAX: 0000000000040000 RBX: ffff88013a788000 RCX: ffffc9000096a000
+RDX: 0000000000040000 RSI: ffffffff814ff988 RDI: 0000000000000005
+RBP: ffff880127323e20 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: ffff88013a788130
+R13: ffff88013ac25a00 R14: 0000000000000000 R15: ffff88013ac24df0
+FS:  00007fc7feb66700(0000) GS:ffff88013fd00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00000000004c8f8b CR3: 000000011f5da000 CR4: 00000000003407e0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Stack:
+ 0070000027323e20 ffff88013ac24f38 000f42403a256000 ffff88013ac24df0
+ ffff88010000001f ffff880138862700 0000000000004c00 ffffffff814ff4a0
+ ffff88013ac25a00 0000000000000005 ffff88013a743000 ffff880127323e78
+Call Trace:
+ [<ffffffff81333922>] blkdev_ioctl+0x1e2/0x9d0
+ [<ffffffff811a3626>] block_ioctl+0x56/0x80
+ [<ffffffff81173ccc>] do_vfs_ioctl+0x35c/0x640
+ [<ffffffff81174047>] SyS_ioctl+0x97/0xd0
+ [<ffffffff819a0df2>] system_call_fastpath+0x16/0x1b
+Code: e8 8e a5 bb ff 41 0f b7 17 66 81 e2 00 f0 66 81 fa 00 60 75 4e e8 79 a5 bb ff 41 8b 57 4c c1 ea 14 83 fa 07 75 3d e8 68 a5 bb ff <4d> 8b bf 10 02 00 00 4d 39 fd 75 8c 41 be f0 ff ff ff e9 55 fe 

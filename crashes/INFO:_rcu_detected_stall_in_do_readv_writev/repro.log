@@ -1,0 +1,92 @@
+Warning: Permanently added '[localhost]:57288' (ECDSA) to the list of known hosts.
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+syzkaller login: [   72.847852] INFO: rcu_sched self-detected stall on CPU { 1}  (t=21002 jiffies g=153 c=152 q=29)
+[   72.847855] sending NMI to all CPUs:
+[   72.847878] NMI backtrace for cpu 1
+[   72.847885] CPU: 1 PID: 1542 Comm: syz-executor895 Not tainted 3.10.108-rt123+ #14
+[   72.847887] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[   72.847891] task: ffff88013abed5f0 ti: ffff88013a13e000 task.ti: ffff88013a13e000
+[   72.847901] RIP: 0010:[<ffffffff81028c10>]  [<ffffffff81028c10>] flat_send_IPI_all+0x80/0x90
+[   72.847903] RSP: 0018:ffff88013fd03db8  EFLAGS: 00000006
+[   72.847904] RAX: 0000000000000c00 RBX: 0000000000000800 RCX: 0000000000000087
+[   72.847906] RDX: 0000000000008787 RSI: 0000000000000092 RDI: 0000000000000300
+[   72.847907] RBP: ffff88013fd03dd0 R08: 0000000000000018 R09: 0000000000000000
+[   72.847909] R10: 0000000000000004 R11: 00000000000373d8 R12: 0000000000000003
+[   72.847910] R13: 0000000000000046 R14: 000000000000001d R15: ffff88013fd0c720
+[   72.847912] FS:  0000000000ed9880(0063) GS:ffff88013fd00000(0000) knlGS:0000000000000000
+[   72.847914] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[   72.847915] CR2: 0000000000498000 CR3: 000000013a166000 CR4: 00000000003407e0
+[   72.847919] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+[   72.847920] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+[   72.847920] Stack:
+[   72.847923]  0000000000002710 ffffffff81eb71a0 ffffffff81e374c0 ffff88013fd03df0
+[   72.847925]  ffffffff81025a34 ffffffff81eb6fa0 ffffffff81e374c0 ffff88013fd03e58
+[   72.847927]  ffffffff810c4655 0000000000011800 0000000000000001 ffff88013a13e000
+[   72.847928] Call Trace:
+[   72.847934]  <IRQ> 
+[   72.847939]  [<ffffffff81025a34>] arch_trigger_all_cpu_backtrace+0x54/0x90
+[   72.847944]  [<ffffffff810c4655>] rcu_check_callbacks+0x335/0x670
+[   72.847947]  [<ffffffff8104c877>] update_process_times+0x47/0x70
+[   72.847952]  [<ffffffff81091f25>] tick_sched_handle.isra.14+0x55/0x70
+[   72.847955]  [<ffffffff81091f89>] tick_sched_timer+0x49/0x70
+[   72.847959]  [<ffffffff8106391b>] __run_hrtimer+0x7b/0x230
+[   72.847962]  [<ffffffff81091f40>] ? tick_sched_handle.isra.14+0x70/0x70
+[   72.847965]  [<ffffffff810644c7>] hrtimer_interrupt+0xf7/0x220
+[   72.847967]  [<ffffffff81024ce7>] smp_apic_timer_interrupt+0x67/0xa0
+[   72.847971]  [<ffffffff819a198a>] apic_timer_interrupt+0x6a/0x70
+[   72.847972]  <EOI> 
+[   72.847975]  [<ffffffff813585f6>] ? memcpy+0x6/0x110
+[   72.847980]  [<ffffffff8139f5f2>] ? vgacon_scroll+0x352/0x440
+[   72.847985]  [<ffffffff8141bed7>] scrup+0x127/0x140
+[   72.847987]  [<ffffffff8141bf9b>] lf+0xab/0xb0
+[   72.847990]  [<ffffffff81422f30>] do_con_write.part.21+0x870/0xd10
+[   72.847992]  [<ffffffff814234fa>] con_write+0xaa/0xc0
+[   72.847994]  [<ffffffff8140520b>] n_tty_write+0x35b/0x650
+[   72.847997]  [<ffffffff8140a705>] ? tty_ldisc_try+0x55/0x70
+[   72.848001]  [<ffffffff8106e710>] ? wake_up_state+0x10/0x10
+[   72.848003]  [<ffffffff81400dce>] tty_write+0x1be/0x3b0
+[   72.848006]  [<ffffffff81404eb0>] ? reset_buffer_flags+0xc0/0xc0
+[   72.848012]  [<ffffffff8115dcc6>] do_readv_writev+0x2e6/0x380
+[   72.848014]  [<ffffffff81400c10>] ? tty_write_lock+0x70/0x70
+[   72.848020]  [<ffffffff8116ad4c>] ? final_putname+0x2c/0x60
+[   72.848022]  [<ffffffff8116b011>] ? putname+0x41/0x70
+[   72.848025]  [<ffffffff8115de5a>] vfs_writev+0x5a/0xa0
+[   72.848027]  [<ffffffff8115dfc7>] SyS_writev+0x57/0xd0
+[   72.848029]  [<ffffffff819a0df2>] system_call_fastpath+0x16/0x1b
+[   72.848058] Code: 5d fa 48 8b 05 4a e7 e8 00 8b 58 3c ff 90 50 01 00 00 44 89 e0 c1 e0 18 89 04 25 10 a3 5f ff 89 d8 80 cc 04 89 04 25 00 a3 5f ff <41> 55 9d 5b 41 5c 41 5d 5d c3 66 0f 1f 44 00 00 55 48 89 e5 41 
+[   72.848061] NMI backtrace for cpu 0
+[   72.848064] CPU: 0 PID: 0 Comm: swapper/0 Not tainted 3.10.108-rt123+ #14
+[   72.848065] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[   72.848067] task: ffffffff81e10440 ti: ffffffff81e00000 task.ti: ffffffff81e00000
+[   72.848075] RIP: 0010:[<ffffffff8100a27e>]  [<ffffffff8100a27e>] default_idle+0x1e/0xf0
+[   72.848076] RSP: 0018:ffffffff81e01ed0  EFLAGS: 00000246
+[   72.848077] RAX: 0000000000000000 RBX: ffffffff81e01fd8 RCX: 0100000000000000
+[   72.848079] RDX: ffffffff81e10440 RSI: ffffffff81684f97 RDI: ffff88013fc0c5a0
+[   72.848081] RBP: ffffffff81e01ee8 R08: 0000000000000000 R09: 0000000000000000
+[   72.848082] R10: ffff88013b004900 R11: 0000000000000000 R12: 0000000000000000
+[   72.848083] R13: ffffffff81f882e0 R14: ffffffff81e00000 R15: ffffffff81e01fd8
+[   72.848086] FS:  0000000000000000(0000) GS:ffff88013fc00000(0000) knlGS:0000000000000000
+[   72.848087] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[   72.848089] CR2: 0000000000ed9840 CR3: 000000013a1e7000 CR4: 00000000003407f0
+[   72.848092] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+[   72.848093] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+[   72.848093] Stack:
+[   72.848096]  ffffffff81e01fd8 ffffffff81eb7680 ffffffff81f882e0 ffffffff81e01ef8
+[   72.848098]  ffffffff8100aa36 ffffffff81e01f48 ffffffff81085f25 ffffffff81e01fd8
+[   72.848100]  ffffffff81e00000 ffffffff81e00000 ffffffff81ed9a44 ffffffff81f80920
+[   72.848101] Call Trace:
+[   72.848104]  [<ffffffff8100aa36>] arch_cpu_idle+0x16/0x20
+[   72.848109]  [<ffffffff81085f25>] cpu_startup_entry+0xb5/0x2f0
+[   72.848118]  [<ffffffff81ed9a44>] ? trap_init+0x2e4/0x2e4
+[   72.848123]  [<ffffffff819809f7>] rest_init+0x77/0x80
+[   72.848125]  [<ffffffff81ed6f1a>] start_kernel+0x3c8/0x3d5
+[   72.848128]  [<ffffffff81ed62f6>] x86_64_start_reservations+0x2a/0x2c
+[   72.848131]  [<ffffffff81ed643c>] x86_64_start_kernel+0x144/0x154
+[   72.848153] Code: 5d c3 66 66 2e 0f 1f 84 00 00 00 00 00 8b 05 42 3d ea 00 55 48 89 e5 41 55 41 54 65 44 8b 24 25 30 a0 00 00 85 c0 53 75 24 fb f4 <8b> 05 24 3d ea 00 65 44 8b 24 25 30 a0 00 00 85 c0 75 5f 5b 41 
+[   72.848425] INFO: rcu_sched detected stalls on CPUs/tasks: { 1} (detected by 0, t=21002 jiffies, g=153, c=152, q=29)

@@ -1,0 +1,196 @@
+syzkaller login: [  333.276658] 001: EXT4-fs (sda): error count since last fsck: 3
+[  333.276711] 001: EXT4-fs (sda): initial error at time 1622039607: mb_free_blocks:1469: inode 106958: block 461312
+[  333.276720] 001: EXT4-fs (sda): last error at time 1622831328: ext4_mb_generate_buddy:805
+[  522.922772] 000: rcu: INFO: rcu_sched self-detected stall on CPU
+[  522.922803] 000: rcu: 	0-...!: (17 ticks this GP) idle=71e/1/0x4000000000000000 softirq=2095/2096 fqs=0 
+[  522.922817] 000: 	(t=146258 jiffies g=2233 q=16)
+[  522.922819] 000: rcu: rcu_sched kthread starved for 146258 jiffies! g2233 f0x0 RCU_GP_WAIT_FQS(5) ->state=0x402 ->cpu=1
+[  522.922825] 000: rcu: 	Unless rcu_sched kthread gets sufficient CPU time, OOM is now expected behavior.
+[  522.922827] 000: rcu: RCU grace-period kthread stack dump:
+[  522.922834] 000: task:rcu_sched       state:I stack:29456 pid:   10 ppid:     2 flags:0x00004000
+[  522.922846] 000: Call Trace:
+[  522.922855] 000:  __schedule+0x840/0x1820
+[  522.922892] 000:  ? __sched_text_start+0x8/0x8
+[  522.922898] 000:  ? internal_add_timer+0xb7/0x100
+[  522.922915] 000:  ? dequeue_task_fair+0x1ae/0x1740
+[  522.922927] 000:  ? enqueue_timer+0x440/0x440
+[  522.922935] 000:  schedule+0xc6/0x290
+[  522.922940] 000:  schedule_timeout+0x3d5/0x770
+[  522.922946] 000:  ? usleep_range+0x110/0x110
+[  522.922952] 000:  ? __next_timer_interrupt+0x1b0/0x1b0
+[  522.922959] 000:  ? swake_up_one+0x60/0x60
+[  522.922964] 000:  ? finish_swait+0x7c/0x230
+[  522.922969] 000:  rcu_gp_kthread+0xa26/0x2430
+[  522.922979] 000:  ? call_rcu+0xa80/0xa80
+[  522.922986] 000:  ? _raw_spin_lock_irqsave+0x7b/0xd0
+[  522.922991] 000:  ? _raw_write_lock_irqsave+0xd0/0xd0
+[  522.922995] 000:  ? call_rcu+0xa80/0xa80
+[  522.923000] 000:  kthread+0x2f1/0x400
+[  522.923006] 000:  ? kthread_create_on_node+0xf0/0xf0
+[  522.923011] 000:  ret_from_fork+0x22/0x30
+[  522.923045] 000: NMI backtrace for cpu 0
+[  522.923057] 000: CPU: 0 PID: 103 Comm: kworker/0:3 Not tainted 5.9.0-rc7-rt10+ #2
+[  522.923065] 000: Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[  522.923094] 000: Workqueue: events_freezable_power_ disk_events_workfn
+[  522.923097] 000: Call Trace:
+[  522.923099] 000:  <IRQ>
+[  522.923101] 000:  dump_stack+0x9c/0xde
+[  522.923116] 000:  nmi_cpu_backtrace.cold+0x55/0x94
+[  522.923125] 000:  ? lapic_can_unplug_cpu.cold+0x44/0x44
+[  522.923135] 000:  nmi_trigger_cpumask_backtrace+0x155/0x19b
+[  522.923141] 000:  rcu_dump_cpu_stacks+0x192/0x1dc
+[  522.923147] 000:  rcu_sched_clock_irq.cold+0x56e/0x9d6
+[  522.923152] 000:  ? hrtimer_run_queues+0x1d/0x310
+[  522.923158] 000:  update_process_times+0x24/0x90
+[  522.923163] 000:  tick_sched_handle.isra.0+0x105/0x150
+[  522.923173] 000:  tick_sched_timer+0xe7/0x120
+[  522.923177] 000:  __hrtimer_run_queues+0x308/0x7b0
+[  522.923183] 000:  ? tick_sched_handle.isra.0+0x150/0x150
+[  522.923187] 000:  ? enqueue_hrtimer+0x230/0x230
+[  522.923192] 000:  ? _raw_write_lock_irqsave+0xd0/0xd0
+[  522.923196] 000:  ? recalibrate_cpu_khz+0x10/0x10
+[  522.923202] 000:  ? ktime_get_update_offsets_now+0x17f/0x240
+[  522.923208] 000:  hrtimer_interrupt+0x2c9/0x6c0
+[  522.923214] 000:  ? __x64_sys_sched_getattr+0x330/0x330
+[  522.923221] 000:  __sysvec_apic_timer_interrupt+0xcf/0x310
+[  522.923229] 000:  asm_call_irq_on_stack+0x12/0x20
+[  522.923237] 000:  </IRQ>
+[  522.923239] 000:  sysvec_apic_timer_interrupt+0x6f/0x80
+[  522.923244] 000:  asm_sysvec_apic_timer_interrupt+0x12/0x20
+[  522.923251] 000: RIP: 0010:_raw_spin_unlock_irqrestore+0x2c/0x50
+[  522.923256] 000: Code: ec 10 48 b8 00 00 00 00 00 fc ff df 48 89 fa 48 c1 ea 03 0f b6 04 02 48 89 fa 83 e2 07 38 d0 7f 04 84 c0 75 0a c6 07 00 56 9d <48> 83 c4 10 c3 48 89 74 24 08 48 89 3c 24 e8 71 02 fa fd 48 8b 74
+[  522.923265] 000: RSP: 0018:ffff888110d17620 EFLAGS: 00000246
+[  522.923267] 000: RAX: 0000000000000000 RBX: ffff8881139d0000 RCX: ffffffff9c49a4d5
+[  522.923271] 000: RDX: 0000000000000000 RSI: 0000000000000246 RDI: ffff888113922600
+[  522.923274] 000: RBP: ffff8881141c8410 R08: 0000000000000001 R09: ffffed1022cc5a01
+[  522.923277] 000: R10: ffff88811662d003 R11: ffffed1022cc5a00 R12: 0000000000000000
+[  522.923281] 000: R13: 0000000000000246 R14: ffff8881139d0010 R15: ffff88811397b000
+[  522.923285] 000:  ? ata_scsi_queuecmd+0xb5/0x190
+[  522.923302] 000:  ata_scsi_queuecmd+0xdc/0x190
+[  522.923312] 000:  scsi_queue_rq+0x1550/0x2840
+[  522.923320] 000:  blk_mq_dispatch_rq_list+0x33b/0x1b60
+[  522.923326] 000:  ? memmove+0x40/0x60
+[  522.923337] 000:  ? scsi_result_to_blk_status+0x210/0x210
+[  522.923344] 000:  ? blk_mq_dequeue_from_ctx+0x8d0/0x8d0
+[  522.923349] 000:  ? _raw_spin_lock+0x75/0xd0
+[  522.923353] 000:  ? _raw_read_lock_irq+0x30/0x30
+[  522.923358] 000:  __blk_mq_sched_dispatch_requests+0x2f3/0x550
+[  522.923364] 000:  ? blk_mq_sched_mark_restart_hctx+0x70/0x70
+[  522.923371] 000:  ? __isolate_free_page+0x450/0x450
+[  522.923379] 000:  ? blk_mq_get_tag+0x76f/0x9b0
+[  522.923384] 000:  blk_mq_sched_dispatch_requests+0xd8/0x140
+[  522.923390] 000:  __blk_mq_run_hw_queue+0x95/0x250
+[  522.923395] 000:  __blk_mq_delay_run_hw_queue+0x443/0x490
+[  522.923403] 000:  blk_mq_run_hw_queue+0x135/0x330
+[  522.923408] 000:  ? blk_mq_request_bypass_insert+0x101/0x270
+[  522.923413] 000:  blk_mq_sched_insert_request+0x45b/0x570
+[  522.923419] 000:  ? __blk_mq_sched_bio_merge+0x420/0x420
+[  522.923425] 000:  ? blk_account_io_start+0xe/0x150
+[  522.923432] 000:  blk_execute_rq+0xc5/0x120
+[  522.923438] 000:  ? blk_execute_rq_nowait+0x100/0x100
+[  522.923444] 000:  ? memset+0x20/0x40
+[  522.923449] 000:  ? scsi_req_init+0x18/0xa0
+[  522.923454] 000:  __scsi_execute+0x297/0x5b0
+[  522.923460] 000:  sr_check_events+0x174/0x8c0
+[  522.923467] 000:  ? sr_packet+0x180/0x180
+[  522.923472] 000:  ? newidle_balance.isra.0+0x7de/0xb50
+[  522.923478] 000:  ? mutex_lock+0x81/0xd0
+[  522.923483] 000:  cdrom_check_events+0x64/0x110
+[  522.923499] 000:  sr_block_check_events+0x179/0x260
+[  522.923505] 000:  disk_check_events+0x13d/0x560
+[  522.923510] 000:  ? __switch_to+0x572/0xeb0
+[  522.923516] 000:  ? disk_events_poll_jiffies.isra.0+0x70/0x70
+[  522.923522] 000:  ? read_word_at_a_time+0xe/0x20
+[  522.923528] 000:  ? strscpy+0x96/0x2a0
+[  522.923532] 000:  process_one_work+0x880/0x1250
+[  522.923540] 000:  worker_thread+0x97/0xf90
+[  522.923545] 000:  ? _raw_write_lock_irqsave+0xd0/0xd0
+[  522.923550] 000:  ? __kthread_parkme+0xa9/0x110
+[  522.923554] 000:  ? process_one_work+0x1250/0x1250
+[  522.923560] 000:  kthread+0x2f1/0x400
+[  522.923565] 000:  ? kthread_create_on_node+0xf0/0xf0
+[  522.923570] 000:  ret_from_fork+0x22/0x30
+[  598.089408] 001: rcu: INFO: rcu_sched self-detected stall on CPU
+[  598.089430] 001: rcu: 	1-...!: (9 ticks this GP) idle=78e/1/0x4000000000000000 softirq=1732/1732 fqs=3 
+[  598.089446] 001: 	(t=69472 jiffies g=2237 q=21)
+[  598.089448] 001: rcu: rcu_sched kthread starved for 68636 jiffies! g2237 f0x0 RCU_GP_WAIT_FQS(5) ->state=0x402 ->cpu=0
+[  598.089455] 001: rcu: 	Unless rcu_sched kthread gets sufficient CPU time, OOM is now expected behavior.
+[  598.089457] 001: rcu: RCU grace-period kthread stack dump:
+[  598.089462] 001: task:rcu_sched       state:I stack:29456 pid:   10 ppid:     2 flags:0x00004000
+[  598.089475] 001: Call Trace:
+[  598.089484] 001:  __schedule+0x840/0x1820
+[  598.089523] 001:  ? __sched_text_start+0x8/0x8
+[  598.089530] 001:  ? internal_add_timer+0xb7/0x100
+[  598.089549] 001:  ? del_timer+0x100/0x100
+[  598.089554] 001:  ? enqueue_timer+0x440/0x440
+[  598.089560] 001:  schedule+0xc6/0x290
+[  598.089565] 001:  schedule_timeout+0x3d5/0x770
+[  598.089572] 001:  ? usleep_range+0x110/0x110
+[  598.089577] 001:  ? rcu_implicit_dynticks_qs+0x6b/0xcc0
+[  598.089589] 001:  ? __next_timer_interrupt+0x1b0/0x1b0
+[  598.089595] 001:  ? swake_up_one+0x60/0x60
+[  598.089601] 001:  ? rcu_note_context_switch+0x280/0x280
+[  598.089607] 001:  rcu_gp_kthread+0xa26/0x2430
+[  598.089614] 001:  ? call_rcu+0xa80/0xa80
+[  598.089618] 001:  ? _raw_spin_lock_irqsave+0x7b/0xd0
+[  598.089624] 001:  ? _raw_write_lock_irqsave+0xd0/0xd0
+[  598.089629] 001:  ? call_rcu+0xa80/0xa80
+[  598.089634] 001:  kthread+0x2f1/0x400
+[  598.089641] 001:  ? kthread_create_on_node+0xf0/0xf0
+[  598.089649] 001:  ret_from_fork+0x22/0x30
+[  598.089689] 001: NMI backtrace for cpu 1
+[  598.089699] 001: CPU: 1 PID: 66 Comm: printk Not tainted 5.9.0-rc7-rt10+ #2
+[  598.089705] 001: Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[  598.089708] 001: Call Trace:
+[  598.089711] 001:  <IRQ>
+[  598.089712] 001:  dump_stack+0x9c/0xde
+[  598.089734] 001:  nmi_cpu_backtrace.cold+0x55/0x94
+[  598.089744] 001:  ? lapic_can_unplug_cpu.cold+0x44/0x44
+[  598.089755] 001:  nmi_trigger_cpumask_backtrace+0x155/0x19b
+[  598.089762] 001:  rcu_dump_cpu_stacks+0x192/0x1dc
+[  598.089768] 001:  rcu_sched_clock_irq.cold+0x56e/0x9d6
+[  598.089774] 001:  ? hrtimer_run_queues+0x1d/0x310
+[  598.089780] 001:  update_process_times+0x24/0x90
+[  598.089786] 001:  tick_sched_handle.isra.0+0x105/0x150
+[  598.089797] 001:  tick_sched_timer+0xe7/0x120
+[  598.089802] 001:  __hrtimer_run_queues+0x308/0x7b0
+[  598.089808] 001:  ? tick_sched_handle.isra.0+0x150/0x150
+[  598.089813] 001:  ? enqueue_hrtimer+0x230/0x230
+[  598.089819] 001:  ? _raw_write_lock_irqsave+0xd0/0xd0
+[  598.089824] 001:  ? recalibrate_cpu_khz+0x10/0x10
+[  598.089830] 001:  ? ktime_get_update_offsets_now+0x17f/0x240
+[  598.089837] 001:  hrtimer_interrupt+0x2c9/0x6c0
+[  598.089843] 001:  ? __x64_sys_sched_getattr+0x330/0x330
+[  598.089852] 001:  __sysvec_apic_timer_interrupt+0xcf/0x310
+[  598.089860] 001:  asm_call_irq_on_stack+0x12/0x20
+[  598.089869] 001:  </IRQ>
+[  598.089871] 001:  sysvec_apic_timer_interrupt+0x6f/0x80
+[  598.089877] 001:  asm_sysvec_apic_timer_interrupt+0x12/0x20
+[  598.089883] 001: RIP: 0010:_raw_spin_unlock_irqrestore+0x2c/0x50
+[  598.089889] 001: Code: ec 10 48 b8 00 00 00 00 00 fc ff df 48 89 fa 48 c1 ea 03 0f b6 04 02 48 89 fa 83 e2 07 38 d0 7f 04 84 c0 75 0a c6 07 00 56 9d <48> 83 c4 10 c3 48 89 74 24 08 48 89 3c 24 e8 71 02 fa fd 48 8b 74
+[  598.089899] 001: RSP: 0018:ffff888112407bc8 EFLAGS: 00000246
+[  598.089901] 001: RAX: 0000000000000000 RBX: 0000000000000000 RCX: ffffffff9be02d22
+[  598.089905] 001: RDX: 0000000000000000 RSI: 0000000000000246 RDI: ffffffff9f933420
+[  598.089909] 001: RBP: ffffffff9f933420 R08: 0000000000000001 R09: fffffbfff3c59ff9
+[  598.089912] 001: R10: ffffffff9e2cffc3 R11: fffffbfff3c59ff8 R12: 0000000000000005
+[  598.089916] 001: R13: 0000000000000029 R14: ffffffff9f933440 R15: ffffffff9f933520
+[  598.089920] 001:  ? serial8250_console_write+0x582/0xb90
+[  598.089937] 001:  serial8250_console_write+0x58e/0xb90
+[  598.089943] 001:  ? serial8250_console_write_atomic+0x570/0x570
+[  598.089950] 001:  ? _raw_spin_lock_irqsave+0x7b/0xd0
+[  598.089954] 001:  ? _raw_write_lock_irqsave+0xd0/0xd0
+[  598.089959] 001:  ? format_text+0xcf/0x2c0
+[  598.089965] 001:  ? univ8250_console_write_atomic+0x70/0x70
+[  598.089971] 001:  printk_kthread_func+0x59f/0xd20
+[  598.089977] 001:  ? dequeue_task_fair+0x1ae/0x1740
+[  598.089985] 001:  ? kmsg_dump_rewind+0x60/0x60
+[  598.089989] 001:  ? __switch_to+0x572/0xeb0
+[  598.089995] 001:  ? __switch_to_asm+0x42/0x70
+[  598.089999] 001:  ? __switch_to_asm+0x36/0x70
+[  598.090004] 001:  ? __schedule+0x848/0x1820
+[  598.090012] 001:  ? _raw_spin_lock_irqsave+0x7b/0xd0
+[  598.090016] 001:  ? _raw_write_lock_irqsave+0xd0/0xd0
+[  598.090022] 001:  ? kmsg_dump_rewind+0x60/0x60
+[  598.090026] 001:  kthread+0x2f1/0x400
+[  598.090031] 001:  ? kthread_create_on_node+0xf0/0xf0
+[  598.090037] 001:  ret_from_fork+0x22/0x30

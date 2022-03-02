@@ -1,0 +1,48 @@
+001: ==================================================================
+001: BUG: KASAN: use-after-free in do_con_write.part.26+0x1809/0x1a50
+001: Write of size 2 at addr ffff888000100000 by task syz-executor.1/18603
+001: 
+001: CPU: 1 PID: 18603 Comm: syz-executor.1 Not tainted 5.2.0-rt1+ #2
+001: Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+001: Call Trace:
+001:  dump_stack+0x79/0xba
+001:  print_address_description+0x60/0x229
+001:  __kasan_report.cold.4+0x17/0x32
+001:  kasan_report+0x12/0x20
+001:  do_con_write.part.26+0x1809/0x1a50
+001:  con_put_char+0xd5/0xe0
+001:  tty_put_char+0xbd/0x150
+001:  do_output_char+0x204/0x770
+001:  n_tty_write+0x589/0xe30
+001:  tty_write+0x3a0/0x800
+001:  do_iter_write+0x3dd/0x560
+001:  vfs_writev+0x19b/0x2d0
+001:  do_writev+0x105/0x2b0
+001:  do_syscall_64+0x9e/0x380
+001:  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+001: RIP: 0033:0x4686dd
+001: Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 bc ff ff ff f7 d8 64 89 01 48
+001: RSP: 002b:00007fcfda933c58 EFLAGS: 00000246
+001:  ORIG_RAX: 0000000000000014
+001: RAX: ffffffffffffffda RBX: 0000000000544f80 RCX: 00000000004686dd
+001: RDX: 0000000000000001 RSI: 0000000020003380 RDI: 0000000000000004
+001: RBP: 00000000004c4725 R08: 0000000000000000 R09: 0000000000000000
+001: R10: 0000000000000000 R11: 0000000000000246 R12: 000000000057cf00
+001: R13: 00007ffe9f4ea60f R14: 000000000057cf00 R15: 00007fcfda933dc0
+001: 
+001: The buggy address belongs to the page:
+001: page:ffffea0000004000 refcount:0 mapcount:-128 mapping:0000000000000000 index:0x0
+001: 
+001: flags: 0x0()
+001: raw: 0000000000000000 ffff88813fffc300 ffff88813fffc300 0000000000000000
+001: raw: 0000000000000000 0000000000000008 00000000ffffff7f 0000000000000000
+001: page dumped because: kasan: bad access detected
+001: 
+001: Memory state around the buggy address:
+001:  ffff8880000fff00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+001:  ffff8880000fff80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+001: >ffff888000100000: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+001:                    ^
+001:  ffff888000100080: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+001:  ffff888000100100: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+001: ==================================================================

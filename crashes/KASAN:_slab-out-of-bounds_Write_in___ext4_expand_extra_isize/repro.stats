@@ -1,0 +1,217 @@
+Extracting prog: 30.530141461s
+Minimizing prog: 5m29.423717817s
+Simplifying prog options: 0s
+Extracting C: 4m3.181752897s
+Simplifying C: 2m0.397700189s
+
+
+617 programs, 2 VMs, timeouts [15s 6m0s]
+extracting reproducer from 617 programs
+single: executing 2 programs separately with timeout 15s
+testing program (duration=15s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): open-mount$9p_unix-syz_mount_image$ext4
+detailed listing:
+executing program 0:
+open(&(0x7f00000011c0)='fallocate04.txt\x00', 0x24542, 0x0)
+mount$9p_unix(&(0x7f0000000040)='fallocate04.txt\x00', &(0x7f00000010c0)='fallocate04.txt\x00', 0x0, 0x204740a, 0x0)
+syz_mount_image$ext4(&(0x7f0000000080)='ext3\x00', &(0x7f00000000c0)='fallocate04.txt\x00', 0x0, 0x0, 0x0, 0x820020, &(0x7f00000001c0)=ANY=[@ANYBLOB="64656275675f77616e745f65787472615f6973697a653d307830323030303030302c00b7c44e67bdfb7f9b411a12287984a480ac009dd303f85bd63c69d24f9772f621bf591bcb518c295cf1d5e89cd70309783629d38a321baf716eee172947ab4bcef3019f35e1014f3c5c38ea4a05961627805822b9aa50a19dfa01253dde8988afbb3f48021caf125c5c85cb073f516d7d8d62"])
+
+program crashed: KASAN: use-after-free Write in __ext4_expand_extra_isize
+single: successfully extracted reproducer
+found reproducer with 3 syscalls
+minimizing guilty program
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): open-mount$9p_unix
+detailed listing:
+executing program 0:
+open(&(0x7f00000011c0)='fallocate04.txt\x00', 0x24542, 0x0)
+mount$9p_unix(&(0x7f0000000040)='fallocate04.txt\x00', &(0x7f00000010c0)='fallocate04.txt\x00', 0x0, 0x204740a, 0x0)
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): open-syz_mount_image$ext4
+detailed listing:
+executing program 0:
+open(&(0x7f00000011c0)='fallocate04.txt\x00', 0x24542, 0x0)
+syz_mount_image$ext4(&(0x7f0000000080)='ext3\x00', &(0x7f00000000c0)='fallocate04.txt\x00', 0x0, 0x0, 0x0, 0x820020, &(0x7f00000001c0)=ANY=[@ANYBLOB="64656275675f77616e745f65787472615f6973697a653d307830323030303030302c00b7c44e67bdfb7f9b411a12287984a480ac009dd303f85bd63c69d24f9772f621bf591bcb518c295cf1d5e89cd70309783629d38a321baf716eee172947ab4bcef3019f35e1014f3c5c38ea4a05961627805822b9aa50a19dfa01253dde8988afbb3f48021caf125c5c85cb073f516d7d8d62"])
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): mount$9p_unix-syz_mount_image$ext4
+detailed listing:
+executing program 0:
+mount$9p_unix(&(0x7f0000000040)='fallocate04.txt\x00', &(0x7f00000010c0)='fallocate04.txt\x00', 0x0, 0x204740a, 0x0)
+syz_mount_image$ext4(&(0x7f0000000080)='ext3\x00', &(0x7f00000000c0)='fallocate04.txt\x00', 0x0, 0x0, 0x0, 0x820020, &(0x7f00000001c0)=ANY=[@ANYBLOB="64656275675f77616e745f65787472615f6973697a653d307830323030303030302c00b7c44e67bdfb7f9b411a12287984a480ac009dd303f85bd63c69d24f9772f621bf591bcb518c295cf1d5e89cd70309783629d38a321baf716eee172947ab4bcef3019f35e1014f3c5c38ea4a05961627805822b9aa50a19dfa01253dde8988afbb3f48021caf125c5c85cb073f516d7d8d62"])
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): open-mount$9p_unix-syz_mount_image$ext4
+detailed listing:
+executing program 0:
+open(0x0, 0x24542, 0x0)
+mount$9p_unix(&(0x7f0000000040)='fallocate04.txt\x00', &(0x7f00000010c0)='fallocate04.txt\x00', 0x0, 0x204740a, 0x0)
+syz_mount_image$ext4(&(0x7f0000000080)='ext3\x00', &(0x7f00000000c0)='fallocate04.txt\x00', 0x0, 0x0, 0x0, 0x820020, &(0x7f00000001c0)=ANY=[@ANYBLOB="64656275675f77616e745f65787472615f6973697a653d307830323030303030302c00b7c44e67bdfb7f9b411a12287984a480ac009dd303f85bd63c69d24f9772f621bf591bcb518c295cf1d5e89cd70309783629d38a321baf716eee172947ab4bcef3019f35e1014f3c5c38ea4a05961627805822b9aa50a19dfa01253dde8988afbb3f48021caf125c5c85cb073f516d7d8d62"])
+
+program crashed: KASAN: use-after-free Write in __ext4_expand_extra_isize
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): open-mount$9p_unix-syz_mount_image$ext4
+detailed listing:
+executing program 0:
+open(0x0, 0x24542, 0x0)
+mount$9p_unix(0x0, &(0x7f00000010c0)='fallocate04.txt\x00', 0x0, 0x204740a, 0x0)
+syz_mount_image$ext4(&(0x7f0000000080)='ext3\x00', &(0x7f00000000c0)='fallocate04.txt\x00', 0x0, 0x0, 0x0, 0x820020, &(0x7f00000001c0)=ANY=[@ANYBLOB="64656275675f77616e745f65787472615f6973697a653d307830323030303030302c00b7c44e67bdfb7f9b411a12287984a480ac009dd303f85bd63c69d24f9772f621bf591bcb518c295cf1d5e89cd70309783629d38a321baf716eee172947ab4bcef3019f35e1014f3c5c38ea4a05961627805822b9aa50a19dfa01253dde8988afbb3f48021caf125c5c85cb073f516d7d8d62"])
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): open-mount$9p_unix-syz_mount_image$ext4
+detailed listing:
+executing program 0:
+open(0x0, 0x24542, 0x0)
+mount$9p_unix(&(0x7f0000000040)='fallocate04.txt\x00', 0x0, 0x0, 0x204740a, 0x0)
+syz_mount_image$ext4(&(0x7f0000000080)='ext3\x00', &(0x7f00000000c0)='fallocate04.txt\x00', 0x0, 0x0, 0x0, 0x820020, &(0x7f00000001c0)=ANY=[@ANYBLOB="64656275675f77616e745f65787472615f6973697a653d307830323030303030302c00b7c44e67bdfb7f9b411a12287984a480ac009dd303f85bd63c69d24f9772f621bf591bcb518c295cf1d5e89cd70309783629d38a321baf716eee172947ab4bcef3019f35e1014f3c5c38ea4a05961627805822b9aa50a19dfa01253dde8988afbb3f48021caf125c5c85cb073f516d7d8d62"])
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): open-mount$9p_unix-syz_mount_image$ext4
+detailed listing:
+executing program 0:
+open(0x0, 0x24542, 0x0)
+mount$9p_unix(&(0x7f0000000040)='fallocate04.txt\x00', &(0x7f00000010c0)='fallocate04.txt\x00', 0x0, 0x204740a, 0x0)
+syz_mount_image$ext4(0x0, &(0x7f00000000c0)='fallocate04.txt\x00', 0x0, 0x0, 0x0, 0x820020, &(0x7f00000001c0)=ANY=[@ANYBLOB="64656275675f77616e745f65787472615f6973697a653d307830323030303030302c00b7c44e67bdfb7f9b411a12287984a480ac009dd303f85bd63c69d24f9772f621bf591bcb518c295cf1d5e89cd70309783629d38a321baf716eee172947ab4bcef3019f35e1014f3c5c38ea4a05961627805822b9aa50a19dfa01253dde8988afbb3f48021caf125c5c85cb073f516d7d8d62"])
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): open-mount$9p_unix-syz_mount_image$ext4
+detailed listing:
+executing program 0:
+open(0x0, 0x24542, 0x0)
+mount$9p_unix(&(0x7f0000000040)='fallocate04.txt\x00', &(0x7f00000010c0)='fallocate04.txt\x00', 0x0, 0x204740a, 0x0)
+syz_mount_image$ext4(&(0x7f0000000080)='ext3\x00', 0x0, 0x0, 0x0, 0x0, 0x820020, &(0x7f00000001c0)=ANY=[@ANYBLOB="64656275675f77616e745f65787472615f6973697a653d307830323030303030302c00b7c44e67bdfb7f9b411a12287984a480ac009dd303f85bd63c69d24f9772f621bf591bcb518c295cf1d5e89cd70309783629d38a321baf716eee172947ab4bcef3019f35e1014f3c5c38ea4a05961627805822b9aa50a19dfa01253dde8988afbb3f48021caf125c5c85cb073f516d7d8d62"])
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): open-mount$9p_unix-syz_mount_image$ext4
+detailed listing:
+executing program 0:
+open(0x0, 0x24542, 0x0)
+mount$9p_unix(&(0x7f0000000040)='fallocate04.txt\x00', &(0x7f00000010c0)='fallocate04.txt\x00', 0x0, 0x204740a, 0x0)
+syz_mount_image$ext4(&(0x7f0000000080)='ext3\x00', &(0x7f00000000c0)='fallocate04.txt\x00', 0x0, 0x0, 0x0, 0x820020, 0x0)
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): open-mount$9p_unix-syz_mount_image$ext4
+detailed listing:
+executing program 0:
+open(0x0, 0x24542, 0x0)
+mount$9p_unix(&(0x7f0000000040)='fallocate04.txt\x00', &(0x7f00000010c0)='fallocate04.txt\x00', 0x0, 0x204740a, 0x0)
+syz_mount_image$ext4(&(0x7f0000000080)='ext3\x00', &(0x7f00000000c0)='fallocate04.txt\x00', 0x0, 0x0, 0x0, 0x820020, &(0x7f00000001c0)=ANY=[@ANYBLOB])
+
+program did not crash
+extracting C reproducer
+testing compiled C program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): open-mount$9p_unix-syz_mount_image$ext4
+program crashed: KASAN: use-after-free Write in __ext4_expand_extra_isize
+simplifying C reproducer
+testing compiled C program (duration=22.5s, {Threaded:true Collide:false Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): open-mount$9p_unix-syz_mount_image$ext4
+program did not crash
+testing compiled C program (duration=22.5s, {Threaded:true Collide:true Repeat:false RepeatTimes:0 Procs:1 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:false Cgroups:false BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): open-mount$9p_unix-syz_mount_image$ext4
+program crashed: KASAN: use-after-free Write in __ext4_expand_extra_isize
+testing compiled C program (duration=22.5s, {Threaded:true Collide:true Repeat:false RepeatTimes:0 Procs:1 Sandbox: Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:false KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): open-mount$9p_unix-syz_mount_image$ext4
+program crashed: KASAN: use-after-free Write in __ext4_expand_extra_isize
+testing compiled C program (duration=22.5s, {Threaded:true Collide:true Repeat:false RepeatTimes:0 Procs:1 Sandbox: Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:false KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:false HandleSegv:true Repro:true Trace:false}): open-mount$9p_unix-syz_mount_image$ext4
+program crashed: KASAN: use-after-free Write in __ext4_expand_extra_isize
+testing compiled C program (duration=22.5s, {Threaded:true Collide:true Repeat:false RepeatTimes:0 Procs:1 Sandbox: Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:false KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:false HandleSegv:false Repro:true Trace:false}): open-mount$9p_unix-syz_mount_image$ext4
+program crashed: KASAN: slab-out-of-bounds Write in __ext4_expand_extra_isize
+reproducing took 12m3.533338405s
+repro crashed as (corrupted=false):
+EXT4-fs (sda): re-mounted. Opts: debug_want_extra_isize=0x02000000,,errors=continue
+==================================================================
+BUG: KASAN: slab-out-of-bounds in __ext4_expand_extra_isize+0x13f/0x200
+Write of size 33554400 at addr ffff88811669dea0 by task rs:main Q:Reg/1860
+
+CPU: 1 PID: 1860 Comm: rs:main Q:Reg Not tainted 5.0.0 #3
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+Call Trace:
+ dump_stack+0x79/0xba
+ print_address_description+0x60/0x229
+ kasan_report.cold.3+0x1a/0x35
+ memset+0x23/0x40
+ __ext4_expand_extra_isize+0x13f/0x200
+ ext4_mark_inode_dirty+0x522/0x640
+ ext4_dirty_inode+0x75/0xa0
+ __mark_inode_dirty+0x3bd/0xc70
+ generic_update_time+0x1b8/0x2e0
+ file_update_time+0x2a9/0x450
+ __generic_file_write_iter+0x1c0/0x550
+ ext4_file_write_iter+0x4fa/0xe30
+ __vfs_write+0x4d2/0x6c0
+ vfs_write+0x16c/0x4a0
+ ksys_write+0xbf/0x1a0
+ do_syscall_64+0x9e/0x2b0
+ entry_SYSCALL_64_after_hwframe+0x44/0xa9
+RIP: 0033:0x7f8af5dcea3d
+Code: d9 20 00 00 75 10 b8 01 00 00 00 0f 05 48 3d 01 f0 ff ff 73 31 c3 48 83 ec 08 e8 7e fc ff ff 48 89 04 24 b8 01 00 00 00 0f 05 <48> 8b 3c 24 48 89 c2 e8 c7 fc ff ff 48 89 d0 48 83 c4 08 48 3d 01
+RSP: 002b:00007f8af2b1e600 EFLAGS: 00000293 ORIG_RAX: 0000000000000001
+RAX: ffffffffffffffda RBX: 00007f8ae80217d0 RCX: 00007f8af5dcea3d
+RDX: 0000000000000085 RSI: 00007f8ae80217d0 RDI: 0000000000000006
+RBP: 0000000000000000 R08: fffffffffffe09e0 R09: fffffffffffe09d0
+R10: fffffffffffe09c0 R11: 0000000000000293 R12: 00007f8ae8021560
+R13: 00007f8af2b1e620 R14: 0000000000000000 R15: 0000000000000085
+
+The buggy address belongs to the page:
+page:ffffea000459a740 count:2 mapcount:0 mapping:ffff88811a828d78 index:0x6801e
+0xffffffffa40aa280 
+flags: 0x200000000002032(referenced|lru|active|private)
+raw: 0200000000002032 ffffea000459ff48 ffffea000459ba88 ffff88811a828d78
+raw: 000000000006801e ffff888116a64888 00000002ffffffff 0000000000000000
+page dumped because: kasan: bad access detected
+
+Memory state around the buggy address:
+ ffff8881167fff80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ ffff888116800000: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>ffff888116800080: 00 00 00 00 00 00 00 00 fc fc fc fc fc fc fc fc
+                                           ^
+ ffff888116800100: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ ffff888116800180: 00 00 00 00 00 00 00 00 fc fc fc fc fc fc fc fc
+==================================================================
+
+final repro crashed as (corrupted=false):
+EXT4-fs (sda): re-mounted. Opts: debug_want_extra_isize=0x02000000,,errors=continue
+==================================================================
+BUG: KASAN: slab-out-of-bounds in __ext4_expand_extra_isize+0x13f/0x200
+Write of size 33554400 at addr ffff88811669dea0 by task rs:main Q:Reg/1860
+
+CPU: 1 PID: 1860 Comm: rs:main Q:Reg Not tainted 5.0.0 #3
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+Call Trace:
+ dump_stack+0x79/0xba
+ print_address_description+0x60/0x229
+ kasan_report.cold.3+0x1a/0x35
+ memset+0x23/0x40
+ __ext4_expand_extra_isize+0x13f/0x200
+ ext4_mark_inode_dirty+0x522/0x640
+ ext4_dirty_inode+0x75/0xa0
+ __mark_inode_dirty+0x3bd/0xc70
+ generic_update_time+0x1b8/0x2e0
+ file_update_time+0x2a9/0x450
+ __generic_file_write_iter+0x1c0/0x550
+ ext4_file_write_iter+0x4fa/0xe30
+ __vfs_write+0x4d2/0x6c0
+ vfs_write+0x16c/0x4a0
+ ksys_write+0xbf/0x1a0
+ do_syscall_64+0x9e/0x2b0
+ entry_SYSCALL_64_after_hwframe+0x44/0xa9
+RIP: 0033:0x7f8af5dcea3d
+Code: d9 20 00 00 75 10 b8 01 00 00 00 0f 05 48 3d 01 f0 ff ff 73 31 c3 48 83 ec 08 e8 7e fc ff ff 48 89 04 24 b8 01 00 00 00 0f 05 <48> 8b 3c 24 48 89 c2 e8 c7 fc ff ff 48 89 d0 48 83 c4 08 48 3d 01
+RSP: 002b:00007f8af2b1e600 EFLAGS: 00000293 ORIG_RAX: 0000000000000001
+RAX: ffffffffffffffda RBX: 00007f8ae80217d0 RCX: 00007f8af5dcea3d
+RDX: 0000000000000085 RSI: 00007f8ae80217d0 RDI: 0000000000000006
+RBP: 0000000000000000 R08: fffffffffffe09e0 R09: fffffffffffe09d0
+R10: fffffffffffe09c0 R11: 0000000000000293 R12: 00007f8ae8021560
+R13: 00007f8af2b1e620 R14: 0000000000000000 R15: 0000000000000085
+
+The buggy address belongs to the page:
+page:ffffea000459a740 count:2 mapcount:0 mapping:ffff88811a828d78 index:0x6801e
+0xffffffffa40aa280 
+flags: 0x200000000002032(referenced|lru|active|private)
+raw: 0200000000002032 ffffea000459ff48 ffffea000459ba88 ffff88811a828d78
+raw: 000000000006801e ffff888116a64888 00000002ffffffff 0000000000000000
+page dumped because: kasan: bad access detected
+
+Memory state around the buggy address:
+ ffff8881167fff80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ ffff888116800000: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>ffff888116800080: 00 00 00 00 00 00 00 00 fc fc fc fc fc fc fc fc
+                                           ^
+ ffff888116800100: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ ffff888116800180: 00 00 00 00 00 00 00 00 fc fc fc fc fc fc fc fc
+==================================================================
+

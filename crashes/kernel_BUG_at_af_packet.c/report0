@@ -1,0 +1,34 @@
+------------[ cut here ]------------
+kernel BUG at net/packet/af_packet.c:1276!
+invalid opcode: 0000 [#1] SMP 
+Dumping ftrace buffer:
+   (ftrace buffer empty)
+Modules linked in:
+CPU: 1 PID: 3912 Comm: syz-executor.0 Not tainted 3.10.108-rt123+ #14
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+task: ffff88013aac7530 ti: ffff88011bc3c000 task.ti: ffff88011bc3c000
+RIP: 0010:[<ffffffff818a1eaa>]  [<ffffffff818a1eaa>] __unregister_prot_hook+0x8a/0x140
+RSP: 0018:ffff88011bc3dde0  EFLAGS: 00010283
+RAX: 000000000000002f RBX: ffff880127651800 RCX: ffffc9000435b000
+RDX: 0000000000040000 RSI: ffffffff818a1eaa RDI: ffff88011c588c28
+RBP: ffff88011bc3de10 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000020000000 R11: 0000000000000000 R12: ffff88011bc3dee0
+R13: ffff880127651800 R14: 0000000000000000 R15: ffff88011c588000
+FS:  00007f0369f91700(0000) GS:ffff88013fd00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000000403580 CR3: 0000000126a21000 CR4: 00000000003407e0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Stack:
+ 000000001bc3ddf0 ffff880127651800 ffff88011bc3dee0 ffff880127651b70
+ 0000000000000000 0000000000000000 ffff88011bc3dec0 ffffffff818a3710
+ ffff88011bc3df08 ffffffff81090300 ffff880127651c54 0000000000000001
+Call Trace:
+ [<ffffffff818a3710>] packet_set_ring+0x720/0x8d0
+ [<ffffffff818a4094>] packet_setsockopt+0x264/0xcb0
+ [<ffffffff8174ac4a>] SyS_setsockopt+0x8a/0x100
+ [<ffffffff819a0df2>] system_call_fastpath+0x16/0x1b
+Code: eb 2b 0f 1f 80 00 00 00 00 49 83 c4 08 e8 5f 80 81 ff 4d 3b 6c 24 f8 74 18 83 c3 01 e8 50 80 81 ff 44 39 f3 75 e3 e8 46 80 81 ff <0f> 0b 31 db 66 90 e8 3b 80 81 ff 41 8d 46 ff 48 63 db 49 89 c6 
+RIP  [<ffffffff818a1eaa>] __unregister_prot_hook+0x8a/0x140
+ RSP <ffff88011bc3dde0>
+---[ end trace ec9c8d077bb2e6ce ]---

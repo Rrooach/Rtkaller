@@ -1,0 +1,137 @@
+Extracting prog: 21.087878871s
+Minimizing prog: 1m30.311795795s
+Simplifying prog options: 0s
+Extracting C: 11.195125371s
+Simplifying C: 1m4.293080283s
+
+
+696 programs, 2 VMs, timeouts [15s 1m0s 6m0s]
+extracting reproducer from 696 programs
+single: executing 2 programs separately with timeout 15s
+testing program (duration=15s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): syz_open_dev$sg-ioctl$SCSI_IOCTL_SEND_COMMAND
+detailed listing:
+executing program 0:
+r0 = syz_open_dev$sg(&(0x7f0000000000)='/dev/sg#\x00', 0x0, 0x0)
+ioctl$SCSI_IOCTL_SEND_COMMAND(r0, 0x1, &(0x7f0000000280)={0x0, 0x0, 0x8})
+
+program crashed: WARNING: at drivers/ata/libata-core.c:LINE ata_qc_issue()
+single: successfully extracted reproducer
+found reproducer with 2 syscalls
+minimizing guilty program
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): syz_open_dev$sg
+detailed listing:
+executing program 0:
+syz_open_dev$sg(&(0x7f0000000000)='/dev/sg#\x00', 0x0, 0x0)
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): ioctl$SCSI_IOCTL_SEND_COMMAND
+detailed listing:
+executing program 0:
+ioctl$SCSI_IOCTL_SEND_COMMAND(0xffffffffffffffff, 0x1, &(0x7f0000000280)={0x0, 0x0, 0x8})
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): syz_open_dev$sg-ioctl$SCSI_IOCTL_SEND_COMMAND
+detailed listing:
+executing program 0:
+r0 = syz_open_dev$sg(0x0, 0x0, 0x0)
+ioctl$SCSI_IOCTL_SEND_COMMAND(r0, 0x1, &(0x7f0000000280)={0x0, 0x0, 0x8})
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): syz_open_dev$sg-ioctl$SCSI_IOCTL_SEND_COMMAND
+detailed listing:
+executing program 0:
+r0 = syz_open_dev$sg(&(0x7f0000000000)='/dev/sg#\x00', 0x0, 0x0)
+ioctl$SCSI_IOCTL_SEND_COMMAND(r0, 0x1, 0x0)
+
+program did not crash
+extracting C reproducer
+testing compiled C program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): syz_open_dev$sg-ioctl$SCSI_IOCTL_SEND_COMMAND
+program crashed: WARNING: at drivers/ata/libata-core.c:LINE ata_qc_issue()
+simplifying C reproducer
+testing compiled C program (duration=22.5s, {Threaded:true Collide:false Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): syz_open_dev$sg-ioctl$SCSI_IOCTL_SEND_COMMAND
+program crashed: WARNING: at drivers/ata/libata-core.c:LINE ata_qc_issue()
+testing compiled C program (duration=22.5s, {Threaded:false Collide:false Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): syz_open_dev$sg-ioctl$SCSI_IOCTL_SEND_COMMAND
+program crashed: WARNING: at drivers/ata/libata-core.c:LINE ata_qc_issue()
+testing compiled C program (duration=22.5s, {Threaded:false Collide:false Repeat:false RepeatTimes:0 Procs:1 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:false Cgroups:false BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): syz_open_dev$sg-ioctl$SCSI_IOCTL_SEND_COMMAND
+program crashed: WARNING: at drivers/ata/libata-core.c:LINE ata_qc_issue()
+testing compiled C program (duration=22.5s, {Threaded:false Collide:false Repeat:false RepeatTimes:0 Procs:1 Sandbox: Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:false KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): syz_open_dev$sg-ioctl$SCSI_IOCTL_SEND_COMMAND
+program crashed: WARNING: at drivers/ata/libata-core.c:LINE ata_qc_issue()
+testing compiled C program (duration=22.5s, {Threaded:false Collide:false Repeat:false RepeatTimes:0 Procs:1 Sandbox: Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:false KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:false HandleSegv:true Repro:true Trace:false}): syz_open_dev$sg-ioctl$SCSI_IOCTL_SEND_COMMAND
+program crashed: WARNING: at drivers/ata/libata-core.c:LINE ata_qc_issue()
+testing compiled C program (duration=22.5s, {Threaded:false Collide:false Repeat:false RepeatTimes:0 Procs:1 Sandbox: Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:false KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:false HandleSegv:false Repro:true Trace:false}): syz_open_dev$sg-ioctl$SCSI_IOCTL_SEND_COMMAND
+program crashed: WARNING: at drivers/ata/libata-core.c:LINE ata_qc_issue()
+reproducing took 3m6.88790464s
+repro crashed as (corrupted=false):
+scp (1525) used greatest stack depth: 3760 bytes left
+------------[ cut here ]------------
+WARNING: at drivers/ata/libata-core.c:5108 ata_qc_issue+0x425/0x450()
+Modules linked in:
+CPU: 1 PID: 1535 Comm: syz-executor164 Not tainted 3.10.108-rt123+ #14
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+ 0000000000000009 ffff88013a2c1a68 ffffffff81991617 ffff88013a2c1aa0
+ ffffffff8103b93c ffff88013a774158 0000000000000001 ffff88013a774000
+ 0000000000000002 ffff88013a775c80 ffff88013a2c1ab0 ffffffff8103ba15
+Call Trace:
+ [<ffffffff81991617>] dump_stack+0x1e/0x20
+ [<ffffffff8103b93c>] warn_slowpath_common+0x5c/0x80
+ [<ffffffff8103ba15>] warn_slowpath_null+0x15/0x20
+ [<ffffffff8152c895>] ata_qc_issue+0x425/0x450
+ [<ffffffff81533ddc>] ata_scsi_translate+0xbc/0x1c0
+ [<ffffffff8153767c>] ata_scsi_queuecmd+0xcc/0x340
+ [<ffffffff815031ed>] scsi_dispatch_cmd+0xed/0x460
+ [<ffffffff8150b0d2>] scsi_request_fn+0x3e2/0x5e0
+ [<ffffffff813243b0>] __blk_run_queue+0x40/0x50
+ [<ffffffff8132385a>] __elv_add_request+0x13a/0x370
+ [<ffffffff81330754>] blk_execute_rq_nowait+0x84/0x130
+ [<ffffffff81330884>] blk_execute_rq+0x84/0xf0
+ [<ffffffff81337350>] sg_scsi_ioctl+0x2f0/0x430
+ [<ffffffff81526af6>] sg_ioctl+0xfb6/0x1050
+ [<ffffffff81173ccc>] do_vfs_ioctl+0x35c/0x640
+ [<ffffffff81174047>] SyS_ioctl+0x97/0xd0
+ [<ffffffff819a0df2>] system_call_fastpath+0x16/0x1b
+---[ end trace a7284ba331a2aaed ]---
+ata1.00: exception Emask 0x0 SAct 0x0 SErr 0x0 action 0x0
+ata1.00: failed command: READ DMA
+ata1.00: cmd c8/00:00:00:00:00/00:00:00:00:00/e0 tag 0
+         res 50/00:00:18:04:00/00:00:00:00:00/e0 Emask 0x40 (internal error)
+ata1.00: status: { DRDY }
+ata1.00: configured for MWDMA2
+ata1: EH complete
+
+final repro crashed as (corrupted=false):
+scp (1525) used greatest stack depth: 3760 bytes left
+------------[ cut here ]------------
+WARNING: at drivers/ata/libata-core.c:5108 ata_qc_issue+0x425/0x450()
+Modules linked in:
+CPU: 1 PID: 1535 Comm: syz-executor164 Not tainted 3.10.108-rt123+ #14
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+ 0000000000000009 ffff88013a2c1a68 ffffffff81991617 ffff88013a2c1aa0
+ ffffffff8103b93c ffff88013a774158 0000000000000001 ffff88013a774000
+ 0000000000000002 ffff88013a775c80 ffff88013a2c1ab0 ffffffff8103ba15
+Call Trace:
+ [<ffffffff81991617>] dump_stack+0x1e/0x20
+ [<ffffffff8103b93c>] warn_slowpath_common+0x5c/0x80
+ [<ffffffff8103ba15>] warn_slowpath_null+0x15/0x20
+ [<ffffffff8152c895>] ata_qc_issue+0x425/0x450
+ [<ffffffff81533ddc>] ata_scsi_translate+0xbc/0x1c0
+ [<ffffffff8153767c>] ata_scsi_queuecmd+0xcc/0x340
+ [<ffffffff815031ed>] scsi_dispatch_cmd+0xed/0x460
+ [<ffffffff8150b0d2>] scsi_request_fn+0x3e2/0x5e0
+ [<ffffffff813243b0>] __blk_run_queue+0x40/0x50
+ [<ffffffff8132385a>] __elv_add_request+0x13a/0x370
+ [<ffffffff81330754>] blk_execute_rq_nowait+0x84/0x130
+ [<ffffffff81330884>] blk_execute_rq+0x84/0xf0
+ [<ffffffff81337350>] sg_scsi_ioctl+0x2f0/0x430
+ [<ffffffff81526af6>] sg_ioctl+0xfb6/0x1050
+ [<ffffffff81173ccc>] do_vfs_ioctl+0x35c/0x640
+ [<ffffffff81174047>] SyS_ioctl+0x97/0xd0
+ [<ffffffff819a0df2>] system_call_fastpath+0x16/0x1b
+---[ end trace a7284ba331a2aaed ]---
+ata1.00: exception Emask 0x0 SAct 0x0 SErr 0x0 action 0x0
+ata1.00: failed command: READ DMA
+ata1.00: cmd c8/00:00:00:00:00/00:00:00:00:00/e0 tag 0
+         res 50/00:00:18:04:00/00:00:00:00:00/e0 Emask 0x40 (internal error)
+ata1.00: status: { DRDY }
+ata1.00: configured for MWDMA2
+ata1: EH complete
+

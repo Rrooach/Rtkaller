@@ -1,0 +1,267 @@
+rcu: INFO: rcu_sched self-detected stall on CPU
+rcu: 	1-....: (2503 ticks this GP) idle=cfe/1/0x4000000000000002 softirq=84150/84150 fqs=787 
+rcu: 	 (t=21001 jiffies g=133909 q=55)
+NMI backtrace for cpu 1
+CPU: 1 PID: 29981 Comm: syz-executor.1 Not tainted 5.0.0 #3
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+Call Trace:
+ <IRQ>
+ dump_stack+0x79/0xba
+ nmi_cpu_backtrace.cold.3+0x46/0x84
+ nmi_trigger_cpumask_backtrace+0x124/0x15d
+ rcu_dump_cpu_stacks+0x161/0x1ad
+ rcu_check_callbacks.cold.80+0x491/0x7bd
+ update_process_times+0x2c/0x60
+ tick_sched_handle+0x10f/0x150
+ tick_sched_timer+0x44/0x120
+ __hrtimer_run_queues+0x315/0x780
+ hrtimer_interrupt+0x2cd/0x6d0
+ smp_apic_timer_interrupt+0xbd/0x320
+ apic_timer_interrupt+0xf/0x20
+ </IRQ>
+RIP: 0010:memset_erms+0x9/0x10
+Code: c1 e9 03 40 0f b6 f6 48 b8 01 01 01 01 01 01 01 01 48 0f af c6 f3 48 ab 89 d1 f3 aa 4c 89 c8 c3 90 49 89 f9 40 88 f0 48 89 d1 <f3> aa 4c 89 c8 c3 90 49 89 fa 40 0f b6 ce 48 b8 01 01 01 01 01 01
+RSP: 0018:ffff888111d3f9b0 EFLAGS: 00010246 ORIG_RAX: ffffffffffffff13
+RAX: 0000000000000000 RBX: ffff88811092ee00 RCX: 000000000774a000
+RDX: 000000007efac000 RSI: 0000000000000000 RDI: ffffc90080657000
+RBP: ffff888116fff680 R08: 0000000000000000 R09: ffffc90008df5000
+R10: fffff52010fb41ff R11: ffffc90087da0fff R12: ffffc90008df5000
+R13: 000000000007efab R14: 0000000000000000 R15: 000000000007efac
+ relay_open_buf.part.13+0x48e/0xa80
+ relay_open+0x4d8/0x8e0
+ do_blk_trace_setup+0x3e7/0xb10
+ __blk_trace_setup+0xa8/0x140
+ blk_trace_setup+0x45/0x60
+ sg_ioctl+0xd4b/0x2540
+ do_vfs_ioctl+0x1a4/0x1000
+ ksys_ioctl+0x7b/0xa0
+ __x64_sys_ioctl+0x73/0xb0
+ do_syscall_64+0x9e/0x2b0
+ entry_SYSCALL_64_after_hwframe+0x44/0xa9
+RIP: 0033:0x4686dd
+Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 bc ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007fa4ae3b2c58 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 0000000000514280 RCX: 00000000004686dd
+RDX: 0000000020000240 RSI: 00000000c0481273 RDI: 0000000000000006
+RBP: 00000000004c4725 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 000000000057cf00
+R13: 00007ffe9a77640f R14: 000000000057cf00 R15: 00007fa4ae3b2dc0
+oom_reaper: reaped process 29981 (syz-executor.1), now anon-rss:0kB, file-rss:34816kB, shmem-rss:0kB
+syz-executor.1 invoked oom-killer: gfp_mask=0x6000c0(GFP_KERNEL), order=0, oom_score_adj=1000
+CPU: 1 PID: 29981 Comm: syz-executor.1 Not tainted 5.0.0 #3
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+Call Trace:
+ dump_stack+0x79/0xba
+ dump_header+0x108/0x9c8
+ oom_kill_process.cold.38+0x10/0xa9d
+ out_of_memory+0x27b/0x15b0
+ __alloc_pages_slowpath+0x1a6a/0x2060
+ __alloc_pages_nodemask+0x423/0x4d0
+ alloc_pages_current+0xe5/0x1d0
+ relay_open_buf.part.13+0x25d/0xa80
+ relay_open+0x4d8/0x8e0
+ do_blk_trace_setup+0x3e7/0xb10
+ __blk_trace_setup+0xa8/0x140
+ blk_trace_setup+0x45/0x60
+ sg_ioctl+0xd4b/0x2540
+ do_vfs_ioctl+0x1a4/0x1000
+ ksys_ioctl+0x7b/0xa0
+ __x64_sys_ioctl+0x73/0xb0
+ do_syscall_64+0x9e/0x2b0
+ entry_SYSCALL_64_after_hwframe+0x44/0xa9
+RIP: 0033:0x4686dd
+Code: Bad RIP value.
+RSP: 002b:00007fa4ae3b2c58 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 0000000000514280 RCX: 00000000004686dd
+RDX: 0000000020000240 RSI: 00000000c0481273 RDI: 0000000000000006
+RBP: 00000000004c4725 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 000000000057cf00
+R13: 00007ffe9a77640f R14: 000000000057cf00 R15: 00007fa4ae3b2dc0
+Mem-Info:
+active_anon:36008 inactive_anon:2090 isolated_anon:0
+ active_file:17 inactive_file:25 isolated_file:0
+ unevictable:0 dirty:0 writeback:0 unstable:0
+ slab_reclaimable:4980 slab_unreclaimable:31223
+ mapped:17694 shmem:2108 pagetables:529 bounce:0
+ free:4647 free_pcp:114 free_cma:0
+Node 0 active_anon:144032kB inactive_anon:8360kB active_file:68kB inactive_file:100kB unevictable:0kB isolated(anon):0kB isolated(file):0kB mapped:70776kB dirty:0kB writeback:0kB shmem:8432kB writeback_tmp:0kB unstable:0kB all_unreclaimable? yes
+Node 0 DMA free:13444kB min:32kB low:44kB high:56kB active_anon:0kB inactive_anon:0kB active_file:0kB inactive_file:0kB unevictable:0kB writepending:0kB present:15992kB managed:15908kB mlocked:0kB kernel_stack:0kB pagetables:0kB bounce:0kB free_pcp:0kB local_pcp:0kB free_cma:0kB
+lowmem_reserve[]: 0 2921 3358 3358
+Node 0 DMA32 free:4760kB min:6432kB low:9420kB high:12408kB active_anon:68kB inactive_anon:0kB active_file:0kB inactive_file:0kB unevictable:0kB writepending:0kB present:3129216kB managed:2993876kB mlocked:0kB kernel_stack:96kB pagetables:272kB bounce:0kB free_pcp:0kB local_pcp:0kB free_cma:0kB
+lowmem_reserve[]: 0 0 436 436
+Node 0 Normal free:608kB min:960kB low:1404kB high:1848kB active_anon:143964kB inactive_anon:8360kB active_file:84kB inactive_file:0kB unevictable:0kB writepending:0kB present:1048576kB managed:447280kB mlocked:0kB kernel_stack:2656kB pagetables:1844kB bounce:0kB free_pcp:184kB local_pcp:184kB free_cma:0kB
+lowmem_reserve[]: 0 0 0 0
+Node 0 DMA: 1*4kB (U) 0*8kB 0*16kB 0*32kB 0*64kB 1*128kB (U) 0*256kB 0*512kB 1*1024kB (U) 2*2048kB (UM) 2*4096kB (M) = 13444kB
+Node 0 DMA32: 2*4kB (UM) 4*8kB (UM) 5*16kB (M) 3*32kB (M) 3*64kB (UM) 6*128kB (UM) 4*256kB (UM) 3*512kB (UM) 1*1024kB (M) 0*2048kB 0*4096kB = 4760kB
+Node 0 Normal: 119*4kB (ME) 23*8kB (UM) 0*16kB 0*32kB 0*64kB 0*128kB 0*256kB 0*512kB 0*1024kB 0*2048kB 0*4096kB = 660kB
+Node 0 hugepages_total=0 hugepages_free=0 hugepages_surp=0 hugepages_size=2048kB
+2153 total pagecache pages
+0 pages in swap cache
+Swap cache stats: add 0, delete 0, find 0/0
+Free swap  = 0kB
+Total swap = 0kB
+1048446 pages RAM
+0 pages HighMem/MovableOnly
+184180 pages reserved
+Tasks state (memory values in pages):
+[  pid  ]   uid  tgid total_vm      rss pgtables_bytes swapents oom_score_adj name
+[   1213]     0  1213     8241      345   102400        0             0 systemd-journal
+[   1293]     0  1293     7622      112    94208        0         -1000 systemd-udevd
+[   1815]     0  1815     6350     1725    81920        0             0 dhclient
+[   1836]     0  1836     6476       58    98304        0             0 cron
+[   1840]     0  1840    65721      199   139264        0             0 rsyslogd
+[   1845]     0  1845     3211       37    73728        0             0 agetty
+[   1847]     0  1847     3211       39    73728        0             0 agetty
+[   1848]     0  1848     3211       37    73728        0             0 agetty
+[   1849]     0  1849     3211       38    73728        0             0 agetty
+[   1850]     0  1850     3211       37    65536        0             0 agetty
+[   1851]     0  1851     3211       37    73728        0             0 agetty
+[   1852]     0  1852     3166       38    73728        0             0 agetty
+[   1854]     0  1854    13797      169   159744        0         -1000 sshd
+[   1924]     0  1924     2905       41    69632        0             0 bash
+[   1925]     0  1925   226057    32701   528384        0             0 syz-fuzzer
+[   1943]     0  1943    21236       16   114688        0             0 syz-executor.0
+[   1944]     0  1944    21236       16   110592        0             0 syz-executor.1
+[   1946]     0  1946    21235     8731   122880        0             0 syz-executor.0
+[   1997]     0  1997    21235     8714   118784        0             0 syz-executor.1
+[  23665]     0 23665    21268     8679   122880        0          1000 syz-executor.0
+[  23674]     0 23674    21301     8683   122880        0          1000 syz-executor.0
+[  29981]     0 29979    21334     8704   126976        0          1000 syz-executor.1
+oom-kill:constraint=CONSTRAINT_NONE,nodemask=(null),cpuset=/,mems_allowed=0,task=syz-executor.0,pid=23674,uid=0
+Out of memory: Kill process 23674 (syz-executor.0) score 1009 or sacrifice child
+Killed process 23674 (syz-executor.0) total-vm:85204kB, anon-rss:168kB, file-rss:34564kB, shmem-rss:0kB
+syz-executor.1: page allocation failure: order:0, mode:0x6000c0(GFP_KERNEL), nodemask=(null),cpuset=/,mems_allowed=0
+CPU: 1 PID: 29981 Comm: syz-executor.1 Not tainted 5.0.0 #3
+systemd-journal invoked oom-killer: gfp_mask=0x6200ca(GFP_HIGHUSER_MOVABLE), order=0, oom_score_adj=0
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+Call Trace:
+ dump_stack+0x79/0xba
+ warn_alloc.cold.125+0x87/0x19a
+ __alloc_pages_slowpath+0x1bd9/0x2060
+ __alloc_pages_nodemask+0x423/0x4d0
+ alloc_pages_current+0xe5/0x1d0
+ relay_open_buf.part.13+0x25d/0xa80
+ relay_open+0x4d8/0x8e0
+ do_blk_trace_setup+0x3e7/0xb10
+ __blk_trace_setup+0xa8/0x140
+ blk_trace_setup+0x45/0x60
+ sg_ioctl+0xd4b/0x2540
+ do_vfs_ioctl+0x1a4/0x1000
+ ksys_ioctl+0x7b/0xa0
+ __x64_sys_ioctl+0x73/0xb0
+ do_syscall_64+0x9e/0x2b0
+ entry_SYSCALL_64_after_hwframe+0x44/0xa9
+RIP: 0033:0x4686dd
+Code: Bad RIP value.
+RSP: 002b:00007fa4ae3b2c58 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 0000000000514280 RCX: 00000000004686dd
+RDX: 0000000020000240 RSI: 00000000c0481273 RDI: 0000000000000006
+RBP: 00000000004c4725 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 000000000057cf00
+R13: 00007ffe9a77640f R14: 000000000057cf00 R15: 00007fa4ae3b2dc0
+CPU: 0 PID: 1213 Comm: systemd-journal Not tainted 5.0.0 #3
+Mem-Info:
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+Call Trace:
+ dump_stack+0x79/0xba
+ dump_header+0x108/0x9c8
+active_anon:35983 inactive_anon:2090 isolated_anon:0
+ active_file:17 inactive_file:25 isolated_file:0
+ unevictable:0 dirty:0 writeback:0 unstable:0
+ slab_reclaimable:4980 slab_unreclaimable:31223
+ mapped:17694 shmem:2108 pagetables:529 bounce:0
+ free:4685 free_pcp:103 free_cma:0
+ oom_kill_process.cold.38+0x10/0xa9d
+Node 0 active_anon:143932kB inactive_anon:8360kB active_file:68kB inactive_file:100kB unevictable:0kB isolated(anon):0kB isolated(file):0kB mapped:70776kB dirty:0kB writeback:0kB shmem:8432kB writeback_tmp:0kB unstable:0kB all_unreclaimable? yes
+Node 0 DMA free:13444kB min:32kB low:44kB high:56kB active_anon:0kB inactive_anon:0kB active_file:0kB inactive_file:0kB unevictable:0kB writepending:0kB present:15992kB managed:15908kB mlocked:0kB kernel_stack:0kB pagetables:0kB bounce:0kB free_pcp:0kB local_pcp:0kB free_cma:0kB
+ out_of_memory+0x27b/0x15b0
+lowmem_reserve[]: 0 2921 3358 3358
+Node 0 DMA32 free:4760kB min:6432kB low:9420kB high:12408kB active_anon:68kB inactive_anon:0kB active_file:0kB inactive_file:0kB unevictable:0kB writepending:0kB present:3129216kB managed:2993876kB mlocked:0kB kernel_stack:96kB pagetables:272kB bounce:0kB free_pcp:0kB local_pcp:0kB free_cma:0kB
+lowmem_reserve[]: 0 0 436 436
+ __alloc_pages_slowpath+0x1a6a/0x2060
+Node 0 Normal free:536kB min:3732kB low:4176kB high:4620kB active_anon:143860kB inactive_anon:8360kB active_file:84kB inactive_file:0kB unevictable:0kB writepending:0kB present:1048576kB managed:447280kB mlocked:0kB kernel_stack:2656kB pagetables:1844kB bounce:0kB free_pcp:412kB local_pcp:184kB free_cma:0kB
+lowmem_reserve[]: 0 0 0 0
+Node 0 DMA: 1*4kB (U) 0*8kB 0*16kB 0*32kB 0*64kB 1*128kB (U) 0*256kB 0*512kB 1*1024kB (U) 2*2048kB (UM) 2*4096kB (M) = 13444kB
+Node 0 DMA32: 2*4kB (UM) 4*8kB (UM) 5*16kB (M) 3*32kB (M) 3*64kB (UM) 6*128kB (UM) 4*256kB (UM) 3*512kB (UM) 1*1024kB (M) 0*2048kB 0*4096kB = 4760kB
+ __alloc_pages_nodemask+0x423/0x4d0
+Node 0 Normal: 108*4kB (ME) 13*8kB (UM) 0*16kB 0*32kB 0*64kB 0*128kB 0*256kB 0*512kB 0*1024kB 0*2048kB 0*4096kB = 536kB
+Node 0 hugepages_total=0 hugepages_free=0 hugepages_surp=0 hugepages_size=2048kB
+ alloc_pages_current+0xe5/0x1d0
+2153 total pagecache pages
+ __page_cache_alloc+0x10f/0x1d0
+ filemap_fault+0xa54/0x1590
+0 pages in swap cache
+Swap cache stats: add 0, delete 0, find 0/0
+Free swap  = 0kB
+ ext4_filemap_fault+0x81/0xa8
+Total swap = 0kB
+ __do_fault+0x100/0x2a0
+1048446 pages RAM
+ __handle_mm_fault+0x10b1/0x1e80
+0 pages HighMem/MovableOnly
+184180 pages reserved
+ handle_mm_fault+0xfc/0x350
+ __do_page_fault+0x466/0x9f0
+ async_page_fault+0x1e/0x30
+RIP: 0033:0x7ff06b819be3
+Code: Bad RIP value.
+RSP: 002b:00007ffe0628a128 EFLAGS: 00010246
+RAX: 0000000000000001 RBX: ffffffffffffffff RCX: 00007ff06b819be3
+RDX: 000000000000000c RSI: 00007ffe0628a130 RDI: 0000000000000007
+RBP: 00007ffe0628a2e0 R08: 00000000000204ff R09: 00007ffe0631f080
+R10: 00000000ffffffff R11: 0000000000000246 R12: 000055c9693b30d0
+R13: 000055c9693b30f0 R14: 000055c9693b30b0 R15: 00007ffe0628a130
+Mem-Info:
+active_anon:35983 inactive_anon:2090 isolated_anon:0
+ active_file:17 inactive_file:25 isolated_file:0
+ unevictable:0 dirty:0 writeback:0 unstable:0
+ slab_reclaimable:4980 slab_unreclaimable:31223
+ mapped:17694 shmem:2108 pagetables:529 bounce:0
+ free:96410 free_pcp:444 free_cma:0
+Node 0 active_anon:143932kB inactive_anon:8360kB active_file:68kB inactive_file:100kB unevictable:0kB isolated(anon):0kB isolated(file):0kB mapped:70776kB dirty:0kB writeback:0kB shmem:8432kB writeback_tmp:0kB unstable:0kB all_unreclaimable? yes
+Node 0 DMA free:13444kB min:32kB low:44kB high:56kB active_anon:0kB inactive_anon:0kB active_file:0kB inactive_file:0kB unevictable:0kB writepending:0kB present:15992kB managed:15908kB mlocked:0kB kernel_stack:0kB pagetables:0kB bounce:0kB free_pcp:0kB local_pcp:0kB free_cma:0kB
+lowmem_reserve[]: 0 2921 3358 3358
+Node 0 DMA32 free:601160kB min:6432kB low:9420kB high:12408kB active_anon:68kB inactive_anon:0kB active_file:0kB inactive_file:0kB unevictable:0kB writepending:0kB present:3129216kB managed:2993876kB mlocked:0kB kernel_stack:96kB pagetables:272kB bounce:0kB free_pcp:1260kB local_pcp:0kB free_cma:0kB
+lowmem_reserve[]: 0 0 436 436
+Node 0 Normal free:536kB min:3732kB low:4176kB high:4620kB active_anon:143860kB inactive_anon:8360kB active_file:84kB inactive_file:0kB unevictable:0kB writepending:0kB present:1048576kB managed:447280kB mlocked:0kB kernel_stack:2656kB pagetables:1844kB bounce:0kB free_pcp:412kB local_pcp:228kB free_cma:0kB
+lowmem_reserve[]: 0 0 0 0
+Node 0 DMA: 1*4kB (U) 0*8kB 0*16kB 0*32kB 0*64kB 1*128kB (U) 0*256kB 0*512kB 1*1024kB (U) 2*2048kB (UM) 2*4096kB (M) = 13444kB
+Node 0 DMA32: 3*4kB (UM) 4*8kB (UM) 5*16kB (M) 3*32kB (M) 3*64kB (UM) 6*128kB (UM) 5*256kB (UM) 4*512kB (UM) 2*1024kB (UM) 1*2048kB (U) 188*4096kB (U) = 778652kB
+Node 0 Normal: 108*4kB (ME) 13*8kB (UM) 0*16kB 0*32kB 0*64kB 0*128kB 0*256kB 0*512kB 0*1024kB 0*2048kB 0*4096kB = 536kB
+Node 0 hugepages_total=0 hugepages_free=0 hugepages_surp=0 hugepages_size=2048kB
+2153 total pagecache pages
+0 pages in swap cache
+Swap cache stats: add 0, delete 0, find 0/0
+Free swap  = 0kB
+Total swap = 0kB
+1048446 pages RAM
+0 pages HighMem/MovableOnly
+184180 pages reserved
+Tasks state (memory values in pages):
+[  pid  ]   uid  tgid total_vm      rss pgtables_bytes swapents oom_score_adj name
+[   1213]     0  1213     8241      345   102400        0             0 systemd-journal
+[   1293]     0  1293     7622      112    94208        0         -1000 systemd-udevd
+[   1815]     0  1815     6350     1725    81920        0             0 dhclient
+[   1836]     0  1836     6476       58    98304        0             0 cron
+[   1840]     0  1840    65721      199   139264        0             0 rsyslogd
+[   1845]     0  1845     3211       37    73728        0             0 agetty
+[   1847]     0  1847     3211       39    73728        0             0 agetty
+[   1848]     0  1848     3211       37    73728        0             0 agetty
+[   1849]     0  1849     3211       38    73728        0             0 agetty
+[   1850]     0  1850     3211       37    65536        0             0 agetty
+[   1851]     0  1851     3211       37    73728        0             0 agetty
+[   1852]     0  1852     3166       38    73728        0             0 agetty
+[   1854]     0  1854    13797      169   159744        0         -1000 sshd
+[   1924]     0  1924     2905       41    69632        0             0 bash
+[   1925]     0  1925   226057    32701   528384        0             0 syz-fuzzer
+[   1943]     0  1943    21236       16   114688        0             0 syz-executor.0
+[   1944]     0  1944    21236       16   110592        0             0 syz-executor.1
+[   1946]     0  1946    21235     8731   122880        0             0 syz-executor.0
+[   1997]     0  1997    21235     8714   118784        0             0 syz-executor.1
+[  23665]     0 23665    21268     8679   122880        0          1000 syz-executor.0
+[  29981]     0 29979    21334     8704   126976        0          1000 syz-executor.1
+oom-kill:constraint=CONSTRAINT_NONE,nodemask=(null),cpuset=/,mems_allowed=0,task=syz-executor.0,pid=23665,uid=0
+Out of memory: Kill process 23665 (syz-executor.0) score 1009 or sacrifice child
+Killed process 23665 (syz-executor.0) total-vm:85072kB, anon-rss:152kB, file-rss:34564kB, shmem-rss:0kB
+oom_reaper: reaped process 23665 (syz-executor.0), now anon-rss:0kB, file-rss:34560kB, shmem-rss:0kB
+syz-executor.0 (1946) used greatest stack depth: 25376 bytes left

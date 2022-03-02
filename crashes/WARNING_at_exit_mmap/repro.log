@@ -1,0 +1,32 @@
+Warning: Permanently added '[localhost]:12747' (ECDSA) to the list of known hosts.
+executing program
+syzkaller login: [  131.231716] ata1: lost interrupt (Status 0x58)
+[  131.656257] ata1.00: exception Emask 0x0 SAct 0x0 SErr 0x0 action 0x6 frozen
+[  131.660021] ata1.00: cmd 3c/9c:b6:3e:aa:c8/dd:cc:78:13:ca/68 tag 0 pio 2966 in
+[  131.660021]          res 40/00:01:00:00:00/00:00:00:00:00/a0 Emask 0x4 (timeout)
+[  131.671640] ata1.00: status: { DRDY }
+[  131.672700] ata1: soft resetting link
+[  131.826355] ata1.00: configured for MWDMA2
+[  131.827190] ata1: EH complete
+[  131.829288] ------------[ cut here ]------------
+[  131.830353] WARNING: at mm/mmap.c:2785 exit_mmap+0x175/0x180()
+[  131.831432] Modules linked in:
+[  131.832084] CPU: 1 PID: 1535 Comm: syz-executor293 Not tainted 3.10.108-rt123+ #14
+[  131.834040] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[  131.836319]  0000000000000009 ffff88013a2d5db8 ffffffff81991617 ffff88013a2d5df0
+[  131.837997]  ffffffff8103b93c 0000000000000000 ffff88013a079180 000000000000104b
+[  131.839923]  ffff88013abff530 0000000000000001 ffff88013a2d5e00 ffffffff8103ba15
+[  131.841695] Call Trace:
+[  131.842229]  [<ffffffff81991617>] dump_stack+0x1e/0x20
+[  131.849990]  [<ffffffff8103b93c>] warn_slowpath_common+0x5c/0x80
+[  131.851454]  [<ffffffff8103ba15>] warn_slowpath_null+0x15/0x20
+[  131.852758]  [<ffffffff81133e85>] exit_mmap+0x175/0x180
+[  131.854148]  [<ffffffff81038b10>] mmput+0x30/0xe0
+[  131.855192]  [<ffffffff810406e0>] do_exit+0x290/0xb50
+[  131.856499]  [<ffffffff812f2256>] ? selinux_file_ioctl+0x106/0x180
+[  131.863353]  [<ffffffff81041e8e>] do_group_exit+0x3e/0xa0
+[  131.864591]  [<ffffffff81041eff>] SyS_exit_group+0xf/0x10
+[  131.865775]  [<ffffffff819a0df2>] system_call_fastpath+0x16/0x1b
+[  131.870572] ---[ end trace 69952b560f8aeee7 ]---
+[  131.874586] BUG: Bad rss-counter state mm:ffff88013a079180 idx:0 val:1
+[  131.876185] BUG: Bad rss-counter state mm:ffff88013a079180 idx:1 val:4

@@ -1,0 +1,32 @@
+WARNING: CPU: 0 PID: 222 at net/xfrm/xfrm_policy.c:3873 xfrm_policy_fini+0x2a9/0x340
+Kernel panic - not syncing: panic_on_warn set ...
+CPU: 0 PID: 222 Comm: kworker/u4:3 Not tainted 5.0.0 #3
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+Workqueue: netns cleanup_net
+Call Trace:
+ dump_stack+0x79/0xba
+ panic+0x226/0x47c
+ __warn.cold.11+0x20/0x45
+ report_bug+0x1f4/0x270
+ do_error_trap+0x105/0x180
+ do_invalid_op+0x35/0x40
+ invalid_op+0x14/0x20
+RIP: 0010:xfrm_policy_fini+0x2a9/0x340
+Code: 00 e8 4b 44 55 fe 0f 0b e9 7a fe ff ff e8 3f 44 55 fe 0f 0b e9 0f fe ff ff e8 33 44 55 fe 0f 0b e9 0f ff ff ff e8 27 44 55 fe <0f> 0b e9 b0 fd ff ff e8 ab 3b 76 fe e9 9b fe ff ff 48 89 ef e8 be
+RSP: 0018:ffff888119e07c78 EFLAGS: 00010293
+RAX: ffff88811a2e1580 RBX: ffff88810fe30fd0 RCX: ffffffff953ec5c9
+RDX: 0000000000000000 RSI: 00000000fffffe01 RDI: ffffffff953ec2c4
+RBP: ffff88810fe30000 R08: ffffed1023645530 R09: ffffed102364552f
+R10: ffffed102364552f R11: ffff88811b22a97b R12: ffff888119e07d88
+R13: ffffffff968a09b8 R14: dffffc0000000000 R15: fffffbfff2d14137
+ xfrm_net_exit+0x1d/0x30
+ ops_exit_list.isra.12+0xa8/0x150
+ cleanup_net+0x383/0x710
+ process_one_work+0x92c/0x13c0
+ worker_thread+0x90/0xfb0
+ kthread+0x2ff/0x3c0
+ ret_from_fork+0x35/0x40
+Dumping ftrace buffer:
+   (ftrace buffer empty)
+Kernel Offset: 0x12600000 from 0xffffffff81000000 (relocation range: 0xffffffff80000000-0xffffffffbfffffff)
+Rebooting in 1 seconds..

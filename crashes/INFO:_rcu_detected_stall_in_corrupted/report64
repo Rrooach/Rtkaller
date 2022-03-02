@@ -1,0 +1,47 @@
+001: rcu: INFO: rcu_sched self-detected stall on CPU
+001: rcu: 	1-....: (20999 ticks this GP) idle=a1a/1/0x4000000000000002 softirq=18214/18214 fqs=5249 
+001: 	(t=21001 jiffies g=21065 q=53)
+001: NMI backtrace for cpu 1
+001: CPU: 1 PID: 3441 Comm: syz-executor.0 Not tainted 5.6.0-rt1+ #2
+001: Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+001: Call Trace:
+001:  <IRQ>
+001:  dump_stack+0x95/0xce
+001:  nmi_cpu_backtrace.cold+0x55/0x94
+001:  nmi_trigger_cpumask_backtrace+0x155/0x19b
+001:  rcu_dump_cpu_stacks+0x15d/0x1a7
+001:  rcu_sched_clock_irq.cold+0x4c8/0x90b
+001:  update_process_times+0x24/0x60
+001:  tick_sched_handle+0x10f/0x150
+001:  tick_sched_timer+0x41/0x120
+001:  __hrtimer_run_queues+0x308/0x7c0
+001:  hrtimer_interrupt+0x2c9/0x6c0
+001:  smp_apic_timer_interrupt+0xd4/0x380
+001:  apic_timer_interrupt+0xf/0x20
+001:  </IRQ>
+001: RIP: 0010:io_ring_ctx_wait_and_kill+0x9b/0x9c0
+001: Code: f4 48 b8 00 00 00 00 00 fc ff df 4c 89 eb 49 c1 ec 03 48 c1 eb 03 49 01 c4 48 01 c3 eb 1c e8 1c d3 c6 ff f3 90 41 80 3c 24 00 <0f> 85 ee 07 00 00 48 83 bd d0 00 00 00 00 74 20 e8 00 d3 c6 ff f0
+001: RSP: 0018:ffff888112a8fa60 EFLAGS: 00000246 ORIG_RAX: ffffffffffffff13
+001: RAX: ffff888114b942c0 RBX: ffffed102275ee1d RCX: ffffffff856f3364
+001: RDX: 0000000000000000 RSI: 0000000000000008 RDI: ffff888113af71c0
+001: RBP: ffff888113af7000 R08: 0000000000000001 R09: ffffed102275ee39
+001: R10: ffffed102275ee38 R11: ffff888113af71c7 R12: ffffed102275ee1a
+001: R13: ffff888113af70e8 R14: ffff888113af70d0 R15: ffff88811aa367a0
+001:  io_uring_release+0x3e/0x50
+001:  __fput+0x223/0x6d0
+001:  task_work_run+0x144/0x1c0
+001:  do_exit+0x970/0x2750
+001:  do_group_exit+0xee/0x310
+001:  get_signal+0x3bd/0x1b60
+001:  do_signal+0x88/0x1350
+001:  exit_to_usermode_loop+0xc0/0x180
+001:  do_syscall_64+0x2bb/0x390
+001:  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+001: RIP: 0033:0x4686dd
+001: Code: Bad RIP value.
+001: RSP: 002b:00007fc72a882cd8 EFLAGS: 00000246 ORIG_RAX: 00000000000000ca
+001: RAX: 0000000000000000 RBX: 000000000057cf00 RCX: 00000000004686dd
+001: RDX: 0000000000000000 RSI: 0000000000000080 RDI: 000000000057cf08
+001: RBP: 000000000057cf08 R08: 0000000000000000 R09: 0000000000000000
+001: R10: 0000000000000000 R11: 0000000000000246 R12: 000000000057cf0c
+001: R13: 00007ffde2c7552f R14: 00007ffde2c756f0 R15: 00007fc72a882dc0

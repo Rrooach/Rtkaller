@@ -1,0 +1,83 @@
+SELinux: unrecognized netlink message: protocol=0 nlmsg_type=0 sclass=netlink_route_socket pig=7482 comm=syz-executor.0
+general protection fault: 0000 [#1] SMP PTI
+CPU: 0 PID: 292 Comm: sshd Not tainted 5.3.0+ #3
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+RIP: 0010:ipv4_dst_check+0x1f/0x40
+Code: 66 66 2e 0f 1f 84 00 00 00 00 00 53 48 89 fb e8 57 36 60 ff 66 83 7b 3a ff 75 24 e8 4b 36 60 ff 48 8b 03 48 8b 80 a8 04 00 00 <8b> 80 9c 05 00 00 39 43 70 75 0a e8 31 36 60 ff 48 89 d8 5b c3 e8
+RSP: 0018:ffffa0bd40003c00 EFLAGS: 00010206
+RAX: ffcaffd38ba91b63 RBX: ffff9d71792c83c0 RCX: ffffffff8af51675
+RDX: 0000000000000100 RSI: 0000000000000000 RDI: ffff9d71792c83c0
+RBP: ffff9d71777e8000 R08: 000000000000628a R09: 0000000000000016
+R10: 0000000000000000 R11: ffffa0bd4015f908 R12: ffff9d71792c83c0
+R13: ffff9d7161df624e R14: 0000000000000000 R15: 0000000000000028
+FS:  00007f929ccf38c0(0000) GS:ffff9d717ba00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fff3502cd08 CR3: 00000001376dc002 CR4: 0000000000760ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000600
+PKRU: 55555554
+Call Trace:
+ <IRQ>
+ tcp_v4_early_demux+0x12c/0x1b0
+ ip_rcv_finish_core.isra.21+0x14f/0x440
+ ip_rcv_finish+0x2a/0x60
+ ip_rcv+0xf3/0x100
+ __netif_receive_skb_one_core+0xc5/0xf0
+ __netif_receive_skb+0x25/0x90
+ netif_receive_skb_internal+0x43/0xf0
+ napi_gro_receive+0x14e/0x1c0
+ e1000_clean_rx_irq+0x1d6/0x620
+ e1000_clean+0x309/0x760
+ net_rx_action+0x177/0x480
+ __do_softirq+0xd4/0x2d4
+ do_softirq_own_stack+0x2a/0x40
+ </IRQ>
+ do_softirq.part.22+0x26/0x30
+ __local_bh_enable_ip+0x46/0x50
+ ip_finish_output2+0x207/0x690
+ __ip_finish_output+0xf5/0x250
+ ip_output+0x72/0x130
+ ip_local_out+0x46/0x70
+ __ip_queue_xmit+0x1c4/0x500
+ __tcp_transmit_skb+0x627/0xd50
+ tcp_write_xmit+0x46d/0x1550
+ __tcp_push_pending_frames+0x42/0xf0
+ tcp_push+0x140/0x180
+ tcp_sendmsg_locked+0xe99/0x1010
+ tcp_sendmsg+0x2a/0x40
+ inet_sendmsg+0x52/0xa0
+ sock_sendmsg+0x9b/0xc0
+ sock_write_iter+0xb4/0x130
+ new_sync_write+0x183/0x220
+ __vfs_write+0x78/0x90
+ vfs_write+0xca/0x1f0
+ ksys_write+0x6b/0x110
+ do_syscall_64+0x57/0x180
+ entry_SYSCALL_64_after_hwframe+0x44/0xa9
+RIP: 0033:0x7f929ae5c970
+Code: 73 01 c3 48 8b 0d 28 d5 2b 00 f7 d8 64 89 01 48 83 c8 ff c3 66 0f 1f 44 00 00 83 3d 99 2d 2c 00 00 75 10 b8 01 00 00 00 0f 05 <48> 3d 01 f0 ff ff 73 31 c3 48 83 ec 08 e8 7e 9b 01 00 48 89 04 24
+RSP: 002b:00007ffee3f07308 EFLAGS: 00000246 ORIG_RAX: 0000000000000001
+RAX: ffffffffffffffda RBX: 0000000000000114 RCX: 00007f929ae5c970
+RDX: 0000000000000114 RSI: 00005557905cbd2c RDI: 0000000000000003
+RBP: 00005557905a6fc0 R08: 00007ffee3f072b8 R09: 00007ffee3f072b0
+R10: 00007ffee3f970f0 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007ffee3f0739f R14: 000055578f3d1be7 R15: 0000000000000003
+Modules linked in:
+Dumping ftrace buffer:
+   (ftrace buffer empty)
+hpet: Lost 3 RTC interrupts
+---[ end trace d2a544fdaa5c5b0e ]---
+RIP: 0010:ipv4_dst_check+0x1f/0x40
+Code: 66 66 2e 0f 1f 84 00 00 00 00 00 53 48 89 fb e8 57 36 60 ff 66 83 7b 3a ff 75 24 e8 4b 36 60 ff 48 8b 03 48 8b 80 a8 04 00 00 <8b> 80 9c 05 00 00 39 43 70 75 0a e8 31 36 60 ff 48 89 d8 5b c3 e8
+RSP: 0018:ffffa0bd40003c00 EFLAGS: 00010206
+RAX: ffcaffd38ba91b63 RBX: ffff9d71792c83c0 RCX: ffffffff8af51675
+RDX: 0000000000000100 RSI: 0000000000000000 RDI: ffff9d71792c83c0
+RBP: ffff9d71777e8000 R08: 000000000000628a R09: 0000000000000016
+R10: 0000000000000000 R11: ffffa0bd4015f908 R12: ffff9d71792c83c0
+R13: ffff9d7161df624e R14: 0000000000000000 R15: 0000000000000028
+FS:  00007f929ccf38c0(0000) GS:ffff9d717ba00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fff3502cd08 CR3: 00000001376dc002 CR4: 0000000000760ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000600
+PKRU: 55555554

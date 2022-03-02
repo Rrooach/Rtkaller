@@ -1,0 +1,6 @@
+ata1.00: status: { DRDY }
+ata1: soft resetting link
+ata1.00: configured for MWDMA2
+ata1.00: device reported invalid CHS sector 0
+ata1: EH complete
+unregister_netdevice: waiting for , to become free. Usage count = 3

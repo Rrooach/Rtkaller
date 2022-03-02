@@ -1,0 +1,68 @@
+000: EXT4-fs warning (device sda): ext4_trim_all_free:5192: Error -117 loading buddy information for 14
+000: rcu: INFO: rcu_sched detected stalls on CPUs/tasks:
+000: rcu: 	1-...!: (1 ticks this GP) idle=ce2/1/0x4000000000000000 softirq=58915/58915 fqs=14 
+000: 	(detected by 0, t=85849 jiffies, g=70197, q=40)
+000: Sending NMI from CPU 0 to CPUs 1:
+001: NMI backtrace for cpu 1
+001: CPU: 1 PID: 10498 Comm: syz-executor.1 Not tainted 5.6.0-rt1+ #2
+001: Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+001: RIP: 0010:memcpy_erms+0x6/0x10
+001: Code: cc cc cc cc eb 1e 0f 1f 00 48 89 f8 48 89 d1 48 c1 e9 03 83 e2 07 f3 48 a5 89 d1 f3 a4 c3 66 0f 1f 44 00 00 48 89 f8 48 89 d1 <f3> a4 c3 0f 1f 80 00 00 00 00 48 89 f8 48 83 fa 20 72 7e 40 38 fe
+001: RSP: 0018:ffff8881134ff708 EFLAGS: 00010246
+001: RAX: ffff888115cb0000 RBX: ffff88810f2b9800 RCX: 0000000000000000
+001: RDX: 00000000000000a0 RSI: ffff8880000b80a0 RDI: ffff888115cb00a0
+001: RBP: ffff8880000b8000 R08: 0000000000000001 R09: 0000000000000004
+001: R10: ffffed1022b96013 R11: ffff888115cb009f R12: ffffffffb28eb800
+001: R13: 0000000000000000 R14: ffff888115cb0000 R15: 00000000000000a0
+001: FS:  00007f641fec8700(0000) GS:ffff888116900000(0000) knlGS:0000000000000000
+001: CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+001: CR2: 0000000020001180 CR3: 0000000109c98003 CR4: 0000000000760ee0
+001: DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+001: DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+001: PKRU: 55555554
+001: Call Trace:
+001:  vgacon_scroll+0x53a/0x8c0
+001:  con_scroll+0x4cf/0x5c0
+001:  lf+0x24a/0x2a0
+001:  do_con_write.part.0+0x135d/0x1ac0
+001:  con_write+0x33/0xc0
+001:  n_tty_write+0x3a3/0xde0
+001:  tty_write+0x40d/0x740
+001:  do_iter_write+0x3eb/0x560
+001:  vfs_writev+0x19a/0x2d0
+001:  do_writev+0x10c/0x2b0
+001:  do_syscall_64+0x9c/0x390
+001:  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+001: RIP: 0033:0x4686dd
+001: Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 bc ff ff ff f7 d8 64 89 01 48
+001: RSP: 002b:00007f641fec7c58 EFLAGS: 00000246 ORIG_RAX: 0000000000000014
+001: RAX: ffffffffffffffda RBX: 0000000000544f80 RCX: 00000000004686dd
+001: RDX: 0000000000000001 RSI: 0000000020001180 RDI: 0000000000000003
+001: RBP: 00000000004c4725 R08: 0000000000000000 R09: 0000000000000000
+001: R10: 0000000000000000 R11: 0000000000000246 R12: 000000000057cf00
+001: R13: 00007ffc0215706f R14: 000000000057cf00 R15: 00007f641fec7dc0
+000: rcu: rcu_sched kthread starved for 85793 jiffies! g70197 f0x0 RCU_GP_WAIT_FQS(5) ->state=0x0 ->cpu=0
+000: rcu: RCU grace-period kthread stack dump:
+000: rcu_sched       R  running task    29760    10      2 0x80004000
+000: Call Trace:
+000:  schedule+0xc6/0x290
+000:  schedule_timeout+0x2f3/0x860
+000:  rcu_gp_kthread+0x9e6/0x20c0
+000:  kthread+0x2ce/0x3d0
+000:  ret_from_fork+0x35/0x40
+000: EXT4-fs (sda): error count since last fsck: 3
+000: EXT4-fs (sda): initial error at time 1622039607: mb_free_blocks:1469: inode 106958: block 461312
+000: EXT4-fs (sda): last error at time 1622917194: ext4_mb_generate_buddy:744
+000: systemd[1]: Starting Journal Service...
+000: systemd-journald[131]: Received SIGTERM from PID 1 (systemd).
+000: ata1: lost interrupt (Status 0x58)
+000: ata1.00: exception Emask 0x0 SAct 0x0 SErr 0x0 action 0x6 frozen
+000: ata1.00: failed command: WRITE DMA
+000: ata1.00: cmd ca/00:08:20:30:3c/00:00:00:00:00/e0 tag 0 dma 4096 out
+000:          res 40/00:01:00:00:00/00:00:00:00:00/a0 Emask 0x4 (timeout)
+000: ata1.00: status: { DRDY }
+001: systemd[1]: systemd-journald.service watchdog timeout (limit 1min)!
+000: ata1: soft resetting link
+001: systemd[1]: Starting Journal Service...
+000: ata1.00: configured for MWDMA2
+000: ata1: EH complete

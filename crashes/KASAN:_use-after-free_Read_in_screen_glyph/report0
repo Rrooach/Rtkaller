@@ -1,0 +1,43 @@
+==================================================================
+BUG: KASAN: use-after-free in screen_glyph+0x135/0x160
+Read of size 2 at addr ffff8880001387f2 by task syz-executor.0/5684
+
+CPU: 1 PID: 5684 Comm: syz-executor.0 Not tainted 4.14.103+ #2
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+Call Trace:
+ dump_stack+0x64/0x86
+ print_address_description+0x65/0x280
+ kasan_report+0x223/0x330
+ screen_glyph+0x135/0x160
+ sel_pos+0x1d/0x30
+ set_selection+0x7ea/0xe10
+ tioclinux+0xf8/0x3b0
+ vt_ioctl+0x12fb/0x25c0
+ tty_ioctl+0x260/0x1330
+ do_vfs_ioctl+0x181/0xf00
+ SyS_ioctl+0x7e/0xb0
+ do_syscall_64+0x18e/0x480
+ entry_SYSCALL_64_after_hwframe+0x3d/0xa2
+RIP: 0033:0x4686dd
+RSP: 002b:00007f8d0e967c58 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 0000000000524740 RCX: 00000000004686dd
+RDX: 0000000020000040 RSI: 000000000000541c RDI: 0000000000000003
+RBP: 00000000004c4725 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 000000000057cf00
+R13: 00007ffea314dc9f R14: 000000000057cf00 R15: 00007f8d0e967dc0
+
+The buggy address belongs to the page:
+page:ffffea0000004e00 count:0 mapcount:0 mapping:          (null) index:0x0
+flags: 0x0()
+raw: 0000000000000000 0000000000000000 0000000000000000 00000000ffffffff
+raw: ffffea0000004e20 ffffea0000004e20 0000000000000000 0000000000000000
+page dumped because: kasan: bad access detected
+
+Memory state around the buggy address:
+ ffff888000138680: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+ ffff888000138700: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+>ffff888000138780: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+                                                             ^
+ ffff888000138800: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+ ffff888000138880: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+==================================================================

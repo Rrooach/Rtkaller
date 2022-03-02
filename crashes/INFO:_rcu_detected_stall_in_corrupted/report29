@@ -1,0 +1,151 @@
+001: ata1.00: exception Emask 0x0 SAct 0x0 SErr 0x0 action 0x6 frozen
+001: ata1.00: failed command: WRITE DMA
+001: ata1.00: cmd ca/00:08:30:20:3c/00:00:00:00:00/e0 tag 0 dma 4096 out
+001:          res 40/00:01:00:00:00/00:00:00:00:00/a0 Emask 0x4 (timeout)
+001: ata1.00: status: { DRDY }
+000: rcu: INFO: rcu_sched detected stalls on CPUs/tasks:
+000: 	(detected by 0, t=27334 jiffies, g=35625, q=0)
+000: rcu: All QSes seen, last rcu_sched kthread activity 27334 (4294855382-4294828048), jiffies_till_next_fqs=3, root ->qsmask 0x0
+000: kworker/0:1     R  running task    27608    21      2 0x80004000
+000: Workqueue: ata_sff ata_sff_pio_task
+000: Call Trace:
+000:  <IRQ>
+000:  sched_show_task.cold+0x243/0x2b1
+000:  rcu_sched_clock_irq.cold+0x853/0x90b
+000:  update_process_times+0x24/0x60
+000:  tick_sched_handle+0x10f/0x150
+000:  tick_sched_timer+0x41/0x120
+000:  __hrtimer_run_queues+0x308/0x7c0
+000:  hrtimer_interrupt+0x2c9/0x6c0
+000:  smp_apic_timer_interrupt+0xd4/0x380
+000:  apic_timer_interrupt+0xf/0x20
+000:  </IRQ>
+000: RIP: 0010:ata_sff_pio_task+0x143/0x540
+000: Code: 00 00 fc ff df 48 89 da 48 c1 ea 03 0f b6 04 02 48 89 da 83 e2 07 38 d0 7f 08 84 c0 0f 85 15 03 00 00 c6 03 00 fb 48 83 c4 38 <5b> 5d 41 5c 41 5d 41 5e 41 5f c3 e8 bd 3d d8 fe 48 89 e8 4c 8d ab
+000: RSP: 0018:ffff88811aaefd90 EFLAGS: 00000296 ORIG_RAX: ffffffffffffff13
+000: RAX: 0000000000000000 RBX: ffff888118ea0700 RCX: ffffffff957dc861
+000: RDX: 0000000000000000 RSI: ffff888118fb017c RDI: 0000000000010376
+000: RBP: dffffc0000000000 R08: 0000005e789ca2fe R09: 0000000000000000
+000: R10: ffffed102355dfa0 R11: 0000000000000003 R12: 0000000000000005
+000: R13: ffff888118fb0000 R14: ffffed10231f6001 R15: 0000000000000058
+000:  process_one_work+0x880/0x1260
+000:  worker_thread+0x97/0xf90
+000:  kthread+0x2ce/0x3d0
+000:  ret_from_fork+0x35/0x40
+000: rcu: rcu_sched kthread starved for 27334 jiffies! g35625 f0x2 RCU_GP_WAIT_FQS(5) ->state=0x0 ->cpu=1
+000: rcu: RCU grace-period kthread stack dump:
+000: rcu_sched       R  running task    29760    10      2 0x80004000
+000: Call Trace:
+000:  schedule+0xc6/0x290
+000:  schedule_timeout+0x2f3/0x860
+000:  rcu_gp_kthread+0x9e6/0x20c0
+000:  kthread+0x2ce/0x3d0
+000:  ret_from_fork+0x35/0x40
+001: ata1: soft resetting link
+001: ata1.00: configured for MWDMA2
+001: ata1: EH complete
+001: EXT4-fs (sda): Unrecognized mount option "subj_role=ext3" or missing value
+001: EXT4-fs (sda): Unrecognized mount option "subj_role=ext3" or missing value
+000: FAT-fs (loop1): Unrecognized mount option "ù+ı4=√"<†·ë4" or missing value
+001: FAT-fs (loop1): Unrecognized mount option "ù+ı4=√"<†·ë4" or missing value
+000: FAT-fs (loop1): bogus number of reserved sectors
+000: FAT-fs (loop1): Can't find a valid FAT filesystem
+000: FAT-fs (loop1): bogus number of reserved sectors
+000: FAT-fs (loop1): Can't find a valid FAT filesystem
+001: SELinux: unrecognized netlink message: protocol=9 nlmsg_type=0 sclass=netlink_audit_socket pid=5431 comm=syz-executor.1
+001: SELinux: unrecognized netlink message: protocol=9 nlmsg_type=0 sclass=netlink_audit_socket pid=5432 comm=syz-executor.1
+001: netlink: 8 bytes leftover after parsing attributes in process `syz-executor.1'.
+001: netlink: 8 bytes leftover after parsing attributes in process `syz-executor.1'.
+001: SELinux: unrecognized netlink message: protocol=6 nlmsg_type=17171 sclass=netlink_xfrm_socket pid=5482 comm=syz-executor.1
+001: SELinux: unrecognized netlink message: protocol=6 nlmsg_type=17171 sclass=netlink_xfrm_socket pid=5482 comm=syz-executor.1
+000: tmpfs: Bad value for 'mpol'
+000: tmpfs: Bad value for 'mpol'
+000: SELinux: unrecognized netlink message: protocol=0 nlmsg_type=0 sclass=netlink_route_socket pid=5536 comm=syz-executor.1
+000: SELinux: unrecognized netlink message: protocol=0 nlmsg_type=0 sclass=netlink_route_socket pid=5536 comm=syz-executor.1
+001: SELinux: unrecognized netlink message: protocol=0 nlmsg_type=0 sclass=netlink_route_socket pid=5536 comm=syz-executor.1
+000: tmpfs: Bad value for 'huge'
+000: tmpfs: Bad value for 'huge'
+001: FAT-fs (loop1): bogus number of reserved sectors
+001: FAT-fs (loop1): Can't find a valid FAT filesystem
+000: FAT-fs (loop1): bogus number of reserved sectors
+000: FAT-fs (loop1): Can't find a valid FAT filesystem
+001: audit: type=1326 audit(1622945604.963:13): auid=0 uid=0 gid=0 ses=4 subj=kernel pid=5652 comm="syz-executor.1" exe="/syz-executor.1" sig=31 arch=c000003e syscall=202 compat=0 ip=0x4686dd code=0x0
+001: audit: type=1326 audit(1622945605.762:14): auid=0 uid=0 gid=0 ses=4 subj=kernel pid=5652 comm="syz-executor.1" exe="/syz-executor.1" sig=31 arch=c000003e syscall=202 compat=0 ip=0x4686dd code=0x0
+000: nfs4: Unknown parameter '%)&ñ:}\'
+000: nfs4: Unknown parameter '%)&ñ:}\'
+001: audit: type=1326 audit(1622945608.092:15): auid=0 uid=0 gid=0 ses=4 subj=kernel pid=5744 comm="syz-executor.1" exe="/syz-executor.1" sig=31 arch=c000003e syscall=202 compat=0 ip=0x4686dd code=0x0
+001: audit: type=1326 audit(1622945608.893:16): auid=0 uid=0 gid=0 ses=4 subj=kernel pid=5744 comm="syz-executor.1" exe="/syz-executor.1" sig=31 arch=c000003e syscall=202 compat=0 ip=0x4686dd code=0x0
+001: SELinux:  duplicate or incompatible mount options
+000: SELinux:  duplicate or incompatible mount options
+001: SELinux: unrecognized netlink message: protocol=6 nlmsg_type=268 sclass=netlink_xfrm_socket pid=5812 comm=syz-executor.1
+001: SELinux: unrecognized netlink message: protocol=6 nlmsg_type=268 sclass=netlink_xfrm_socket pid=5814 comm=syz-executor.1
+000: EXT4-fs (sda): Mount option "noacl" will be removed by 3.5
+000: Contact linux-ext4@vger.kernel.org if you think we should keep it.
+000: 
+000: EXT4-fs (sda): re-mounted. Opts: noacl,,errors=continue
+001: EXT4-fs (sda): Mount option "noacl" will be removed by 3.5
+001: Contact linux-ext4@vger.kernel.org if you think we should keep it.
+001: 
+001: EXT4-fs (sda): re-mounted. Opts: noacl,,errors=continue
+001: netlink: 24 bytes leftover after parsing attributes in process `syz-executor.1'.
+001: netlink: 24 bytes leftover after parsing attributes in process `syz-executor.1'.
+000: Page cache invalidation failure on direct I/O.  Possible data corruption due to collision with buffered I/O!
+000: File: /syzkaller-testdir336416362/syzkaller.2TiUdI/707/file0 PID: 5895 Comm: syz-executor.1
+001: nfs4: Unknown parameter ')'
+001: blk_update_request: I/O error, dev loop1, sector 0 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+001: FAT-fs (loop1): unable to read boot sector
+001: blk_update_request: I/O error, dev loop1, sector 0 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+001: FAT-fs (loop1): unable to read boot sector
+001: SELinux: Unable to set superblock options before the security server is initialized
+001: SELinux: Unable to set superblock options before the security server is initialized
+001: SELinux: unrecognized netlink message: protocol=0 nlmsg_type=3 sclass=netlink_route_socket pid=5970 comm=syz-executor.1
+000: new mount options do not match the existing superblock, will be ignored
+000: new mount options do not match the existing superblock, will be ignored
+001: FAT-fs (loop1): bogus number of reserved sectors
+001: FAT-fs (loop1): Can't find a valid FAT filesystem
+001: sr 1:0:0:0: tag#0 FAILED Result: hostbyte=DID_ERROR driverbyte=DRIVER_OK cmd_age=0s
+001: sr 1:0:0:0: tag#0 CDB: opcode=0x97 97 46 ff ff 00 00 00 00 00 00 00 00 00 00 00 00
+001: FAT-fs (loop1): bogus number of reserved sectors
+001: FAT-fs (loop1): Can't find a valid FAT filesystem
+000: devpts: called with bogus options
+001: devpts: called with bogus options
+000: tmpfs: Bad value for 'mpol'
+000: tmpfs: Bad value for 'mpol'
+000: SELinux: unrecognized netlink message: protocol=6 nlmsg_type=4162 sclass=netlink_xfrm_socket pid=6129 comm=syz-executor.1
+000: SELinux: unrecognized netlink message: protocol=6 nlmsg_type=4162 sclass=netlink_xfrm_socket pid=6129 comm=syz-executor.1
+000: netlink: 8 bytes leftover after parsing attributes in process `syz-executor.1'.
+000: netlink: 28 bytes leftover after parsing attributes in process `syz-executor.1'.
+000: netlink: 28 bytes leftover after parsing attributes in process `syz-executor.1'.
+001: SELinux: unrecognized netlink message: protocol=6 nlmsg_type=1051 sclass=netlink_xfrm_socket pid=6164 comm=syz-executor.1
+001: SELinux: unrecognized netlink message: protocol=6 nlmsg_type=1051 sclass=netlink_xfrm_socket pid=6166 comm=syz-executor.1
+000: Invalid option length (182) for dns_resolver key
+000: Invalid option length (182) for dns_resolver key
+000: netlink: 28 bytes leftover after parsing attributes in process `syz-executor.1'.
+000: netlink: 28 bytes leftover after parsing attributes in process `syz-executor.1'.
+001: audit: type=1326 audit(1622945620.648:17): auid=0 uid=0 gid=0 ses=4 subj=kernel pid=6255 comm="syz-executor.1" exe="/syz-executor.1" sig=31 arch=c000003e syscall=202 compat=0 ip=0x4686dd code=0x0
+001: FAT-fs (loop1): Unrecognized mount option "gΩd=0xffffffffffffffff<" or missing value
+000: isofs_fill_super: bread failed, dev=loop1, iso_blknum=61, block=122
+000: isofs_fill_super: bread failed, dev=loop1, iso_blknum=61, block=122
+000: netlink: 8 bytes leftover after parsing attributes in process `syz-executor.1'.
+000: platform regulatory.0: Direct firmware load for regulatory.db failed with error -2
+000: netlink: 8 bytes leftover after parsing attributes in process `syz-executor.1'.
+000: platform regulatory.0: Direct firmware load for regulatory.db failed with error -2
+001: SELinux: unrecognized netlink message: protocol=6 nlmsg_type=221 sclass=netlink_xfrm_socket pid=6300 comm=syz-executor.1
+001: SELinux: unrecognized netlink message: protocol=6 nlmsg_type=221 sclass=netlink_xfrm_socket pid=6300 comm=syz-executor.1
+001: netlink: 72 bytes leftover after parsing attributes in process `syz-executor.1'.
+001: netlink: 72 bytes leftover after parsing attributes in process `syz-executor.1'.
+000: blk_update_request: I/O error, dev loop1, sector 0 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+000: FAT-fs (loop1): unable to read boot sector
+001: blk_update_request: I/O error, dev loop1, sector 0 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+001: FAT-fs (loop1): unable to read boot sector
+000: tmpfs: Unknown parameter ''
+001: tmpfs: Unknown parameter ''
+001: FAT-fs (loop1): bogus number of reserved sectors
+001: FAT-fs (loop1): Can't find a valid FAT filesystem
+001: FAT-fs (loop1): bogus number of reserved sectors
+001: FAT-fs (loop1): Can't find a valid FAT filesystem
+000: SELinux: unrecognized netlink message: protocol=6 nlmsg_type=907 sclass=netlink_xfrm_socket pid=6455 comm=syz-executor.1
+001: SELinux: unrecognized netlink message: protocol=6 nlmsg_type=29204 sclass=netlink_xfrm_socket pid=6455 comm=syz-executor.1
+001: SELinux: unrecognized netlink message: protocol=6 nlmsg_type=907 sclass=netlink_xfrm_socket pid=6456 comm=syz-executor.1
+001: FAT-fs (loop1): Unrecognized mount option "fowner=00000000000000060929" or missing value
+000: FAT-fs (loop1): Unrecognized mount option "fowner=00000000000000060929" or missing value

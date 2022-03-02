@@ -1,0 +1,97 @@
+000: SELinux: unrecognized netlink message: protocol=6 nlmsg_type=0 sclass=netlink_xfrm_socket pid=26115 comm=syz-executor.0
+000: rcu: INFO: rcu_sched self-detected stall on CPU
+000: rcu: 	0-...!: (1 GPs behind) idle=d2a/1/0x4000000000000002 softirq=134339/134359 fqs=0 
+000: 	(t=56302 jiffies g=166293 q=196)
+000: rcu: rcu_sched kthread starved for 56302 jiffies! g166293 f0x0 RCU_GP_WAIT_FQS(5) ->state=0x402 ->cpu=1
+000: rcu: RCU grace-period kthread stack dump:
+000: rcu_sched       I29760    10      2 0x80004000
+000: Call Trace:
+000:  schedule+0xc6/0x290
+000:  schedule_timeout+0x2f3/0x860
+000:  rcu_gp_kthread+0x9e6/0x20c0
+000:  kthread+0x2ce/0x3d0
+000:  ret_from_fork+0x35/0x40
+000: NMI backtrace for cpu 0
+000: CPU: 0 PID: 93 Comm: printk Not tainted 5.6.0-rt1+ #2
+000: Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+000: Call Trace:
+000:  <IRQ>
+000:  dump_stack+0x95/0xce
+000:  nmi_cpu_backtrace.cold+0x55/0x94
+000:  nmi_trigger_cpumask_backtrace+0x155/0x19b
+000:  rcu_dump_cpu_stacks+0x15d/0x1a7
+000:  rcu_sched_clock_irq.cold+0x4c8/0x90b
+000:  update_process_times+0x24/0x60
+000:  tick_sched_handle+0x10f/0x150
+000:  tick_sched_timer+0x41/0x120
+000:  __hrtimer_run_queues+0x308/0x7c0
+000:  hrtimer_interrupt+0x2c9/0x6c0
+000:  smp_apic_timer_interrupt+0xd4/0x380
+000:  apic_timer_interrupt+0xf/0x20
+000:  </IRQ>
+000: RIP: 0010:_raw_spin_unlock_irqrestore+0x2c/0x50
+000: Code: ec 10 48 b8 00 00 00 00 00 fc ff df 48 89 fa 48 c1 ea 03 0f b6 04 02 48 89 fa 83 e2 07 38 d0 7f 04 84 c0 75 0a c6 07 00 56 9d <48> 83 c4 10 c3 48 89 74 24 08 48 89 3c 24 e8 c1 e7 06 fe 48 8b 74
+000: RSP: 0018:ffff8881175c7bc8 EFLAGS: 00000246 ORIG_RAX: ffffffffffffff13
+000: RAX: 0000000000000000 RBX: 1ffff11022eb8f82 RCX: ffffffffb9f7aa48
+000: RDX: 0000000000000000 RSI: 0000000000000246 RDI: ffffffffbd8f6720
+000: RBP: ffffffffbd8f6920 R08: 0000000000000001 R09: fffffbfff7859381
+000: R10: fffffbfff7859380 R11: ffffffffbc2c9c03 R12: 0000000000000005
+000: R13: 0000000000000000 R14: ffffffffbd8f6740 R15: ffffffffbd8f6720
+000:  serial8250_console_write+0x445/0xa20
+000:  printk_kthread_func+0x69f/0xd20
+000:  kthread+0x2ce/0x3d0
+000:  ret_from_fork+0x35/0x40
+000: hpet: Lost 856 RTC interrupts
+001: rcu: INFO: rcu_sched detected expedited stalls on CPUs/tasks: { 0-... } 56302 jiffies s: 7673 root: 0x1/.
+001: rcu: blocking rcu_node structures:
+001: Task dump for CPU 0:
+001: printk          R  running task    29728    93      2 0x80004008
+001: Call Trace:
+000: hpet: Lost 103 RTC interrupts
+000: hpet: Lost 315 RTC interrupts
+001: cgroup: Unknown subsys name 'perf_event'
+001: cgroup: Unknown subsys name 'net_cls'
+000: nfs: Unknown parameter '/dev/bsg'
+000: nfs: Unknown parameter '/dev/bsg'
+000: tmpfs: Bad value for 'size'
+001: tmpfs: Bad value for 'size'
+000: ISOFS: Unable to identify CD-ROM format.
+000: Process accounting resumed
+000: audit: type=1326 audit(1622926735.306:141): auid=0 uid=0 gid=0 ses=4 subj=kernel pid=26719 comm="syz-executor.1" exe="/syz-executor.1" sig=31 arch=c000003e syscall=202 compat=0 ip=0x4686dd code=0x0
+000: audit: type=1326 audit(1622926736.107:142): auid=0 uid=0 gid=0 ses=4 subj=kernel pid=26719 comm="syz-executor.1" exe="/syz-executor.1" sig=31 arch=c000003e syscall=202 compat=0 ip=0x4686dd code=0x0
+001: ata1: lost interrupt (Status 0x58)
+001: ata1.00: exception Emask 0x0 SAct 0x0 SErr 0x0 action 0x6 frozen
+001: ata1.00: failed command: WRITE DMA
+001: ata1.00: cmd ca/00:60:40:7d:3c/00:00:00:00:00/e0 tag 0 dma 49152 out
+001:          res 40/00:01:00:00:00/00:00:00:00:00/a0 Emask 0x4 (timeout)
+001: ata1.00: status: { DRDY }
+001: ata1: soft resetting link
+000: hpet: Lost 1308 RTC interrupts
+001: ata1.00: configured for MWDMA2
+001: ata1: EH complete
+001: EXT4-fs (sda): Unrecognized mount option "noquéta" or missing value
+001: EXT4-fs (sda): Unrecognized mount option "noquéta" or missing value
+001: SELinux: unrecognized netlink message: protocol=9 nlmsg_type=42596 sclass=netlink_audit_socket pid=26771 comm=syz-executor.0
+001: SELinux: unrecognized netlink message: protocol=9 nlmsg_type=42596 sclass=netlink_audit_socket pid=26771 comm=syz-executor.0
+000: 9pnet: Insufficient options for proto=fd
+000: 9pnet: Insufficient options for proto=fd
+000: Invalid option length (182) for dns_resolver key
+000: Invalid option length (182) for dns_resolver key
+000: SELinux: unrecognized netlink message: protocol=0 nlmsg_type=0 sclass=netlink_route_socket pid=26828 comm=syz-executor.1
+000: SELinux: unrecognized netlink message: protocol=0 nlmsg_type=0 sclass=netlink_route_socket pid=26830 comm=syz-executor.1
+000: sd 0:0:0:0: tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_SENSE cmd_age=0s
+000: sd 0:0:0:0: tag#0 Sense Key : No Sense [current] 
+000: sd 0:0:0:0: tag#0 Add. Sense: No additional sense information
+000: sd 0:0:0:0: tag#0 CDB: Request Sense 03 24 00 00 00 00
+000: sd 0:0:0:0: tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_SENSE cmd_age=0s
+000: sd 0:0:0:0: tag#0 Sense Key : No Sense [current] 
+000: sd 0:0:0:0: tag#0 Add. Sense: No additional sense information
+000: sd 0:0:0:0: tag#0 CDB: Request Sense 03 24 00 00 00 00
+001: sg_write: data in/out 10/251 bytes for SCSI command 0xdc-- guessing data in;
+001:    program syz-executor.0 not setting count and/or reply_len properly
+001: SELinux: unrecognized netlink message: protocol=0 nlmsg_type=61 sclass=netlink_route_socket pid=27014 comm=syz-executor.1
+001: SELinux: unrecognized netlink message: protocol=0 nlmsg_type=61 sclass=netlink_route_socket pid=27014 comm=syz-executor.1
+001: tmpfs: Bad value for 'huge'
+001: tmpfs: Bad value for 'huge'
+000: FAT-fs (loop1): bogus number of reserved sectors
+000: FAT-fs (loop1): Can't find a valid FAT filesystem

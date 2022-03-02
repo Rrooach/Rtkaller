@@ -1,0 +1,67 @@
+Warning: Permanently added '[localhost]:40343' (ECDSA) to the list of known hosts.
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+syzkaller login: [    9.211440] BUG: unable to handle kernel NULL pointer dereference at 0000000000000001
+[    9.212531] IP: [<0000000000000001>] 0x0
+[    9.213086] PGD 139852067 PUD 139853067 PMD 0 
+[    9.213831] Oops: 0010 [#1] SMP 
+[    9.214483] Dumping ftrace buffer:
+[    9.214969]    (ftrace buffer empty)
+[    9.215420] Modules linked in:
+[    9.215833] CPU: 0 PID: 1541 Comm: syz-executor534 Not tainted 3.10.108-rt123+ #14
+[    9.216757] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[    9.217900] task: ffff88013ab51f40 ti: ffff880139a84000 task.ti: ffff880139a84000
+[    9.218845] RIP: 0010:[<0000000000000001>]  [<0000000000000001>] 0x0
+[    9.219675] RSP: 0000:ffff880139a85d80  EFLAGS: 00010293
+[    9.220353] RAX: 0000000000000000 RBX: ffff88013a3a0000 RCX: 0000000000000000
+[    9.221246] RDX: ffff88013ab51f40 RSI: ffffffff8140ab4d RDI: ffff88013a3a0000
+[    9.222133] RBP: ffff880139a85d98 R08: ffff880139a84000 R09: ffffffff81eb6fa0
+[    9.223034] R10: 000000000086eb50 R11: ffff88013fc11870 R12: 0000000000000001
+[    9.223944] R13: ffff88013a3a0028 R14: ffff88013a3a00a8 R15: ffff88013a3ad640
+[    9.224847] FS:  00007fa0a2ed2700(0000) GS:ffff88013fc00000(0000) knlGS:0000000000000000
+[    9.225938] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[    9.226655] CR2: 0000000000000001 CR3: 000000013a1f9000 CR4: 00000000003407f0
+[    9.227538] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+[    9.228436] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+[    9.229341] Stack:
+[    9.229597]  ffffffff8140ab53 ffff88013a3a0000 ffff880139a677c0 ffff880139a85e10
+[    9.230592]  ffffffff8140b5c8 0000000000000000 0000000281408f2b ffff88013ab51f40
+[    9.231568]  0000000020000280 ffffea0004fe3740 ffff880139853800 0000000020000280
+[    9.232543] Call Trace:
+[    9.232914]  [<ffffffff8140ab53>] ? tty_ldisc_close.isra.2+0x43/0x70
+[    9.233704]  [<ffffffff8140b5c8>] tty_set_ldisc+0x208/0x6f0
+[    9.234395]  [<ffffffff814037ff>] tty_ioctl+0x8af/0xee0
+[    9.235036]  [<ffffffff81402f50>] ? no_tty+0x40/0x40
+[    9.235685]  [<ffffffff81173ccc>] do_vfs_ioctl+0x35c/0x640
+[    9.236401]  [<ffffffff812f21bb>] ? selinux_file_ioctl+0x6b/0x180
+[    9.237155]  [<ffffffff81174047>] SyS_ioctl+0x97/0xd0
+[    9.237784]  [<ffffffff819a0df2>] system_call_fastpath+0x16/0x1b
+[    9.238527] Code:  Bad RIP value.
+[    9.238981] RIP  [<0000000000000001>] 0x0
+[    9.239503]  RSP <ffff880139a85d80>
+[    9.239939] CR2: 0000000000000001
+[    9.240416] ---[ end trace e6b3268e82aa5857 ]---
+[    9.240995] Kernel panic - not syncing: Fatal exception
+[    9.241698] Dumping ftrace buffer:
+[    9.242128]    (ftrace buffer empty)
+[    9.242569] Rebooting in 1 seconds..

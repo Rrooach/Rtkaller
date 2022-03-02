@@ -1,0 +1,24 @@
+------------[ cut here ]------------
+WARNING: at mm/page_alloc.c:2480 __alloc_pages_nodemask+0x54d/0xa60()
+Modules linked in:
+CPU: 1 PID: 14905 Comm: syz-executor.0 Not tainted 3.10.108-rt123+ #14
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+ 0000000000000009 ffff880125d9fbd0 ffffffff81991617 ffff880125d9fc08
+ ffffffff8103b93c 0000000000000000 0000000000000000 0000000000000000
+ 0000000000000000 000000000010c0d0 ffff880125d9fc18 ffffffff8103ba15
+Call Trace:
+ [<ffffffff81991617>] dump_stack+0x1e/0x20
+ [<ffffffff8103b93c>] warn_slowpath_common+0x5c/0x80
+ [<ffffffff8103ba15>] warn_slowpath_null+0x15/0x20
+ [<ffffffff81105bbd>] __alloc_pages_nodemask+0x54d/0xa60
+ [<ffffffff8114bc84>] alloc_pages_current+0xc4/0x1a0
+ [<ffffffff81100f49>] __get_free_pages+0x9/0x40
+ [<ffffffff811522c9>] kmalloc_order_trace+0x29/0xc0
+ [<ffffffff81156ae9>] __kmalloc_track_caller+0x189/0x1a0
+ [<ffffffff8111a97c>] krealloc+0x6c/0x100
+ [<ffffffff816bf33f>] snd_info_entry_write+0x1cf/0x240
+ [<ffffffff811d8c79>] proc_reg_write+0x79/0xd0
+ [<ffffffff8115c92f>] vfs_write+0xef/0x260
+ [<ffffffff8115d643>] SyS_write+0x53/0xa0
+ [<ffffffff819a0df2>] system_call_fastpath+0x16/0x1b
+---[ end trace 0381ea849f3654f8 ]---

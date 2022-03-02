@@ -1,0 +1,23 @@
+Warning: Permanently added '[localhost]:64488' (ECDSA) to the list of known hosts.
+2021/05/31 23:28:41 parsed 1 programs
+2021/05/31 23:28:41 executed programs: 0
+syzkaller login: [   25.086000] syz-executor.0[2432]: segfault at ffffffffffffffb8 ip 00000000004038fb sp 00007f6573dd2570 error 5 in syz-executor.0[401000+c2000]
+[   25.088338] Code: 08 00 00 48 83 c4 28 5b 5d 41 5c 41 5d 41 5e 41 5f c3 66 66 2e 0f 1f 84 00 00 00 00 00 66 90 f3 0f 1e fa 53 48 8b 76 10 89 fb <64> 8b 14 25 b8 ff ff ff 48 8d 86 00 00 f0 ff 48 3d 00 00 30 06 76
+[   25.105411] syz-executor.0[2443]: segfault at ffffffffffffffb8 ip 00000000004038fb sp 00007f6573ddf570 error 5 in syz-executor.0[401000+c2000]
+[   25.107603] Code: 08 00 00 48 83 c4 28 5b 5d 41 5c 41 5d 41 5e 41 5f c3 66 66 2e 0f 1f 84 00 00 00 00 00 66 90 f3 0f 1e fa 53 48 8b 76 10 89 fb <64> 8b 14 25 b8 ff ff ff 48 8d 86 00 00 f0 ff 48 3d 00 00 30 06 76
+[   25.123564] syz-executor.0[2453]: segfault at ffffffffffffffb8 ip 00000000004038fb sp 00007f6573dd0b70 error 5 in syz-executor.0[401000+c2000]
+[   25.126274] Code: 08 00 00 48 83 c4 28 5b 5d 41 5c 41 5d 41 5e 41 5f c3 66 66 2e 0f 1f 84 00 00 00 00 00 66 90 f3 0f 1e fa 53 48 8b 76 10 89 fb <64> 8b 14 25 b8 ff ff ff 48 8d 86 00 00 f0 ff 48 3d 00 00 30 06 76
+[   25.133067] syz-executor.0[2458]: segfault at ffffffffffffffb8 ip 00000000004038fb sp 00007f6573dd7370 error 5 in syz-executor.0[401000+c2000]
+[   25.134917] Code: 08 00 00 48 83 c4 28 5b 5d 41 5c 41 5d 41 5e 41 5f c3 66 66 2e 0f 1f 84 00 00 00 00 00 66 90 f3 0f 1e fa 53 48 8b 76 10 89 fb <64> 8b 14 25 b8 ff ff ff 48 8d 86 00 00 f0 ff 48 3d 00 00 30 06 76
+[   25.158998] syz-executor.0[2473]: segfault at ffffffffffffffb8 ip 00000000004038fb sp 00007f6573dd1870 error 5 in syz-executor.0[401000+c2000]
+[   25.161891] Code: 08 00 00 48 83 c4 28 5b 5d 41 5c 41 5d 41 5e 41 5f c3 66 66 2e 0f 1f 84 00 00 00 00 00 66 90 f3 0f 1e fa 53 48 8b 76 10 89 fb <64> 8b 14 25 b8 ff ff ff 48 8d 86 00 00 f0 ff 48 3d 00 00 30 06 76
+[   25.191844] syz-executor.0[2499]: segfault at ffffffffffffffb8 ip 00000000004038fb sp 00007f6573dd1870 error 5 in syz-executor.0[401000+c2000]
+[   25.194209] Code: 08 00 00 48 83 c4 28 5b 5d 41 5c 41 5d 41 5e 41 5f c3 66 66 2e 0f 1f 84 00 00 00 00 00 66 90 f3 0f 1e fa 53 48 8b 76 10 89 fb <64> 8b 14 25 b8 ff ff ff 48 8d 86 00 00 f0 ff 48 3d 00 00 30 06 76
+[   25.201006] syz-executor.0[2504]: segfault at ffffffffffffffb8 ip 00000000004038fb sp 00007f6573dd2570 error 5 in syz-executor.0[401000+c2000]
+[   25.203429] Code: 08 00 00 48 83 c4 28 5b 5d 41 5c 41 5d 41 5e 41 5f c3 66 66 2e 0f 1f 84 00 00 00 00 00 66 90 f3 0f 1e fa 53 48 8b 76 10 89 fb <64> 8b 14 25 b8 ff ff ff 48 8d 86 00 00 f0 ff 48 3d 00 00 30 06 76
+[   25.210513] syz-executor.0[2514]: segfault at ffffffffffffffb8 ip 00000000004038fb sp 00007f6573ddf570 error 5 in syz-executor.0[401000+c2000]
+[   25.212767] Code: 08 00 00 48 83 c4 28 5b 5d 41 5c 41 5d 41 5e 41 5f c3 66 66 2e 0f 1f 84 00 00 00 00 00 66 90 f3 0f 1e fa 53 48 8b 76 10 89 fb <64> 8b 14 25 b8 ff ff ff 48 8d 86 00 00 f0 ff 48 3d 00 00 30 06 76
+[   25.218893] traps: syz-executor.0[2520] general protection fault ip:4686e5 sp:7f6573de1c58 error:0 in syz-executor.0[401000+c2000]
+[   25.235452] syz-executor.0[2535]: segfault at ffffffffffffffb8 ip 00000000004038fb sp 00007f6573dd7370 error 5 in syz-executor.0[401000+c2000]
+[   25.237591] Code: 08 00 00 48 83 c4 28 5b 5d 41 5c 41 5d 41 5e 41 5f c3 66 66 2e 0f 1f 84 00 00 00 00 00 66 90 f3 0f 1e fa 53 48 8b 76 10 89 fb <64> 8b 14 25 b8 ff ff ff 48 8d 86 00 00 f0 ff 48 3d 00 00 30 06 76
+[   28.624476] syz-executor.0 (1950) used greatest stack depth: 25376 bytes left

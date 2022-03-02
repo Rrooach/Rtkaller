@@ -1,0 +1,43 @@
+BUG: unable to handle kernel paging request at ffff880227bca3f8
+IP: [<ffffffff813585f6>] memcpy+0x6/0x110
+PGD 20d1067 PUD 0 
+Oops: 0002 [#1] SMP 
+Dumping ftrace buffer:
+   (ftrace buffer empty)
+Modules linked in:
+CPU: 1 PID: 9892 Comm: syz-executor.1 Not tainted 3.10.108-rt123+ #14
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+task: ffff880138845dc0 ti: ffff880125aca000 task.ti: ffff880125aca000
+RIP: 0010:[<ffffffff813585f6>]  [<ffffffff813585f6>] memcpy+0x6/0x110
+RSP: 0018:ffff880125acb888  EFLAGS: 00010283
+RAX: ffff880227bca3f8 RBX: ffff88013a181000 RCX: 00000000000000b0
+RDX: 00000000000000b0 RSI: ffff880125ae26c0 RDI: ffff880227bca3f8
+RBP: ffff880125acb938 R08: ffff88013fd14580 R09: ffff880125acb930
+R10: 0000000000000091 R11: 694f4d974152f969 R12: ffff88013a181b00
+R13: 0000000000000000 R14: 00000000ffffffff R15: ffff880127bca4b0
+FS:  00007fa72c98d700(0000) GS:ffff88013fd00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffff880227bca3f8 CR3: 00000001255eb000 CR4: 00000000003407e0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Stack:
+ ffffffff81858db9 ffff88013a085380 ffff88013a181b00 ffff880125acb8f0
+ 01ffffff8179f39b ffffffff818551c0 ffff88013a697800 ffff880127bf0000
+ 000000000000000a ffff88012548e000 ffff8801ffffff48 ffff8801000000b8
+Call Trace:
+ [<ffffffff818590dc>] ip6_finish_output+0xec/0x120
+ [<ffffffff818591a5>] ip6_output+0x95/0x100
+ [<ffffffff81857211>] ip6_local_out+0x31/0x50
+ [<ffffffff818575de>] ip6_push_pending_frames+0x3ae/0x550
+ [<ffffffff81879303>] rawv6_sendmsg+0xde3/0x1030
+ [<ffffffff8180b3bb>] inet_sendmsg+0xab/0xf0
+ [<ffffffff81749b74>] sock_sendmsg+0xa4/0xf0
+ [<ffffffff8174a098>] ___sys_sendmsg+0x458/0x470
+ [<ffffffff8174ae9d>] __sys_sendmsg+0x4d/0xa0
+ [<ffffffff8174af1d>] SyS_sendmsg+0x2d/0x50
+ [<ffffffff819a0df2>] system_call_fastpath+0x16/0x1b
+Code: 50 88 43 4e 5b 5d f3 c3 0f 1f 44 00 00 e8 b3 fa ff ff 48 8b 43 58 48 2b 43 50 88 43 4e 5b 5d eb e5 90 90 90 90 48 89 f8 48 89 d1 <f3> a4 c3 03 83 e2 07 f3 48 a5 89 d1 f3 a4 c3 20 4c 8b 06 4c 8b 
+RIP  [<ffffffff813585f6>] memcpy+0x6/0x110
+ RSP <ffff880125acb888>
+CR2: ffff880227bca3f8
+---[ end trace 7d78ca4b17f3eb66 ]---

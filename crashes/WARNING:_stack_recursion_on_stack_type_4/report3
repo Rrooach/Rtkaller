@@ -1,0 +1,14 @@
+000: WARNING: stack recursion on stack type 4
+000: WARNING: can't dereference registers at 00000000c404561a for ip swapgs_restore_regs_and_return_to_usermode+0x4f/0x80
+000: perf: interrupt took too long (2513 > 2500), lowering kernel.perf_event_max_sample_rate to 79000
+000: perf: interrupt took too long (3179 > 3141), lowering kernel.perf_event_max_sample_rate to 62000
+000: perf: interrupt took too long (4003 > 3973), lowering kernel.perf_event_max_sample_rate to 49000
+000: perf: interrupt took too long (5030 > 5003), lowering kernel.perf_event_max_sample_rate to 39000
+000: perf: interrupt took too long (6358 > 6287), lowering kernel.perf_event_max_sample_rate to 31000
+000: perf: interrupt took too long (7974 > 7947), lowering kernel.perf_event_max_sample_rate to 25000
+000: perf: interrupt took too long (9974 > 9967), lowering kernel.perf_event_max_sample_rate to 20000
+000: tmpfs: Bad value for 'uid'
+000: tmpfs: Bad value for 'uid'
+001: tmpfs: Bad value for 'mpol'
+000: tmpfs: Bad value for 'mpol'
+001: tmpfs: Bad value for 'mpol'

@@ -1,0 +1,1181 @@
+Warning: Permanently added '[localhost]:35790' (ECDSA) to the list of known hosts.
+syzkaller login: [   23.024217] audit: type=1400 audit(1613189188.272:8): avc:  denied  { execmem } for  pid=393 comm="syz-executor418" scontext=system_u:system_r:kernel_t:s0 tcontext=system_u:system_r:kernel_t:s0 tclass=process permissive=1
+[   23.175270] cgroup1: Unknown subsys name 'perf_event'
+[   23.175272] cgroup1: Unknown subsys name 'perf_event'
+[   23.175524] cgroup1: Unknown subsys name 'net_cls'
+[   23.176204] cgroup1: Unknown subsys name 'net_cls'
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+[   26.175026] general protection fault: 0000 [#1] SMP PTI
+[   26.175032] CPU: 1 PID: 3622 Comm: syz-executor418 Not tainted 5.3.0+ #3
+[   26.175034] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[   26.175077] RIP: 0010:find_next_and_bit+0x2c/0xc0
+[   26.175082] Code: 41 56 49 89 fe 41 55 49 89 f5 41 54 49 89 d4 55 53 48 89 cb e8 c5 57 c9 ff 49 39 dc 76 72 e8 bb 57 c9 ff 48 89 dd 48 c1 ed 06 <4d> 8b 3c ee 4d 85 ed 74 0a e8 a6 57 c9 ff 4d 23 7c ed 00 e8 9c 57
+[   26.175084] RSP: 0018:ffff9f8ac00a0dc8 EFLAGS: 00010246
+[   26.175087] RAX: ffff9408f273d300 RBX: 0000000000000000 RCX: ffffffffa0ebf505
+[   26.175089] RDX: 0000000000000100 RSI: ffff9408fbb16418 RDI: 66f577b5bd7c0a52
+[   26.175091] RBP: 0000000000000000 R08: ffff9f8ac00a0f34 R09: 0000000000000000
+[   26.175094] R10: 0000000000000001 R11: 0000000000000001 R12: 0000000000000040
+[   26.175096] R13: ffff9408fbb16418 R14: 66f577b5bd7c0a52 R15: 0000000000000000
+[   26.175099] FS:  000055555639e940(0000) GS:ffff9408fbb00000(0000) knlGS:0000000000000000
+[   26.175105] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[   26.175107] CR2: 00007ffe71d53e58 CR3: 00000001371c6005 CR4: 0000000000760ee0
+[   26.175109] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+[   26.175111] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+[   26.175112] PKRU: 55555554
+[   26.175113] Call Trace:
+[   26.175152]  <IRQ>
+[   26.175181]  cpumask_next_and+0x27/0x30
+[   26.175216]  load_balance+0x12b/0xa30
+[   26.175236]  ? __update_load_avg_cfs_rq+0x1c5/0x2a0
+[   26.175240]  ? sched_slice.isra.93+0x53/0xb0
+[   26.175251]  ? hrtimer_active+0x4e/0x90
+[   26.175256]  rebalance_domains+0x246/0x2d0
+[   26.175270]  __do_softirq+0xd4/0x2d4
+[   26.175297]  irq_exit+0x98/0xa0
+[   26.175311]  smp_apic_timer_interrupt+0x72/0x130
+[   26.175318]  apic_timer_interrupt+0xf/0x20
+[   26.175319]  </IRQ>
+[   26.175324] RIP: 0010:queued_spin_lock_slowpath+0x1b/0x1c0
+[   26.175328] Code: 0f b1 07 39 c1 75 dc c3 90 90 90 90 90 90 90 0f 1f 44 00 00 ba 01 00 00 00 8b 07 85 c0 75 09 f0 0f b1 17 85 c0 75 f2 c3 f3 90 <eb> ed 81 fe 00 01 00 00 74 40 81 e6 00 ff ff ff 75 6d f0 0f ba 2f
+[   26.175329] RSP: 0018:ffff9f8ac2293e30 EFLAGS: 00000286 ORIG_RAX: ffffffffffffff13
+[   26.175332] RAX: 00000000e83ab0ff RBX: ffff9408fb0a2540 RCX: ffffffffa0bec5cd
+[   26.175334] RDX: 0000000000000001 RSI: 00000000e83ab0ff RDI: ffff9408fb0a2540
+[   26.175336] RBP: ffff9408f2c12a40 R08: 0000000000000000 R09: 0000000000000000
+[   26.175338] R10: 0000000000000000 R11: 0000000000000000 R12: ffff9408fb01cc90
+[   26.175340] R13: 00006bf7c0000000 R14: ffff9408f707a310 R15: ffff9408f2c41448
+[   26.175360]  ? list_lru_add+0x3d/0xe0
+[   26.175373]  list_lru_add+0x67/0xe0
+[   26.175395]  d_lru_add+0x5a/0x80
+[   26.175409]  dput.part.48+0x1f7/0x3d0
+[   26.175421]  __fput+0x15e/0x2f0
+[   26.175436]  task_work_run+0xa4/0xd0
+[   26.175450]  exit_to_usermode_loop+0xfa/0x100
+[   26.175461]  do_syscall_64+0x13a/0x180
+[   26.175468]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+[   26.175480] RIP: 0033:0x408277
+[   26.175484] Code: 64 89 02 48 c7 c0 ff ff ff ff eb be 0f 1f 80 00 00 00 00 f3 0f 1e fa 64 8b 04 25 18 00 00 00 85 c0 75 10 b8 03 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 41 c3 48 83 ec 18 89 7c 24 0c e8 03 fd ff ff
+[   26.175485] RSP: 002b:00007ffe71d544a8 EFLAGS: 00000246 ORIG_RAX: 0000000000000003
+[   26.175487] RAX: 0000000000000000 RBX: 0000000000000004 RCX: 0000000000408277
+[   26.175488] RDX: 0000000000000004 RSI: 00007ffe71d544d0 RDI: 0000000000000003
+[   26.175490] RBP: 0000000000000003 R08: 0000000000000000 R09: 00007ffe71d54420
+[   26.175491] R10: 0000000000000000 R11: 0000000000000246 R12: 00007ffe71d544d0
+[   26.175492] R13: 0000000000000001 R14: 0000000000000242 R15: 0000000000403420
+[   26.175493] Modules linked in:
+[   26.175508] Dumping ftrace buffer:
+[   26.175518] general protection fault: 0000 [#2] SMP PTI
+[   26.175520] CPU: 1 PID: 3622 Comm: syz-executor418 Not tainted 5.3.0+ #3
+[   26.175522] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[   26.175533] RIP: 0010:rb_set_head_page+0x2c/0x100
+[   26.175536] Code: 41 55 41 54 49 89 fc 55 53 e8 00 49 ff ff 4d 8b 6c 24 38 4d 85 ed 0f 84 a0 00 00 00 e8 ed 48 ff ff 49 8b 54 24 30 48 8b 42 08 <48> 8b 00 48 83 e0 fc 48 39 c2 0f 85 a2 00 00 00 4c 89 eb 41 be 03
+[   26.175538] RSP: 0018:ffff9f8ac00a0b30 EFLAGS: 00010006
+[   26.175541] RAX: 1c8d66671875fd9d RBX: ffff9408fb106200 RCX: ffffffffa0b603d3
+[   26.175543] RDX: ffff9408fb0a2a80 RSI: 0000000000000001 RDI: ffff9408fb106200
+[   26.175545] RBP: ffff9408fb0a2880 R08: 0000000813d05134 R09: 0000000000000016
+[   26.175547] R10: ffffffffa2353d08 R11: 000000000000002b R12: ffff9408fb106200
+[   26.175548] R13: ffff9408fb0a2a80 R14: 0000000000000000 R15: 0000000000000000
+[   26.175552] FS:  000055555639e940(0000) GS:ffff9408fbb00000(0000) knlGS:0000000000000000
+[   26.175556] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[   26.175559] CR2: 00007ffe71d53e58 CR3: 00000001371c6005 CR4: 0000000000760ee0
+[   26.175560] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+[   26.175561] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+[   26.175562] PKRU: 55555554
+[   26.175563] Call Trace:
+[   26.175572]  <IRQ>
+[   26.175575]  rb_per_cpu_empty+0x1a/0xa0
+[   26.175578]  ring_buffer_empty_cpu+0x64/0xc0
+[   26.175587]  trace_empty+0xf3/0x120
+[   26.175605]  ftrace_dump.cold.104+0xbe/0x10f
+[   26.175613]  trace_die_handler+0x36/0x50
+[   26.175619]  notifier_call_chain+0x6a/0xb0
+[   26.175629]  notify_die+0x64/0x90
+[   26.175638]  __die+0xaa/0xbe
+[   26.175652]  die+0x25/0x3e
+[   26.175655]  general_protection+0x28/0x30
+[   26.175664] RIP: 0010:find_next_and_bit+0x2c/0xc0
+[   26.175668] Code: 41 56 49 89 fe 41 55 49 89 f5 41 54 49 89 d4 55 53 48 89 cb e8 c5 57 c9 ff 49 39 dc 76 72 e8 bb 57 c9 ff 48 89 dd 48 c1 ed 06 <4d> 8b 3c ee 4d 85 ed 74 0a e8 a6 57 c9 ff 4d 23 7c ed 00 e8 9c 57
+[   26.175670] RSP: 0018:ffff9f8ac00a0dc8 EFLAGS: 00010246
+[   26.175672] RAX: ffff9408f273d300 RBX: 0000000000000000 RCX: ffffffffa0ebf505
+[   26.175675] RDX: 0000000000000100 RSI: ffff9408fbb16418 RDI: 66f577b5bd7c0a52
+[   26.175677] RBP: 0000000000000000 R08: ffff9f8ac00a0f34 R09: 0000000000000000
+[   26.175679] R10: 0000000000000001 R11: 0000000000000001 R12: 0000000000000040
+[   26.175681] R13: ffff9408fbb16418 R14: 66f577b5bd7c0a52 R15: 0000000000000000
+[   26.175686]  ? find_next_and_bit+0x25/0xc0
+[   26.175690]  ? find_next_and_bit+0x25/0xc0
+[   26.175694]  cpumask_next_and+0x27/0x30
+[   26.175697]  load_balance+0x12b/0xa30
+[   26.175701]  ? __update_load_avg_cfs_rq+0x1c5/0x2a0
+[   26.175704]  ? sched_slice.isra.93+0x53/0xb0
+[   26.175708]  ? hrtimer_active+0x4e/0x90
+[   26.175712]  rebalance_domains+0x246/0x2d0
+[   26.175716]  __do_softirq+0xd4/0x2d4
+[   26.175720]  irq_exit+0x98/0xa0
+[   26.175723]  smp_apic_timer_interrupt+0x72/0x130
+[   26.175727]  apic_timer_interrupt+0xf/0x20
+[   26.175728]  </IRQ>
+[   26.175732] RIP: 0010:queued_spin_lock_slowpath+0x1b/0x1c0
+[   26.175736] Code: 0f b1 07 39 c1 75 dc c3 90 90 90 90 90 90 90 0f 1f 44 00 00 ba 01 00 00 00 8b 07 85 c0 75 09 f0 0f b1 17 85 c0 75 f2 c3 f3 90 <eb> ed 81 fe 00 01 00 00 74 40 81 e6 00 ff ff ff 75 6d f0 0f ba 2f
+[   26.175738] RSP: 0018:ffff9f8ac2293e30 EFLAGS: 00000286 ORIG_RAX: ffffffffffffff13
+[   26.175742] RAX: 00000000e83ab0ff RBX: ffff9408fb0a2540 RCX: ffffffffa0bec5cd
+[   26.175744] RDX: 0000000000000001 RSI: 00000000e83ab0ff RDI: ffff9408fb0a2540
+[   26.175746] RBP: ffff9408f2c12a40 R08: 0000000000000000 R09: 0000000000000000
+[   26.175748] R10: 0000000000000000 R11: 0000000000000000 R12: ffff9408fb01cc90
+[   26.175750] R13: 00006bf7c0000000 R14: ffff9408f707a310 R15: ffff9408f2c41448
+[   26.175754]  ? list_lru_add+0x3d/0xe0
+[   26.175761]  list_lru_add+0x67/0xe0
+[   26.175765]  d_lru_add+0x5a/0x80
+[   26.175768]  dput.part.48+0x1f7/0x3d0
+[   26.175772]  __fput+0x15e/0x2f0
+[   26.175776]  task_work_run+0xa4/0xd0
+[   26.175779]  exit_to_usermode_loop+0xfa/0x100
+[   26.175783]  do_syscall_64+0x13a/0x180
+[   26.175787]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+[   26.175789] RIP: 0033:0x408277
+[   26.175794] Code: 64 89 02 48 c7 c0 ff ff ff ff eb be 0f 1f 80 00 00 00 00 f3 0f 1e fa 64 8b 04 25 18 00 00 00 85 c0 75 10 b8 03 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 41 c3 48 83 ec 18 89 7c 24 0c e8 03 fd ff ff
+[   26.175795] RSP: 002b:00007ffe71d544a8 EFLAGS: 00000246 ORIG_RAX: 0000000000000003
+[   26.175798] RAX: 0000000000000000 RBX: 0000000000000004 RCX: 0000000000408277
+[   26.175800] RDX: 0000000000000004 RSI: 00007ffe71d544d0 RDI: 0000000000000003
+[   26.175803] RBP: 0000000000000003 R08: 0000000000000000 R09: 00007ffe71d54420
+[   26.175805] R10: 0000000000000000 R11: 0000000000000246 R12: 00007ffe71d544d0
+[   26.175807] R13: 0000000000000001 R14: 0000000000000242 R15: 0000000000403420
+[   26.175808] Modules linked in:
+[   26.175821] ---[ end trace bb786e873c84ef95 ]---
+[   26.175825] RIP: 0010:find_next_and_bit+0x2c/0xc0
+[   26.175829] Code: 41 56 49 89 fe 41 55 49 89 f5 41 54 49 89 d4 55 53 48 89 cb e8 c5 57 c9 ff 49 39 dc 76 72 e8 bb 57 c9 ff 48 89 dd 48 c1 ed 06 <4d> 8b 3c ee 4d 85 ed 74 0a e8 a6 57 c9 ff 4d 23 7c ed 00 e8 9c 57
+[   26.175831] RSP: 0018:ffff9f8ac00a0dc8 EFLAGS: 00010246
+[   26.175834] RAX: ffff9408f273d300 RBX: 0000000000000000 RCX: ffffffffa0ebf505
+[   26.175836] RDX: 0000000000000100 RSI: ffff9408fbb16418 RDI: 66f577b5bd7c0a52
+[   26.175838] RBP: 0000000000000000 R08: ffff9f8ac00a0f34 R09: 0000000000000000
+[   26.175840] R10: 0000000000000001 R11: 0000000000000001 R12: 0000000000000040
+[   26.175842] R13: ffff9408fbb16418 R14: 66f577b5bd7c0a52 R15: 0000000000000000
+[   26.175845] FS:  000055555639e940(0000) GS:ffff9408fbb00000(0000) knlGS:0000000000000000
+[   26.175850] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[   26.175852] CR2: 00007ffe71d53e58 CR3: 00000001371c6005 CR4: 0000000000760ee0
+[   26.175854] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+[   26.175856] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+[   26.175857] PKRU: 55555554
+[   26.175859] Kernel panic - not syncing: Fatal exception in interrupt
+[   26.177202] Kernel Offset: 0x1fa00000 from 0xffffffff81000000 (relocation range: 0xffffffff80000000-0xffffffffbfffffff)
+[   26.315881] Rebooting in 1 seconds..

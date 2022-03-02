@@ -1,0 +1,5 @@
+Warning: Permanently added '[localhost]:38193' (ECDSA) to the list of known hosts.
+bash: /syz-fuzzer: Text file busy
+syzkaller login: [  154.976047] 001: EXT4-fs error (device sda): ext4_mb_generate_buddy:744: group 14, block bitmap and bg descriptor inconsistent: 32245 vs 32246 free clusters
+[  210.113954] 000: syz-fuzzer[307]: segfault at 0 ip 00000000004523ed sp 00007ffcde584250 error 4 in syz-fuzzer[400000+430000]
+[  210.113971] 000: Code: 86 8f 06 00 00 48 81 ec 00 01 00 00 48 89 ac 24 f8 00 00 00 48 8d ac 24 f8 00 00 00 48 8b 94 24 08 01 00 00 48 8b 1a 48 8b 32 <8b> 1b 89 5c 24 24 83 fb fb 0f 85 9c 05 00 00 80 7e 04 00 0f 85 92

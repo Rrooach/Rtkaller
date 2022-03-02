@@ -1,0 +1,160 @@
+Warning: Permanently added '[localhost]:45265' (ECDSA) to the list of known hosts.
+executing program
+executing program
+syzkaller login: [   24.564853] ==================================================================
+[   24.564908] BUG: KASAN: use-after-free in vgacon_scroll+0x53c/0x8c0
+[   24.564912] Write of size 4012 at addr ffff88811acafac0 by task syz-executor444/1937
+[   24.564913] 
+[   24.564932] CPU: 0 PID: 1937 Comm: syz-executor444 Not tainted 5.0.0 #3
+[   24.564934] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[   24.564937] Call Trace:
+[   24.564965]  dump_stack+0x79/0xba
+[   24.564969]  ? vgacon_scroll+0x53c/0x8c0
+[   24.564990]  print_address_description+0x60/0x229
+[   24.564994]  ? vgacon_scroll+0x53c/0x8c0
+[   24.564997]  ? vgacon_scroll+0x53c/0x8c0
+[   24.565000]  kasan_report.cold.3+0x1a/0x35
+[   24.565003]  ? vgacon_scroll+0x53c/0x8c0
+[   24.565006]  memcpy+0x38/0x50
+[   24.565010]  vgacon_scroll+0x53c/0x8c0
+[   24.565029]  con_scroll+0x521/0x630
+[   24.565037]  ? _raw_write_lock_irqsave+0xd0/0xd0
+[   24.565040]  lf+0x24a/0x2a0
+[   24.565047]  ? con_scroll+0x630/0x630
+[   24.565064]  ? up+0x16/0xe0
+[   24.565074]  ? notifier_call_chain+0x11f/0x170
+[   24.565078]  do_con_trol+0x30e/0x5bd0
+[   24.565082]  ? _raw_spin_lock_irqsave+0x7f/0xe0
+[   24.565084]  ? reset_palette+0x1b0/0x1b0
+[   24.565087]  ? _raw_write_lock_irqsave+0xd0/0xd0
+[   24.565091]  ? vgacon_set_cursor_size.isra.4+0x13f/0x2c0
+[   24.565094]  ? ucs_cmp+0xb0/0xe0
+[   24.565097]  ? notifier_call_chain+0x11f/0x170
+[   24.565100]  do_con_write.part.25+0xb2a/0x1a50
+[   24.565104]  ? do_con_trol+0x5bd0/0x5bd0
+[   24.565107]  ? _raw_spin_lock_irqsave+0x7f/0xe0
+[   24.565110]  ? _raw_write_lock_irqsave+0xd0/0xd0
+[   24.565113]  ? _raw_spin_lock+0x79/0xd0
+[   24.565116]  ? _raw_write_lock_irqsave+0xd0/0xd0
+[   24.565118]  ? up+0x16/0xe0
+[   24.565126]  ? __printk_safe_exit+0x9/0x20
+[   24.565129]  con_write+0x35/0xc0
+[   24.565138]  do_output_char+0x55c/0x770
+[   24.565141]  n_tty_write+0x588/0xe30
+[   24.565145]  ? n_tty_open+0x150/0x150
+[   24.565148]  ? do_wait_intr_irq+0x240/0x240
+[   24.565162]  ? __inode_security_revalidate+0x9f/0xd0
+[   24.565165]  tty_write+0x3a0/0x810
+[   24.565168]  ? n_tty_open+0x150/0x150
+[   24.565179]  do_iter_write+0x3dd/0x560
+[   24.565183]  vfs_writev+0x19b/0x2d0
+[   24.565187]  ? vfs_iter_write+0xa0/0xa0
+[   24.565191]  ? restore_nameidata+0x103/0x180
+[   24.565194]  ? _raw_spin_lock+0x79/0xd0
+[   24.565203]  ? __lru_cache_add+0x137/0x190
+[   24.565213]  ? __pmd_alloc+0x2d0/0x2d0
+[   24.565224]  ? __fget_light+0x170/0x200
+[   24.565227]  do_writev+0xc6/0x230
+[   24.565230]  ? vfs_writev+0x2d0/0x2d0
+[   24.565244]  ? __do_page_fault+0x4e1/0x9f0
+[   24.565251]  do_syscall_64+0x9e/0x2b0
+[   24.565254]  ? prepare_exit_to_usermode+0xc0/0x160
+[   24.565258]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+[   24.565284] RIP: 0033:0x44a9cd
+[   24.565289] Code: c3 e8 07 2b 00 00 0f 1f 80 00 00 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 c0 ff ff ff f7 d8 64 89 01 48
+[   24.565291] RSP: 002b:00007ffe6c0ea178 EFLAGS: 00000246 ORIG_RAX: 0000000000000014
+[   24.565300] RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 000000000044a9cd
+[   24.565302] RDX: 0000000000000003 RSI: 0000000020000140 RDI: 0000000000000004
+[   24.565304] RBP: 00007ffe6c0ea184 R08: 000000000000000d R09: 000000006c0ea2e8
+[   24.565306] R10: 0000000000497038 R11: 0000000000000246 R12: 00000000ffffffff
+[   24.565307] R13: 0000000000005914 R14: 00000000004c3018 R15: 0000000000000000
+[   24.565309] 
+[   24.565310] The buggy address belongs to the page:
+[   24.565319] page:ffffea00046b2800 count:1 mapcount:0 mapping:0000000000000000 index:0x0 compound_mapcount: 0
+[   24.565334] flags: 0x200000000010000(head)
+[   24.565340] raw: 0200000000010000 dead000000000100 dead000000000200 0000000000000000
+[   24.565343] raw: 0000000000000000 0000000000000000 00000001ffffffff 0000000000000000
+[   24.565345] page dumped because: kasan: bad access detected
+[   24.565345] 
+[   24.565346] Memory state around the buggy address:
+[   24.565349]  ffff88811acaff00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[   24.565351]  ffff88811acaff80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[   24.565353] >ffff88811acb0000: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+[   24.565354]                    ^
+[   24.565356]  ffff88811acb0080: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+[   24.565359]  ffff88811acb0100: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+[   24.565360] ==================================================================
+[   24.565361] Disabling lock debugging due to kernel taint
+[   24.565402] Kernel panic - not syncing: panic_on_warn set ...
+[   24.565406] CPU: 0 PID: 1937 Comm: syz-executor444 Tainted: G    B             5.0.0 #3
+[   24.565407] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[   24.565408] Call Trace:
+[   24.565412]  dump_stack+0x79/0xba
+[   24.565418]  ? vgacon_scroll+0x490/0x8c0
+[   24.565424]  panic+0x226/0x47c
+[   24.565428]  ? __warn_printk+0xdf/0xdf
+[   24.565430]  ? vgacon_scroll+0x53c/0x8c0
+[   24.565437]  ? add_taint+0x19/0x50
+[   24.565439]  ? add_taint+0x19/0x50
+[   24.565442]  ? vgacon_scroll+0x53c/0x8c0
+[   24.565445]  ? vgacon_scroll+0x53c/0x8c0
+[   24.565448]  end_report+0x43/0x49
+[   24.565451]  kasan_report.cold.3+0xd/0x35
+[   24.565454]  ? vgacon_scroll+0x53c/0x8c0
+[   24.565457]  memcpy+0x38/0x50
+[   24.565460]  vgacon_scroll+0x53c/0x8c0
+[   24.565464]  con_scroll+0x521/0x630
+[   24.565467]  ? _raw_write_lock_irqsave+0xd0/0xd0
+[   24.565473]  lf+0x24a/0x2a0
+[   24.565476]  ? con_scroll+0x630/0x630
+[   24.565479]  ? up+0x16/0xe0
+[   24.565483]  ? notifier_call_chain+0x11f/0x170
+[   24.565485]  do_con_trol+0x30e/0x5bd0
+[   24.565489]  ? _raw_spin_lock_irqsave+0x7f/0xe0
+[   24.565491]  ? reset_palette+0x1b0/0x1b0
+[   24.565495]  ? _raw_write_lock_irqsave+0xd0/0xd0
+[   24.565504]  ? vgacon_set_cursor_size.isra.4+0x13f/0x2c0
+[   24.565507]  ? ucs_cmp+0xb0/0xe0
+[   24.565510]  ? notifier_call_chain+0x11f/0x170
+[   24.565513]  do_con_write.part.25+0xb2a/0x1a50
+[   24.565517]  ? do_con_trol+0x5bd0/0x5bd0
+[   24.565520]  ? _raw_spin_lock_irqsave+0x7f/0xe0
+[   24.565523]  ? _raw_write_lock_irqsave+0xd0/0xd0
+[   24.565526]  ? _raw_spin_lock+0x79/0xd0
+[   24.565529]  ? _raw_write_lock_irqsave+0xd0/0xd0
+[   24.565532]  ? up+0x16/0xe0
+[   24.565535]  ? __printk_safe_exit+0x9/0x20
+[   24.565537]  con_write+0x35/0xc0
+[   24.565540]  do_output_char+0x55c/0x770
+[   24.565543]  n_tty_write+0x588/0xe30
+[   24.565547]  ? n_tty_open+0x150/0x150
+[   24.565549]  ? do_wait_intr_irq+0x240/0x240
+[   24.565552]  ? __inode_security_revalidate+0x9f/0xd0
+[   24.565555]  tty_write+0x3a0/0x810
+[   24.565558]  ? n_tty_open+0x150/0x150
+[   24.565561]  do_iter_write+0x3dd/0x560
+[   24.565564]  vfs_writev+0x19b/0x2d0
+[   24.565568]  ? vfs_iter_write+0xa0/0xa0
+[   24.565571]  ? restore_nameidata+0x103/0x180
+[   24.565574]  ? _raw_spin_lock+0x79/0xd0
+[   24.565577]  ? __lru_cache_add+0x137/0x190
+[   24.565580]  ? __pmd_alloc+0x2d0/0x2d0
+[   24.565583]  ? __fget_light+0x170/0x200
+[   24.565586]  do_writev+0xc6/0x230
+[   24.565593]  ? vfs_writev+0x2d0/0x2d0
+[   24.565596]  ? __do_page_fault+0x4e1/0x9f0
+[   24.565599]  do_syscall_64+0x9e/0x2b0
+[   24.565602]  ? prepare_exit_to_usermode+0xc0/0x160
+[   24.565605]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+[   24.565607] RIP: 0033:0x44a9cd
+[   24.565611] Code: c3 e8 07 2b 00 00 0f 1f 80 00 00 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 c0 ff ff ff f7 d8 64 89 01 48
+[   24.565612] RSP: 002b:00007ffe6c0ea178 EFLAGS: 00000246 ORIG_RAX: 0000000000000014
+[   24.565616] RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 000000000044a9cd
+[   24.565617] RDX: 0000000000000003 RSI: 0000000020000140 RDI: 0000000000000004
+[   24.565622] RBP: 00007ffe6c0ea184 R08: 000000000000000d R09: 000000006c0ea2e8
+[   24.565623] R10: 0000000000497038 R11: 0000000000000246 R12: 00000000ffffffff
+[   24.565625] R13: 0000000000005914 R14: 00000000004c3018 R15: 0000000000000000
+[   24.565727] Dumping ftrace buffer:
+[   24.565749]    (ftrace buffer empty)
+[   24.565757] Kernel Offset: 0xea00000 from 0xffffffff81000000 (relocation range: 0xffffffff80000000-0xffffffffbfffffff)
+[   24.653220] Rebooting in 1 seconds..

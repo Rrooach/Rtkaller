@@ -1,0 +1,33 @@
+000: Kernel panic - not syncing: panic_on_warn set ...
+000: CPU: 0 PID: 7000 Comm: syz-executor.1 Tainted: G    B             5.4.0-rt1+ #2
+000: Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+000: Call Trace:
+000:  dump_stack+0x95/0xce
+000:  panic+0x24b/0x582
+000:  end_report+0x43/0x49
+000:  __kasan_report.cold+0xd/0x41
+000:  kasan_report+0xe/0x20
+000:  n_tty_receive_buf_common+0x2105/0x2580
+000:  tty_ldisc_receive_buf+0xac/0x180
+000:  paste_selection+0x1a3/0x340
+000:  tioclinux+0x3ac/0x440
+000:  vt_ioctl+0xa44/0x2440
+000:  tty_ioctl+0x66f/0x1310
+000:  do_vfs_ioctl+0xae6/0x1030
+000:  ksys_ioctl+0x76/0xa0
+000:  __x64_sys_ioctl+0x6f/0xb0
+000:  do_syscall_64+0x9a/0x330
+000:  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+000: RIP: 0033:0x4686dd
+000: Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 bc ff ff ff f7 d8 64 89 01 48
+000: RSP: 002b:00007fc73ad4ec58 EFLAGS: 00000246
+000:  ORIG_RAX: 0000000000000010
+000: RAX: ffffffffffffffda RBX: 0000000000524680 RCX: 00000000004686dd
+000: RDX: 0000000020000040 RSI: 000000000000541c RDI: 0000000000000003
+000: RBP: 00000000004c4725 R08: 0000000000000000 R09: 0000000000000000
+000: R10: 0000000000000000 R11: 0000000000000246 R12: 000000000057cfa0
+000: R13: 00007ffeb73c86ef R14: 000000000057cfa0 R15: 00007fc73ad4edc0
+000: Dumping ftrace buffer:
+000:    (ftrace buffer empty)
+000: Kernel Offset: 0x1e000000 from 0xffffffff81000000 (relocation range: 0xffffffff80000000-0xffffffffbfffffff)
+000: Rebooting in 1 seconds..

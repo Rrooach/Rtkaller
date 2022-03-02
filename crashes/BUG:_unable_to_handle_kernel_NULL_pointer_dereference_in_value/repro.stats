@@ -1,0 +1,303 @@
+Extracting prog: 36.130813923s
+Minimizing prog: 3m22.128098237s
+Simplifying prog options: 0s
+Extracting C: 11.412913426s
+Simplifying C: 1m29.140679806s
+
+
+161 programs, 2 VMs, timeouts [15s 1m0s 6m0s]
+extracting reproducer from 161 programs
+single: executing 2 programs separately with timeout 15s
+testing program (duration=15s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): pipe2-write$binfmt_misc
+detailed listing:
+executing program 0:
+pipe2(&(0x7f0000000000)={<r0=>0xffffffffffffffff}, 0x4000)
+write$binfmt_misc(r0, &(0x7f0000000080)={'syz1'}, 0x4)
+
+program did not crash
+testing program (duration=15s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): socket$inet_tcp-syz_open_dev$tty20-dup-accept4-sendmsg$NL80211_CMD_NEW_MPATH-syz_open_dev$tty1-ioctl$TIOCSETD-ioctl$EXT4_IOC_MOVE_EXT-ioctl$TIOCVHANGUP-syz_open_dev$tty20-openat$procfs-dup-select
+detailed listing:
+executing program 0:
+socket$inet_tcp(0x2, 0x1, 0x0)
+r0 = syz_open_dev$tty20(0xc, 0x4, 0x1)
+r1 = dup(r0)
+r2 = accept4(r1, &(0x7f0000000200)=@sco={0x1f, @none}, &(0x7f00000023c0)=0x80, 0x180800)
+sendmsg$NL80211_CMD_NEW_MPATH(r2, &(0x7f00000024c0)={&(0x7f0000002400)={0x10, 0x0, 0x0, 0x2000}, 0xc, &(0x7f0000002480)={&(0x7f0000000040)=ANY=[@ANYBLOB="4ec6afb171052604daa329980daf0f3320000000", @ANYRES16=0x0, @ANYBLOB="10002dbd7000ffdbdf25170000000a001a000000000000000000"], 0x20}, 0x1, 0x0, 0x0, 0x40000}, 0x10)
+r3 = syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$TIOCSETD(r3, 0x5423, &(0x7f0000000280)=0x2)
+ioctl$EXT4_IOC_MOVE_EXT(0xffffffffffffffff, 0xc028660f, &(0x7f0000000000)={0x0, r1, 0x7f, 0x9, 0x4, 0xe5f})
+ioctl$TIOCVHANGUP(r3, 0x5437, 0x0)
+syz_open_dev$tty20(0xc, 0x4, 0x1)
+r4 = openat$procfs(0xffffffffffffff9c, &(0x7f0000000080)='/proc/cgroups\x00', 0x0, 0x0)
+dup(r4)
+select(0x40, &(0x7f00000000c0)={0xd8}, 0x0, 0x0, 0x0)
+
+program crashed: BUG: unable to handle kernel NULL pointer dereference in value
+single: successfully extracted reproducer
+found reproducer with 13 syscalls
+minimizing guilty program
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): socket$inet_tcp-syz_open_dev$tty20-dup-accept4-sendmsg$NL80211_CMD_NEW_MPATH-syz_open_dev$tty1-ioctl$TIOCSETD-ioctl$EXT4_IOC_MOVE_EXT-ioctl$TIOCVHANGUP-syz_open_dev$tty20-openat$procfs-dup
+detailed listing:
+executing program 0:
+socket$inet_tcp(0x2, 0x1, 0x0)
+r0 = syz_open_dev$tty20(0xc, 0x4, 0x1)
+r1 = dup(r0)
+r2 = accept4(r1, &(0x7f0000000200)=@sco={0x1f, @none}, &(0x7f00000023c0)=0x80, 0x180800)
+sendmsg$NL80211_CMD_NEW_MPATH(r2, &(0x7f00000024c0)={&(0x7f0000002400)={0x10, 0x0, 0x0, 0x2000}, 0xc, &(0x7f0000002480)={&(0x7f0000000040)=ANY=[@ANYBLOB="4ec6afb171052604daa329980daf0f3320000000", @ANYRES16=0x0, @ANYBLOB="10002dbd7000ffdbdf25170000000a001a000000000000000000"], 0x20}, 0x1, 0x0, 0x0, 0x40000}, 0x10)
+r3 = syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$TIOCSETD(r3, 0x5423, &(0x7f0000000280)=0x2)
+ioctl$EXT4_IOC_MOVE_EXT(0xffffffffffffffff, 0xc028660f, &(0x7f0000000000)={0x0, r1, 0x7f, 0x9, 0x4, 0xe5f})
+ioctl$TIOCVHANGUP(r3, 0x5437, 0x0)
+syz_open_dev$tty20(0xc, 0x4, 0x1)
+r4 = openat$procfs(0xffffffffffffff9c, &(0x7f0000000080)='/proc/cgroups\x00', 0x0, 0x0)
+dup(r4)
+
+program crashed: BUG: unable to handle kernel paging request in corrupted
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): socket$inet_tcp-syz_open_dev$tty20-dup-accept4-sendmsg$NL80211_CMD_NEW_MPATH-syz_open_dev$tty1-ioctl$TIOCSETD-ioctl$EXT4_IOC_MOVE_EXT-ioctl$TIOCVHANGUP-syz_open_dev$tty20-openat$procfs
+detailed listing:
+executing program 0:
+socket$inet_tcp(0x2, 0x1, 0x0)
+r0 = syz_open_dev$tty20(0xc, 0x4, 0x1)
+r1 = dup(r0)
+r2 = accept4(r1, &(0x7f0000000200)=@sco={0x1f, @none}, &(0x7f00000023c0)=0x80, 0x180800)
+sendmsg$NL80211_CMD_NEW_MPATH(r2, &(0x7f00000024c0)={&(0x7f0000002400)={0x10, 0x0, 0x0, 0x2000}, 0xc, &(0x7f0000002480)={&(0x7f0000000040)=ANY=[@ANYBLOB="4ec6afb171052604daa329980daf0f3320000000", @ANYRES16=0x0, @ANYBLOB="10002dbd7000ffdbdf25170000000a001a000000000000000000"], 0x20}, 0x1, 0x0, 0x0, 0x40000}, 0x10)
+r3 = syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$TIOCSETD(r3, 0x5423, &(0x7f0000000280)=0x2)
+ioctl$EXT4_IOC_MOVE_EXT(0xffffffffffffffff, 0xc028660f, &(0x7f0000000000)={0x0, r1, 0x7f, 0x9, 0x4, 0xe5f})
+ioctl$TIOCVHANGUP(r3, 0x5437, 0x0)
+syz_open_dev$tty20(0xc, 0x4, 0x1)
+openat$procfs(0xffffffffffffff9c, &(0x7f0000000080)='/proc/cgroups\x00', 0x0, 0x0)
+
+program crashed: BUG: unable to handle kernel paging request in corrupted
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): socket$inet_tcp-syz_open_dev$tty20-dup-accept4-sendmsg$NL80211_CMD_NEW_MPATH-syz_open_dev$tty1-ioctl$TIOCSETD-ioctl$EXT4_IOC_MOVE_EXT-ioctl$TIOCVHANGUP-syz_open_dev$tty20
+detailed listing:
+executing program 0:
+socket$inet_tcp(0x2, 0x1, 0x0)
+r0 = syz_open_dev$tty20(0xc, 0x4, 0x1)
+r1 = dup(r0)
+r2 = accept4(r1, &(0x7f0000000200)=@sco={0x1f, @none}, &(0x7f00000023c0)=0x80, 0x180800)
+sendmsg$NL80211_CMD_NEW_MPATH(r2, &(0x7f00000024c0)={&(0x7f0000002400)={0x10, 0x0, 0x0, 0x2000}, 0xc, &(0x7f0000002480)={&(0x7f0000000040)=ANY=[@ANYBLOB="4ec6afb171052604daa329980daf0f3320000000", @ANYRES16=0x0, @ANYBLOB="10002dbd7000ffdbdf25170000000a001a000000000000000000"], 0x20}, 0x1, 0x0, 0x0, 0x40000}, 0x10)
+r3 = syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$TIOCSETD(r3, 0x5423, &(0x7f0000000280)=0x2)
+ioctl$EXT4_IOC_MOVE_EXT(0xffffffffffffffff, 0xc028660f, &(0x7f0000000000)={0x0, r1, 0x7f, 0x9, 0x4, 0xe5f})
+ioctl$TIOCVHANGUP(r3, 0x5437, 0x0)
+syz_open_dev$tty20(0xc, 0x4, 0x1)
+
+program crashed: BUG: unable to handle kernel NULL pointer dereference in value
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): socket$inet_tcp-syz_open_dev$tty20-dup-accept4-sendmsg$NL80211_CMD_NEW_MPATH-syz_open_dev$tty1-ioctl$TIOCSETD-ioctl$EXT4_IOC_MOVE_EXT-ioctl$TIOCVHANGUP
+detailed listing:
+executing program 0:
+socket$inet_tcp(0x2, 0x1, 0x0)
+r0 = syz_open_dev$tty20(0xc, 0x4, 0x1)
+r1 = dup(r0)
+r2 = accept4(r1, &(0x7f0000000200)=@sco={0x1f, @none}, &(0x7f00000023c0)=0x80, 0x180800)
+sendmsg$NL80211_CMD_NEW_MPATH(r2, &(0x7f00000024c0)={&(0x7f0000002400)={0x10, 0x0, 0x0, 0x2000}, 0xc, &(0x7f0000002480)={&(0x7f0000000040)=ANY=[@ANYBLOB="4ec6afb171052604daa329980daf0f3320000000", @ANYRES16=0x0, @ANYBLOB="10002dbd7000ffdbdf25170000000a001a000000000000000000"], 0x20}, 0x1, 0x0, 0x0, 0x40000}, 0x10)
+r3 = syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$TIOCSETD(r3, 0x5423, &(0x7f0000000280)=0x2)
+ioctl$EXT4_IOC_MOVE_EXT(0xffffffffffffffff, 0xc028660f, &(0x7f0000000000)={0x0, r1, 0x7f, 0x9, 0x4, 0xe5f})
+ioctl$TIOCVHANGUP(r3, 0x5437, 0x0)
+
+program crashed: BUG: unable to handle kernel paging request in corrupted
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): socket$inet_tcp-syz_open_dev$tty20-dup-accept4-sendmsg$NL80211_CMD_NEW_MPATH-syz_open_dev$tty1-ioctl$TIOCSETD-ioctl$EXT4_IOC_MOVE_EXT
+detailed listing:
+executing program 0:
+socket$inet_tcp(0x2, 0x1, 0x0)
+r0 = syz_open_dev$tty20(0xc, 0x4, 0x1)
+r1 = dup(r0)
+r2 = accept4(r1, &(0x7f0000000200)=@sco={0x1f, @none}, &(0x7f00000023c0)=0x80, 0x180800)
+sendmsg$NL80211_CMD_NEW_MPATH(r2, &(0x7f00000024c0)={&(0x7f0000002400)={0x10, 0x0, 0x0, 0x2000}, 0xc, &(0x7f0000002480)={&(0x7f0000000040)=ANY=[@ANYBLOB="4ec6afb171052604daa329980daf0f3320000000", @ANYRES16=0x0, @ANYBLOB="10002dbd7000ffdbdf25170000000a001a000000000000000000"], 0x20}, 0x1, 0x0, 0x0, 0x40000}, 0x10)
+r3 = syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$TIOCSETD(r3, 0x5423, &(0x7f0000000280)=0x2)
+ioctl$EXT4_IOC_MOVE_EXT(0xffffffffffffffff, 0xc028660f, &(0x7f0000000000)={0x0, r1, 0x7f, 0x9, 0x4, 0xe5f})
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): socket$inet_tcp-syz_open_dev$tty20-dup-accept4-sendmsg$NL80211_CMD_NEW_MPATH-syz_open_dev$tty1-ioctl$TIOCSETD-ioctl$TIOCVHANGUP
+detailed listing:
+executing program 0:
+socket$inet_tcp(0x2, 0x1, 0x0)
+r0 = syz_open_dev$tty20(0xc, 0x4, 0x1)
+r1 = dup(r0)
+r2 = accept4(r1, &(0x7f0000000200)=@sco={0x1f, @none}, &(0x7f00000023c0)=0x80, 0x180800)
+sendmsg$NL80211_CMD_NEW_MPATH(r2, &(0x7f00000024c0)={&(0x7f0000002400)={0x10, 0x0, 0x0, 0x2000}, 0xc, &(0x7f0000002480)={&(0x7f0000000040)=ANY=[@ANYBLOB="4ec6afb171052604daa329980daf0f3320000000", @ANYRES16=0x0, @ANYBLOB="10002dbd7000ffdbdf25170000000a001a000000000000000000"], 0x20}, 0x1, 0x0, 0x0, 0x40000}, 0x10)
+r3 = syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$TIOCSETD(r3, 0x5423, &(0x7f0000000280)=0x2)
+ioctl$TIOCVHANGUP(r3, 0x5437, 0x0)
+
+program crashed: BUG: unable to handle kernel paging request in corrupted
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): socket$inet_tcp-syz_open_dev$tty20-dup-accept4-sendmsg$NL80211_CMD_NEW_MPATH-syz_open_dev$tty1-ioctl$TIOCVHANGUP
+detailed listing:
+executing program 0:
+socket$inet_tcp(0x2, 0x1, 0x0)
+r0 = syz_open_dev$tty20(0xc, 0x4, 0x1)
+r1 = dup(r0)
+r2 = accept4(r1, &(0x7f0000000200)=@sco={0x1f, @none}, &(0x7f00000023c0)=0x80, 0x180800)
+sendmsg$NL80211_CMD_NEW_MPATH(r2, &(0x7f00000024c0)={&(0x7f0000002400)={0x10, 0x0, 0x0, 0x2000}, 0xc, &(0x7f0000002480)={&(0x7f0000000040)=ANY=[@ANYBLOB="4ec6afb171052604daa329980daf0f3320000000", @ANYRES16=0x0, @ANYBLOB="10002dbd7000ffdbdf25170000000a001a000000000000000000"], 0x20}, 0x1, 0x0, 0x0, 0x40000}, 0x10)
+r3 = syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$TIOCVHANGUP(r3, 0x5437, 0x0)
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): socket$inet_tcp-syz_open_dev$tty20-dup-accept4-sendmsg$NL80211_CMD_NEW_MPATH-ioctl$TIOCSETD-ioctl$TIOCVHANGUP
+detailed listing:
+executing program 0:
+socket$inet_tcp(0x2, 0x1, 0x0)
+r0 = syz_open_dev$tty20(0xc, 0x4, 0x1)
+r1 = dup(r0)
+r2 = accept4(r1, &(0x7f0000000200)=@sco={0x1f, @none}, &(0x7f00000023c0)=0x80, 0x180800)
+sendmsg$NL80211_CMD_NEW_MPATH(r2, &(0x7f00000024c0)={&(0x7f0000002400)={0x10, 0x0, 0x0, 0x2000}, 0xc, &(0x7f0000002480)={&(0x7f0000000040)=ANY=[@ANYBLOB="4ec6afb171052604daa329980daf0f3320000000", @ANYRES16=0x0, @ANYBLOB="10002dbd7000ffdbdf25170000000a001a000000000000000000"], 0x20}, 0x1, 0x0, 0x0, 0x40000}, 0x10)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000280)=0x2)
+ioctl$TIOCVHANGUP(0xffffffffffffffff, 0x5437, 0x0)
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): socket$inet_tcp-syz_open_dev$tty20-dup-accept4-syz_open_dev$tty1-ioctl$TIOCSETD-ioctl$TIOCVHANGUP
+detailed listing:
+executing program 0:
+socket$inet_tcp(0x2, 0x1, 0x0)
+r0 = syz_open_dev$tty20(0xc, 0x4, 0x1)
+r1 = dup(r0)
+accept4(r1, &(0x7f0000000200)=@sco={0x1f, @none}, &(0x7f00000023c0)=0x80, 0x180800)
+r2 = syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$TIOCSETD(r2, 0x5423, &(0x7f0000000280)=0x2)
+ioctl$TIOCVHANGUP(r2, 0x5437, 0x0)
+
+program crashed: BUG: unable to handle kernel paging request in corrupted
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): socket$inet_tcp-syz_open_dev$tty20-dup-syz_open_dev$tty1-ioctl$TIOCSETD-ioctl$TIOCVHANGUP
+detailed listing:
+executing program 0:
+socket$inet_tcp(0x2, 0x1, 0x0)
+r0 = syz_open_dev$tty20(0xc, 0x4, 0x1)
+dup(r0)
+r1 = syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$TIOCSETD(r1, 0x5423, &(0x7f0000000280)=0x2)
+ioctl$TIOCVHANGUP(r1, 0x5437, 0x0)
+
+program crashed: BUG: unable to handle kernel paging request in corrupted
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): socket$inet_tcp-syz_open_dev$tty20-syz_open_dev$tty1-ioctl$TIOCSETD-ioctl$TIOCVHANGUP
+detailed listing:
+executing program 0:
+socket$inet_tcp(0x2, 0x1, 0x0)
+syz_open_dev$tty20(0xc, 0x4, 0x1)
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$TIOCSETD(r0, 0x5423, &(0x7f0000000280)=0x2)
+ioctl$TIOCVHANGUP(r0, 0x5437, 0x0)
+
+program crashed: BUG: unable to handle kernel paging request in corrupted
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): socket$inet_tcp-syz_open_dev$tty1-ioctl$TIOCSETD-ioctl$TIOCVHANGUP
+detailed listing:
+executing program 0:
+socket$inet_tcp(0x2, 0x1, 0x0)
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$TIOCSETD(r0, 0x5423, &(0x7f0000000280)=0x2)
+ioctl$TIOCVHANGUP(r0, 0x5437, 0x0)
+
+program crashed: BUG: unable to handle kernel NULL pointer dereference in value
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): syz_open_dev$tty1-ioctl$TIOCSETD-ioctl$TIOCVHANGUP
+detailed listing:
+executing program 0:
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$TIOCSETD(r0, 0x5423, &(0x7f0000000280)=0x2)
+ioctl$TIOCVHANGUP(r0, 0x5437, 0x0)
+
+program crashed: BUG: unable to handle kernel NULL pointer dereference in value
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): syz_open_dev$tty1-ioctl$TIOCSETD-ioctl$TIOCVHANGUP
+detailed listing:
+executing program 0:
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$TIOCSETD(r0, 0x5423, 0x0)
+ioctl$TIOCVHANGUP(r0, 0x5437, 0x0)
+
+program did not crash
+extracting C reproducer
+testing compiled C program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): syz_open_dev$tty1-ioctl$TIOCSETD-ioctl$TIOCVHANGUP
+program crashed: BUG: unable to handle kernel NULL pointer dereference in value
+simplifying C reproducer
+testing compiled C program (duration=22.5s, {Threaded:true Collide:false Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): syz_open_dev$tty1-ioctl$TIOCSETD-ioctl$TIOCVHANGUP
+program did not crash
+testing compiled C program (duration=22.5s, {Threaded:true Collide:true Repeat:false RepeatTimes:0 Procs:1 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:false Cgroups:false BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): syz_open_dev$tty1-ioctl$TIOCSETD-ioctl$TIOCVHANGUP
+program did not crash
+testing compiled C program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:1 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): syz_open_dev$tty1-ioctl$TIOCSETD-ioctl$TIOCVHANGUP
+program did not crash
+testing compiled C program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox: Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:false KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): syz_open_dev$tty1-ioctl$TIOCSETD-ioctl$TIOCVHANGUP
+program crashed: BUG: unable to handle kernel paging request in corrupted
+testing compiled C program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox: Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:false KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:false HandleSegv:true Repro:true Trace:false}): syz_open_dev$tty1-ioctl$TIOCSETD-ioctl$TIOCVHANGUP
+program crashed: BUG: unable to handle kernel NULL pointer dereference in value
+testing compiled C program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox: Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:false KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:false HandleSegv:false Repro:true Trace:false}): syz_open_dev$tty1-ioctl$TIOCSETD-ioctl$TIOCVHANGUP
+program crashed: BUG: unable to handle kernel NULL pointer dereference in value
+reproducing took 5m38.812523044s
+repro crashed as (corrupted=false):
+BUG: unable to handle kernel NULL pointer dereference at 0000000000000001
+IP: [<0000000000000001>] 0x0
+PGD 139852067 PUD 139853067 PMD 0 
+Oops: 0010 [#1] SMP 
+Dumping ftrace buffer:
+   (ftrace buffer empty)
+Modules linked in:
+CPU: 0 PID: 1541 Comm: syz-executor534 Not tainted 3.10.108-rt123+ #14
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+task: ffff88013ab51f40 ti: ffff880139a84000 task.ti: ffff880139a84000
+RIP: 0010:[<0000000000000001>]  [<0000000000000001>] 0x0
+RSP: 0000:ffff880139a85d80  EFLAGS: 00010293
+RAX: 0000000000000000 RBX: ffff88013a3a0000 RCX: 0000000000000000
+RDX: ffff88013ab51f40 RSI: ffffffff8140ab4d RDI: ffff88013a3a0000
+RBP: ffff880139a85d98 R08: ffff880139a84000 R09: ffffffff81eb6fa0
+R10: 000000000086eb50 R11: ffff88013fc11870 R12: 0000000000000001
+R13: ffff88013a3a0028 R14: ffff88013a3a00a8 R15: ffff88013a3ad640
+FS:  00007fa0a2ed2700(0000) GS:ffff88013fc00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000000000001 CR3: 000000013a1f9000 CR4: 00000000003407f0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Stack:
+ ffffffff8140ab53 ffff88013a3a0000 ffff880139a677c0 ffff880139a85e10
+ ffffffff8140b5c8 0000000000000000 0000000281408f2b ffff88013ab51f40
+ 0000000020000280 ffffea0004fe3740 ffff880139853800 0000000020000280
+Call Trace:
+ [<ffffffff8140b5c8>] tty_set_ldisc+0x208/0x6f0
+ [<ffffffff814037ff>] tty_ioctl+0x8af/0xee0
+ [<ffffffff81173ccc>] do_vfs_ioctl+0x35c/0x640
+ [<ffffffff81174047>] SyS_ioctl+0x97/0xd0
+ [<ffffffff819a0df2>] system_call_fastpath+0x16/0x1b
+Code:  Bad RIP value.
+RIP  [<0000000000000001>] 0x0
+ RSP <ffff880139a85d80>
+CR2: 0000000000000001
+---[ end trace e6b3268e82aa5857 ]---
+
+final repro crashed as (corrupted=false):
+BUG: unable to handle kernel NULL pointer dereference at 0000000000000001
+IP: [<0000000000000001>] 0x0
+PGD 139852067 PUD 139853067 PMD 0 
+Oops: 0010 [#1] SMP 
+Dumping ftrace buffer:
+   (ftrace buffer empty)
+Modules linked in:
+CPU: 0 PID: 1541 Comm: syz-executor534 Not tainted 3.10.108-rt123+ #14
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+task: ffff88013ab51f40 ti: ffff880139a84000 task.ti: ffff880139a84000
+RIP: 0010:[<0000000000000001>]  [<0000000000000001>] 0x0
+RSP: 0000:ffff880139a85d80  EFLAGS: 00010293
+RAX: 0000000000000000 RBX: ffff88013a3a0000 RCX: 0000000000000000
+RDX: ffff88013ab51f40 RSI: ffffffff8140ab4d RDI: ffff88013a3a0000
+RBP: ffff880139a85d98 R08: ffff880139a84000 R09: ffffffff81eb6fa0
+R10: 000000000086eb50 R11: ffff88013fc11870 R12: 0000000000000001
+R13: ffff88013a3a0028 R14: ffff88013a3a00a8 R15: ffff88013a3ad640
+FS:  00007fa0a2ed2700(0000) GS:ffff88013fc00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000000000001 CR3: 000000013a1f9000 CR4: 00000000003407f0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Stack:
+ ffffffff8140ab53 ffff88013a3a0000 ffff880139a677c0 ffff880139a85e10
+ ffffffff8140b5c8 0000000000000000 0000000281408f2b ffff88013ab51f40
+ 0000000020000280 ffffea0004fe3740 ffff880139853800 0000000020000280
+Call Trace:
+ [<ffffffff8140b5c8>] tty_set_ldisc+0x208/0x6f0
+ [<ffffffff814037ff>] tty_ioctl+0x8af/0xee0
+ [<ffffffff81173ccc>] do_vfs_ioctl+0x35c/0x640
+ [<ffffffff81174047>] SyS_ioctl+0x97/0xd0
+ [<ffffffff819a0df2>] system_call_fastpath+0x16/0x1b
+Code:  Bad RIP value.
+RIP  [<0000000000000001>] 0x0
+ RSP <ffff880139a85d80>
+CR2: 0000000000000001
+---[ end trace e6b3268e82aa5857 ]---
+

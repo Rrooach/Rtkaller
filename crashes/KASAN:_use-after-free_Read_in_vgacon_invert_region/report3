@@ -1,0 +1,50 @@
+000: ==================================================================
+000: BUG: KASAN: use-after-free in vgacon_invert_region+0xde/0xe0
+000: Read of size 2 at addr ffff888000338460 by task syz-executor.0/6143
+000: 
+000: CPU: 0 PID: 6143 Comm: syz-executor.0 Not tainted 5.2.0-rt1+ #2
+000: Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+000: Call Trace:
+000:  dump_stack+0x79/0xba
+000:  print_address_description+0x60/0x229
+000:  __kasan_report.cold.4+0x17/0x32
+000:  kasan_report+0x12/0x20
+000:  vgacon_invert_region+0xde/0xe0
+000:  invert_screen+0x172/0x5e0
+000:  set_selection_kernel+0x761/0x1160
+000:  set_selection_user+0x8b/0xd0
+000:  tioclinux+0x2c3/0x420
+000:  vt_ioctl+0x17e1/0x2450
+000:  tty_ioctl+0x486/0x1350
+000:  do_vfs_ioctl+0x1a4/0xfe0
+000:  ksys_ioctl+0x7b/0xa0
+000:  __x64_sys_ioctl+0x73/0xb0
+000:  do_syscall_64+0x9e/0x380
+000:  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+000: RIP: 0033:0x4686dd
+000: Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 bc ff ff ff f7 d8 64 89 01 48
+000: RSP: 002b:00007fa646096c58 EFLAGS: 00000246
+000:  ORIG_RAX: 0000000000000010
+000: RAX: ffffffffffffffda RBX: 0000000000524740 RCX: 00000000004686dd
+000: RDX: 00000000200000c0 RSI: 000000000000541c RDI: 0000000000000003
+000: RBP: 00000000004c4725 R08: 0000000000000000 R09: 0000000000000000
+000: R10: 0000000000000000 R11: 0000000000000246 R12: 000000000057cf00
+000: R13: 00007fff2da5d12f R14: 000000000057cf00 R15: 00007fa646096dc0
+000: hpet1: lost 2 rtc interrupts
+000: 
+000: The buggy address belongs to the page:
+000: page:ffffea000000ce00 refcount:0 mapcount:0 mapping:0000000000000000 index:0x0
+000: 
+000: flags: 0x0()
+000: raw: 0000000000000000 ffffea000000ce08 ffffea000000ce08 0000000000000000
+000: raw: 0000000000000000 0000000000000000 00000000ffffffff 0000000000000000
+000: page dumped because: kasan: bad access detected
+000: 
+000: Memory state around the buggy address:
+000:  ffff888000338300: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+000:  ffff888000338380: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+000: >ffff888000338400: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+000:                                                        ^
+000:  ffff888000338480: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+000:  ffff888000338500: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+000: ==================================================================

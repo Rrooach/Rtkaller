@@ -1,0 +1,138 @@
+Warning: Permanently added '[localhost]:38847' (ECDSA) to the list of known hosts.
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+syzkaller login: [    9.724634] BUG: unable to handle kernel paging request at 0000000fffffffe0
+[    9.725841] IP: [<ffffffff81153342>] kmem_cache_alloc_trace+0x62/0x150
+[    9.726931] PGD 13a1fe067 PUD 0 
+[    9.727500] Oops: 0000 [#1] SMP 
+[    9.728327] Dumping ftrace buffer:
+[    9.728898]    (ftrace buffer empty)
+[    9.729602] Modules linked in:
+[    9.730359] CPU: 0 PID: 1810 Comm: syz-executor476 Not tainted 3.10.108-rt123+ #14
+[    9.731709] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[    9.733198] task: ffff88013a1eaee0 ti: ffff88013a088000 task.ti: ffff88013a088000
+[    9.734504] RIP: 0010:[<ffffffff81153342>]  [<ffffffff81153342>] kmem_cache_alloc_trace+0x62/0x150
+[    9.736061] RSP: 0018:ffff88013a089ac8  EFLAGS: 00010202
+[    9.736959] RAX: 0000000000000000 RBX: ffff88013a25a400 RCX: 0000000000000875
+[    9.738217] RDX: 0000000000000874 RSI: 00000000000080d0 RDI: 00000000000145e0
+[    9.739488] RBP: ffff88013a089af8 R08: ffff88013fc145e0 R09: 00000000000001f9
+[    9.740700] R10: ffffffff8134cb29 R11: ffff88013fc11870 R12: 0000000fffffffe0
+[    9.741963] R13: 00000000000080d0 R14: ffffffff81405f77 R15: ffff88013b001500
+[    9.743170] FS:  00000000008b5880(0063) GS:ffff88013fc00000(0000) knlGS:0000000000000000
+[    9.744552] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[    9.745648] CR2: 0000000fffffffe0 CR3: 0000000138987000 CR4: 00000000003407f0
+[    9.746905] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+[    9.748229] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+[    9.749427] Stack:
+[    9.749784]  00000000000002f8 ffff88013a25a400 ffff88013a25a400 ffffffff81405f50
+[    9.751135]  ffff88013a166440 0000000000000016 ffff88013a089b20 ffffffff81405f77
+[    9.752536]  ffff88013a25a400 0000000000000000 ffffffff81405f50 ffff88013a089b48
+[    9.753894] Call Trace:
+[    9.754346]  [<ffffffff81405f50>] ? n_tty_ioctl+0x160/0x160
+[    9.755396]  [<ffffffff81405f77>] n_tty_open+0x27/0x180
+[    9.756269]  [<ffffffff81405f50>] ? n_tty_ioctl+0x160/0x160
+[    9.757210]  [<ffffffff8140abc3>] tty_ldisc_open.isra.3+0x43/0x90
+[    9.758224]  [<ffffffff8140be77>] tty_ldisc_setup+0x27/0xa0
+[    9.759135]  [<ffffffff81401913>] tty_init_dev+0xe3/0x240
+[    9.760054]  [<ffffffff81402de1>] tty_open+0x741/0x870
+[    9.760881]  [<ffffffff814026a0>] ? tty_release+0x830/0x830
+[    9.762046]  [<ffffffff8116232c>] chrdev_open+0xbc/0x1d0
+[    9.763123]  [<ffffffff81159c45>] do_dentry_open+0x2a5/0x360
+[    9.764088]  [<ffffffff8116b09a>] ? __inode_permission+0x5a/0xd0
+[    9.765198]  [<ffffffff81162270>] ? cdev_put+0x40/0x40
+[    9.766073]  [<ffffffff81159fd6>] finish_open+0x46/0x80
+[    9.767021]  [<ffffffff8116fb6f>] do_last+0x6df/0x1310
+[    9.767911]  [<ffffffff81170b80>] path_openat+0x3e0/0x650
+[    9.768855]  [<ffffffff81171671>] do_filp_open+0x41/0xd0
+[    9.769731]  [<ffffffff8118098b>] ? __alloc_fd+0xdb/0x1a0
+[    9.770703]  [<ffffffff8115b8ff>] do_sys_open+0x14f/0x290
+[    9.771646]  [<ffffffff8115bab0>] SyS_openat+0x30/0x40
+[    9.772502]  [<ffffffff819a0df2>] system_call_fastpath+0x16/0x1b
+[    9.773495] Code: 25 28 bc 00 00 49 8b 50 08 49 83 78 10 00 4d 8b 20 0f 84 ba 00 00 00 4d 85 e4 0f 84 b1 00 00 00 49 63 47 20 49 8b 3f 48 8d 4a 01 <49> 8b 1c 04 4c 89 e0 65 48 0f c7 0f 0f 94 c0 84 c0 74 bb 49 63 
+[    9.778446] RIP  [<ffffffff81153342>] kmem_cache_alloc_trace+0x62/0x150
+[    9.779578]  RSP <ffff88013a089ac8>
+[    9.780199] CR2: 0000000fffffffe0
+[    9.780807] ---[ end trace 90b5ab4f5cf63923 ]---
+[    9.781620] Kernel panic - not syncing: Fatal exception
+[    9.782582] Dumping ftrace buffer:
+[    9.783170]    (ftrace buffer empty)
+[    9.783785] Rebooting in 1 seconds..

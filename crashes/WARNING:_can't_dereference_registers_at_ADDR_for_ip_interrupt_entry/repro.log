@@ -1,0 +1,149 @@
+Warning: Permanently added '[localhost]:25244' (ECDSA) to the list of known hosts.
+executing program
+executing program
+syzkaller login: perf: interrupt took too long (3268 > 3183), lowering kernel.perf_event_max_sample_rate to 61000
+perf: interrupt took too long (4174 > 4085), lowering kernel.perf_event_max_sample_rate to 47000
+perf: interrupt took too long (5288 > 5217), lowering kernel.perf_event_max_sample_rate to 37000
+perf: interrupt took too long (6679 > 6610), lowering kperf: interrupt took too long (840e1r ne>l 8.per3f_4e8v),en lto_mweaxri_sngam kplere_nerla.tpe ertfo_ e2ve90nt0_m0ax_
+sample_rate to 23000
+perf: interrupt took too long (10543 > 10501), lowering kernel.perf_event_max_sapemrple_rafte:  tion te18r0r0up0
+t took too long (13205 > 13178),[  l o w2e0r.i2ng2 k8e59rn2]el .0p0e0r:f _hervtenitm_erm:a xi_nstaerrumpptl et_oroatke 7 6t7o6 510570 n0s0
+
+[   20.230673] 000: INFO: NMI handler (perf_event_nmi_handler) took too long to run: 3.036 msecs
+[   20.230727] 000: perf: interrupt took too long (13205 > 13178), lowering kernel.perf_event_max_sample_rate to 15000
+executing program
+executing program
+executing program
+executing program
+executing program
+[   20.241200] 001: perf: interrupt took too long (16523 > 16506), lowering kernel.perf_event_max_sample_rate to 12000
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+[   20.294719] 001: perf: interrupt took too long (20687 > 20653), lowering kernel.perf_event_max_sample_rate to 9000
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+executing program
+[   20.467880] 001: WARNING: can't dereference registers at 00000000a1c997b0 for ip interrupt_entry+0xb7/0xc0
+[   20.469760] 001: perf: interrupt took too long (34732 > 25858), lowering kernel.perf_event_max_sample_rate to 5000

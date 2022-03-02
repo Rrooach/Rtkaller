@@ -1,0 +1,78 @@
+000: ==================================================================
+000: BUG: KASAN: use-after-free in __flush_work+0x477/0x4e0
+000: Read of size 8 at addr ffff8881135384a0 by task syz-executor.0/2239
+000: 
+000: CPU: 0 PID: 2239 Comm: syz-executor.0 Not tainted 5.2.0-rt1+ #2
+000: Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+000: Call Trace:
+000:  dump_stack+0x79/0xba
+000:  print_address_description+0x60/0x229
+000:  __kasan_report.cold.4+0x17/0x32
+000:  kasan_report+0x12/0x20
+000:  __flush_work+0x477/0x4e0
+000:  __cancel_work_timer+0x231/0x340
+000:  release_tty+0x23e/0x490
+000:  tty_release_struct+0x36/0x50
+000:  tty_release+0xad1/0xdb0
+000:  __fput+0x210/0x620
+000:  task_work_run+0x127/0x190
+000:  exit_to_usermode_loop+0x1e3/0x230
+000:  do_syscall_64+0x2a5/0x380
+000:  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+000: RIP: 0033:0x41897b
+000: Code: 03 00 00 00 0f 05 48 3d 00 f0 ff ff 77 41 c3 48 83 ec 18 89 7c 24 0c e8 63 fc ff ff 8b 7c 24 0c 41 89 c0 b8 03 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 2f 44 89 c7 89 44 24 0c e8 a1 fc ff ff 8b 44
+000: RSP: 002b:00007ffdf17a6f00 EFLAGS: 00000293
+000:  ORIG_RAX: 0000000000000003
+000: RAX: 0000000000000000 RBX: 0000000000000001 RCX: 000000000041897b
+000: RDX: 0000001b32220000 RSI: 0000000000001edc RDI: 0000000000000003
+000: RBP: 0000000000000004 R08: 0000000000000000 R09: 00000000af591ee0
+000: R10: 00007ffdf17a7050 R11: 0000000000000293 R12: 000000000050b3c0
+000: R13: 0000000000584748 R14: 000000000057cf0c R15: 0000000000584740
+000: 
+000: Allocated by task 1372:
+000:  save_stack+0x19/0x80
+000:  __kasan_kmalloc.constprop.5+0xc1/0xd0
+000:  vc_allocate+0x1d6/0x6a0
+000:  con_install+0x53/0x3f0
+000:  tty_init_dev+0xe9/0x410
+000:  tty_open+0x596/0x9d0
+000:  chrdev_open+0x211/0x540
+000:  do_dentry_open+0x43c/0xf20
+000:  path_openat+0x988/0x4100
+000:  do_filp_open+0x19b/0x270
+000:  do_sys_open+0x2cb/0x450
+000:  do_syscall_64+0x9e/0x380
+000:  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+000: 
+000: Freed by task 2248:
+000:  save_stack+0x19/0x80
+000:  __kasan_slab_free+0x125/0x170
+000:  kfree+0x98/0x1f0
+000:  vt_disallocate_all+0x258/0x360
+000:  vt_ioctl+0x17cc/0x2450
+000:  tty_ioctl+0x486/0x1350
+000:  do_vfs_ioctl+0x1a4/0xfe0
+000:  ksys_ioctl+0x7b/0xa0
+000:  __x64_sys_ioctl+0x73/0xb0
+000:  do_syscall_64+0x9e/0x380
+000:  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+000: 
+000: The buggy address belongs to the object at ffff888113538480
+000: The buggy address is located 32 bytes inside of
+000: The buggy address belongs to the page:
+000: page:ffffea00044d4e00 refcount:1 mapcount:0 mapping:ffff88811ac01140 index:0x0
+000:  compound_mapcount: 0
+000: 
+000: flags: 0x200000000010200(slab|head)
+000: raw: 0200000000010200 dead000000000100 dead000000000200 ffff88811ac01140
+000: raw: 0000000000000000 00000000000e000e 00000001ffffffff 0000000000000000
+000: page dumped because: kasan: bad access detected
+000: 
+000: Memory state around the buggy address:
+000:  ffff888113538380: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
+000:  ffff888113538400: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
+000: >ffff888113538480: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+000:                                ^
+000:  ffff888113538500: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+000:  ffff888113538580: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+000: ==================================================================

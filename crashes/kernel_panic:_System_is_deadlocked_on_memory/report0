@@ -1,0 +1,33 @@
+000: Kernel panic - not syncing: System is deadlocked on memory
+000: CPU: 0 PID: 135 Comm: systemd-udevd Not tainted 5.6.0-rt1+ #2
+000: Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+000: Call Trace:
+000:  dump_stack+0x95/0xce
+000:  panic+0x24b/0x582
+000:  out_of_memory.cold+0x99/0x15b
+000:  __alloc_pages_slowpath+0x1959/0x1fd0
+000:  __alloc_pages_nodemask+0x454/0x610
+000:  alloc_pages_current+0xe7/0x1e0
+000:  __page_cache_alloc+0x11b/0x1e0
+000:  pagecache_get_page+0x18c/0x650
+000:  filemap_fault+0xc37/0x1e30
+000:  ext4_filemap_fault+0x84/0xb0
+000:  __do_fault+0x102/0x2a0
+000:  __handle_mm_fault+0x117c/0x2050
+000:  handle_mm_fault+0xf9/0x350
+000:  do_user_addr_fault+0x498/0x990
+000:  do_page_fault+0xa4/0x320
+000:  async_page_fault+0x2f/0x40
+000: RIP: 0033:0x7f6617455be3
+000: Code: Bad RIP value.
+000: RSP: 002b:00007fff56ef13c8 EFLAGS: 00010246
+000: 
+000: RAX: 0000000000000001 RBX: 0000000000000bb8 RCX: 00007f6617455be3
+000: RDX: 0000000000000008 RSI: 00007fff56ef1620 RDI: 000000000000000b
+000: RBP: 0000000000000001 R08: 0000000000000000 R09: 0000000000000000
+000: R10: 0000000000000bb8 R11: 0000000000000246 R12: 0000000000000001
+000: R13: 000055ef44afbe80 R14: 000055ef44af9030 R15: 0000000000000000
+000: Dumping ftrace buffer:
+000:    (ftrace buffer empty)
+000: Kernel Offset: 0xbe00000 from 0xffffffff81000000 (relocation range: 0xffffffff80000000-0xffffffffbfffffff)
+000: Rebooting in 1 seconds..

@@ -1,0 +1,119 @@
+
+Debian GNU/Linux 8 syzkaller ttyS0
+
+Warning: Permanently added '[localhost]:10668' (ECDSA) to the list of known hosts.
+2021/06/01 01:22:00 parsed 1 programs
+2021/06/01 01:22:00 executed programs: 0
+syzkaller login: [   16.521449] netlink: 24 bytes leftover after parsing attributes in process `syz-executor.0'.
+[   16.532652] netlink: 24 bytes leftover after parsing attributes in process `syz-executor.0'.
+[   16.564790] netlink: 24 bytes leftover after parsing attributes in process `syz-executor.0'.
+[   17.014566] netlink: 24 bytes leftover after parsing attributes in process `syz-executor.0'.
+[   17.343192] netlink: 24 bytes leftover after parsing attributes in process `syz-executor.1'.
+[   17.814196] netlink: 24 bytes leftover after parsing attributes in process `syz-executor.0'.
+[   18.118894] netlink: 24 bytes leftover after parsing attributes in process `syz-executor.0'.
+[   18.301535] netlink: 24 bytes leftover after parsing attributes in process `syz-executor.1'.
+[   18.304100] netlink: 24 bytes leftover after parsing attributes in process `syz-executor.0'.
+[   18.382634] netlink: 24 bytes leftover after parsing attributes in process `syz-executor.0'.
+[   18.399707] WARNING: CPU: 1 PID: 4539 at net/xfrm/xfrm_policy.c:1537 xfrm_policy_insert_list+0x358/0x8f0
+[   18.401073] Kernel panic - not syncing: panic_on_warn set ...
+[   18.401912] CPU: 1 PID: 4539 Comm: syz-executor.0 Not tainted 5.0.0 #3
+[   18.403105] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[   18.404440] Call Trace:
+[   18.404821]  dump_stack+0x79/0xba
+[   18.405309]  panic+0x226/0x47c
+[   18.405755]  ? __warn_printk+0xdf/0xdf
+[   18.406292]  ? __probe_kernel_read+0x15a/0x1b0
+[   18.406854]  ? __warn.cold.11+0x5/0x45
+[   18.407376]  ? xfrm_policy_insert_list+0x358/0x8f0
+[   18.408003]  __warn.cold.11+0x20/0x45
+[   18.408552]  ? xfrm_policy_insert_list+0x358/0x8f0
+[   18.409171]  report_bug+0x1f4/0x270
+[   18.409665]  ? xfrm_policy_insert_list+0x358/0x8f0
+[   18.410335]  do_error_trap+0x105/0x180
+[   18.410839]  do_invalid_op+0x35/0x40
+[   18.411375]  ? xfrm_policy_insert_list+0x358/0x8f0
+[   18.412032]  invalid_op+0x14/0x20
+[   18.412521] RIP: 0010:xfrm_policy_insert_list+0x358/0x8f0
+[   18.413406] Code: 14 28 48 89 f8 83 e0 07 83 c0 03 38 d0 0f 8c 11 fe ff ff 84 d2 0f 84 09 fe ff ff e8 72 14 77 fe e9 ff fd ff ff e8 d8 1c 56 fe <0f> 0b 48 8b 44 24 08 0f b6 10 48 8b 04 24 83 e0 07 83 c0 03 38 d0
+[   18.415979] RSP: 0018:ffff88810ea7f428 EFLAGS: 00010293
+[   18.416751] RAX: ffff88810b5b5600 RBX: ffff8881158f0000 RCX: ffffffff983ded18
+[   18.417696] RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffff88810d3796f4
+[   18.418713] RBP: dffffc0000000000 R08: ffffed1021d4fe9f R09: ffffed1021d4fe9e
+[   18.419751] R10: ffffed1021d4fe9e R11: 0000000000000003 R12: ffff88810d379680
+[   18.420712] R13: 0000000000000000 R14: ffff8881158f0070 R15: 0000000000000000
+[   18.421722]  ? xfrm_policy_insert_list+0x358/0x8f0
+[   18.422420]  ? xfrm_policy_insert_list+0x358/0x8f0
+[   18.423083]  xfrm_policy_inexact_insert+0x9c/0x9a0
+[   18.423796]  ? _raw_spin_lock_bh+0x84/0xe0
+[   18.424469]  ? _raw_spin_lock+0xd0/0xd0
+[   18.425016]  ? kasan_unpoison_shadow+0x34/0x40
+[   18.425638]  ? policy_hash_bysel+0xd5/0xc20
+[   18.426196]  ? __kasan_kmalloc.constprop.6+0xa0/0xd0
+[   18.426870]  ? init_timer_key+0x2b/0x1a0
+[   18.427391]  xfrm_policy_insert+0x639/0x8a0
+[   18.427982]  ? xfrm_policy_construct+0x5a6/0x7d0
+[   18.428597]  xfrm_add_policy+0x21a/0x440
+[   18.429184]  ? xfrm_add_acquire+0x9a0/0x9a0
+[   18.429823]  ? __nla_parse+0x104/0x320
+[   18.430378]  ? nla_parse+0x3c/0x50
+[   18.430845]  ? xfrm_add_acquire+0x9a0/0x9a0
+[   18.431438]  xfrm_user_rcv_msg+0x393/0x610
+[   18.431990]  ? xfrm_dump_sa_done+0xd0/0xd0
+[   18.432729]  ? save_stack+0x8c/0xb0
+[   18.433367]  ? __kasan_kmalloc.constprop.6+0xc1/0xd0
+[   18.434250]  ? __kmalloc_node_track_caller+0xde/0x260
+[   18.435162]  ? __kmalloc_reserve.isra.51+0x37/0xd0
+[   18.436003]  ? __alloc_skb+0xe6/0x550
+[   18.436681]  ? netlink_sendmsg+0x7e3/0xb60
+[   18.437404]  ? sock_sendmsg+0xc7/0x100
+[   18.438071]  ? netlink_compare+0xed/0x130
+[   18.438780]  netlink_rcv_skb+0x136/0x3a0
+[   18.439479]  ? xfrm_dump_sa_done+0xd0/0xd0
+[   18.440214]  ? netlink_ack+0x990/0x990
+[   18.440723]  ? __mutex_lock_slowpath+0x10/0x10
+[   18.441329]  ? __alloc_skb+0xe6/0x550
+[   18.441832]  ? __kmalloc_node_track_caller+0xde/0x260
+[   18.442495]  xfrm_netlink_rcv+0x6a/0x90
+[   18.443021]  netlink_unicast+0x4c2/0x740
+[   18.443730]  ? netlink_attachskb+0x5b0/0x5b0
+[   18.444309]  netlink_sendmsg+0x723/0xb60
+[   18.444834]  ? netlink_unicast+0x740/0x740
+[   18.445436]  ? netlink_unicast+0x740/0x740
+[   18.446036]  sock_sendmsg+0xc7/0x100
+[   18.446542]  ___sys_sendmsg+0x717/0x860
+[   18.447052]  ? copy_msghdr_from_user+0x3e0/0x3e0
+[   18.447669]  ? save_stack+0x8c/0xb0
+[   18.448152]  ? exit_robust_list+0x1c0/0x1c0
+[   18.448716]  ? selinux_file_alloc_security+0xa8/0x180
+[   18.449365]  ? rb_erase_cached+0x732/0x19c0
+[   18.449928]  ? __fget+0x212/0x2d0
+[   18.450365]  ? expand_files.part.10+0x6a0/0x6a0
+[   18.450983]  ? __switch_to_asm+0x34/0x70
+[   18.451540]  ? __switch_to_asm+0x34/0x70
+[   18.452089]  ? __switch_to_asm+0x40/0x70
+[   18.452644]  ? __switch_to_asm+0x34/0x70
+[   18.453231]  ? __switch_to_asm+0x40/0x70
+[   18.453744]  ? __switch_to_asm+0x34/0x70
+[   18.454253]  ? __switch_to_asm+0x40/0x70
+[   18.454761]  ? __fget_light+0x19f/0x200
+[   18.455261]  __sys_sendmsg+0xef/0x1c0
+[   18.455737]  ? __ia32_sys_shutdown+0x80/0x80
+[   18.456301]  ? __schedule+0x857/0x1880
+[   18.456795]  ? __x64_sys_futex+0x282/0x3c0
+[   18.457378]  ? pci_mmcfg_check_reserved+0x150/0x150
+[   18.458055]  ? schedule+0x74/0x170
+[   18.458532]  do_syscall_64+0x9e/0x2b0
+[   18.459075]  ? prepare_exit_to_usermode+0xc0/0x160
+[   18.459809]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+[   18.460534] RIP: 0033:0x4686dd
+[   18.461038] Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 bc ff ff ff f7 d8 64 89 01 48
+[   18.463676] RSP: 002b:00007f55cf6a6c58 EFLAGS: 00000246 ORIG_RAX: 000000000000002e
+[   18.464745] RAX: ffffffffffffffda RBX: 00000000005382c0 RCX: 00000000004686dd
+[   18.465721] RDX: 0000000000000000 RSI: 0000000020000500 RDI: 0000000000000003
+[   18.466677] RBP: 00000000004c4725 R08: 0000000000000000 R09: 0000000000000000
+[   18.467652] R10: 0000000000000000 R11: 0000000000000246 R12: 000000000057cf00
+[   18.468609] R13: 00007fff95649faf R14: 000000000057cf00 R15: 00007f55cf6a6dc0
+[   18.469974] Dumping ftrace buffer:
+[   18.470584]    (ftrace buffer empty)
+[   18.471218] Kernel Offset: 0x15600000 from 0xffffffff81000000 (relocation range: 0xffffffff80000000-0xffffffffbfffffff)
+[   18.473096] Rebooting in 1 seconds..

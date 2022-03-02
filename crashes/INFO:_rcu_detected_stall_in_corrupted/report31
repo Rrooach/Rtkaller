@@ -1,0 +1,41 @@
+001: rcu: INFO: rcu_sched self-detected stall on CPU
+001: rcu: 	1-....: (20997 ticks this GP) idle=5da/1/0x4000000000000002 softirq=255889/255889 fqs=5248 
+001: 	(t=21001 jiffies g=393257 q=143)
+001: NMI backtrace for cpu 1
+001: CPU: 1 PID: 27057 Comm: io_uring-sq Not tainted 5.6.0-rt1+ #2
+001: Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+001: Call Trace:
+001:  <IRQ>
+001:  dump_stack+0x95/0xce
+001:  nmi_cpu_backtrace.cold+0x55/0x94
+001:  nmi_trigger_cpumask_backtrace+0x155/0x19b
+001:  rcu_dump_cpu_stacks+0x15d/0x1a7
+001:  rcu_sched_clock_irq.cold+0x4c8/0x90b
+001:  update_process_times+0x24/0x60
+001:  tick_sched_handle+0x10f/0x150
+001:  tick_sched_timer+0x41/0x120
+001:  __hrtimer_run_queues+0x308/0x7c0
+001:  hrtimer_interrupt+0x2c9/0x6c0
+001:  smp_apic_timer_interrupt+0xd4/0x380
+001:  apic_timer_interrupt+0xf/0x20
+001:  </IRQ>
+001: RIP: 0010:unwind_next_frame+0xff/0x1a10
+001: Code: 00 00 48 8b 43 38 48 89 44 24 08 48 b8 00 00 00 00 00 fc ff df 4c 8d 6b 50 4c 89 ea 48 c1 ea 03 80 3c 02 00 0f 85 41 12 00 00 <4c> 8b 7b 50 4d 85 ff 74 30 49 8d bf 88 00 00 00 48 ba 00 00 00 00
+001: RSP: 0018:ffff888115a97618 EFLAGS: 00000246 ORIG_RAX: ffffffffffffff13
+001: RAX: dffffc0000000000 RBX: ffff888115a976f0 RCX: 1ffff11022b52e01
+001: RDX: 1ffff11022b52ee8 RSI: 0000000000000000 RDI: ffff888115a976f0
+001: RBP: 1ffff11022b52ecb R08: ffffffff8e715a74 R09: 0000000000000001
+001: R10: 000000000002126a R11: 0000000000028017 R12: 0000000000000001
+001: R13: ffff888115a97740 R14: ffff888115a97738 R15: dffffc0000000000
+001:  arch_stack_walk+0x7a/0xd0
+001:  stack_trace_save+0x8c/0xc0
+001:  save_stack+0x1b/0x80
+001:  __kasan_slab_free+0x12c/0x170
+001:  kmem_cache_free+0x7a/0x280
+001:  __io_req_do_free+0x6e/0xa0
+001:  io_put_req_find_next+0x6c/0xa0
+001:  io_queue_sqe+0xbb6/0x2110
+001:  io_submit_sqes+0x187f/0x26b0
+001:  io_sq_thread+0x3b0/0xa80
+001:  kthread+0x2ce/0x3d0
+001:  ret_from_fork+0x35/0x40

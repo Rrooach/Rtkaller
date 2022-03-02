@@ -1,0 +1,60 @@
+         res 41/04:00:37:1d:f9/04:00:37:1d:f9/e0 Emask 0x1 (device error)
+ata1.00: status: { DRDY ERR }
+ata1.00: error: { ABRT }
+ata1.00: configured for PIO4
+ata1: EH complete
+BUG: unable to handle kernel NULL pointer dereference at 0000000000000008
+IP: [<ffffffff81541975>] ata_pio_sector+0x55/0x140
+PGD 1272a7067 PUD 1272a2067 PMD 0 
+Oops: 0000 [#1] SMP 
+Dumping ftrace buffer:
+   (ftrace buffer empty)
+Modules linked in:
+CPU: 0 PID: 9442 Comm: syz-executor.0 Not tainted 3.10.108-rt123+ #14
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+task: ffff880138976590 ti: ffff880126cce000 task.ti: ffff880126cce000
+RIP: 0010:[<ffffffff81541975>]  [<ffffffff81541975>] ata_pio_sector+0x55/0x140
+RSP: 0018:ffff88013fc03d38  EFLAGS: 00010006
+RAX: 0000000000000000 RBX: 0000000000000000 RCX: 0000160000000000
+RDX: ffff880138976590 RSI: 0000000000000000 RDI: ffff88013a799fc0
+RBP: ffff88013fc03d60 R08: ffff880126cce000 R09: ffff880126ccfb20
+R10: ffff88013fffac00 R11: 0000000000000000 R12: ffff88013a798000
+R13: 0000000000000058 R14: ffff88013a798158 R15: 0000000000000200
+FS:  0000000000000000(0000) GS:ffff88013fc00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000000000008 CR3: 000000013a345000 CR4: 00000000003407f0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Stack:
+ 0000000000000006 ffff88013a798158 0000000000000058 0000000000000016
+ ffff88013a798000 ffff88013fc03d80 ffffffff81543060 0000000000000058
+ ffff88013a798158 ffff88013fc03de0 ffffffff815440dd 0000000000000202
+Call Trace:
+ <IRQ> 
+ [<ffffffff81543060>] ata_pio_sectors+0xa0/0xf0
+ [<ffffffff815440dd>] ata_sff_hsm_move+0x21d/0x9c0
+ [<ffffffff81544952>] __ata_sff_port_intr+0xd2/0x160
+ [<ffffffff81544df8>] ata_bmdma_port_intr+0x38/0x170
+ [<ffffffff81545181>] ata_bmdma_interrupt+0x251/0x2c0
+ [<ffffffff810bb2ae>] handle_irq_event_percpu+0x7e/0x300
+ [<ffffffff810bb569>] handle_irq_event+0x39/0x60
+ [<ffffffff810beb4c>] handle_edge_irq+0x8c/0x1e0
+ [<ffffffff8100420c>] handle_irq+0x7c/0x150
+ [<ffffffff81003e25>] do_IRQ+0x45/0xb0
+ [<ffffffff819989ea>] common_interrupt+0x6a/0x6a
+ <EOI> 
+ [<ffffffff81127b2f>] unmap_single_vma+0x48f/0xa50
+ [<ffffffff81129491>] unmap_vmas+0x41/0x70
+ [<ffffffff81133dde>] exit_mmap+0xce/0x180
+ [<ffffffff81038b10>] mmput+0x30/0xe0
+ [<ffffffff810406e0>] do_exit+0x290/0xb50
+ [<ffffffff81041e8e>] do_group_exit+0x3e/0xa0
+ [<ffffffff810506a8>] get_signal_to_deliver+0x278/0x5d0
+ [<ffffffff81002333>] do_signal+0x43/0x6b0
+ [<ffffffff810029ff>] do_notify_resume+0x5f/0x70
+ [<ffffffff819a1077>] int_signal+0x12/0x17
+Code: 41 39 46 6c 0f 84 bc 00 00 00 e8 97 85 b7 ff 49 8b 86 98 00 00 00 41 8b b6 a0 00 00 00 48 b9 00 00 00 00 00 16 00 00 49 8b 7e 08 <03> 70 08 48 8b 00 48 83 e0 fc 48 01 c8 89 f2 81 e6 ff 0f 00 00 
+RIP  [<ffffffff81541975>] ata_pio_sector+0x55/0x140
+ RSP <ffff88013fc03d38>
+CR2: 0000000000000008
+---[ end trace 1062dcb5e418c138 ]---

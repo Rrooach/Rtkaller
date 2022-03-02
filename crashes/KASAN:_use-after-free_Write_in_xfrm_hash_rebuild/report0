@@ -1,0 +1,61 @@
+001: ==================================================================
+001: BUG: KASAN: use-after-free in xfrm_hash_rebuild+0xfbc/0x1000
+001: Write of size 8 at addr ffff8881191a4990 by task kworker/1:1/21607
+001: 
+001: CPU: 1 PID: 21607 Comm: kworker/1:1 Not tainted 5.2.0-rt1+ #2
+001: Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+001: Workqueue: events xfrm_hash_rebuild
+001: 
+001: Call Trace:
+001:  dump_stack+0x79/0xba
+001:  print_address_description+0x60/0x229
+001:  __kasan_report.cold.4+0x17/0x32
+001:  kasan_report+0x12/0x20
+001:  xfrm_hash_rebuild+0xfbc/0x1000
+001:  process_one_work+0x90a/0x1530
+001:  worker_thread+0x90/0xf20
+001:  kthread+0x2ff/0x3c0
+001:  ret_from_fork+0x35/0x40
+001: 
+001: Allocated by task 25220:
+001:  save_stack+0x19/0x80
+001:  __kasan_kmalloc.constprop.5+0xc1/0xd0
+001:  ext4_htree_store_dirent+0x90/0x570
+001:  htree_dirblock_to_tree+0x259/0x560
+001:  ext4_htree_fill_tree+0x1f5/0x8c0
+001:  ext4_readdir+0x1289/0x2680
+001:  iterate_dir+0x3fa/0x540
+001:  __x64_sys_getdents+0x17f/0x2b0
+001:  do_syscall_64+0x9e/0x380
+001:  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+001: 
+001: Freed by task 25220:
+001:  save_stack+0x19/0x80
+001:  __kasan_slab_free+0x125/0x170
+001:  kfree+0x98/0x1f0
+001:  free_rb_tree_fname+0x7c/0xd0
+001:  ext4_release_dir+0x44/0x60
+001:  __fput+0x210/0x620
+001:  task_work_run+0x127/0x190
+001:  exit_to_usermode_loop+0x1e3/0x230
+001:  do_syscall_64+0x2a5/0x380
+001:  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+001: 
+001: The buggy address belongs to the object at ffff8881191a4960
+001: The buggy address is located 48 bytes inside of
+001: The buggy address belongs to the page:
+001: page:ffffea0004646900 refcount:1 mapcount:0 mapping:ffff88811ac018c0 index:0x0
+001: 
+001: flags: 0x200000000000200(slab)
+001: raw: 0200000000000200 dead000000000100 dead000000000200 ffff88811ac018c0
+001: raw: 0000000000000000 00000000002a002a 00000001ffffffff 0000000000000000
+001: page dumped because: kasan: bad access detected
+001: 
+001: Memory state around the buggy address:
+001:  ffff8881191a4880: fc fc fc fc 00 00 00 00 00 00 fc fc fc fc fc fc
+001:  ffff8881191a4900: 00 00 00 00 00 00 fc fc fc fc fc fc fb fb fb fb
+001: >ffff8881191a4980: fb fb fb fb fc fc fc fc 00 00 00 00 00 00 00 00
+001:                          ^
+001:  ffff8881191a4a00: fc fc fc fc 00 00 00 00 00 00 00 00 fc fc fc fc
+001:  ffff8881191a4a80: 00 00 00 00 00 00 fc fc fc fc fc fc 00 00 00 00
+001: ==================================================================

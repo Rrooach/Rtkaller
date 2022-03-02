@@ -1,0 +1,38 @@
+kernel tried to execute NX-protected page - exploit attempt? (uid: 0)
+BUG: unable to handle kernel paging request at ffff88013ac23180
+IP: [<ffff88013ac23180>] 0xffff88013ac2317f
+PGD 20d1067 PUD 80000001000001e3 
+Oops: 0011 [#1] SMP 
+Dumping ftrace buffer:
+   (ftrace buffer empty)
+Modules linked in:
+CPU: 0 PID: 2429 Comm: syz-executor663 Not tainted 3.10.108-rt123+ #14
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+task: ffff88013a3df530 ti: ffff880138a1a000 task.ti: ffff880138a1a000
+RIP: 0010:[<ffff88013ac23180>]  [<ffff88013ac23180>] 0xffff88013ac2317f
+RSP: 0018:ffff880138a1bd80  EFLAGS: 00010293
+RAX: 0000000000000000 RBX: ffff88013a32fc00 RCX: 0000000000000000
+RDX: ffff88013a3df530 RSI: ffffffff8140ab4d RDI: ffff88013a32fc00
+RBP: ffff880138a1bd98 R08: ffff880138a1a000 R09: 000000000000b47b
+R10: 0000000000000000 R11: ffff88013fc11870 R12: ffff88013ac23180
+R13: ffff88013a32fc28 R14: ffff88013a32fca8 R15: ffff88013a0f42c0
+FS:  00007fb84e70e700(0000) GS:ffff88013fc00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffff88013ac23180 CR3: 000000013a0fe000 CR4: 00000000003407f0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Stack:
+ ffffffff8140ab53 ffff88013a32fc00 ffff8801388ab200 ffff880138a1be10
+ ffffffff8140b5c8 0000000000000000 0000000281408f2b ffff88013a3df530
+ 00000000200004c0 ffffea0004d8b5c0 ffff88013a31c800 00000000200004c0
+Call Trace:
+ [<ffffffff8140b5c8>] tty_set_ldisc+0x208/0x6f0
+ [<ffffffff814037ff>] tty_ioctl+0x8af/0xee0
+ [<ffffffff81173ccc>] do_vfs_ioctl+0x35c/0x640
+ [<ffffffff81174047>] SyS_ioctl+0x97/0xd0
+ [<ffffffff819a0df2>] system_call_fastpath+0x16/0x1b
+Code: 88 ff ff d0 b5 e2 3a 01 88 ff ff 60 31 c2 3a 01 88 ff ff 60 31 c2 3a 01 88 ff ff 00 00 00 00 00 00 00 00 18 89 b0 3a 01 88 ff ff <00> 00 00 00 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+RIP  [<ffff88013ac23180>] 0xffff88013ac2317f
+ RSP <ffff880138a1bd80>
+CR2: ffff88013ac23180
+---[ end trace 0f36f3a1a36c03e8 ]---

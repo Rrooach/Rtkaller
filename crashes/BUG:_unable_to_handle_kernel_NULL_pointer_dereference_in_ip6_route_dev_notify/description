@@ -1,0 +1,1 @@
+BUG: unable to handle kernel NULL pointer dereference in ip6_route_dev_notify

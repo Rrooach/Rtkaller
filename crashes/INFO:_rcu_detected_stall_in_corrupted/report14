@@ -1,0 +1,41 @@
+001: rcu: INFO: rcu_sched detected stalls on CPUs/tasks:
+001: rcu: 	0-...0: (36 ticks this GP) idle=d9e/1/0x4000000000000000 softirq=46536/46536 fqs=5250 
+001: 	(detected by 1, t=21002 jiffies, g=93709, q=4)
+001: Sending NMI from CPU 1 to CPUs 0:
+001: EXT4-fs (sda): error count since last fsck: 3
+001: EXT4-fs (sda): initial error at time 1622039607: mb_free_blocks:1469: inode 106958: block 461312
+001: EXT4-fs (sda): last error at time 1622858768: ext4_mb_generate_buddy:805
+000: NMI backtrace for cpu 0
+000: CPU: 0 PID: 100 Comm: kworker/0:3 Not tainted 5.9.0-rc7-rt10+ #2
+000: Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+000: Workqueue: events e1000_watchdog
+000: RIP: 0010:e1000_update_stats+0x1c5/0x1db0
+000: Code: 48 89 04 24 48 b8 00 00 00 00 00 fc ff df 48 c1 e9 03 80 3c 01 00 0f 85 45 15 00 00 48 8b 83 80 04 00 00 44 8b a8 00 40 00 00 <48> 8d 83 a0 05 00 00 48 89 c1 48 89 44 24 08 48 b8 00 00 00 00 00
+000: RSP: 0018:ffff888115857be8 EFLAGS: 00000046
+000: RAX: ffffc90000440000 RBX: ffff8881175108c0 RCX: 1ffff11022ea21a8
+000: RDX: 0000000000000001 RSI: 0000000000000004 RDI: ffff888115857b88
+000: RBP: 1ffff11022b0af8c R08: 0000000000000001 R09: ffffed1022b0af72
+000: R10: 0000000000000003 R11: ffffed1022b0af71 R12: ffff888117510ad8
+000: R13: 0000000000000000 R14: ffff888117510000 R15: 0000000000000001
+000: FS:  0000000000000000(0000) GS:ffff88811b200000(0000) knlGS:0000000000000000
+000: CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+000: CR2: 00007ffc23c4dcd8 CR3: 00000001110ea005 CR4: 0000000000770ef0
+000: DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+000: DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+000: PKRU: 55555554
+000: Call Trace:
+000:  e1000_watchdog+0x2cf/0xf00
+000:  process_one_work+0x880/0x1250
+000:  worker_thread+0x97/0xf90
+000:  kthread+0x2f1/0x400
+000:  ret_from_fork+0x22/0x30
+001: ata1: lost interrupt (Status 0x58)
+001: ata1.00: exception Emask 0x0 SAct 0x0 SErr 0x0 action 0x6 frozen
+001: ata1.00: failed command: WRITE DMA EXT
+001: ata1.00: cmd 35/00:00:00:28:00/00:04:00:00:00/e0 tag 0 dma 524288 out
+001:          res 40/00:01:00:00:00/00:00:00:00:00/a0 Emask 0x4 (timeout)
+001: ata1.00: status: { DRDY }
+001: ata1: soft resetting link
+000: hpet: Lost 470 RTC interrupts
+001: ata1.00: configured for MWDMA2
+001: ata1: EH complete

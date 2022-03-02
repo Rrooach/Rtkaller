@@ -1,0 +1,73 @@
+Extracting prog: 36.905908177s
+Minimizing prog: 1m53.046458423s
+Simplifying prog options: 0s
+Extracting C: 11.740897918s
+Simplifying C: 1m27.209254003s
+
+
+660 programs, 2 VMs, timeouts [15s 1m0s 6m0s]
+extracting reproducer from 660 programs
+single: executing 2 programs separately with timeout 15s
+testing program (duration=15s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): syz_mount_image$tmpfs
+detailed listing:
+executing program 0:
+syz_mount_image$tmpfs(&(0x7f00000016c0)='tmpfs\x00', &(0x7f0000001700)='./file0\x00', 0x0, 0x0, 0x0, 0x0, &(0x7f0000000000)=ANY=[@ANYBLOB="6d70616e69633a0000000000000000000009f582396165e37248dc5703771523fccb348f3716051f48a961c188eefcc333ea5a83a664dd2a03c50d98324114a5957cc738fe1c00b715534318305128433e94e116e26d8088f1983638b90919e66d75d439fb44f720883d1e519aeb8dbad9096c1dae005a0d89a3f58316b6ee53d070096a07a9c84752c96d"])
+
+program crashed: panic:'
+single: successfully extracted reproducer
+found reproducer with 1 syscalls
+minimizing guilty program
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): 
+detailed listing:
+executing program 0:
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): syz_mount_image$tmpfs
+detailed listing:
+executing program 0:
+syz_mount_image$tmpfs(0x0, &(0x7f0000001700)='./file0\x00', 0x0, 0x0, 0x0, 0x0, &(0x7f0000000000)=ANY=[@ANYBLOB="6d70616e69633a0000000000000000000009f582396165e37248dc5703771523fccb348f3716051f48a961c188eefcc333ea5a83a664dd2a03c50d98324114a5957cc738fe1c00b715534318305128433e94e116e26d8088f1983638b90919e66d75d439fb44f720883d1e519aeb8dbad9096c1dae005a0d89a3f58316b6ee53d070096a07a9c84752c96d"])
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): syz_mount_image$tmpfs
+detailed listing:
+executing program 0:
+syz_mount_image$tmpfs(&(0x7f00000016c0)='tmpfs\x00', 0x0, 0x0, 0x0, 0x0, 0x0, &(0x7f0000000000)=ANY=[@ANYBLOB="6d70616e69633a0000000000000000000009f582396165e37248dc5703771523fccb348f3716051f48a961c188eefcc333ea5a83a664dd2a03c50d98324114a5957cc738fe1c00b715534318305128433e94e116e26d8088f1983638b90919e66d75d439fb44f720883d1e519aeb8dbad9096c1dae005a0d89a3f58316b6ee53d070096a07a9c84752c96d"])
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): syz_mount_image$tmpfs
+detailed listing:
+executing program 0:
+syz_mount_image$tmpfs(&(0x7f00000016c0)='tmpfs\x00', &(0x7f0000001700)='./file0\x00', 0x0, 0x0, 0x0, 0x0, 0x0)
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): syz_mount_image$tmpfs
+detailed listing:
+executing program 0:
+syz_mount_image$tmpfs(&(0x7f00000016c0)='tmpfs\x00', &(0x7f0000001700)='./file0\x00', 0x0, 0x0, 0x0, 0x0, &(0x7f0000000000)=ANY=[@ANYBLOB])
+
+program did not crash
+extracting C reproducer
+testing compiled C program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): syz_mount_image$tmpfs
+program crashed: panic:'
+simplifying C reproducer
+testing compiled C program (duration=22.5s, {Threaded:true Collide:false Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): syz_mount_image$tmpfs
+program crashed: panic:'
+testing compiled C program (duration=22.5s, {Threaded:false Collide:false Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): syz_mount_image$tmpfs
+program crashed: panic:'
+testing compiled C program (duration=22.5s, {Threaded:false Collide:false Repeat:false RepeatTimes:0 Procs:1 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:false Cgroups:false BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): syz_mount_image$tmpfs
+program crashed: panic:'
+testing compiled C program (duration=22.5s, {Threaded:false Collide:false Repeat:false RepeatTimes:0 Procs:1 Sandbox: Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:false KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): syz_mount_image$tmpfs
+program crashed: panic:'
+testing compiled C program (duration=22.5s, {Threaded:false Collide:false Repeat:false RepeatTimes:0 Procs:1 Sandbox: Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:false KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:false HandleSegv:true Repro:true Trace:false}): syz_mount_image$tmpfs
+program crashed: panic:'
+testing compiled C program (duration=22.5s, {Threaded:false Collide:false Repeat:false RepeatTimes:0 Procs:1 Sandbox: Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:false KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:false HandleSegv:false Repro:true Trace:false}): syz_mount_image$tmpfs
+program crashed: panic:'
+reproducing took 4m8.902534553s
+repro crashed as (corrupted=false):
+001: audit: type=1400 audit(1613903244.109:8): avc:  denied  { execmem } for  pid=372 comm="syz-executor306" scontext=system_u:system_r:kernel_t:s0 tcontext=system_u:system_r:kernel_t:s0 tclass=process permissive=1
+000: tmpfs: Unknown parameter 'mpanic:'
+
+final repro crashed as (corrupted=false):
+001: audit: type=1400 audit(1613903244.109:8): avc:  denied  { execmem } for  pid=372 comm="syz-executor306" scontext=system_u:system_r:kernel_t:s0 tcontext=system_u:system_r:kernel_t:s0 tclass=process permissive=1
+000: tmpfs: Unknown parameter 'mpanic:'
+

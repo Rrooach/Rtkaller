@@ -1,0 +1,39 @@
+BUG: unable to handle kernel paging request at 0000000fffffffe0
+IP: [<ffffffff811569d9>] __kmalloc_track_caller+0x79/0x1a0
+PGD 128216067 PUD 0 
+Oops: 0000 [#1] SMP 
+Dumping ftrace buffer:
+   (ftrace buffer empty)
+Modules linked in:
+CPU: 0 PID: 18341 Comm: syz-executor.1 Not tainted 3.10.108-rt123+ #14
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+task: ffff88013a25e590 ti: ffff880128214000 task.ti: ffff880128214000
+RIP: 0010:[<ffffffff811569d9>]  [<ffffffff811569d9>] __kmalloc_track_caller+0x79/0x1a0
+RSP: 0018:ffff880128215ca8  EFLAGS: 00010202
+RAX: 0000000000000000 RBX: fffffffffffffff4 RCX: 0000000000003af0
+RDX: 0000000000003aef RSI: 0000000000000000 RDI: 00000000000145e0
+RBP: ffff880128215cd8 R08: ffff88013fc145e0 R09: ffff880128215c94
+R10: 0000000000000000 R11: 0000000000000246 R12: 00000000000000d0
+R13: 0000000000000220 R14: 0000000fffffffe0 R15: ffff88013b001500
+FS:  00007f46a9a14700(0000) GS:ffff88013fc00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000fffffffe0 CR3: 0000000128060000 CR4: 00000000003407f0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Stack:
+ ffffffff814239d3 fffffffffffffff4 0000000000000220 0000000020000000
+ ffff880128242000 0000000000000001 ffff880128215d00 ffffffff8111a7fc
+ ffff880128215dc8 00000000ffffffe4 0000000000000004 ffff880128215d80
+Call Trace:
+ [<ffffffff8111a7fc>] memdup_user+0x2c/0x90
+ [<ffffffff814239d3>] con_font_op+0x4c3/0x630
+ [<ffffffff81412378>] vt_ioctl+0x1448/0x1870
+ [<ffffffff814031dd>] tty_ioctl+0x28d/0xee0
+ [<ffffffff81173ccc>] do_vfs_ioctl+0x35c/0x640
+ [<ffffffff81174047>] SyS_ioctl+0x97/0xd0
+ [<ffffffff819a0df2>] system_call_fastpath+0x16/0x1b
+Code: 25 28 bc 00 00 49 8b 50 08 49 83 78 10 00 4d 8b 30 0f 84 c3 00 00 00 4d 85 f6 0f 84 ba 00 00 00 49 63 47 20 49 8b 3f 48 8d 4a 01 <49> 8b 1c 06 4c 89 f0 65 48 0f c7 0f 0f 94 c0 84 c0 74 bb 49 63 
+RIP  [<ffffffff811569d9>] __kmalloc_track_caller+0x79/0x1a0
+ RSP <ffff880128215ca8>
+CR2: 0000000fffffffe0
+---[ end trace 523aad75a842b3b2 ]---

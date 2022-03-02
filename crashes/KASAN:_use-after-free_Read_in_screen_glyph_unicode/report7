@@ -1,0 +1,45 @@
+==================================================================
+BUG: KASAN: use-after-free in screen_glyph_unicode+0x253/0x2a0
+Read of size 2 at addr ffff888000104dcc by task syz-executor.0/10504
+
+CPU: 1 PID: 10504 Comm: syz-executor.0 Not tainted 5.0.0 #3
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+Call Trace:
+ dump_stack+0x79/0xba
+ print_address_description+0x60/0x229
+ kasan_report.cold.3+0x1a/0x35
+ screen_glyph_unicode+0x253/0x2a0
+ sel_pos+0x5d/0x70
+ set_selection+0xa7a/0x1000
+ tioclinux+0x2bf/0x420
+ vt_ioctl+0x1803/0x2470
+ tty_ioctl+0x486/0x1340
+ do_vfs_ioctl+0x1a4/0x1000
+ ksys_ioctl+0x7b/0xa0
+ __x64_sys_ioctl+0x73/0xb0
+ do_syscall_64+0x9e/0x2b0
+ entry_SYSCALL_64_after_hwframe+0x44/0xa9
+RIP: 0033:0x4686dd
+Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 bc ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007f7e46c66c58 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 0000000000524740 RCX: 00000000004686dd
+RDX: 00000000200001c0 RSI: 000000000000541c RDI: 0000000000000003
+RBP: 00000000004c4725 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 000000000057cf00
+R13: 00007ffe1993963f R14: 000000000057cf00 R15: 00007f7e46c66dc0
+
+The buggy address belongs to the page:
+page:ffffea0000004100 count:0 mapcount:0 mapping:0000000000000000 index:0x0
+flags: 0x0()
+raw: 0000000000000000 ffffea0000004108 ffffea0000004108 0000000000000000
+raw: 0000000000000000 0000000000000000 00000000ffffffff 0000000000000000
+page dumped because: kasan: bad access detected
+
+Memory state around the buggy address:
+ ffff888000104c80: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+ ffff888000104d00: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+>ffff888000104d80: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+                                              ^
+ ffff888000104e00: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+ ffff888000104e80: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+==================================================================

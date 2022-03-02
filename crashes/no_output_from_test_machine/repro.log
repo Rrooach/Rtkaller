@@ -1,0 +1,5 @@
+Warning: Permanently added '[localhost]:25474' (ECDSA) to the list of known hosts.
+executing program
+syzkaller login: [  333.315191] 000: EXT4-fs (sda): error count since last fsck: 3
+[  333.315231] 000: EXT4-fs (sda): initial error at time 1622039607: mb_free_blocks:1469: inode 106958: block 461312
+[  333.315240] 000: EXT4-fs (sda): last error at time 1622791730: ext4_mb_generate_buddy:805

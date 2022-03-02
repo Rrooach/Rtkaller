@@ -1,0 +1,51 @@
+001: audit: type=1326 audit(1622934481.425:151): auid=0 uid=0 gid=0 ses=4 subj=kernel pid=12981 comm="syz-executor.0" exe="/syz-executor.0" sig=31 arch=c000003e syscall=202 compat=0 ip=0x4686dd code=0x0
+001: ata1: lost interrupt (Status 0x58)
+000: perf: interrupt took too long (48243 > 48086), lowering kernel.perf_event_max_sample_rate to 4000
+001: rcu: INFO: rcu_sched detected stalls on CPUs/tasks:
+001: 	(detected by 1, t=22922 jiffies, g=103937, q=4)
+001: rcu: All QSes seen, last rcu_sched kthread activity 22922 (4294953370-4294930448), jiffies_till_next_fqs=3, root ->qsmask 0x0
+001: scsi_eh_0       R  running task    28704    84      2 0x80004008
+001: Call Trace:
+001:  <IRQ>
+001:  sched_show_task.cold+0x243/0x2b1
+001:  rcu_sched_clock_irq.cold+0x853/0x90b
+001:  update_process_times+0x24/0x60
+001:  tick_sched_handle+0x10f/0x150
+001:  tick_sched_timer+0x41/0x120
+001:  __hrtimer_run_queues+0x308/0x7c0
+001:  hrtimer_interrupt+0x2c9/0x6c0
+001:  smp_apic_timer_interrupt+0xd4/0x380
+001:  apic_timer_interrupt+0xf/0x20
+001:  </IRQ>
+001: RIP: 0010:_raw_spin_unlock_irqrestore+0x2c/0x50
+001: Code: ec 10 48 b8 00 00 00 00 00 fc ff df 48 89 fa 48 c1 ea 03 0f b6 04 02 48 89 fa 83 e2 07 38 d0 7f 04 84 c0 75 0a c6 07 00 56 9d <48> 83 c4 10 c3 48 89 74 24 08 48 89 3c 24 e8 c1 e7 06 fe 48 8b 74
+001: RSP: 0018:ffff888118fd7c30 EFLAGS: 00000246 ORIG_RAX: ffffffffffffff13
+001: RAX: 0000000000000000 RBX: 0000000000000000 RCX: ffffffffa47d5060
+001: RDX: 0000000000000000 RSI: 0000000000000246 RDI: ffff888118e72600
+001: RBP: ffff888118fa8000 R08: 0000000000000001 R09: ffffed10231faf7e
+001: R10: ffffed10231faf7d R11: 0000000000000003 R12: 0000000000000246
+001: R13: ffff888118fa8010 R14: ffff888118fa8130 R15: ffff888118fa8008
+001:  ata_bmdma_error_handler+0x2a7/0x5d0
+001:  ata_scsi_port_error_handler+0x6bd/0x1460
+001:  ata_scsi_error+0x22e/0x3e0
+001:  scsi_error_handler+0x255/0xed0
+001:  kthread+0x2ce/0x3d0
+001:  ret_from_fork+0x35/0x40
+001: rcu: rcu_sched kthread starved for 22922 jiffies! g103937 f0x2 RCU_GP_WAIT_FQS(5) ->state=0x0 ->cpu=1
+001: rcu: RCU grace-period kthread stack dump:
+001: rcu_sched       R  running task    29760    10      2 0x80004000
+001: Call Trace:
+001:  schedule+0xc6/0x290
+001:  schedule_timeout+0x2f3/0x860
+001:  rcu_gp_kthread+0x9e6/0x20c0
+001:  kthread+0x2ce/0x3d0
+001:  ret_from_fork+0x35/0x40
+001: ata1.00: exception Emask 0x0 SAct 0x0 SErr 0x0 action 0x6 frozen
+001: ata1.00: failed command: WRITE DMA
+001: ata1.00: cmd ca/00:08:68:50:3c/00:00:00:00:00/e0 tag 0 dma 4096 out
+001:          res 40/00:00:20:10:08/00:00:20:10:08/a0 Emask 0x4 (timeout)
+001: ata1.00: status: { DRDY }
+001: ata1: soft resetting link
+001: ata1.00: configured for MWDMA2
+001: ata1: EH complete
+001: syz-executor.0 (317) used greatest stack depth: 24976 bytes left

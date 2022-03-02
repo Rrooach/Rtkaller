@@ -1,0 +1,20 @@
+systemd[1]: segfault at 7ffff9ebbf98 ip 00007f6d8cf43c80 sp 00007ffff9ebbfa0 error 6 in systemd[7f6d8cf1f000+122000]
+Kernel panic - not syncing: Attempted to kill init! exitcode=0x0000000b
+
+CPU: 0 PID: 1 Comm: systemd Not tainted 3.10.108-rt123+ #14
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+ ffff88013aa55d20 ffff88013aa55c90 ffffffff81991617 ffff88013aa55d10
+ ffffffff8198f425 ffffffff00000010 ffff88013aa55d20 ffff88013aa55cb8
+ 0000000000000001 000000000000000b ffff88013aa78358 ffff88013aa78000
+Call Trace:
+ [<ffffffff81991617>] dump_stack+0x1e/0x20
+ [<ffffffff8198f425>] panic+0xbb/0x1be
+ [<ffffffff81040f92>] do_exit+0xb42/0xb50
+ [<ffffffff81041e8e>] do_group_exit+0x3e/0xa0
+ [<ffffffff810506a8>] get_signal_to_deliver+0x278/0x5d0
+ [<ffffffff81002333>] do_signal+0x43/0x6b0
+ [<ffffffff810029ff>] do_notify_resume+0x5f/0x70
+ [<ffffffff81998b26>] retint_signal+0x41/0x7b
+Dumping ftrace buffer:
+   (ftrace buffer empty)
+Rebooting in 1 seconds..

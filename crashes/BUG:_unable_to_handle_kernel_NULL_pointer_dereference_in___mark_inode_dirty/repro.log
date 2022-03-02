@@ -1,0 +1,43 @@
+Warning: Permanently added '[localhost]:45352' (ECDSA) to the list of known hosts.
+executing program
+syzkaller login: [    9.561737] BUG: unable to handle kernel NULL pointer dereference at 0000000000000010
+[    9.563390] IP: [<ffffffff8118f7c1>] __mark_inode_dirty+0x1e1/0x3a0
+[    9.564751] PGD 13a07a067 PUD 13a13c067 PMD 0 
+[    9.565726] Oops: 0000 [#1] SMP 
+[    9.566446] Dumping ftrace buffer:
+[    9.567168]    (ftrace buffer empty)
+[    9.567924] Modules linked in:
+[    9.568601] CPU: 1 PID: 1535 Comm: syz-executor302 Not tainted 3.10.108-rt123+ #14
+[    9.570151] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[    9.571989] task: ffff88013aac6590 ti: ffff88013a2e8000 task.ti: ffff88013a2e8000
+[    9.573497] RIP: 0010:[<ffffffff8118f7c1>]  [<ffffffff8118f7c1>] __mark_inode_dirty+0x1e1/0x3a0
+[    9.575285] RSP: 0018:ffff88013a2e9e10  EFLAGS: 00010293
+[    9.576467] RAX: 0000000000000000 RBX: 0000000000000007 RCX: 0000000000000001
+[    9.577919] RDX: ffff88013aac6590 RSI: ffffffff8118f7bd RDI: ffff880138d1daa0
+[    9.579378] RBP: ffff88013a2e9e38 R08: 0000000000000000 R09: ffff88013a2e9d2c
+[    9.580898] R10: 0000000000400518 R11: 0000000000000246 R12: ffff880138d1daa0
+[    9.582400] R13: 0000000000000000 R14: ffff88013af37a80 R15: ffff88013a283c00
+[    9.583852] FS:  0000000001c45880(0063) GS:ffff88013fd00000(0000) knlGS:0000000000000000
+[    9.585516] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[    9.586659] CR2: 0000000000000010 CR3: 000000013a139000 CR4: 00000000003407e0
+[    9.588030] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+[    9.589429] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+[    9.590846] Stack:
+[    9.591272]  ffff880138d1daa0 ffff88013a2e9ec8 0000000000000000 ffff88013af37a80
+[    9.592829]  0000000000000000 ffff88013a2e9e60 ffffffff8118ba73 0000000000001846
+[    9.594444]  ffff88013a2e9ec8 0000000000000000 ffff88013a2e9eb8 ffffffff8117f2e0
+[    9.596053] Call Trace:
+[    9.596573]  [<ffffffff8118ba73>] simple_setattr+0x53/0x80
+[    9.597645]  [<ffffffff8117f2e0>] notify_change+0x430/0x4d0
+[    9.598790]  [<ffffffff81159f56>] chown_common.isra.12+0x96/0xd0
+[    9.600008]  [<ffffffff8115b54d>] SyS_fchown+0xdd/0xf0
+[    9.601061]  [<ffffffff819a0df2>] system_call_fastpath+0x16/0x1b
+[    9.602278] Code: ff e9 d8 fe ff ff 0f 1f 40 00 e8 4b a7 f2 ff 8b 05 7d f6 d1 00 4d 8b 7c 24 28 85 c0 0f 85 98 00 00 00 e8 33 a7 f2 ff 49 8b 47 30 <4c> 8b 68 10 4d 85 ed 74 0d e8 21 a7 f2 ff 89 de 4c 89 e7 41 ff 
+[    9.607581] RIP  [<ffffffff8118f7c1>] __mark_inode_dirty+0x1e1/0x3a0
+[    9.608750]  RSP <ffff88013a2e9e10>
+[    9.609377] CR2: 0000000000000010
+[    9.610084] ---[ end trace 885b19228c826246 ]---
+[    9.611039] Kernel panic - not syncing: Fatal exception
+[    9.612053] Dumping ftrace buffer:
+[    9.612676]    (ftrace buffer empty)
+[    9.613320] Rebooting in 1 seconds..

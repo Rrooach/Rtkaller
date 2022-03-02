@@ -1,0 +1,22 @@
+Warning: Permanently added '[localhost]:58610' (ECDSA) to the list of known hosts.
+Connection to localhost closed by remote host.
+syzkaller login: [    9.658524] Kernel panic - not syncing: Attempted to kill init! exitcode=0x0000000b
+[    9.658524] 
+[    9.659654] CPU: 1 PID: 1 Comm: systemd Not tainted 3.10.108-rt123+ #14
+[    9.660487] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[    9.661612]  ffff88013aa55d20 ffff88013aa55c90 ffffffff81991617 ffff88013aa55d10
+[    9.662598]  ffffffff8198f425 ffffffff00000010 ffff88013aa55d20 ffff88013aa55cb8
+[    9.663586]  0000000000000001 000000000000000b ffff88013aa78358 ffff88013aa78000
+[    9.664554] Call Trace:
+[    9.664893]  [<ffffffff81991617>] dump_stack+0x1e/0x20
+[    9.665524]  [<ffffffff8198f425>] panic+0xbb/0x1be
+[    9.666131]  [<ffffffff812ebe01>] ? selinux_msg_queue_free_security+0x1/0x30
+[    9.667010]  [<ffffffff81040f92>] do_exit+0xb42/0xb50
+[    9.667709]  [<ffffffff81041e8e>] do_group_exit+0x3e/0xa0
+[    9.668382]  [<ffffffff810506a8>] get_signal_to_deliver+0x278/0x5d0
+[    9.669267]  [<ffffffff81002333>] do_signal+0x43/0x6b0
+[    9.670081]  [<ffffffff810029ff>] do_notify_resume+0x5f/0x70
+[    9.670852]  [<ffffffff81998b26>] retint_signal+0x41/0x7b
+[    9.671843] Dumping ftrace buffer:
+[    9.672332]    (ftrace buffer empty)
+[    9.672814] Rebooting in 1 seconds..

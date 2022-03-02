@@ -1,0 +1,340 @@
+Extracting prog: 50.268283084s
+Minimizing prog: 7m31.941288089s
+Simplifying prog options: 0s
+Extracting C: 12.214797412s
+Simplifying C: 1m13.862297902s
+
+
+415 programs, 2 VMs, timeouts [15s 1m0s 6m0s]
+extracting reproducer from 415 programs
+single: executing 2 programs separately with timeout 15s
+testing program (duration=15s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): madvise-openat$cgroup_netprio_ifpriomap-write$cgroup_netprio_ifpriomap-arch_prctl$ARCH_GET_FS
+detailed listing:
+executing program 0:
+madvise(&(0x7f0000fee000/0x10000)=nil, 0x10000, 0x12)
+r0 = openat$cgroup_netprio_ifpriomap(0xffffffffffffffff, &(0x7f0000000040)='net_prio.ifpriomap\x00', 0x2, 0x0)
+write$cgroup_netprio_ifpriomap(r0, &(0x7f0000000080)={'ip6gre0', 0x32, 0x32}, 0xa)
+arch_prctl$ARCH_GET_FS(0x1003, &(0x7f0000000000))
+
+program did not crash
+testing program (duration=15s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): open-syz_mount_image$nfs-read$usbmon-setxattr$security_capability-setxattr$security_evm-write-sendmsg$NL80211_CMD_DEL_KEY
+detailed listing:
+executing program 0:
+r0 = open(&(0x7f00000000a0)='fallocate04.txt\x00', 0x12b342, 0x0)
+syz_mount_image$nfs(&(0x7f0000000300)='nfs\x00', &(0x7f0000000340)='fallocate04.txt\x00', 0x0, 0x3, &(0x7f0000000540)=[{&(0x7f0000000380)="db7a2b095da0eac039eb8e6d63b43dd29ba40b7430fa570dd12d8d1e9c8b1f8d5ecc95e27790db4d1e763bade2b64ec9c520fe046726dd66b19a0904375d4543d4ebfa7031c420d05c8f86a286b1e818c526c983bd3466d0c8a96bb1e4d62f62138e2760ee4c3182e6f579e9465e7a140360bbdeac7a3cd01110b79d84", 0x7d, 0xffff}, {&(0x7f0000000400)="cdd66b5a795afcf47a820ab7f2adfa708a1faf823e58580e3fc128f79f195a76a70f489f9d536d1f0e8af63dd1ac70569c2f1b11254c1d50c83685a2a038436dd4ae85737f4ff6e9347df2ae9a9baf59197e6c08c44fc564030dcd7472ed0a6e9b21c1601fe9d93fdaf5755975f18b1d0f4ed0209eafc6d70936d654954c4760b34791672b66c43d54f83ba42c53227cc15017690f95a8a155a52772b558bb8cd76c3f0e5a9b4fb51c956074dbf141c1a70c36851674e9b3760d9a92d47b", 0xbe, 0x4}, {&(0x7f00000004c0)="0bdad3963d823b878068bbabf4522c9edd7eacc1b00e67e3cb4acd7cf0e411a5d659863aafa9fcea2f05ec4c8f9bb94d22bb22c9d204a268704968adb5e50ca1835f350f61015bfccd4059e2e4249c2147", 0x51, 0x200}], 0xaa5805, &(0x7f00000005c0)='security.evm\x00')
+read$usbmon(r0, &(0x7f0000000600)=""/253, 0xfd)
+setxattr$security_capability(&(0x7f00000000c0)='fallocate04.txt\x00', &(0x7f0000000100)='security.capability\x00', &(0x7f0000000280)=@v3, 0x18, 0x0)
+setxattr$security_evm(&(0x7f0000000000)='fallocate04.txt\x00', &(0x7f0000000040)='security.evm\x00', 0x0, 0x0, 0x0)
+write(r0, &(0x7f00000000b0)='a', 0x1)
+sendmsg$NL80211_CMD_DEL_KEY(r0, &(0x7f00000002c0)={&(0x7f0000000140)={0x10, 0x0, 0x0, 0x80000}, 0xc, &(0x7f0000000240)={&(0x7f0000000180)={0x8c, 0x0, 0x1, 0x70bd28, 0x25dfdbfd, {}, [@NL80211_ATTR_KEY={0x50, 0x50, 0x0, 0x1, [@NL80211_KEY_DEFAULT_MGMT={0x4}, @NL80211_KEY_DEFAULT_TYPES={0xc, 0x8, 0x0, 0x1, [@NL80211_KEY_DEFAULT_TYPE_UNICAST={0x4}, @NL80211_KEY_DEFAULT_TYPE_UNICAST={0x4}]}, @NL80211_KEY_DATA_WEP104={0x11, 0x1, "0ec8614f164fefdf1e6c9c3019"}, @NL80211_KEY_DEFAULT_TYPES={0x8, 0x8, 0x0, 0x1, [@NL80211_KEY_DEFAULT_TYPE_UNICAST={0x4}]}, @NL80211_KEY_IDX={0x5}, @NL80211_KEY_DATA_WEP104={0x11, 0x1, "887b2d0f0b3f68996e15d36765"}, @NL80211_KEY_DEFAULT={0x4}]}, @NL80211_ATTR_KEY_DEFAULT={0x4}, @NL80211_ATTR_MAC={0xa}, @NL80211_ATTR_MAC={0xa, 0x6, @local}, @NL80211_ATTR_MAC={0xa, 0x6, @random="c45d81fb5366"}]}, 0x8c}, 0x1, 0x0, 0x0, 0x20000004}, 0x8000)
+
+program crashed: WARNING in notify_change
+single: successfully extracted reproducer
+found reproducer with 7 syscalls
+minimizing guilty program
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): open-syz_mount_image$nfs-read$usbmon-setxattr$security_capability-setxattr$security_evm-write
+detailed listing:
+executing program 0:
+r0 = open(&(0x7f00000000a0)='fallocate04.txt\x00', 0x12b342, 0x0)
+syz_mount_image$nfs(&(0x7f0000000300)='nfs\x00', &(0x7f0000000340)='fallocate04.txt\x00', 0x0, 0x3, &(0x7f0000000540)=[{&(0x7f0000000380)="db7a2b095da0eac039eb8e6d63b43dd29ba40b7430fa570dd12d8d1e9c8b1f8d5ecc95e27790db4d1e763bade2b64ec9c520fe046726dd66b19a0904375d4543d4ebfa7031c420d05c8f86a286b1e818c526c983bd3466d0c8a96bb1e4d62f62138e2760ee4c3182e6f579e9465e7a140360bbdeac7a3cd01110b79d84", 0x7d, 0xffff}, {&(0x7f0000000400)="cdd66b5a795afcf47a820ab7f2adfa708a1faf823e58580e3fc128f79f195a76a70f489f9d536d1f0e8af63dd1ac70569c2f1b11254c1d50c83685a2a038436dd4ae85737f4ff6e9347df2ae9a9baf59197e6c08c44fc564030dcd7472ed0a6e9b21c1601fe9d93fdaf5755975f18b1d0f4ed0209eafc6d70936d654954c4760b34791672b66c43d54f83ba42c53227cc15017690f95a8a155a52772b558bb8cd76c3f0e5a9b4fb51c956074dbf141c1a70c36851674e9b3760d9a92d47b", 0xbe, 0x4}, {&(0x7f00000004c0)="0bdad3963d823b878068bbabf4522c9edd7eacc1b00e67e3cb4acd7cf0e411a5d659863aafa9fcea2f05ec4c8f9bb94d22bb22c9d204a268704968adb5e50ca1835f350f61015bfccd4059e2e4249c2147", 0x51, 0x200}], 0xaa5805, &(0x7f00000005c0)='security.evm\x00')
+read$usbmon(r0, &(0x7f0000000600)=""/253, 0xfd)
+setxattr$security_capability(&(0x7f00000000c0)='fallocate04.txt\x00', &(0x7f0000000100)='security.capability\x00', &(0x7f0000000280)=@v3, 0x18, 0x0)
+setxattr$security_evm(&(0x7f0000000000)='fallocate04.txt\x00', &(0x7f0000000040)='security.evm\x00', 0x0, 0x0, 0x0)
+write(r0, &(0x7f00000000b0)='a', 0x1)
+
+program crashed: WARNING in notify_change
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): open-syz_mount_image$nfs-read$usbmon-setxattr$security_capability-setxattr$security_evm
+detailed listing:
+executing program 0:
+r0 = open(&(0x7f00000000a0)='fallocate04.txt\x00', 0x12b342, 0x0)
+syz_mount_image$nfs(&(0x7f0000000300)='nfs\x00', &(0x7f0000000340)='fallocate04.txt\x00', 0x0, 0x3, &(0x7f0000000540)=[{&(0x7f0000000380)="db7a2b095da0eac039eb8e6d63b43dd29ba40b7430fa570dd12d8d1e9c8b1f8d5ecc95e27790db4d1e763bade2b64ec9c520fe046726dd66b19a0904375d4543d4ebfa7031c420d05c8f86a286b1e818c526c983bd3466d0c8a96bb1e4d62f62138e2760ee4c3182e6f579e9465e7a140360bbdeac7a3cd01110b79d84", 0x7d, 0xffff}, {&(0x7f0000000400)="cdd66b5a795afcf47a820ab7f2adfa708a1faf823e58580e3fc128f79f195a76a70f489f9d536d1f0e8af63dd1ac70569c2f1b11254c1d50c83685a2a038436dd4ae85737f4ff6e9347df2ae9a9baf59197e6c08c44fc564030dcd7472ed0a6e9b21c1601fe9d93fdaf5755975f18b1d0f4ed0209eafc6d70936d654954c4760b34791672b66c43d54f83ba42c53227cc15017690f95a8a155a52772b558bb8cd76c3f0e5a9b4fb51c956074dbf141c1a70c36851674e9b3760d9a92d47b", 0xbe, 0x4}, {&(0x7f00000004c0)="0bdad3963d823b878068bbabf4522c9edd7eacc1b00e67e3cb4acd7cf0e411a5d659863aafa9fcea2f05ec4c8f9bb94d22bb22c9d204a268704968adb5e50ca1835f350f61015bfccd4059e2e4249c2147", 0x51, 0x200}], 0xaa5805, &(0x7f00000005c0)='security.evm\x00')
+read$usbmon(r0, &(0x7f0000000600)=""/253, 0xfd)
+setxattr$security_capability(&(0x7f00000000c0)='fallocate04.txt\x00', &(0x7f0000000100)='security.capability\x00', &(0x7f0000000280)=@v3, 0x18, 0x0)
+setxattr$security_evm(&(0x7f0000000000)='fallocate04.txt\x00', &(0x7f0000000040)='security.evm\x00', 0x0, 0x0, 0x0)
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): open-syz_mount_image$nfs-read$usbmon-setxattr$security_capability-write
+detailed listing:
+executing program 0:
+r0 = open(&(0x7f00000000a0)='fallocate04.txt\x00', 0x12b342, 0x0)
+syz_mount_image$nfs(&(0x7f0000000300)='nfs\x00', &(0x7f0000000340)='fallocate04.txt\x00', 0x0, 0x3, &(0x7f0000000540)=[{&(0x7f0000000380)="db7a2b095da0eac039eb8e6d63b43dd29ba40b7430fa570dd12d8d1e9c8b1f8d5ecc95e27790db4d1e763bade2b64ec9c520fe046726dd66b19a0904375d4543d4ebfa7031c420d05c8f86a286b1e818c526c983bd3466d0c8a96bb1e4d62f62138e2760ee4c3182e6f579e9465e7a140360bbdeac7a3cd01110b79d84", 0x7d, 0xffff}, {&(0x7f0000000400)="cdd66b5a795afcf47a820ab7f2adfa708a1faf823e58580e3fc128f79f195a76a70f489f9d536d1f0e8af63dd1ac70569c2f1b11254c1d50c83685a2a038436dd4ae85737f4ff6e9347df2ae9a9baf59197e6c08c44fc564030dcd7472ed0a6e9b21c1601fe9d93fdaf5755975f18b1d0f4ed0209eafc6d70936d654954c4760b34791672b66c43d54f83ba42c53227cc15017690f95a8a155a52772b558bb8cd76c3f0e5a9b4fb51c956074dbf141c1a70c36851674e9b3760d9a92d47b", 0xbe, 0x4}, {&(0x7f00000004c0)="0bdad3963d823b878068bbabf4522c9edd7eacc1b00e67e3cb4acd7cf0e411a5d659863aafa9fcea2f05ec4c8f9bb94d22bb22c9d204a268704968adb5e50ca1835f350f61015bfccd4059e2e4249c2147", 0x51, 0x200}], 0xaa5805, &(0x7f00000005c0)='security.evm\x00')
+read$usbmon(r0, &(0x7f0000000600)=""/253, 0xfd)
+setxattr$security_capability(&(0x7f00000000c0)='fallocate04.txt\x00', &(0x7f0000000100)='security.capability\x00', &(0x7f0000000280)=@v3, 0x18, 0x0)
+write(r0, &(0x7f00000000b0)='a', 0x1)
+
+program crashed: WARNING in notify_change
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): open-syz_mount_image$nfs-read$usbmon-write
+detailed listing:
+executing program 0:
+r0 = open(&(0x7f00000000a0)='fallocate04.txt\x00', 0x12b342, 0x0)
+syz_mount_image$nfs(&(0x7f0000000300)='nfs\x00', &(0x7f0000000340)='fallocate04.txt\x00', 0x0, 0x3, &(0x7f0000000540)=[{&(0x7f0000000380)="db7a2b095da0eac039eb8e6d63b43dd29ba40b7430fa570dd12d8d1e9c8b1f8d5ecc95e27790db4d1e763bade2b64ec9c520fe046726dd66b19a0904375d4543d4ebfa7031c420d05c8f86a286b1e818c526c983bd3466d0c8a96bb1e4d62f62138e2760ee4c3182e6f579e9465e7a140360bbdeac7a3cd01110b79d84", 0x7d, 0xffff}, {&(0x7f0000000400)="cdd66b5a795afcf47a820ab7f2adfa708a1faf823e58580e3fc128f79f195a76a70f489f9d536d1f0e8af63dd1ac70569c2f1b11254c1d50c83685a2a038436dd4ae85737f4ff6e9347df2ae9a9baf59197e6c08c44fc564030dcd7472ed0a6e9b21c1601fe9d93fdaf5755975f18b1d0f4ed0209eafc6d70936d654954c4760b34791672b66c43d54f83ba42c53227cc15017690f95a8a155a52772b558bb8cd76c3f0e5a9b4fb51c956074dbf141c1a70c36851674e9b3760d9a92d47b", 0xbe, 0x4}, {&(0x7f00000004c0)="0bdad3963d823b878068bbabf4522c9edd7eacc1b00e67e3cb4acd7cf0e411a5d659863aafa9fcea2f05ec4c8f9bb94d22bb22c9d204a268704968adb5e50ca1835f350f61015bfccd4059e2e4249c2147", 0x51, 0x200}], 0xaa5805, &(0x7f00000005c0)='security.evm\x00')
+read$usbmon(r0, &(0x7f0000000600)=""/253, 0xfd)
+write(r0, &(0x7f00000000b0)='a', 0x1)
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): open-syz_mount_image$nfs-setxattr$security_capability-write
+detailed listing:
+executing program 0:
+r0 = open(&(0x7f00000000a0)='fallocate04.txt\x00', 0x12b342, 0x0)
+syz_mount_image$nfs(&(0x7f0000000300)='nfs\x00', &(0x7f0000000340)='fallocate04.txt\x00', 0x0, 0x3, &(0x7f0000000540)=[{&(0x7f0000000380)="db7a2b095da0eac039eb8e6d63b43dd29ba40b7430fa570dd12d8d1e9c8b1f8d5ecc95e27790db4d1e763bade2b64ec9c520fe046726dd66b19a0904375d4543d4ebfa7031c420d05c8f86a286b1e818c526c983bd3466d0c8a96bb1e4d62f62138e2760ee4c3182e6f579e9465e7a140360bbdeac7a3cd01110b79d84", 0x7d, 0xffff}, {&(0x7f0000000400)="cdd66b5a795afcf47a820ab7f2adfa708a1faf823e58580e3fc128f79f195a76a70f489f9d536d1f0e8af63dd1ac70569c2f1b11254c1d50c83685a2a038436dd4ae85737f4ff6e9347df2ae9a9baf59197e6c08c44fc564030dcd7472ed0a6e9b21c1601fe9d93fdaf5755975f18b1d0f4ed0209eafc6d70936d654954c4760b34791672b66c43d54f83ba42c53227cc15017690f95a8a155a52772b558bb8cd76c3f0e5a9b4fb51c956074dbf141c1a70c36851674e9b3760d9a92d47b", 0xbe, 0x4}, {&(0x7f00000004c0)="0bdad3963d823b878068bbabf4522c9edd7eacc1b00e67e3cb4acd7cf0e411a5d659863aafa9fcea2f05ec4c8f9bb94d22bb22c9d204a268704968adb5e50ca1835f350f61015bfccd4059e2e4249c2147", 0x51, 0x200}], 0xaa5805, &(0x7f00000005c0)='security.evm\x00')
+setxattr$security_capability(&(0x7f00000000c0)='fallocate04.txt\x00', &(0x7f0000000100)='security.capability\x00', &(0x7f0000000280)=@v3, 0x18, 0x0)
+write(r0, &(0x7f00000000b0)='a', 0x1)
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): open-read$usbmon-setxattr$security_capability-write
+detailed listing:
+executing program 0:
+r0 = open(&(0x7f00000000a0)='fallocate04.txt\x00', 0x12b342, 0x0)
+read$usbmon(r0, &(0x7f0000000600)=""/253, 0xfd)
+setxattr$security_capability(&(0x7f00000000c0)='fallocate04.txt\x00', &(0x7f0000000100)='security.capability\x00', &(0x7f0000000280)=@v3, 0x18, 0x0)
+write(r0, &(0x7f00000000b0)='a', 0x1)
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): syz_mount_image$nfs-read$usbmon-setxattr$security_capability-write
+detailed listing:
+executing program 0:
+syz_mount_image$nfs(&(0x7f0000000300)='nfs\x00', &(0x7f0000000340)='fallocate04.txt\x00', 0x0, 0x3, &(0x7f0000000540)=[{&(0x7f0000000380)="db7a2b095da0eac039eb8e6d63b43dd29ba40b7430fa570dd12d8d1e9c8b1f8d5ecc95e27790db4d1e763bade2b64ec9c520fe046726dd66b19a0904375d4543d4ebfa7031c420d05c8f86a286b1e818c526c983bd3466d0c8a96bb1e4d62f62138e2760ee4c3182e6f579e9465e7a140360bbdeac7a3cd01110b79d84", 0x7d, 0xffff}, {&(0x7f0000000400)="cdd66b5a795afcf47a820ab7f2adfa708a1faf823e58580e3fc128f79f195a76a70f489f9d536d1f0e8af63dd1ac70569c2f1b11254c1d50c83685a2a038436dd4ae85737f4ff6e9347df2ae9a9baf59197e6c08c44fc564030dcd7472ed0a6e9b21c1601fe9d93fdaf5755975f18b1d0f4ed0209eafc6d70936d654954c4760b34791672b66c43d54f83ba42c53227cc15017690f95a8a155a52772b558bb8cd76c3f0e5a9b4fb51c956074dbf141c1a70c36851674e9b3760d9a92d47b", 0xbe, 0x4}, {&(0x7f00000004c0)="0bdad3963d823b878068bbabf4522c9edd7eacc1b00e67e3cb4acd7cf0e411a5d659863aafa9fcea2f05ec4c8f9bb94d22bb22c9d204a268704968adb5e50ca1835f350f61015bfccd4059e2e4249c2147", 0x51, 0x200}], 0xaa5805, &(0x7f00000005c0)='security.evm\x00')
+read$usbmon(0xffffffffffffffff, &(0x7f0000000600)=""/253, 0xfd)
+setxattr$security_capability(&(0x7f00000000c0)='fallocate04.txt\x00', &(0x7f0000000100)='security.capability\x00', &(0x7f0000000280)=@v3, 0x18, 0x0)
+write(0xffffffffffffffff, &(0x7f00000000b0)='a', 0x1)
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): open-syz_mount_image$nfs-read$usbmon-setxattr$security_capability-write
+detailed listing:
+executing program 0:
+r0 = open(0x0, 0x12b342, 0x0)
+syz_mount_image$nfs(&(0x7f0000000300)='nfs\x00', &(0x7f0000000340)='fallocate04.txt\x00', 0x0, 0x3, &(0x7f0000000540)=[{&(0x7f0000000380)="db7a2b095da0eac039eb8e6d63b43dd29ba40b7430fa570dd12d8d1e9c8b1f8d5ecc95e27790db4d1e763bade2b64ec9c520fe046726dd66b19a0904375d4543d4ebfa7031c420d05c8f86a286b1e818c526c983bd3466d0c8a96bb1e4d62f62138e2760ee4c3182e6f579e9465e7a140360bbdeac7a3cd01110b79d84", 0x7d, 0xffff}, {&(0x7f0000000400)="cdd66b5a795afcf47a820ab7f2adfa708a1faf823e58580e3fc128f79f195a76a70f489f9d536d1f0e8af63dd1ac70569c2f1b11254c1d50c83685a2a038436dd4ae85737f4ff6e9347df2ae9a9baf59197e6c08c44fc564030dcd7472ed0a6e9b21c1601fe9d93fdaf5755975f18b1d0f4ed0209eafc6d70936d654954c4760b34791672b66c43d54f83ba42c53227cc15017690f95a8a155a52772b558bb8cd76c3f0e5a9b4fb51c956074dbf141c1a70c36851674e9b3760d9a92d47b", 0xbe, 0x4}, {&(0x7f00000004c0)="0bdad3963d823b878068bbabf4522c9edd7eacc1b00e67e3cb4acd7cf0e411a5d659863aafa9fcea2f05ec4c8f9bb94d22bb22c9d204a268704968adb5e50ca1835f350f61015bfccd4059e2e4249c2147", 0x51, 0x200}], 0xaa5805, &(0x7f00000005c0)='security.evm\x00')
+read$usbmon(r0, &(0x7f0000000600)=""/253, 0xfd)
+setxattr$security_capability(&(0x7f00000000c0)='fallocate04.txt\x00', &(0x7f0000000100)='security.capability\x00', &(0x7f0000000280)=@v3, 0x18, 0x0)
+write(r0, &(0x7f00000000b0)='a', 0x1)
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): open-syz_mount_image$nfs-read$usbmon-setxattr$security_capability-write
+detailed listing:
+executing program 0:
+r0 = open(&(0x7f00000000a0)='fallocate04.txt\x00', 0x12b342, 0x0)
+syz_mount_image$nfs(0x0, &(0x7f0000000340)='fallocate04.txt\x00', 0x0, 0x3, &(0x7f0000000540)=[{&(0x7f0000000380)="db7a2b095da0eac039eb8e6d63b43dd29ba40b7430fa570dd12d8d1e9c8b1f8d5ecc95e27790db4d1e763bade2b64ec9c520fe046726dd66b19a0904375d4543d4ebfa7031c420d05c8f86a286b1e818c526c983bd3466d0c8a96bb1e4d62f62138e2760ee4c3182e6f579e9465e7a140360bbdeac7a3cd01110b79d84", 0x7d, 0xffff}, {&(0x7f0000000400)="cdd66b5a795afcf47a820ab7f2adfa708a1faf823e58580e3fc128f79f195a76a70f489f9d536d1f0e8af63dd1ac70569c2f1b11254c1d50c83685a2a038436dd4ae85737f4ff6e9347df2ae9a9baf59197e6c08c44fc564030dcd7472ed0a6e9b21c1601fe9d93fdaf5755975f18b1d0f4ed0209eafc6d70936d654954c4760b34791672b66c43d54f83ba42c53227cc15017690f95a8a155a52772b558bb8cd76c3f0e5a9b4fb51c956074dbf141c1a70c36851674e9b3760d9a92d47b", 0xbe, 0x4}, {&(0x7f00000004c0)="0bdad3963d823b878068bbabf4522c9edd7eacc1b00e67e3cb4acd7cf0e411a5d659863aafa9fcea2f05ec4c8f9bb94d22bb22c9d204a268704968adb5e50ca1835f350f61015bfccd4059e2e4249c2147", 0x51, 0x200}], 0xaa5805, &(0x7f00000005c0)='security.evm\x00')
+read$usbmon(r0, &(0x7f0000000600)=""/253, 0xfd)
+setxattr$security_capability(&(0x7f00000000c0)='fallocate04.txt\x00', &(0x7f0000000100)='security.capability\x00', &(0x7f0000000280)=@v3, 0x18, 0x0)
+write(r0, &(0x7f00000000b0)='a', 0x1)
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): open-syz_mount_image$nfs-read$usbmon-setxattr$security_capability-write
+detailed listing:
+executing program 0:
+r0 = open(&(0x7f00000000a0)='fallocate04.txt\x00', 0x12b342, 0x0)
+syz_mount_image$nfs(&(0x7f0000000300)='nfs\x00', 0x0, 0x0, 0x3, &(0x7f0000000540)=[{&(0x7f0000000380)="db7a2b095da0eac039eb8e6d63b43dd29ba40b7430fa570dd12d8d1e9c8b1f8d5ecc95e27790db4d1e763bade2b64ec9c520fe046726dd66b19a0904375d4543d4ebfa7031c420d05c8f86a286b1e818c526c983bd3466d0c8a96bb1e4d62f62138e2760ee4c3182e6f579e9465e7a140360bbdeac7a3cd01110b79d84", 0x7d, 0xffff}, {&(0x7f0000000400)="cdd66b5a795afcf47a820ab7f2adfa708a1faf823e58580e3fc128f79f195a76a70f489f9d536d1f0e8af63dd1ac70569c2f1b11254c1d50c83685a2a038436dd4ae85737f4ff6e9347df2ae9a9baf59197e6c08c44fc564030dcd7472ed0a6e9b21c1601fe9d93fdaf5755975f18b1d0f4ed0209eafc6d70936d654954c4760b34791672b66c43d54f83ba42c53227cc15017690f95a8a155a52772b558bb8cd76c3f0e5a9b4fb51c956074dbf141c1a70c36851674e9b3760d9a92d47b", 0xbe, 0x4}, {&(0x7f00000004c0)="0bdad3963d823b878068bbabf4522c9edd7eacc1b00e67e3cb4acd7cf0e411a5d659863aafa9fcea2f05ec4c8f9bb94d22bb22c9d204a268704968adb5e50ca1835f350f61015bfccd4059e2e4249c2147", 0x51, 0x200}], 0xaa5805, &(0x7f00000005c0)='security.evm\x00')
+read$usbmon(r0, &(0x7f0000000600)=""/253, 0xfd)
+setxattr$security_capability(&(0x7f00000000c0)='fallocate04.txt\x00', &(0x7f0000000100)='security.capability\x00', &(0x7f0000000280)=@v3, 0x18, 0x0)
+write(r0, &(0x7f00000000b0)='a', 0x1)
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): open-syz_mount_image$nfs-read$usbmon-setxattr$security_capability-write
+detailed listing:
+executing program 0:
+r0 = open(&(0x7f00000000a0)='fallocate04.txt\x00', 0x12b342, 0x0)
+syz_mount_image$nfs(&(0x7f0000000300)='nfs\x00', &(0x7f0000000340)='fallocate04.txt\x00', 0x0, 0x0, 0x0, 0xaa5805, &(0x7f00000005c0)='security.evm\x00')
+read$usbmon(r0, &(0x7f0000000600)=""/253, 0xfd)
+setxattr$security_capability(&(0x7f00000000c0)='fallocate04.txt\x00', &(0x7f0000000100)='security.capability\x00', &(0x7f0000000280)=@v3, 0x18, 0x0)
+write(r0, &(0x7f00000000b0)='a', 0x1)
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): open-syz_mount_image$nfs-read$usbmon-setxattr$security_capability-write
+detailed listing:
+executing program 0:
+r0 = open(&(0x7f00000000a0)='fallocate04.txt\x00', 0x12b342, 0x0)
+syz_mount_image$nfs(&(0x7f0000000300)='nfs\x00', &(0x7f0000000340)='fallocate04.txt\x00', 0x0, 0x3, &(0x7f0000000540)=[{&(0x7f0000000380)="db7a2b095da0eac039eb8e6d63b43dd29ba40b7430fa570dd12d8d1e9c8b1f8d5ecc95e27790db4d1e763bade2b64ec9c520fe046726dd66b19a0904375d4543d4ebfa7031c420d05c8f86a286b1e818c526c983bd3466d0c8a96bb1e4d62f62138e2760ee4c3182e6f579e9465e7a140360bbdeac7a3cd01110b79d84", 0x7d, 0xffff}, {&(0x7f0000000400)="cdd66b5a795afcf47a820ab7f2adfa708a1faf823e58580e3fc128f79f195a76a70f489f9d536d1f0e8af63dd1ac70569c2f1b11254c1d50c83685a2a038436dd4ae85737f4ff6e9347df2ae9a9baf59197e6c08c44fc564030dcd7472ed0a6e9b21c1601fe9d93fdaf5755975f18b1d0f4ed0209eafc6d70936d654954c4760b34791672b66c43d54f83ba42c53227cc15017690f95a8a155a52772b558bb8cd76c3f0e5a9b4fb51c956074dbf141c1a70c36851674e9b3760d9a92d47b", 0xbe, 0x4}, {0x0, 0x0, 0x200}], 0xaa5805, &(0x7f00000005c0)='security.evm\x00')
+read$usbmon(r0, &(0x7f0000000600)=""/253, 0xfd)
+setxattr$security_capability(&(0x7f00000000c0)='fallocate04.txt\x00', &(0x7f0000000100)='security.capability\x00', &(0x7f0000000280)=@v3, 0x18, 0x0)
+write(r0, &(0x7f00000000b0)='a', 0x1)
+
+program crashed: WARNING in notify_change
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): open-syz_mount_image$nfs-read$usbmon-setxattr$security_capability-write
+detailed listing:
+executing program 0:
+r0 = open(&(0x7f00000000a0)='fallocate04.txt\x00', 0x12b342, 0x0)
+syz_mount_image$nfs(&(0x7f0000000300)='nfs\x00', &(0x7f0000000340)='fallocate04.txt\x00', 0x0, 0x3, &(0x7f0000000540)=[{&(0x7f0000000380)="db7a2b095da0eac039eb8e6d63b43dd29ba40b7430fa570dd12d8d1e9c8b1f8d5ecc95e27790db4d1e763bade2b64ec9c520fe046726dd66b19a0904375d4543d4ebfa7031c420d05c8f86a286b1e818c526c983bd3466d0c8a96bb1e4d62f62138e2760ee4c3182e6f579e9465e7a140360bbdeac7a3cd01110b79d84", 0x7d, 0xffff}, {0x0, 0x0, 0x4}, {0x0, 0x0, 0x200}], 0xaa5805, &(0x7f00000005c0)='security.evm\x00')
+read$usbmon(r0, &(0x7f0000000600)=""/253, 0xfd)
+setxattr$security_capability(&(0x7f00000000c0)='fallocate04.txt\x00', &(0x7f0000000100)='security.capability\x00', &(0x7f0000000280)=@v3, 0x18, 0x0)
+write(r0, &(0x7f00000000b0)='a', 0x1)
+
+program crashed: WARNING in notify_change
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): open-syz_mount_image$nfs-read$usbmon-setxattr$security_capability-write
+detailed listing:
+executing program 0:
+r0 = open(&(0x7f00000000a0)='fallocate04.txt\x00', 0x12b342, 0x0)
+syz_mount_image$nfs(&(0x7f0000000300)='nfs\x00', &(0x7f0000000340)='fallocate04.txt\x00', 0x0, 0x3, &(0x7f0000000540)=[{0x0, 0x0, 0xffff}, {0x0, 0x0, 0x4}, {0x0, 0x0, 0x200}], 0xaa5805, &(0x7f00000005c0)='security.evm\x00')
+read$usbmon(r0, &(0x7f0000000600)=""/253, 0xfd)
+setxattr$security_capability(&(0x7f00000000c0)='fallocate04.txt\x00', &(0x7f0000000100)='security.capability\x00', &(0x7f0000000280)=@v3, 0x18, 0x0)
+write(r0, &(0x7f00000000b0)='a', 0x1)
+
+program crashed: WARNING in notify_change
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): open-syz_mount_image$nfs-read$usbmon-setxattr$security_capability-write
+detailed listing:
+executing program 0:
+r0 = open(&(0x7f00000000a0)='fallocate04.txt\x00', 0x12b342, 0x0)
+syz_mount_image$nfs(&(0x7f0000000300)='nfs\x00', &(0x7f0000000340)='fallocate04.txt\x00', 0x0, 0x3, &(0x7f0000000540)=[{0x0, 0x0, 0xffff}, {0x0, 0x0, 0x4}, {0x0, 0x0, 0x200}], 0xaa5805, 0x0)
+read$usbmon(r0, &(0x7f0000000600)=""/253, 0xfd)
+setxattr$security_capability(&(0x7f00000000c0)='fallocate04.txt\x00', &(0x7f0000000100)='security.capability\x00', &(0x7f0000000280)=@v3, 0x18, 0x0)
+write(r0, &(0x7f00000000b0)='a', 0x1)
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): open-syz_mount_image$nfs-read$usbmon-setxattr$security_capability-write
+detailed listing:
+executing program 0:
+r0 = open(&(0x7f00000000a0)='fallocate04.txt\x00', 0x12b342, 0x0)
+syz_mount_image$nfs(&(0x7f0000000300)='nfs\x00', &(0x7f0000000340)='fallocate04.txt\x00', 0x0, 0x3, &(0x7f0000000540)=[{0x0, 0x0, 0xffff}, {0x0, 0x0, 0x4}, {0x0, 0x0, 0x200}], 0xaa5805, &(0x7f00000005c0)='security.evm\x00')
+read$usbmon(r0, 0x0, 0x0)
+setxattr$security_capability(&(0x7f00000000c0)='fallocate04.txt\x00', &(0x7f0000000100)='security.capability\x00', &(0x7f0000000280)=@v3, 0x18, 0x0)
+write(r0, &(0x7f00000000b0)='a', 0x1)
+
+program crashed: WARNING in notify_change
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): open-syz_mount_image$nfs-read$usbmon-setxattr$security_capability-write
+detailed listing:
+executing program 0:
+r0 = open(&(0x7f00000000a0)='fallocate04.txt\x00', 0x12b342, 0x0)
+syz_mount_image$nfs(&(0x7f0000000300)='nfs\x00', &(0x7f0000000340)='fallocate04.txt\x00', 0x0, 0x3, &(0x7f0000000540)=[{0x0, 0x0, 0xffff}, {0x0, 0x0, 0x4}, {0x0, 0x0, 0x200}], 0xaa5805, &(0x7f00000005c0)='security.evm\x00')
+read$usbmon(r0, 0x0, 0x0)
+setxattr$security_capability(0x0, &(0x7f0000000100)='security.capability\x00', &(0x7f0000000280)=@v3, 0x18, 0x0)
+write(r0, &(0x7f00000000b0)='a', 0x1)
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): open-syz_mount_image$nfs-read$usbmon-setxattr$security_capability-write
+detailed listing:
+executing program 0:
+r0 = open(&(0x7f00000000a0)='fallocate04.txt\x00', 0x12b342, 0x0)
+syz_mount_image$nfs(&(0x7f0000000300)='nfs\x00', &(0x7f0000000340)='fallocate04.txt\x00', 0x0, 0x3, &(0x7f0000000540)=[{0x0, 0x0, 0xffff}, {0x0, 0x0, 0x4}, {0x0, 0x0, 0x200}], 0xaa5805, &(0x7f00000005c0)='security.evm\x00')
+read$usbmon(r0, 0x0, 0x0)
+setxattr$security_capability(&(0x7f00000000c0)='fallocate04.txt\x00', 0x0, &(0x7f0000000280)=@v3, 0x18, 0x0)
+write(r0, &(0x7f00000000b0)='a', 0x1)
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): open-syz_mount_image$nfs-read$usbmon-setxattr$security_capability-write
+detailed listing:
+executing program 0:
+r0 = open(&(0x7f00000000a0)='fallocate04.txt\x00', 0x12b342, 0x0)
+syz_mount_image$nfs(&(0x7f0000000300)='nfs\x00', &(0x7f0000000340)='fallocate04.txt\x00', 0x0, 0x3, &(0x7f0000000540)=[{0x0, 0x0, 0xffff}, {0x0, 0x0, 0x4}, {0x0, 0x0, 0x200}], 0xaa5805, &(0x7f00000005c0)='security.evm\x00')
+read$usbmon(r0, 0x0, 0x0)
+setxattr$security_capability(&(0x7f00000000c0)='fallocate04.txt\x00', &(0x7f0000000100)='security.capability\x00', 0x0, 0x0, 0x0)
+write(r0, &(0x7f00000000b0)='a', 0x1)
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): open-syz_mount_image$nfs-read$usbmon-setxattr$security_capability-write
+detailed listing:
+executing program 0:
+r0 = open(&(0x7f00000000a0)='fallocate04.txt\x00', 0x12b342, 0x0)
+syz_mount_image$nfs(&(0x7f0000000300)='nfs\x00', &(0x7f0000000340)='fallocate04.txt\x00', 0x0, 0x3, &(0x7f0000000540)=[{0x0, 0x0, 0xffff}, {0x0, 0x0, 0x4}, {0x0, 0x0, 0x200}], 0xaa5805, &(0x7f00000005c0)='security.evm\x00')
+read$usbmon(r0, 0x0, 0x0)
+setxattr$security_capability(&(0x7f00000000c0)='fallocate04.txt\x00', &(0x7f0000000100)='security.capability\x00', &(0x7f0000000280)=@v3, 0x18, 0x0)
+write(r0, 0x0, 0x0)
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): open-syz_mount_image$nfs-read$usbmon-setxattr$security_capability-write
+detailed listing:
+executing program 0:
+r0 = open(&(0x7f00000000a0)='fallocate04.txt\x00', 0x12b342, 0x0)
+syz_mount_image$nfs(&(0x7f0000000300)='nfs\x00', &(0x7f0000000340)='fallocate04.txt\x00', 0x0, 0x3, &(0x7f0000000540)=[{0x0, 0x0, 0xffff}, {0x0, 0x0, 0x4}, {0x0, 0x0, 0x200}], 0xaa5805, &(0x7f00000005c0)='security.evm\x00')
+read$usbmon(r0, 0x0, 0x0)
+setxattr$security_capability(&(0x7f00000000c0)='fallocate04.txt\x00', &(0x7f0000000100)='security.capability\x00', &(0x7f0000000280)=@v3, 0x18, 0x0)
+write(r0, &(0x7f00000000b0), 0x0)
+
+program did not crash
+extracting C reproducer
+testing compiled C program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): open-syz_mount_image$nfs-read$usbmon-setxattr$security_capability-write
+program crashed: WARNING in notify_change
+simplifying C reproducer
+testing compiled C program (duration=22.5s, {Threaded:true Collide:false Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): open-syz_mount_image$nfs-read$usbmon-setxattr$security_capability-write
+program did not crash
+testing compiled C program (duration=22.5s, {Threaded:true Collide:true Repeat:false RepeatTimes:0 Procs:1 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:false Cgroups:false BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): open-syz_mount_image$nfs-read$usbmon-setxattr$security_capability-write
+program crashed: WARNING in notify_change
+testing compiled C program (duration=22.5s, {Threaded:true Collide:true Repeat:false RepeatTimes:0 Procs:1 Sandbox: Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:false KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): open-syz_mount_image$nfs-read$usbmon-setxattr$security_capability-write
+program crashed: WARNING in notify_change
+testing compiled C program (duration=22.5s, {Threaded:true Collide:true Repeat:false RepeatTimes:0 Procs:1 Sandbox: Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:false KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:false HandleSegv:true Repro:true Trace:false}): open-syz_mount_image$nfs-read$usbmon-setxattr$security_capability-write
+program crashed: WARNING in notify_change
+testing compiled C program (duration=22.5s, {Threaded:true Collide:true Repeat:false RepeatTimes:0 Procs:1 Sandbox: Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:false KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:false HandleSegv:false Repro:true Trace:false}): open-syz_mount_image$nfs-read$usbmon-setxattr$security_capability-write
+program crashed: WARNING in notify_change
+reproducing took 9m48.544725728s
+repro crashed as (corrupted=false):
+WARNING: CPU: 1 PID: 1937 at fs/attr.c:234 notify_change+0x9ef/0xd10
+Kernel panic - not syncing: panic_on_warn set ...
+CPU: 1 PID: 1937 Comm: syz-executor850 Not tainted 5.0.0 #3
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+Call Trace:
+ dump_stack+0x79/0xba
+ panic+0x226/0x47c
+ __warn.cold.11+0x20/0x45
+ report_bug+0x1f4/0x270
+ do_error_trap+0x105/0x180
+ do_invalid_op+0x35/0x40
+ invalid_op+0x14/0x20
+RIP: 0010:notify_change+0x9ef/0xd10
+Code: 89 e2 e8 04 9e 07 00 45 31 c9 45 31 c0 b9 02 00 00 00 48 89 da 44 89 e6 48 89 df e8 4b 90 07 00 e9 52 fb ff ff e8 c1 77 d7 ff <0f> 0b e9 ea f6 ff ff e8 b5 77 d7 ff 44 89 fb 4c 89 ea 48 b8 00 00
+RSP: 0018:ffff888111c37a70 EFLAGS: 00010293
+RAX: ffff8881151eab00 RBX: 0000000000004200 RCX: ffffffffa71c922f
+RDX: 0000000000000000 RSI: 0000000000000008 RDI: ffff8881187a8108
+RBP: ffff888111c37ac8 R08: ffffed10230f5022 R09: ffffed10230f5021
+R10: ffffed10230f5021 R11: ffff8881187a810f R12: ffff888111c37af8
+R13: ffff8881187a8068 R14: ffff888119306d00 R15: ffff8881187a8108
+ file_remove_privs+0x23c/0x410
+ __generic_file_write_iter+0x159/0x550
+ blkdev_write_iter+0x200/0x3e0
+ __vfs_write+0x4d2/0x6c0
+ vfs_write+0x16c/0x4a0
+ ksys_write+0xbf/0x1a0
+ do_syscall_64+0x9e/0x2b0
+ entry_SYSCALL_64_after_hwframe+0x44/0xa9
+RIP: 0033:0x45479d
+Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 b8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007f2f06e5bd88 EFLAGS: 00000246 ORIG_RAX: 0000000000000001
+RAX: ffffffffffffffda RBX: 00000000004e0400 RCX: 000000000045479d
+RDX: 0000000000000001 RSI: 00000000200000b0 RDI: 0000000000000004
+RBP: 00000000004e0408 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 00000000004b0078
+R13: 00000000004e040c R14: 7974697275636573 R15: 00007f2f06e5be80
+Dumping ftrace buffer:
+   (ftrace buffer empty)
+Kernel Offset: 0x25c00000 from 0xffffffff81000000 (relocation range: 0xffffffff80000000-0xffffffffbfffffff)
+Rebooting in 1 seconds..
+
+final repro crashed as (corrupted=false):
+WARNING: CPU: 1 PID: 1937 at fs/attr.c:234 notify_change+0x9ef/0xd10
+Kernel panic - not syncing: panic_on_warn set ...
+CPU: 1 PID: 1937 Comm: syz-executor850 Not tainted 5.0.0 #3
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+Call Trace:
+ dump_stack+0x79/0xba
+ panic+0x226/0x47c
+ __warn.cold.11+0x20/0x45
+ report_bug+0x1f4/0x270
+ do_error_trap+0x105/0x180
+ do_invalid_op+0x35/0x40
+ invalid_op+0x14/0x20
+RIP: 0010:notify_change+0x9ef/0xd10
+Code: 89 e2 e8 04 9e 07 00 45 31 c9 45 31 c0 b9 02 00 00 00 48 89 da 44 89 e6 48 89 df e8 4b 90 07 00 e9 52 fb ff ff e8 c1 77 d7 ff <0f> 0b e9 ea f6 ff ff e8 b5 77 d7 ff 44 89 fb 4c 89 ea 48 b8 00 00
+RSP: 0018:ffff888111c37a70 EFLAGS: 00010293
+RAX: ffff8881151eab00 RBX: 0000000000004200 RCX: ffffffffa71c922f
+RDX: 0000000000000000 RSI: 0000000000000008 RDI: ffff8881187a8108
+RBP: ffff888111c37ac8 R08: ffffed10230f5022 R09: ffffed10230f5021
+R10: ffffed10230f5021 R11: ffff8881187a810f R12: ffff888111c37af8
+R13: ffff8881187a8068 R14: ffff888119306d00 R15: ffff8881187a8108
+ file_remove_privs+0x23c/0x410
+ __generic_file_write_iter+0x159/0x550
+ blkdev_write_iter+0x200/0x3e0
+ __vfs_write+0x4d2/0x6c0
+ vfs_write+0x16c/0x4a0
+ ksys_write+0xbf/0x1a0
+ do_syscall_64+0x9e/0x2b0
+ entry_SYSCALL_64_after_hwframe+0x44/0xa9
+RIP: 0033:0x45479d
+Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 b8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007f2f06e5bd88 EFLAGS: 00000246 ORIG_RAX: 0000000000000001
+RAX: ffffffffffffffda RBX: 00000000004e0400 RCX: 000000000045479d
+RDX: 0000000000000001 RSI: 00000000200000b0 RDI: 0000000000000004
+RBP: 00000000004e0408 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 00000000004b0078
+R13: 00000000004e040c R14: 7974697275636573 R15: 00007f2f06e5be80
+Dumping ftrace buffer:
+   (ftrace buffer empty)
+Kernel Offset: 0x25c00000 from 0xffffffff81000000 (relocation range: 0xffffffff80000000-0xffffffffbfffffff)
+Rebooting in 1 seconds..
+

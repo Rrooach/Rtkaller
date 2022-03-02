@@ -1,0 +1,48 @@
+000: rcu: INFO: rcu_sched self-detected stall on CPU
+000: rcu: 	0-....: (20999 ticks this GP) idle=f5e/1/0x4000000000000002 softirq=24696/24696 fqs=5237 
+000: 	(t=21000 jiffies g=27629 q=239)
+000: NMI backtrace for cpu 0
+000: CPU: 0 PID: 4721 Comm: syz-executor.0 Not tainted 5.6.0-rt1+ #2
+000: Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+000: Call Trace:
+000:  <IRQ>
+000:  dump_stack+0x95/0xce
+000:  nmi_cpu_backtrace.cold+0x55/0x94
+000:  nmi_trigger_cpumask_backtrace+0x155/0x19b
+000:  rcu_dump_cpu_stacks+0x15d/0x1a7
+000:  rcu_sched_clock_irq.cold+0x4c8/0x90b
+000:  update_process_times+0x24/0x60
+000:  tick_sched_handle+0x10f/0x150
+000:  tick_sched_timer+0x41/0x120
+000:  __hrtimer_run_queues+0x308/0x7c0
+000:  hrtimer_interrupt+0x2c9/0x6c0
+000:  smp_apic_timer_interrupt+0xd4/0x380
+000:  apic_timer_interrupt+0xf/0x20
+000:  </IRQ>
+000: RIP: 0010:io_ring_ctx_wait_and_kill+0x96/0x9c0
+000: Code: 00 00 00 4d 89 f4 48 b8 00 00 00 00 00 fc ff df 4c 89 eb 49 c1 ec 03 48 c1 eb 03 49 01 c4 48 01 c3 eb 1c e8 1c d3 c6 ff f3 90 <41> 80 3c 24 00 0f 85 ee 07 00 00 48 83 bd d0 00 00 00 00 74 20 e8
+000: RSP: 0018:ffff88810e33fe00 EFLAGS: 00000246 ORIG_RAX: ffffffffffffff13
+000: RAX: 0000000000040000 RBX: ffffed1021b4781d RCX: ffffffff84ef3364
+000: RDX: 0000000000040000 RSI: ffffc90000155000 RDI: ffff88810da3c1c0
+000: RBP: ffff88810da3c000 R08: 0000000000000001 R09: ffffed1021b47839
+000: R10: ffffed1021b47838 R11: ffff88810da3c1c7 R12: ffffed1021b4781a
+000: R13: ffff88810da3c0e8 R14: ffff88810da3c0d0 R15: ffff888115e367a0
+000:  io_uring_release+0x3e/0x50
+000:  __fput+0x223/0x6d0
+000:  task_work_run+0x144/0x1c0
+000:  exit_to_usermode_loop+0x15e/0x180
+000:  do_syscall_64+0x2bb/0x390
+000:  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+000: RIP: 0033:0x468726
+000: Code: 00 00 00 00 f3 0f 1e fa 41 f7 c1 ff 0f 00 00 75 2b 55 48 89 fd 53 89 cb 48 85 ff 74 37 41 89 da 48 89 ef b8 09 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 62 5b 5d c3 0f 1f 80 00 00 00 00 48 c7 c0 bc
+000: RSP: 002b:00007fb6eb8d8bc8 EFLAGS: 00000206 ORIG_RAX: 0000000000000009
+000: RAX: 0000000020ff1000 RBX: 0000000000008011 RCX: 0000000000468726
+000: RDX: 0000000000000003 RSI: 0000000000140140 RDI: 0000000020ff1000
+000: RBP: 0000000020ff1000 R08: 0000000000000003 R09: 0000000000000000
+000: R10: 0000000000008011 R11: 0000000000000206 R12: 0000000020ffc000
+000: R13: 0000000020ff1000 R14: 0000000000000000 R15: 0000000000000000
+001: rcu: INFO: rcu_sched detected expedited stalls on CPUs/tasks: { 0-... } 21285 jiffies s: 1805 root: 0x1/.
+001: rcu: blocking rcu_node structures:
+001: Task dump for CPU 0:
+001: syz-executor.0  R  running task    28864  4721    318 0x8000000c
+001: Call Trace:

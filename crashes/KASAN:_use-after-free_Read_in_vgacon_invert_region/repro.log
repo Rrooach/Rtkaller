@@ -1,0 +1,179 @@
+
+Debian GNU/Linux 8 syzkaller ttyS0
+
+Warning: Permanently added '[localhost]:55144' (ECDSA) to the list of known hosts.
+executing program
+syzkaller login: [   15.968497] ==================================================================
+[   15.968571] BUG: KASAN: use-after-free in vgacon_invert_region+0xde/0xe0
+[   15.968576] Read of size 2 at addr ffff8880001050fe by task syz-executor458/1930
+[   15.968577] 
+[   15.968598] CPU: 1 PID: 1930 Comm: syz-executor458 Not tainted 5.0.0 #3
+[   15.968601] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[   15.968606] Call Trace:
+[   15.968642]  dump_stack+0x79/0xba
+[   15.968648]  ? vgacon_invert_region+0xde/0xe0
+[   15.968678]  print_address_description+0x60/0x229
+[   15.968684]  ? vgacon_invert_region+0xde/0xe0
+[   15.968688]  ? vgacon_invert_region+0xde/0xe0
+[   15.968693]  kasan_report.cold.3+0x1a/0x35
+[   15.968702]  ? vgacon_invert_region+0xde/0xe0
+[   15.968708]  vgacon_invert_region+0xde/0xe0
+[   15.968714]  ? vgacon_build_attr+0x200/0x200
+[   15.968732]  invert_screen+0x172/0x5e0
+[   15.968737]  ? vc_uniscr_copy_line+0x490/0x490
+[   15.968756]  ? selinux_sb_eat_lsm_opts+0x5a0/0x5a0
+[   15.968761]  ? cred_has_capability+0x135/0x270
+[   15.968771]  ? selinux_sb_eat_lsm_opts+0x5a0/0x5a0
+[   15.968786]  set_selection+0x6bc/0x1000
+[   15.968855]  ? sel_loadlut+0xe0/0xe0
+[   15.968870]  ? security_capable+0x8a/0xb0
+[   15.968874]  tioclinux+0x2bf/0x420
+[   15.968879]  vt_ioctl+0x1803/0x2470
+[   15.968889]  ? tty_init_dev+0x410/0x410
+[   15.968893]  ? complete_change_console+0x350/0x350
+[   15.968908]  ? cdev_put.part.3+0x50/0x50
+[   15.968932]  ? unwind_next_frame+0xdaf/0x19e0
+[   15.968937]  ? deref_stack_reg+0xab/0xe0
+[   15.968942]  ? __read_once_size_nocheck.constprop.9+0x10/0x10
+[   15.968947]  ? deref_stack_reg+0xe0/0xe0
+[   15.968964]  ? mntput_no_expire+0x49/0x530
+[   15.968969]  ? unwind_next_frame+0xbf1/0x19e0
+[   15.968981]  ? entry_SYSCALL_64_after_hwframe+0x44/0xa9
+[   15.968986]  ? complete_change_console+0x350/0x350
+[   15.968991]  tty_ioctl+0x486/0x1340
+[   15.968997]  ? tty_vhangup+0x30/0x30
+[   15.969004]  ? avc_has_extended_perms+0x821/0xc90
+[   15.969018]  ? __save_stack_trace+0x8d/0xf0
+[   15.969023]  ? avc_ss_reset+0x150/0x150
+[   15.969029]  ? save_stack+0x8c/0xb0
+[   15.969034]  ? __kasan_slab_free+0x125/0x170
+[   15.969040]  ? kmem_cache_free+0x72/0x190
+[   15.969045]  ? putname+0xd3/0x110
+[   15.969051]  ? do_sys_open+0x2b0/0x450
+[   15.969056]  ? do_syscall_64+0x9e/0x2b0
+[   15.969061]  ? entry_SYSCALL_64_after_hwframe+0x44/0xa9
+[   15.969074]  ? __alloc_pages_nodemask+0x1e2/0x4d0
+[   15.969079]  ? __alloc_pages_nodemask+0x1e2/0x4d0
+[   15.969084]  ? __alloc_pages_slowpath+0x2060/0x2060
+[   15.969088]  ? tty_vhangup+0x30/0x30
+[   15.969094]  do_vfs_ioctl+0x1a4/0x1000
+[   15.969101]  ? selinux_file_ioctl+0x401/0x5b0
+[   15.969106]  ? ioctl_preallocate+0x1d0/0x1d0
+[   15.969119]  ? fsnotify+0x73a/0xa30
+[   15.969125]  ? selinux_capable+0x40/0x40
+[   15.969131]  ? __kasan_slab_free+0x13a/0x170
+[   15.969135]  ? putname+0xd3/0x110
+[   15.969140]  ? kmem_cache_free+0x72/0x190
+[   15.969146]  ? security_file_ioctl+0x5c/0xb0
+[   15.969151]  ? selinux_capable+0x40/0x40
+[   15.969155]  ksys_ioctl+0x7b/0xa0
+[   15.969161]  __x64_sys_ioctl+0x73/0xb0
+[   15.969165]  do_syscall_64+0x9e/0x2b0
+[   15.969171]  ? prepare_exit_to_usermode+0xc0/0x160
+[   15.969177]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+[   15.969190] RIP: 0033:0x449a2d
+[   15.969197] Code: 28 c3 e8 06 2a 00 00 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 c0 ff ff ff f7 d8 64 89 01 48
+[   15.969200] RSP: 002b:00007ffd80c39208 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+[   15.969213] RAX: ffffffffffffffda RBX: 0000000000400518 RCX: 0000000000449a2d
+[   15.969216] RDX: 00000000200001c0 RSI: 000000000000541c RDI: 0000000000000004
+[   15.969219] RBP: 0000000000403300 R08: 000000000000000e R09: 0000000000400518
+[   15.969223] R10: 000000000049501c R11: 0000000000000246 R12: 00000000004033a0
+[   15.969226] R13: 0000000000000000 R14: 00000000004c0018 R15: 0000000000000000
+[   15.969229] 
+[   15.969231] The buggy address belongs to the page:
+[   15.969245] page:ffffea0000004140 count:0 mapcount:0 mapping:0000000000000000 index:0x0
+[   15.969276] flags: 0x0()
+[   15.969284] raw: 0000000000000000 ffffea0000004148 ffffea0000004148 0000000000000000
+[   15.969291] raw: 0000000000000000 0000000000000000 00000000ffffffff 0000000000000000
+[   15.969293] page dumped because: kasan: bad access detected
+[   15.969294] 
+[   15.969295] Memory state around the buggy address:
+[   15.969301]  ffff888000104f80: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+[   15.969305]  ffff888000105000: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+[   15.969309] >ffff888000105080: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+[   15.969312]                                                                 ^
+[   15.969316]  ffff888000105100: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+[   15.969320]  ffff888000105180: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+[   15.969322] ==================================================================
+[   15.969327] Disabling lock debugging due to kernel taint
+[   15.969376] Kernel panic - not syncing: panic_on_warn set ...
+[   15.969383] CPU: 1 PID: 1930 Comm: syz-executor458 Tainted: G    B             5.0.0 #3
+[   15.969385] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[   15.969387] Call Trace:
+[   15.969395]  dump_stack+0x79/0xba
+[   15.969402]  ? vgacon_invert_region+0xb0/0xe0
+[   15.969414]  panic+0x226/0x47c
+[   15.969420]  ? __warn_printk+0xdf/0xdf
+[   15.969425]  ? vgacon_invert_region+0xde/0xe0
+[   15.969430]  ? add_taint+0x19/0x50
+[   15.969436]  ? vgacon_invert_region+0xde/0xe0
+[   15.969441]  ? vgacon_invert_region+0xde/0xe0
+[   15.969446]  end_report+0x43/0x49
+[   15.969452]  kasan_report.cold.3+0xd/0x35
+[   15.969458]  ? vgacon_invert_region+0xde/0xe0
+[   15.969463]  vgacon_invert_region+0xde/0xe0
+[   15.969473]  ? vgacon_build_attr+0x200/0x200
+[   15.969478]  invert_screen+0x172/0x5e0
+[   15.969484]  ? vc_uniscr_copy_line+0x490/0x490
+[   15.969489]  ? selinux_sb_eat_lsm_opts+0x5a0/0x5a0
+[   15.969494]  ? cred_has_capability+0x135/0x270
+[   15.969499]  ? selinux_sb_eat_lsm_opts+0x5a0/0x5a0
+[   15.969504]  set_selection+0x6bc/0x1000
+[   15.969509]  ? sel_loadlut+0xe0/0xe0
+[   15.969514]  ? security_capable+0x8a/0xb0
+[   15.969518]  tioclinux+0x2bf/0x420
+[   15.969523]  vt_ioctl+0x1803/0x2470
+[   15.969538]  ? tty_init_dev+0x410/0x410
+[   15.969544]  ? complete_change_console+0x350/0x350
+[   15.969553]  ? cdev_put.part.3+0x50/0x50
+[   15.969561]  ? unwind_next_frame+0xdaf/0x19e0
+[   15.969570]  ? deref_stack_reg+0xab/0xe0
+[   15.969577]  ? __read_once_size_nocheck.constprop.9+0x10/0x10
+[   15.969582]  ? deref_stack_reg+0xe0/0xe0
+[   15.969593]  ? mntput_no_expire+0x49/0x530
+[   15.969599]  ? unwind_next_frame+0xbf1/0x19e0
+[   15.969611]  ? entry_SYSCALL_64_after_hwframe+0x44/0xa9
+[   15.969634]  ? complete_change_console+0x350/0x350
+[   15.969647]  tty_ioctl+0x486/0x1340
+[   15.969652]  ? tty_vhangup+0x30/0x30
+[   15.969662]  ? avc_has_extended_perms+0x821/0xc90
+[   15.969671]  ? __save_stack_trace+0x8d/0xf0
+[   15.969679]  ? avc_ss_reset+0x150/0x150
+[   15.969685]  ? save_stack+0x8c/0xb0
+[   15.969691]  ? __kasan_slab_free+0x125/0x170
+[   15.969705]  ? kmem_cache_free+0x72/0x190
+[   15.969709]  ? putname+0xd3/0x110
+[   15.969714]  ? do_sys_open+0x2b0/0x450
+[   15.969728]  ? do_syscall_64+0x9e/0x2b0
+[   15.969734]  ? entry_SYSCALL_64_after_hwframe+0x44/0xa9
+[   15.969740]  ? __alloc_pages_nodemask+0x1e2/0x4d0
+[   15.969745]  ? __alloc_pages_nodemask+0x1e2/0x4d0
+[   15.969751]  ? __alloc_pages_slowpath+0x2060/0x2060
+[   15.969756]  ? tty_vhangup+0x30/0x30
+[   15.969761]  do_vfs_ioctl+0x1a4/0x1000
+[   15.969767]  ? selinux_file_ioctl+0x401/0x5b0
+[   15.969772]  ? ioctl_preallocate+0x1d0/0x1d0
+[   15.969777]  ? fsnotify+0x73a/0xa30
+[   15.969782]  ? selinux_capable+0x40/0x40
+[   15.969788]  ? __kasan_slab_free+0x13a/0x170
+[   15.969801]  ? putname+0xd3/0x110
+[   15.969810]  ? kmem_cache_free+0x72/0x190
+[   15.969818]  ? security_file_ioctl+0x5c/0xb0
+[   15.969829]  ? selinux_capable+0x40/0x40
+[   15.969838]  ksys_ioctl+0x7b/0xa0
+[   15.969846]  __x64_sys_ioctl+0x73/0xb0
+[   15.969860]  do_syscall_64+0x9e/0x2b0
+[   15.969866]  ? prepare_exit_to_usermode+0xc0/0x160
+[   15.969873]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+[   15.969878] RIP: 0033:0x449a2d
+[   15.969885] Code: 28 c3 e8 06 2a 00 00 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 c0 ff ff ff f7 d8 64 89 01 48
+[   15.969889] RSP: 002b:00007ffd80c39208 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+[   15.969899] RAX: ffffffffffffffda RBX: 0000000000400518 RCX: 0000000000449a2d
+[   15.969903] RDX: 00000000200001c0 RSI: 000000000000541c RDI: 0000000000000004
+[   15.969911] RBP: 0000000000403300 R08: 000000000000000e R09: 0000000000400518
+[   15.969922] R10: 000000000049501c R11: 0000000000000246 R12: 00000000004033a0
+[   15.969926] R13: 0000000000000000 R14: 00000000004c0018 R15: 0000000000000000
+[   15.970027] Dumping ftrace buffer:
+[   15.970054]    (ftrace buffer empty)
+[   15.970076] Kernel Offset: 0x22200000 from 0xffffffff81000000 (relocation range: 0xffffffff80000000-0xffffffffbfffffff)
+[   16.096558] Rebooting in 1 seconds..

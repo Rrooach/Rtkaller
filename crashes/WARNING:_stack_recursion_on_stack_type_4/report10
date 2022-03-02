@@ -1,0 +1,3 @@
+001: WARNING: stack recursion on stack type 4
+001: WARNING: can't dereference registers at 00000000f0918f7e for ip swapgs_restore_regs_and_return_to_usermode+0x79/0x80
+001: audit: type=1326 audit(1622609494.576:419): auid=0 uid=0 gid=0 ses=4 subj=kernel pid=4616 comm="syz-executor.1" exe="/syz-executor.1" sig=9 arch=c000003e syscall=231 compat=0 ip=0x4686dd code=0x0

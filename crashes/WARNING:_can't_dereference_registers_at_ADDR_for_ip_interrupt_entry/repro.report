@@ -1,0 +1,2 @@
+001: WARNING: can't dereference registers at 00000000a1c997b0 for ip interrupt_entry+0xb7/0xc0
+001: perf: interrupt took too long (34732 > 25858), lowering kernel.perf_event_max_sample_rate to 5000

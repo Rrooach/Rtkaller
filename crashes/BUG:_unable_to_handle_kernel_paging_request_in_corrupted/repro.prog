@@ -1,0 +1,5 @@
+# {Threaded:true Collide:false Repeat:false RepeatTimes:0 Procs:1 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:false Cgroups:false BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:false HandleSegv:true Repro:false Trace:false}
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x1)
+r1 = syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$TIOCSETD(r1, 0x5423, &(0x7f00000004c0)=0x2)
+ioctl$TIOCVHANGUP(r0, 0x5437, 0x0)

@@ -1,0 +1,49 @@
+Warning: Permanently added '[localhost]:39655' (ECDSA) to the list of known hosts.
+2021/05/27 21:16:54 parsed 1 programs
+2021/05/27 21:16:54 executed programs: 0
+syzkaller login: [   22.431817] ------------[ cut here ]------------
+[   22.432464] kernel BUG at fs/namei.c:545!
+[   22.433017] invalid opcode: 0000 [#1] SMP 
+[   22.433651] Dumping ftrace buffer:
+[   22.434120]    (ftrace buffer empty)
+[   22.434594] Modules linked in:
+[   22.434979] CPU: 1 PID: 2458 Comm: syz-executor.0 Not tainted 3.10.108-rt123+ #14
+[   22.435974] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[   22.437150] task: ffff88013a630fa0 ti: ffff88013933a000 task.ti: ffff88013933a000
+[   22.438136] RIP: 0010:[<ffffffff8116a92a>]  [<ffffffff8116a92a>] unlazy_walk+0x25a/0x270
+[   22.439192] RSP: 0018:ffff88013933bc60  EFLAGS: 00010293
+[   22.439892] RAX: 0000000000000000 RBX: ffff88013933be40 RCX: 000000000000000d
+[   22.440806] RDX: ffff88013a630fa0 RSI: ffffffff8116a92a RDI: ffff88013aed571c
+[   22.441721] RBP: ffff88013933bc90 R08: 0000000000000000 R09: ffff88013933bc44
+[   22.442747] R10: 0000000000000000 R11: 0000000000000246 R12: ffff88013aed56c0
+[   22.443697] R13: 0000000000000006 R14: 0000000000000000 R15: ffff88013a15b940
+[   22.444738] FS:  00007f554da9b700(0000) GS:ffff88013fd00000(0000) knlGS:0000000000000000
+[   22.445751] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[   22.446476] CR2: 00007fb1bb334000 CR3: 000000013a20a000 CR4: 00000000003407e0
+[   22.447368] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+[   22.448267] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+[   22.449161] Stack:
+[   22.449406]  000000003933bcbc ffff88013933bd38 ffff88013933be40 0000000000000001
+[   22.450394]  0000000000000000 ffff88013933bd58 ffff88013933bce8 ffffffff8116ac06
+[   22.451389]  ffff88013a2b9f20 ffff88013933bd58 0000000100000081 ffff8801399ec470
+[   22.452394] Call Trace:
+[   22.452709]  [<ffffffff8116ac06>] lookup_fast+0x2c6/0x3e0
+[   22.453413]  [<ffffffff8116b94d>] link_path_walk+0x25d/0xda0
+[   22.454117]  [<ffffffff81170841>] path_openat+0xa1/0x650
+[   22.454805]  [<ffffffff8106e70b>] ? wake_up_state+0xb/0x10
+[   22.455520]  [<ffffffff81094311>] ? wake_futex+0x61/0x80
+[   22.456180]  [<ffffffff81171671>] do_filp_open+0x41/0xd0
+[   22.456851]  [<ffffffff8135e9a2>] ? find_next_zero_bit+0xe2/0x150
+[   22.457613]  [<ffffffff8118098b>] ? __alloc_fd+0xdb/0x1a0
+[   22.458276]  [<ffffffff8115b8ff>] do_sys_open+0x14f/0x290
+[   22.459167]  [<ffffffff8115ba6d>] SyS_open+0x2d/0x40
+[   22.459793]  [<ffffffff819a0df2>] system_call_fastpath+0x16/0x1b
+[   22.460536] Code: ac fe ff ff c7 45 d4 01 00 00 00 e9 24 fe ff ff e8 dc f5 f4 ff 41 80 46 5c 01 e9 3c fe ff ff e8 cd f5 f4 ff 0f 0b e8 c6 f5 f4 ff <0f> 0b e8 bf f5 f4 ff 0f 0b e8 b8 f5 f4 ff 0f 0b 66 0f 1f 44 00 
+[   22.464001] RIP  [<ffffffff8116a92a>] unlazy_walk+0x25a/0x270
+[   22.464754]  RSP <ffff88013933bc60>
+[   22.465318] ------------[ cut here ]------------
+[   22.465336] ---[ end trace 00701b9740812bec ]---
+[   22.465338] Kernel panic - not syncing: Fatal exception
+[   22.468084] Dumping ftrace buffer:
+[   22.468534]    (ftrace buffer empty)
+[   22.468980] Rebooting in 1 seconds..

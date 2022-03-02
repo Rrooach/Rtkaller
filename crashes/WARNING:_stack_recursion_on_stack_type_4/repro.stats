@@ -1,0 +1,81 @@
+Extracting prog: 29.881132344s
+Minimizing prog: 1m7.206739748s
+Simplifying prog options: 0s
+Extracting C: 21.200237168s
+Simplifying C: 1m30.684027198s
+
+
+522 programs, 2 VMs, timeouts [15s 1m0s 6m0s]
+extracting reproducer from 522 programs
+single: executing 2 programs separately with timeout 15s
+testing program (duration=15s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): perf_event_open-openat$loop_ctrl-dup3-syz_mount_image$msdos
+detailed listing:
+executing program 0:
+r0 = perf_event_open(&(0x7f00000000c0)={0x0, 0x70, 0x0, 0x0, 0x0, 0x0, 0x0, 0xc8f, 0xd26, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0xfffffffe, 0x0, @perf_config_ext, 0x428, 0x0, 0x0, 0x0, 0x10}, 0xffffffffffffffff, 0x0, 0xffffffffffffffff, 0x0)
+r1 = openat$loop_ctrl(0xffffffffffffff9c, &(0x7f0000000000)='/dev/loop-control\x00', 0x0, 0x0)
+dup3(r1, r0, 0x0)
+syz_mount_image$msdos(&(0x7f0000000000)='msdos\x00', &(0x7f0000000040)='./file0\x00', 0x0, 0x0, 0x0, 0x0, &(0x7f0000000140)=ANY=[@ANYBLOB="646566636f9b9543fb316e746578743d73797374656d5f752c646566636f6e436578743d7233e3c20accd1c6b4055d3694b4b3", @ANYRES16=r0])
+
+program crashed: WARNING: stack recursion on stack type 4
+single: successfully extracted reproducer
+found reproducer with 4 syscalls
+minimizing guilty program
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): perf_event_open-openat$loop_ctrl-dup3
+detailed listing:
+executing program 0:
+r0 = perf_event_open(&(0x7f00000000c0)={0x0, 0x70, 0x0, 0x0, 0x0, 0x0, 0x0, 0xc8f, 0xd26, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0xfffffffe, 0x0, @perf_config_ext, 0x428, 0x0, 0x0, 0x0, 0x10}, 0xffffffffffffffff, 0x0, 0xffffffffffffffff, 0x0)
+r1 = openat$loop_ctrl(0xffffffffffffff9c, &(0x7f0000000000)='/dev/loop-control\x00', 0x0, 0x0)
+dup3(r1, r0, 0x0)
+
+program crashed: WARNING: stack recursion on stack type 4
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): perf_event_open-openat$loop_ctrl
+detailed listing:
+executing program 0:
+perf_event_open(&(0x7f00000000c0)={0x0, 0x70, 0x0, 0x0, 0x0, 0x0, 0x0, 0xc8f, 0xd26, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0xfffffffe, 0x0, @perf_config_ext, 0x428, 0x0, 0x0, 0x0, 0x10}, 0xffffffffffffffff, 0x0, 0xffffffffffffffff, 0x0)
+openat$loop_ctrl(0xffffffffffffff9c, &(0x7f0000000000)='/dev/loop-control\x00', 0x0, 0x0)
+
+program crashed: WARNING: stack recursion on stack type 4
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): perf_event_open
+detailed listing:
+executing program 0:
+perf_event_open(&(0x7f00000000c0)={0x0, 0x70, 0x0, 0x0, 0x0, 0x0, 0x0, 0xc8f, 0xd26, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0xfffffffe, 0x0, @perf_config_ext, 0x428, 0x0, 0x0, 0x0, 0x10}, 0xffffffffffffffff, 0x0, 0xffffffffffffffff, 0x0)
+
+program crashed: WARNING: stack recursion on stack type 4
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): 
+detailed listing:
+executing program 0:
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): perf_event_open
+detailed listing:
+executing program 0:
+perf_event_open(0x0, 0xffffffffffffffff, 0x0, 0xffffffffffffffff, 0x0)
+
+program did not crash
+extracting C reproducer
+testing compiled C program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): perf_event_open
+program crashed: WARNING: stack recursion on stack type 4
+simplifying C reproducer
+testing compiled C program (duration=22.5s, {Threaded:true Collide:false Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): perf_event_open
+program crashed: WARNING: stack recursion on stack type 4
+testing compiled C program (duration=22.5s, {Threaded:false Collide:false Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): perf_event_open
+program crashed: WARNING: stack recursion on stack type 4
+testing compiled C program (duration=22.5s, {Threaded:false Collide:false Repeat:false RepeatTimes:0 Procs:1 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:false Cgroups:false BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): perf_event_open
+program did not crash
+testing compiled C program (duration=22.5s, {Threaded:false Collide:false Repeat:true RepeatTimes:0 Procs:1 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): perf_event_open
+program crashed: WARNING: stack recursion on stack type 4
+testing compiled C program (duration=22.5s, {Threaded:false Collide:false Repeat:true RepeatTimes:0 Procs:1 Sandbox: Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:false KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): perf_event_open
+program crashed: WARNING: can't dereference registers at ADDR for ip interrupt_entry
+testing compiled C program (duration=22.5s, {Threaded:false Collide:false Repeat:true RepeatTimes:0 Procs:1 Sandbox: Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:false KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:false HandleSegv:true Repro:true Trace:false}): perf_event_open
+program crashed: WARNING: stack recursion on stack type 4
+testing compiled C program (duration=22.5s, {Threaded:false Collide:false Repeat:true RepeatTimes:0 Procs:1 Sandbox: Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:false KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:false HandleSegv:false Repro:true Trace:false}): perf_event_open
+program crashed: WARNING: stack recursion on stack type 4
+reproducing took 3m28.972168882s
+repro crashed as (corrupted=false):
+000: WARNING: stack recursion on stack type 4
+000: WARNING: can't dereference registers at 0000000039695de5 for ip swapgs_restore_regs_and_return_to_usermode+0x79/0x80
+
+final repro crashed as (corrupted=false):
+000: WARNING: stack recursion on stack type 4
+000: WARNING: can't dereference registers at 0000000039695de5 for ip swapgs_restore_regs_and_return_to_usermode+0x79/0x80
+

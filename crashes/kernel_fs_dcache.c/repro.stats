@@ -1,0 +1,276 @@
+Extracting prog: 37.033698415s
+Minimizing prog: 4m26.673595173s
+Simplifying prog options: 56.314613838s
+Extracting C: 24.250500303s
+Simplifying C: 0s
+
+
+325 programs, 2 VMs, timeouts [15s 1m0s 6m0s]
+extracting reproducer from 325 programs
+single: executing 2 programs separately with timeout 15s
+testing program (duration=15s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): socket$inet6_tcp-setsockopt$inet6_tcp_TCP_CONGESTION
+detailed listing:
+executing program 0:
+r0 = socket$inet6_tcp(0xa, 0x1, 0x0)
+setsockopt$inet6_tcp_TCP_CONGESTION(r0, 0x6, 0xd, &(0x7f0000000080)='nv\x00', 0x3)
+
+program did not crash
+testing program (duration=15s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): creat-acct-mkdir-chdir-open-lstat-rmdir-setsockopt$inet_icmp_ICMP_FILTER
+detailed listing:
+executing program 0:
+creat(&(0x7f0000000040)='./file0\x00', 0x0)
+acct(&(0x7f0000000000)='./file0\x00')
+mkdir(&(0x7f000000014f)='/tmp/lstw7aVdE\x00', 0x0)
+chdir(&(0x7f000000017c)='/tmp/lstw7aVdE\x00')
+open(&(0x7f000000018b)='test_dir/test_eacces\x00', 0x0, 0x0)
+lstat(&(0x7f0000000252)='./test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop\x00', 0x0)
+rmdir(&(0x7f00000006c7)='/tmp/lstw7aVdE\x00')
+setsockopt$inet_icmp_ICMP_FILTER(0xffffffffffffffff, 0x1, 0x1, &(0x7f0000000080)={0x9}, 0x4)
+
+program crashed: kernel BUG at fs/namei.c:LINE!
+single: successfully extracted reproducer
+found reproducer with 8 syscalls
+minimizing guilty program
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): creat-acct-mkdir-chdir-open-lstat-rmdir
+detailed listing:
+executing program 0:
+creat(&(0x7f0000000040)='./file0\x00', 0x0)
+acct(&(0x7f0000000000)='./file0\x00')
+mkdir(&(0x7f000000014f)='/tmp/lstw7aVdE\x00', 0x0)
+chdir(&(0x7f000000017c)='/tmp/lstw7aVdE\x00')
+open(&(0x7f000000018b)='test_dir/test_eacces\x00', 0x0, 0x0)
+lstat(&(0x7f0000000252)='./test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop\x00', 0x0)
+rmdir(&(0x7f00000006c7)='/tmp/lstw7aVdE\x00')
+
+program crashed: kernel BUG at fs/dcache.c:LINE!
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): creat-acct-mkdir-chdir-open-lstat
+detailed listing:
+executing program 0:
+creat(&(0x7f0000000040)='./file0\x00', 0x0)
+acct(&(0x7f0000000000)='./file0\x00')
+mkdir(&(0x7f000000014f)='/tmp/lstw7aVdE\x00', 0x0)
+chdir(&(0x7f000000017c)='/tmp/lstw7aVdE\x00')
+open(&(0x7f000000018b)='test_dir/test_eacces\x00', 0x0, 0x0)
+lstat(&(0x7f0000000252)='./test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop\x00', 0x0)
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): creat-acct-mkdir-chdir-open-rmdir
+detailed listing:
+executing program 0:
+creat(&(0x7f0000000040)='./file0\x00', 0x0)
+acct(&(0x7f0000000000)='./file0\x00')
+mkdir(&(0x7f000000014f)='/tmp/lstw7aVdE\x00', 0x0)
+chdir(&(0x7f000000017c)='/tmp/lstw7aVdE\x00')
+open(&(0x7f000000018b)='test_dir/test_eacces\x00', 0x0, 0x0)
+rmdir(&(0x7f00000006c7)='/tmp/lstw7aVdE\x00')
+
+program crashed: kernel BUG at fs/dcache.c:LINE!
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): creat-acct-mkdir-chdir-rmdir
+detailed listing:
+executing program 0:
+creat(&(0x7f0000000040)='./file0\x00', 0x0)
+acct(&(0x7f0000000000)='./file0\x00')
+mkdir(&(0x7f000000014f)='/tmp/lstw7aVdE\x00', 0x0)
+chdir(&(0x7f000000017c)='/tmp/lstw7aVdE\x00')
+rmdir(&(0x7f00000006c7)='/tmp/lstw7aVdE\x00')
+
+program crashed: kernel BUG at fs/dcache.c:LINE!
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): creat-acct-mkdir-rmdir
+detailed listing:
+executing program 0:
+creat(&(0x7f0000000040)='./file0\x00', 0x0)
+acct(&(0x7f0000000000)='./file0\x00')
+mkdir(&(0x7f000000014f)='/tmp/lstw7aVdE\x00', 0x0)
+rmdir(&(0x7f00000006c7)='/tmp/lstw7aVdE\x00')
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): creat-acct-chdir-rmdir
+detailed listing:
+executing program 0:
+creat(&(0x7f0000000040)='./file0\x00', 0x0)
+acct(&(0x7f0000000000)='./file0\x00')
+chdir(&(0x7f000000017c)='/tmp/lstw7aVdE\x00')
+rmdir(&(0x7f00000006c7)='/tmp/lstw7aVdE\x00')
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): creat-mkdir-chdir-rmdir
+detailed listing:
+executing program 0:
+creat(&(0x7f0000000040)='./file0\x00', 0x0)
+mkdir(&(0x7f000000014f)='/tmp/lstw7aVdE\x00', 0x0)
+chdir(&(0x7f000000017c)='/tmp/lstw7aVdE\x00')
+rmdir(&(0x7f00000006c7)='/tmp/lstw7aVdE\x00')
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): acct-mkdir-chdir-rmdir
+detailed listing:
+executing program 0:
+acct(&(0x7f0000000000)='./file0\x00')
+mkdir(&(0x7f000000014f)='/tmp/lstw7aVdE\x00', 0x0)
+chdir(&(0x7f000000017c)='/tmp/lstw7aVdE\x00')
+rmdir(&(0x7f00000006c7)='/tmp/lstw7aVdE\x00')
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): creat-acct-mkdir-chdir-rmdir
+detailed listing:
+executing program 0:
+creat(0x0, 0x0)
+acct(&(0x7f0000000000)='./file0\x00')
+mkdir(&(0x7f000000014f)='/tmp/lstw7aVdE\x00', 0x0)
+chdir(&(0x7f000000017c)='/tmp/lstw7aVdE\x00')
+rmdir(&(0x7f00000006c7)='/tmp/lstw7aVdE\x00')
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): creat-acct-mkdir-chdir-rmdir
+detailed listing:
+executing program 0:
+creat(&(0x7f0000000040)='./file0\x00', 0x0)
+acct(0x0)
+mkdir(&(0x7f000000014f)='/tmp/lstw7aVdE\x00', 0x0)
+chdir(&(0x7f000000017c)='/tmp/lstw7aVdE\x00')
+rmdir(&(0x7f00000006c7)='/tmp/lstw7aVdE\x00')
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): creat-acct-mkdir-chdir-rmdir
+detailed listing:
+executing program 0:
+creat(&(0x7f0000000040)='./file0\x00', 0x0)
+acct(&(0x7f0000000000)='./file0\x00')
+mkdir(0x0, 0x0)
+chdir(&(0x7f000000017c)='/tmp/lstw7aVdE\x00')
+rmdir(&(0x7f00000006c7)='/tmp/lstw7aVdE\x00')
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): creat-acct-mkdir-chdir-rmdir
+detailed listing:
+executing program 0:
+creat(&(0x7f0000000040)='./file0\x00', 0x0)
+acct(&(0x7f0000000000)='./file0\x00')
+mkdir(&(0x7f000000014f)='/tmp/lstw7aVdE\x00', 0x0)
+chdir(0x0)
+rmdir(&(0x7f00000006c7)='/tmp/lstw7aVdE\x00')
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): creat-acct-mkdir-chdir-rmdir
+detailed listing:
+executing program 0:
+creat(&(0x7f0000000040)='./file0\x00', 0x0)
+acct(&(0x7f0000000000)='./file0\x00')
+mkdir(&(0x7f000000014f)='/tmp/lstw7aVdE\x00', 0x0)
+chdir(&(0x7f000000017c)='/tmp/lstw7aVdE\x00')
+rmdir(0x0)
+
+program did not crash
+extracting C reproducer
+testing compiled C program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): creat-acct-mkdir-chdir-rmdir
+program did not crash
+simplifying guilty program
+testing program (duration=22.5s, {Threaded:true Collide:false Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): creat-acct-mkdir-chdir-rmdir
+detailed listing:
+executing program 0:
+creat(&(0x7f0000000040)='./file0\x00', 0x0)
+acct(&(0x7f0000000000)='./file0\x00')
+mkdir(&(0x7f000000014f)='/tmp/lstw7aVdE\x00', 0x0)
+chdir(&(0x7f000000017c)='/tmp/lstw7aVdE\x00')
+rmdir(&(0x7f00000006c7)='/tmp/lstw7aVdE\x00')
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:false RepeatTimes:0 Procs:1 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:false Cgroups:false BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): creat-acct-mkdir-chdir-rmdir
+detailed listing:
+executing program 0:
+creat(&(0x7f0000000040)='./file0\x00', 0x0)
+acct(&(0x7f0000000000)='./file0\x00')
+mkdir(&(0x7f000000014f)='/tmp/lstw7aVdE\x00', 0x0)
+chdir(&(0x7f000000017c)='/tmp/lstw7aVdE\x00')
+rmdir(&(0x7f00000006c7)='/tmp/lstw7aVdE\x00')
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:1 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): creat-acct-mkdir-chdir-rmdir
+detailed listing:
+executing program 0:
+creat(&(0x7f0000000040)='./file0\x00', 0x0)
+acct(&(0x7f0000000000)='./file0\x00')
+mkdir(&(0x7f000000014f)='/tmp/lstw7aVdE\x00', 0x0)
+chdir(&(0x7f000000017c)='/tmp/lstw7aVdE\x00')
+rmdir(&(0x7f00000006c7)='/tmp/lstw7aVdE\x00')
+
+program did not crash
+reproducing took 6m24.272442266s
+repro crashed as (corrupted=false):
+------------[ cut here ]------------
+kernel BUG at fs/dcache.c:230!
+invalid opcode: 0000 [#1] SMP 
+Dumping ftrace buffer:
+   (ftrace buffer empty)
+Modules linked in:
+CPU: 0 PID: 18269 Comm: syz-executor.0 Not tainted 3.10.108-rt123+ #14
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+task: ffff8801388c6d60 ti: ffff88013a2cc000 task.ti: ffff88013a2cc000
+RIP: 0010:[<ffffffff81177e5d>]  [<ffffffff81177e5d>] d_free+0xad/0xd0
+RSP: 0018:ffff88013a2cde78  EFLAGS: 00010293
+RAX: 0000000000000000 RBX: ffff880138e5da80 RCX: ffffffff81eb7680
+RDX: ffff8801388c6d60 RSI: ffffffff81177e5d RDI: ffff880138e5da80
+RBP: ffff88013a2cde88 R08: 0000000000000003 R09: ffff880138e73988
+R10: 0000000000000000 R11: 0000000060b09257 R12: ffff880138e738f0
+R13: ffff88013afd5840 R14: 0000000000000000 R15: 0000000000000000
+FS:  00007fce89380700(0000) GS:ffff88013fc00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fce8935edb8 CR3: 000000013a2ed000 CR4: 00000000003407f0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Stack:
+ ffff880138e5da80 ffff880138e738f0 ffff88013a2cdec0 ffffffff81178007
+ ffff880138e5da80 ffff880138e738f0 ffff880138e5dadc ffff88013afd5840
+ 00007fce8937fdc0 ffff88013a2cdef0 ffffffff8117986a ffff88013a2cdf18
+Call Trace:
+ [<ffffffff81178007>] d_kill+0xf7/0x160
+ [<ffffffff8117986a>] dput+0x15a/0x2b0
+ [<ffffffff81168d46>] path_put+0x16/0x30
+ [<ffffffff81197dba>] set_fs_pwd+0x6a/0x80
+ [<ffffffff8115aeb8>] SyS_chdir+0xa8/0xf0
+ [<ffffffff819a0df2>] system_call_fastpath+0x16/0x1b
+Code: 5c 5d c3 0f 1f 00 e8 b3 20 f4 ff 48 8d bb b0 00 00 00 e8 37 f5 ff ff e8 a2 20 f4 ff 5b 41 5c 5d c3 0f 1f 44 00 00 e8 93 20 f4 ff <0f> 0b 90 e8 8b 20 f4 ff be e5 00 00 00 48 c7 c7 e7 17 ba 81 e8 
+RIP  [<ffffffff81177e5d>] d_free+0xad/0xd0
+ RSP <ffff88013a2cde78>
+------------[ cut here ]------------
+---[ end trace 60995dc0bf360a55 ]---
+
+final repro crashed as (corrupted=false):
+------------[ cut here ]------------
+kernel BUG at fs/dcache.c:230!
+invalid opcode: 0000 [#1] SMP 
+Dumping ftrace buffer:
+   (ftrace buffer empty)
+Modules linked in:
+CPU: 0 PID: 18269 Comm: syz-executor.0 Not tainted 3.10.108-rt123+ #14
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+task: ffff8801388c6d60 ti: ffff88013a2cc000 task.ti: ffff88013a2cc000
+RIP: 0010:[<ffffffff81177e5d>]  [<ffffffff81177e5d>] d_free+0xad/0xd0
+RSP: 0018:ffff88013a2cde78  EFLAGS: 00010293
+RAX: 0000000000000000 RBX: ffff880138e5da80 RCX: ffffffff81eb7680
+RDX: ffff8801388c6d60 RSI: ffffffff81177e5d RDI: ffff880138e5da80
+RBP: ffff88013a2cde88 R08: 0000000000000003 R09: ffff880138e73988
+R10: 0000000000000000 R11: 0000000060b09257 R12: ffff880138e738f0
+R13: ffff88013afd5840 R14: 0000000000000000 R15: 0000000000000000
+FS:  00007fce89380700(0000) GS:ffff88013fc00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fce8935edb8 CR3: 000000013a2ed000 CR4: 00000000003407f0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Stack:
+ ffff880138e5da80 ffff880138e738f0 ffff88013a2cdec0 ffffffff81178007
+ ffff880138e5da80 ffff880138e738f0 ffff880138e5dadc ffff88013afd5840
+ 00007fce8937fdc0 ffff88013a2cdef0 ffffffff8117986a ffff88013a2cdf18
+Call Trace:
+ [<ffffffff81178007>] d_kill+0xf7/0x160
+ [<ffffffff8117986a>] dput+0x15a/0x2b0
+ [<ffffffff81168d46>] path_put+0x16/0x30
+ [<ffffffff81197dba>] set_fs_pwd+0x6a/0x80
+ [<ffffffff8115aeb8>] SyS_chdir+0xa8/0xf0
+ [<ffffffff819a0df2>] system_call_fastpath+0x16/0x1b
+Code: 5c 5d c3 0f 1f 00 e8 b3 20 f4 ff 48 8d bb b0 00 00 00 e8 37 f5 ff ff e8 a2 20 f4 ff 5b 41 5c 5d c3 0f 1f 44 00 00 e8 93 20 f4 ff <0f> 0b 90 e8 8b 20 f4 ff be e5 00 00 00 48 c7 c7 e7 17 ba 81 e8 
+RIP  [<ffffffff81177e5d>] d_free+0xad/0xd0
+ RSP <ffff88013a2cde78>
+------------[ cut here ]------------
+---[ end trace 60995dc0bf360a55 ]---
+

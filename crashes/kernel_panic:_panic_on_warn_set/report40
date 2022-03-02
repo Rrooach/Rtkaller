@@ -1,0 +1,31 @@
+000: Kernel panic - not syncing: panic_on_warn set ...
+000: CPU: 0 PID: 1409 Comm: kworker/0:13 Not tainted 5.6.0-rt1+ #2
+000: Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+000: Workqueue: events_power_efficient crda_timeout_work
+000: 
+000: Call Trace:
+000:  dump_stack+0x95/0xce
+000:  panic+0x24b/0x582
+000:  __warn.cold+0x2f/0x35
+000:  report_bug+0x214/0x270
+000:  do_error_trap+0x10f/0x180
+000:  do_invalid_op+0x32/0x40
+000:  invalid_op+0x1e/0x30
+000: RIP: 0010:restore_regulatory_settings+0x1ba/0x1170
+000: Code: 08 0f 00 00 41 f6 85 e0 26 64 b7 03 0f 85 a6 06 00 00 e8 b9 88 14 fe 41 0f be d4 0f be f3 48 c7 c7 a0 ea 61 b7 e8 d8 a8 f0 fd <0f> 0b e8 9f 88 14 fe 48 8b 1d 38 1d 53 01 48 b8 00 00 00 00 00 fc
+000: RSP: 0018:ffff888111a0fcb8 EFLAGS: 00010282
+000: 
+000: RAX: 0000000000000000 RBX: 0000000000000041 RCX: 0000000000000000
+000: RDX: 0000000000000000 RSI: 0000000000000008 RDI: ffffed1022341f89
+000: RBP: 0000000000000001 R08: 0000000000000001 R09: fffffbfff6f59333
+000: R10: fffffbfff6f59332 R11: ffffffffb7ac9997 R12: 0000000000000000
+000: R13: 0000000000000000 R14: ffffffffb7f499f0 R15: ffff88811086ee00
+000:  crda_timeout_work+0x1d/0x30
+000:  process_one_work+0x880/0x1260
+000:  worker_thread+0x97/0xf90
+000:  kthread+0x2ce/0x3d0
+000:  ret_from_fork+0x35/0x40
+000: Dumping ftrace buffer:
+000:    (ftrace buffer empty)
+000: Kernel Offset: 0x33800000 from 0xffffffff81000000 (relocation range: 0xffffffff80000000-0xffffffffbfffffff)
+000: Rebooting in 1 seconds..

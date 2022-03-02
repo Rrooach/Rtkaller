@@ -1,0 +1,56 @@
+EXT4-fs (sda): error count since last fsck: 3
+EXT4-fs (sda): initial error at time 1622039607: mb_free_blocks:1469: inode 106958: block 461312
+EXT4-fs (sda): last error at time 1622513786: ext4_mb_generate_buddy:747
+ata1: lost interrupt (Status 0x58)
+rcu: INFO: rcu_sched detected stalls on CPUs/tasks:
+ata1.00: exception Emask 0x0 SAct 0x0 SErr 0x0 action 0x6 frozen
+rcu: 	(detected by 1, t=41729 jiffies, g=155093, q=0)
+ata1.00: failed command: WRITE DMA
+rcu: All QSes seen, last rcu_sched kthread activity 41729 (4295048977-4295007248), jiffies_till_next_fqs=3, root ->qsmask 0x0
+ata1.00: cmd ca/00:08:38:1b:00/00:00:00:00:00/e0 tag 0 dma 4096 out
+         res 40/00:00:00:00:00/00:00:00:00:00/a0 Emask 0x4 (timeout)
+kworker/1:1     R  running task    28240    22      2 0x80000000
+ata1.00: status: { DRDY }
+Workqueue: events_freezable_power_ disk_events_workfn
+ata1: soft resetting link
+Call Trace:
+ <IRQ>
+ sched_show_task.cold.101+0x242/0x2b0
+ rcu_check_callbacks.cold.80+0x798/0x7bd
+ update_process_times+0x2c/0x60
+ tick_sched_handle+0x10f/0x150
+ tick_sched_timer+0x44/0x120
+ __hrtimer_run_queues+0x315/0x780
+ hrtimer_interrupt+0x2cd/0x6d0
+ smp_apic_timer_interrupt+0xbd/0x320
+ apic_timer_interrupt+0xf/0x20
+ </IRQ>
+RIP: 0010:_raw_spin_unlock_irqrestore+0x34/0x50
+Code: ec 08 48 b8 00 00 00 00 00 fc ff df 48 89 fa 48 c1 ea 03 0f b6 04 02 48 89 fa 83 e2 07 38 d0 7f 04 84 c0 75 0b c6 03 00 56 9d <48> 83 c4 08 5b c3 48 89 34 24 e8 6d 05 24 fe 48 8b 34 24 eb e6 0f
+RSP: 0018:ffff88811a0775b8 EFLAGS: 00000246 ORIG_RAX: ffffffffffffff13
+RAX: 0000000000000000 RBX: ffff88811822b000 RCX: ffffffff9d06f0ec
+RDX: 0000000000000000 RSI: 0000000000000246 RDI: ffff88811822b000
+RBP: ffff8881182ba4c0 R08: ffffed1023665321 R09: ffffed1023665320
+R10: ffffed1023665320 R11: ffff88811b329903 R12: ffff8881182b8000
+R13: ffffffff9d05ba00 R14: ffff8881182b8010 R15: 000000000000004a
+ ata_scsi_queuecmd+0x325/0x7c0
+ scsi_queue_rq+0x17a2/0x2850
+ blk_mq_dispatch_rq_list+0x1b2/0x1750
+ blk_mq_do_dispatch_sched+0x15d/0x400
+ blk_mq_sched_dispatch_requests+0x41f/0x670
+ __blk_mq_run_hw_queue+0xb7/0x200
+ __blk_mq_delay_run_hw_queue+0x3b5/0x450
+ blk_mq_run_hw_queue+0x130/0x3c0
+ blk_mq_sched_insert_request+0x3b3/0x610
+ blk_execute_rq+0xc7/0x120
+ __scsi_execute+0x2ae/0x5c0
+ sr_check_events+0x192/0x8f0
+ cdrom_check_events+0x68/0x100
+ sr_block_check_events+0x147/0x1d0
+ disk_check_events+0x12a/0x420
+ process_one_work+0x92c/0x13c0
+ worker_thread+0x90/0xfb0
+ kthread+0x2ff/0x3c0
+ ret_from_fork+0x35/0x40
+ata1.00: configured for MWDMA2
+ata1: EH complete

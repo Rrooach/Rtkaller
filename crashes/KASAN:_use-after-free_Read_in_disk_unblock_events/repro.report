@@ -1,0 +1,86 @@
+==================================================================
+BUG: KASAN: use-after-free in disk_unblock_events+0x4b/0x50
+Read of size 8 at addr ffff888110dc6178 by task syz-executor983/1998
+
+CPU: 1 PID: 1998 Comm: syz-executor983 Not tainted 4.14.103+ #2
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+Call Trace:
+ dump_stack+0x64/0x86
+ print_address_description+0x65/0x280
+ kasan_report+0x223/0x330
+ disk_unblock_events+0x4b/0x50
+ __blkdev_get+0x453/0xf20
+ blkdev_get+0x293/0x790
+ blkdev_open+0x1b5/0x250
+ do_dentry_open+0x756/0xd50
+ vfs_open+0x107/0x220
+ path_openat+0x634/0x3f70
+ do_filp_open+0x19e/0x280
+ do_sys_open+0x1da/0x3f0
+ do_syscall_64+0x18e/0x480
+ entry_SYSCALL_64_after_hwframe+0x3d/0xa2
+RIP: 0033:0x44a8dd
+RSP: 002b:00007ffe26d45fd8 EFLAGS: 00000246 ORIG_RAX: 0000000000000101
+RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 000000000044a8dd
+RDX: 0000000000000000 RSI: 0000000020000280 RDI: ffffffffffffff9c
+RBP: 00007ffe26d45fe4 R08: 00007ffe26d45a40 R09: 0000000026d46148
+R10: 0000000000000000 R11: 0000000000000246 R12: 00000000ffffffff
+R13: 0000000000003ad9 R14: 00000000004c2018 R15: 0000000000000000
+
+Allocated by task 1794:
+ save_stack+0x33/0xa0
+ kasan_kmalloc+0xa0/0xd0
+ kmem_cache_alloc_node_trace+0x115/0x190
+ alloc_disk_node+0x66/0x3b0
+ md_alloc+0x224/0x7b0
+ md_probe+0x1f/0x30
+ kobj_lookup+0x2c2/0x420
+ get_gendisk+0x32/0x220
+ __blkdev_get+0x313/0xf20
+ blkdev_get+0x293/0x790
+ blkdev_open+0x1b5/0x250
+ do_dentry_open+0x756/0xd50
+ vfs_open+0x107/0x220
+ path_openat+0x634/0x3f70
+ do_filp_open+0x19e/0x280
+ do_sys_open+0x1da/0x3f0
+ do_syscall_64+0x18e/0x480
+ entry_SYSCALL_64_after_hwframe+0x3d/0xa2
+
+Freed by task 1998:
+ save_stack+0x33/0xa0
+ kasan_slab_free+0x72/0xc0
+ kfree+0x88/0x190
+ device_release+0x78/0x200
+ kobject_put+0x138/0x240
+ put_disk+0x1f/0x30
+ __blkdev_get+0x3c4/0xf20
+ blkdev_get+0x293/0x790
+ blkdev_open+0x1b5/0x250
+ do_dentry_open+0x756/0xd50
+ vfs_open+0x107/0x220
+ path_openat+0x634/0x3f70
+ do_filp_open+0x19e/0x280
+ do_sys_open+0x1da/0x3f0
+ do_syscall_64+0x18e/0x480
+ entry_SYSCALL_64_after_hwframe+0x3d/0xa2
+
+The buggy address belongs to the object at ffff888110dc5d80
+ which belongs to the cache kmalloc-2048 of size 2048
+The buggy address is located 1016 bytes inside of
+ 2048-byte region [ffff888110dc5d80, ffff888110dc6580)
+The buggy address belongs to the page:
+page:ffffea0004437000 count:1 mapcount:0 mapping:          (null) index:0x0 compound_mapcount: 0
+flags: 0x200000000008100(slab|head)
+raw: 0200000000008100 0000000000000000 0000000000000000 00000001800f000f
+raw: dead000000000100 dead000000000200 ffff88811b002000 0000000000000000
+page dumped because: kasan: bad access detected
+
+Memory state around the buggy address:
+ ffff888110dc6000: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+ ffff888110dc6080: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+>ffff888110dc6100: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+                                                                ^
+ ffff888110dc6180: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+ ffff888110dc6200: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+==================================================================

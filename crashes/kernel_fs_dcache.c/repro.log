@@ -1,0 +1,84 @@
+Warning: Permanently added '[localhost]:34918' (ECDSA) to the list of known hosts.
+2021/05/28 06:48:47 parsed 1 programs
+2021/05/28 06:48:48 executed programs: 0
+2021/05/28 06:48:53 executed programs: 2544
+syzkaller login: [   16.223745] ------------[ cut here ]------------
+[   16.224525] kernel BUG at fs/dcache.c:230!
+[   16.225136] invalid opcode: 0000 [#1] SMP 
+[   16.225805] Dumping ftrace buffer:
+[   16.226340]    (ftrace buffer empty)
+[   16.227081] Modules linked in:
+[   16.227574] CPU: 0 PID: 18269 Comm: syz-executor.0 Not tainted 3.10.108-rt123+ #14
+[   16.229244] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[   16.231061] task: ffff8801388c6d60 ti: ffff88013a2cc000 task.ti: ffff88013a2cc000
+[   16.232472] RIP: 0010:[<ffffffff81177e5d>]  [<ffffffff81177e5d>] d_free+0xad/0xd0
+[   16.233933] RSP: 0018:ffff88013a2cde78  EFLAGS: 00010293
+[   16.234877] RAX: 0000000000000000 RBX: ffff880138e5da80 RCX: ffffffff81eb7680
+[   16.236130] RDX: ffff8801388c6d60 RSI: ffffffff81177e5d RDI: ffff880138e5da80
+[   16.237471] RBP: ffff88013a2cde88 R08: 0000000000000003 R09: ffff880138e73988
+[   16.238864] R10: 0000000000000000 R11: 0000000060b09257 R12: ffff880138e738f0
+[   16.240314] R13: ffff88013afd5840 R14: 0000000000000000 R15: 0000000000000000
+[   16.241624] FS:  00007fce89380700(0000) GS:ffff88013fc00000(0000) knlGS:0000000000000000
+[   16.243314] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[   16.244317] CR2: 00007fce8935edb8 CR3: 000000013a2ed000 CR4: 00000000003407f0
+[   16.245638] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+[   16.247083] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+[   16.248394] Stack:
+[   16.248797]  ffff880138e5da80 ffff880138e738f0 ffff88013a2cdec0 ffffffff81178007
+[   16.250323]  ffff880138e5da80 ffff880138e738f0 ffff880138e5dadc ffff88013afd5840
+[   16.251704]  00007fce8937fdc0 ffff88013a2cdef0 ffffffff8117986a ffff88013a2cdf18
+[   16.253282] Call Trace:
+[   16.253750]  [<ffffffff81178007>] d_kill+0xf7/0x160
+[   16.254652]  [<ffffffff8117986a>] dput+0x15a/0x2b0
+[   16.255501]  [<ffffffff81168d46>] path_put+0x16/0x30
+[   16.256508]  [<ffffffff81197dba>] set_fs_pwd+0x6a/0x80
+[   16.257648]  [<ffffffff8115aeb8>] SyS_chdir+0xa8/0xf0
+[   16.258558]  [<ffffffff819a0df2>] system_call_fastpath+0x16/0x1b
+[   16.259680] Code: 5c 5d c3 0f 1f 00 e8 b3 20 f4 ff 48 8d bb b0 00 00 00 e8 37 f5 ff ff e8 a2 20 f4 ff 5b 41 5c 5d c3 0f 1f 44 00 00 e8 93 20 f4 ff <0f> 0b 90 e8 8b 20 f4 ff be e5 00 00 00 48 c7 c7 e7 17 ba 81 e8 
+[   16.264950] RIP  [<ffffffff81177e5d>] d_free+0xad/0xd0
+[   16.265912]  RSP <ffff88013a2cde78>
+[   16.266725] ------------[ cut here ]------------
+[   16.266752] ---[ end trace 60995dc0bf360a55 ]---
+[   16.266754] Kernel panic - not syncing: Fatal exception
+[   16.269323] kernel BUG at fs/namei.c:545!
+[   16.270053] invalid opcode: 0000 [#2] SMP 
+[   16.270838] Dumping ftrace buffer:
+[   16.271343]    (ftrace buffer empty)
+[   16.271960] Modules linked in:
+[   16.272507] CPU: 1 PID: 18267 Comm: syz-executor.0 Tainted: G      D      3.10.108-rt123+ #14
+[   16.274224] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[   16.276005] task: ffff8801388c3e80 ti: ffff880138b9c000 task.ti: ffff880138b9c000
+[   16.277414] RIP: 0010:[<ffffffff8116a92a>]  [<ffffffff8116a92a>] unlazy_walk+0x25a/0x270
+[   16.279043] RSP: 0018:ffff880138b9dc60  EFLAGS: 00010293
+[   16.280117] RAX: 0000000000000000 RBX: ffff880138b9de40 RCX: 000000000000000d
+[   16.281706] RDX: ffff8801388c3e80 RSI: ffffffff8116a92a RDI: ffff880138e5dadc
+[   16.283175] RBP: ffff880138b9dc90 R08: ffff880138b9dddc R09: ffff88013a3a4000
+[   16.284569] R10: 0000000000000000 R11: 0000000000000246 R12: ffff880138e5da80
+[   16.286207] R13: 0000000000000006 R14: 0000000000000000 R15: ffff88013a12bdc0
+[   16.287553] FS:  00007fce893a1700(0000) GS:ffff88013fd00000(0000) knlGS:0000000000000000
+[   16.289101] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[   16.290186] CR2: 000000000057d000 CR3: 000000013a2ed000 CR4: 00000000003407e0
+[   16.291597] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+[   16.292895] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+[   16.294220] Stack:
+[   16.294602]  0000000038b9dcbc ffff880138b9dde8 ffff880138b9de40 0000000000000001
+[   16.296138]  0000000000000000 ffff880138b9dd60 ffff880138b9dce8 ffffffff8116ac06
+[   16.297742]  ffff88013a34e320 ffff880138b9dd60 0000000100000081 ffff880138e738f0
+[   16.299445] Call Trace:
+[   16.300046]  [<ffffffff8116ac06>] lookup_fast+0x2c6/0x3e0
+[   16.301264]  [<ffffffff8116f6c6>] do_last+0x236/0x1310
+[   16.302476]  [<ffffffff81170868>] path_openat+0xc8/0x650
+[   16.303614]  [<ffffffff8106e70b>] ? wake_up_state+0xb/0x10
+[   16.304600]  [<ffffffff81094311>] ? wake_futex+0x61/0x80
+[   16.305466]  [<ffffffff812eb79a>] ? avc_has_perm_noaudit+0xea/0x150
+[   16.306552]  [<ffffffff81171671>] do_filp_open+0x41/0xd0
+[   16.307487]  [<ffffffff8136e7d3>] ? strncpy_from_user+0x123/0x1b0
+[   16.308543]  [<ffffffff8115b6d5>] file_open_name+0x115/0x1a0
+[   16.309498]  [<ffffffff810a0254>] SyS_acct+0x54/0x210
+[   16.310404]  [<ffffffff819a0df2>] system_call_fastpath+0x16/0x1b
+[   16.311459] Code: ac fe ff ff c7 45 d4 01 00 00 00 e9 24 fe ff ff e8 dc f5 f4 ff 41 80 46 5c 01 e9 3c fe ff ff e8 cd f5 f4 ff 0f 0b e8 c6 f5 f4 ff <0f> 0b e8 bf f5 f4 ff 0f 0b e8 b8 f5 f4 ff 0f 0b 66 0f 1f 44 00 
+[   16.316299] RIP  [<ffffffff8116a92a>] unlazy_walk+0x25a/0x270
+[   16.317337]  RSP <ffff880138b9dc60>
+[   16.318045] Dumping ftrace buffer:
+[   16.318710]    (ftrace buffer empty)
+[   16.319338] Rebooting in 1 seconds..

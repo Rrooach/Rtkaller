@@ -1,0 +1,41 @@
+------------[ cut here ]------------
+WARNING: at drivers/tty/tty_ldisc.c:197 tty_ldisc_kill+0x136/0x140()
+Modules linked in:
+CPU: 1 PID: 926 Comm: syz-executor252 Not tainted 3.10.108-rt123+ #14
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+ 0000000000000009 ffff880135ba7d50 ffffffff81991617 ffff880135ba7d88
+ ffffffff8103b93c ffff88013a31d400 ffff88013a170680 ffff88013a31d428
+ 0000000000000293 ffff88013543f4e0 ffff880135ba7d98 ffffffff8103ba15
+Call Trace:
+ [<ffffffff81991617>] dump_stack+0x1e/0x20
+ [<ffffffff8103b93c>] warn_slowpath_common+0x5c/0x80
+ [<ffffffff8103ba15>] warn_slowpath_null+0x15/0x20
+ [<ffffffff8140b016>] tty_ldisc_kill+0x136/0x140
+ [<ffffffff8140bf2a>] tty_ldisc_release+0x3a/0x70
+ [<ffffffff814022d2>] tty_release+0x462/0x830
+ [<ffffffff8115eb22>] __fput+0x102/0x2d0
+ [<ffffffff8115ed55>] ____fput+0x15/0x20
+ [<ffffffff8105d387>] task_work_run+0xa7/0xe0
+ [<ffffffff81002a0d>] do_notify_resume+0x6d/0x70
+ [<ffffffff819a1077>] int_signal+0x12/0x17
+---[ end trace 1eabdb15003a8c74 ]---
+------------[ cut here ]------------
+WARNING: at drivers/tty/tty_ldisc.c:347 tty_ldisc_deref+0xc6/0xd0()
+Modules linked in:
+CPU: 0 PID: 2686 Comm: kworker/0:2 Tainted: G        W    3.10.108-rt123+ #14
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+Workqueue: events flush_to_ldisc
+ 0000000000000009 ffff88013897bd60 ffffffff81991617 ffff88013897bd98
+ ffffffff8103b93c ffff88013a170680 0000000000000293 ffff88013fc15000
+ ffff88013a31d400 0000000000000000 ffff88013897bda8 ffffffff8103ba15
+Call Trace:
+ [<ffffffff81991617>] dump_stack+0x1e/0x20
+ [<ffffffff8103b93c>] warn_slowpath_common+0x5c/0x80
+ [<ffffffff8103ba15>] warn_slowpath_null+0x15/0x20
+ [<ffffffff8140a8b6>] tty_ldisc_deref+0xc6/0xd0
+ [<ffffffff8140c7aa>] flush_to_ldisc+0xea/0x1e0
+ [<ffffffff81059701>] process_one_work+0x151/0x520
+ [<ffffffff8105a49b>] worker_thread+0x11b/0x430
+ [<ffffffff8106084d>] kthread+0xad/0xc0
+ [<ffffffff819a0d48>] ret_from_fork+0x58/0x90
+---[ end trace 1eabdb15003a8c75 ]---

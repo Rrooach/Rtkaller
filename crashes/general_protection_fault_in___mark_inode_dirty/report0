@@ -1,0 +1,34 @@
+net_ratelimit: 10 callbacks suppressed
+general protection fault: 0000 [#1] SMP 
+Dumping ftrace buffer:
+   (ftrace buffer empty)
+Modules linked in:
+CPU: 1 PID: 12713 Comm: syz-executor.0 Not tainted 3.10.108-rt123+ #14
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+task: ffff88013a2036b0 ti: ffff880125eb4000 task.ti: ffff880125eb4000
+RIP: 0010:[<ffffffff8118f7c1>]  [<ffffffff8118f7c1>] __mark_inode_dirty+0x1e1/0x3a0
+RSP: 0018:ffff880125eb5e10  EFLAGS: 00010283
+RAX: 8000000129fcf007 RBX: 0000000000000007 RCX: ffffc90000769000
+RDX: 0000000000040000 RSI: ffffffff8118f7bd RDI: ffff880139b44d50
+RBP: ffff880125eb5e38 R08: 0000000000000000 R09: ffff880125eb5d2c
+R10: 0000000000000000 R11: 0000000000000246 R12: ffff880139b44d50
+R13: 0000000000000000 R14: ffff880139a9d240 R15: ffff88012779ec00
+FS:  00007f4682ef0700(0000) GS:ffff88013fd00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00000000005133d0 CR3: 0000000126791000 CR4: 00000000003407e0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Stack:
+ ffff880139b44d50 ffff880125eb5ec8 0000000000000000 ffff880139a9d240
+ 0000000000000000 ffff880125eb5e60 ffffffff8118ba73 0000000000001846
+ ffff880125eb5ec8 0000000000000000 ffff880125eb5eb8 ffffffff8117f2e0
+Call Trace:
+ [<ffffffff8118ba73>] simple_setattr+0x53/0x80
+ [<ffffffff8117f2e0>] notify_change+0x430/0x4d0
+ [<ffffffff81159f56>] chown_common.isra.12+0x96/0xd0
+ [<ffffffff8115b54d>] SyS_fchown+0xdd/0xf0
+ [<ffffffff819a0df2>] system_call_fastpath+0x16/0x1b
+Code: ff e9 d8 fe ff ff 0f 1f 40 00 e8 4b a7 f2 ff 8b 05 7d f6 d1 00 4d 8b 7c 24 28 85 c0 0f 85 98 00 00 00 e8 33 a7 f2 ff 49 8b 47 30 <4c> 8b 68 10 4d 85 ed 74 0d e8 21 a7 f2 ff 89 de 4c 89 e7 41 ff 
+RIP  [<ffffffff8118f7c1>] __mark_inode_dirty+0x1e1/0x3a0
+ RSP <ffff880125eb5e10>
+---[ end trace f7d9ffed22525577 ]---

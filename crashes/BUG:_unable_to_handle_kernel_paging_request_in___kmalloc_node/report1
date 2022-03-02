@@ -1,0 +1,44 @@
+BUG: unable to handle kernel paging request at 0000000fffffffe0
+IP: [<ffffffff81153a1b>] __kmalloc_node+0xcb/0x240
+PGD 126877067 PUD 0 
+Oops: 0000 [#1] SMP 
+Dumping ftrace buffer:
+   (ftrace buffer empty)
+Modules linked in:
+CPU: 1 PID: 4725 Comm: syz-executor.1 Not tainted 3.10.108-rt123+ #14
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+task: ffff88013a21ddc0 ti: ffff880125ee4000 task.ti: ffff880125ee4000
+RIP: 0010:[<ffffffff81153a1b>]  [<ffffffff81153a1b>] __kmalloc_node+0xcb/0x240
+RSP: 0018:ffff880125ee5be8  EFLAGS: 00010246
+RAX: 0000000000000000 RBX: 0000000000000000 RCX: 00000000000018d0
+RDX: 00000000000018cf RSI: 0000000000000000 RDI: 00000000000145e0
+RBP: ffff880125ee5c28 R08: ffff88013fd145e0 R09: ffffffff817ba3b5
+R10: 0000000000014800 R11: 00000000000ff450 R12: 00000000000000d0
+R13: 0000000fffffffe0 R14: 0000000000000000 R15: ffff88013b001500
+FS:  00007fdca3d08700(0000) GS:ffff88013fd00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000fffffffe0 CR3: 0000000126876000 CR4: 00000000003407e0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Stack:
+ 000000000000000a ffffffff817ba3b5 0000000000000358 0000000000000000
+ ffff88013a075720 0000000000000358 0000000000000000 0000000000000000
+ ffff880125ee5c80 ffffffff817ba3b5 000000000000da48 ffff880125ee5c80
+Call Trace:
+ [<ffffffff817ba3b5>] xt_alloc_table_info+0xa5/0x150
+ [<ffffffff81895fa8>] ip6t_register_table+0x38/0xe0
+ [<ffffffff81896eaa>] ip6table_filter_net_init+0x5a/0xb0
+ [<ffffffff8175d63c>] ops_init+0x4c/0x170
+ [<ffffffff8175d7e5>] setup_net+0x85/0x150
+ [<ffffffff8175de2f>] copy_net_ns+0x9f/0x150
+ [<ffffffff81064a84>] create_new_namespaces+0xf4/0x1d0
+ [<ffffffff81064ca3>] copy_namespaces+0x93/0xd0
+ [<ffffffff81039ed2>] copy_process.part.42+0x842/0x13c0
+ [<ffffffff8103ab24>] do_fork+0xa4/0x3d0
+ [<ffffffff8103aed1>] SyS_clone+0x11/0x20
+ [<ffffffff819a1119>] stub_clone+0x69/0x90
+Code: c5 74 51 48 85 c0 74 4c 0f 1f 84 00 00 00 00 00 49 63 57 1c 31 f6 4c 89 ef e8 92 4e 20 00 eb 34 49 63 47 20 49 8b 3f 48 8d 4a 01 <49> 8b 5c 05 00 4c 89 e8 65 48 0f c7 0f 0f 94 c0 84 c0 0f 84 70 
+RIP  [<ffffffff81153a1b>] __kmalloc_node+0xcb/0x240
+ RSP <ffff880125ee5be8>
+CR2: 0000000fffffffe0
+---[ end trace e8443ba0782d818d ]---

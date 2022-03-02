@@ -1,0 +1,18 @@
+000: traps: syz-executor.1[3666] general protection fault ip:4686e5 sp:7f4f38b9ec58 error:0 in syz-executor.1[401000+c2000]
+001: SELinux: unrecognized netlink message: protocol=0 nlmsg_type=0 sclass=netlink_route_socket pid=3697 comm=syz-executor.0
+000: tc_dump_action: action bad kind
+000: 9pnet: Insufficient options for proto=fd
+000: tc_dump_action: action bad kind
+001: SELinux: unrecognized netlink message: protocol=4 nlmsg_type=64532 sclass=netlink_tcpdiag_socket pid=3838 comm=syz-executor.1
+001: netlink: 340 bytes leftover after parsing attributes in process `syz-executor.0'.
+000: tmpfs: Unknown parameter '-pol'
+001: tmpfs: Unknown parameter 'ÿÿÿÿ'
+000: tmpfs: Bad value for 'mpol'
+001: tmpfs: Bad value for 'mpol'
+000: tmpfs: Unknown parameter ''
+000: tmpfs: Unknown parameter 'mode90ÿÿ'
+000: netlink: 'syz-executor.0': attribute type 8 has an invalid length.
+001: tmpfs: Bad value for 'mpol'
+001: netlink: 1020 bytes leftover after parsing attributes in process `syz-executor.1'.
+000: syz-executor.1[4449]: segfault at 0 ip 0000000000000000 sp 00000000200001b1 error 14 in syz-executor.1[400000+1000]
+000: Code: Bad RIP value.

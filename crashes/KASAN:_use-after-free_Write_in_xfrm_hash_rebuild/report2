@@ -1,0 +1,63 @@
+000: ==================================================================
+000: BUG: KASAN: use-after-free in xfrm_hash_rebuild+0xfbc/0x1000
+000: Write of size 8 at addr ffff8881168c43c0 by task kworker/0:3/19405
+000: 
+000: CPU: 0 PID: 19405 Comm: kworker/0:3 Not tainted 5.2.0-rt1+ #2
+000: Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+000: Workqueue: events xfrm_hash_rebuild
+000: 
+000: Call Trace:
+000:  dump_stack+0x79/0xba
+000:  print_address_description+0x60/0x229
+000:  __kasan_report.cold.4+0x17/0x32
+000:  kasan_report+0x12/0x20
+000:  xfrm_hash_rebuild+0xfbc/0x1000
+000:  process_one_work+0x90a/0x1530
+000:  worker_thread+0x90/0xf20
+000:  kthread+0x2ff/0x3c0
+000:  ret_from_fork+0x35/0x40
+000: 
+000: Allocated by task 11015:
+000:  save_stack+0x19/0x80
+000:  __kasan_kmalloc.constprop.5+0xc1/0xd0
+000:  xfrm_hash_alloc+0xb3/0xd0
+000:  xfrm_net_init+0x1d5/0x8b0
+000:  ops_init+0xa9/0x330
+000:  setup_net+0x2ef/0x680
+000:  copy_net_ns+0x18c/0x260
+000:  create_new_namespaces+0x508/0x710
+000:  unshare_nsproxy_namespaces+0xa8/0x150
+000:  ksys_unshare+0x384/0x700
+000:  __x64_sys_unshare+0x31/0x40
+000:  do_syscall_64+0x9e/0x380
+000:  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+000: 
+000: Freed by task 10701:
+000:  save_stack+0x19/0x80
+000:  __kasan_slab_free+0x125/0x170
+000:  kfree+0x98/0x1f0
+000:  xfrm_hash_free+0x9d/0xb0
+000:  xfrm_hash_resize+0x61e/0x1530
+000:  process_one_work+0x90a/0x1530
+000:  worker_thread+0x90/0xf20
+000:  kthread+0x2ff/0x3c0
+000:  ret_from_fork+0x35/0x40
+000: 
+000: The buggy address belongs to the object at ffff8881168c43c0
+000: The buggy address is located 0 bytes inside of
+000: The buggy address belongs to the page:
+000: page:ffffea00045a3100 refcount:1 mapcount:0 mapping:ffff88811ac018c0 index:0x0
+000: 
+000: flags: 0x200000000000200(slab)
+000: raw: 0200000000000200 dead000000000100 dead000000000200 ffff88811ac018c0
+000: raw: 0000000000000000 00000000002a002a 00000001ffffffff 0000000000000000
+000: page dumped because: kasan: bad access detected
+000: 
+000: Memory state around the buggy address:
+000:  ffff8881168c4280: fc fc fc fc 00 00 00 00 00 00 00 00 fc fc fc fc
+000:  ffff8881168c4300: fb fb fb fb fb fb fb fb fc fc fc fc 00 00 00 00
+000: >ffff8881168c4380: 00 00 00 00 fc fc fc fc fb fb fb fb fb fb fb fb
+000:                                            ^
+000:  ffff8881168c4400: fc fc fc fc 00 00 00 00 00 00 fc fc fc fc fc fc
+000:  ffff8881168c4480: fb fb fb fb fb fb fb fb fc fc fc fc 00 00 00 00
+000: ==================================================================

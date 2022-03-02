@@ -1,0 +1,82 @@
+000: kasan: CONFIG_KASAN_INLINE enabled
+001: ==================================================================
+000: kasan: GPF could be caused by NULL-ptr deref or user memory access
+001: BUG: KASAN: double-free or invalid-free in rcu_core+0x506/0x1d70
+000: general protection fault: 0000 [#1] PREEMPT SMP KASAN PTI
+001: 
+000: CPU: 0 PID: 9 Comm: ksoftirqd/0 Not tainted 5.2.0-rt1+ #2
+001: CPU: 1 PID: 20 Comm: ksoftirqd/1 Not tainted 5.2.0-rt1+ #2
+000: Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+001: Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+000: RIP: 0010:__x86_indirect_thunk_r13+0x10/0x20
+001: Call Trace:
+000: Code: 90 0f ae e8 eb f9 4c 89 24 24 c3 66 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 40 00 e8 07 00 00 00 f3 90 0f ae e8 eb f9 4c 89 2c 24 <c3> 66 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 40 00 e8 07 00 00 00 f3
+001:  dump_stack+0x79/0xba
+000: RSP: 0018:ffff88811a37fcd8 EFLAGS: 00010246
+001:  print_address_description+0x60/0x229
+000: 
+000: RAX: fffffbfff596d1fa RBX: ffff8880b8a86000 RCX: ffffffffa989abd7
+001:  kasan_report_invalid_free+0x4c/0x70
+000: RDX: 1ffff11017150c01 RSI: 0000000000000004 RDI: ffff8880b8a86000
+000: RBP: dffffc0000000000 R08: fffffbfff596d1fa R09: fffffbfff596d1f9
+001:  __kasan_slab_free+0x157/0x170
+000: R10: fffffbfff596d1f9 R11: ffffffffacb68fcb R12: ffff8880b8a86008
+000: R13: 0003800300028003 R14: ffff88811b22f470 R15: ffffffffac6e31a0
+001:  kfree+0x98/0x1f0
+000: FS:  0000000000000000(0000) GS:ffff88811b200000(0000) knlGS:0000000000000000
+001:  rcu_core+0x506/0x1d70
+000: CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+000: CR2: 00007fd3d8da2db8 CR3: 0000000112f74005 CR4: 0000000000760ef0
+000: DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+000: DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+001:  __do_softirq+0x1e5/0x7f2
+000: PKRU: 55555554
+000: Call Trace:
+001:  run_ksoftirqd+0x3e/0x50
+001:  smpboot_thread_fn+0x5de/0xa40
+001:  kthread+0x2ff/0x3c0
+001:  ret_from_fork+0x35/0x40
+001: 
+001: Allocated by task 0:
+001: (stack is not available)
+001: 
+001: Freed by task 0:
+001: (stack is not available)
+001: 
+000: Modules linked in:
+001: The buggy address belongs to the object at ffff8880b99c5000
+000: 
+001: The buggy address is located 80 bytes inside of
+000: Dumping ftrace buffer:
+001: The buggy address belongs to the page:
+000:    (ftrace buffer empty)
+001: page:ffffea0002e67140 refcount:1 mapcount:0 mapping:ffff88811ac01640 index:0x0
+000: ---[ end trace 0000000000000002 ]---
+001: 
+000: RIP: 0010:__x86_indirect_thunk_r13+0x10/0x20
+001: flags: 0x100000000000200(slab)
+000: Code: 90 0f ae e8 eb f9 4c 89 24 24 c3 66 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 40 00 e8 07 00 00 00 f3 90 0f ae e8 eb f9 4c 89 2c 24 <c3> 66 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 40 00 e8 07 00 00 00 f3
+001: raw: 0100000000000200 dead000000000100 dead000000000200 ffff88811ac01640
+000: RSP: 0018:ffff88811a37fcd8 EFLAGS: 00010246
+001: raw: 0000000000000000 0000000080150015 00000001ffffffff 0000000000000000
+000: 
+001: page dumped because: kasan: bad access detected
+000: RAX: fffffbfff596d1fa RBX: ffff8880b8a86000 RCX: ffffffffa989abd7
+001: 
+000: RDX: 1ffff11017150c01 RSI: 0000000000000004 RDI: ffff8880b8a86000
+001: Memory state around the buggy address:
+000: RBP: dffffc0000000000 R08: fffffbfff596d1fa R09: fffffbfff596d1f9
+001:  ffff8880b99c4f00: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+000: R10: fffffbfff596d1f9 R11: ffffffffacb68fcb R12: ffff8880b8a86008
+001:  ffff8880b99c4f80: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+000: R13: 0003800300028003 R14: ffff88811b22f470 R15: ffffffffac6e31a0
+001: >ffff8880b99c5000: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+000: FS:  0000000000000000(0000) GS:ffff88811b200000(0000) knlGS:0000000000000000
+001:                                                  ^
+000: CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+001:  ffff8880b99c5080: fc fc fc fc fc fc fc fc 00 00 00 00 00 00 00 00
+000: CR2: 00007fd3d8da2db8 CR3: 0000000112f74005 CR4: 0000000000760ef0
+001:  ffff8880b99c5100: 00 00 00 00 00 00 00 00 fc fc fc fc fc fc fc fc
+000: DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+001: ==================================================================
+000: DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400

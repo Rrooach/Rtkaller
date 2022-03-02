@@ -1,0 +1,4 @@
+WARNING: stack recursion on stack type 4
+WARNING: can't dereference registers at 00000000ca5a8028 for ip swapgs_restore_regs_and_return_to_usermode+0x79/0x80
+syz-executor.1 (1950) used greatest stack depth: 25392 bytes left
+syz-executor.0 (1951) used greatest stack depth: 25304 bytes left

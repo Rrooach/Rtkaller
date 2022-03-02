@@ -1,0 +1,27 @@
+001: BUG: Bad page map in process syz-executor.0  pte:1800300008003 pmd:ba509067
+000: BUG: Bad rss-counter state mm:00000000a3430f20 idx:0 val:1
+001: addr:0000000024324464 vm_flags:00100077 anon_vma:00000000f1b83b31 mapping:00000000ab16dd4a index:20000
+000: BUG: Bad rss-counter state mm:00000000a3430f20 idx:1 val:3
+001: kasan: CONFIG_KASAN_INLINE enabled
+001: kasan: GPF could be caused by NULL-ptr deref or user memory access
+001: general protection fault: 0000 [#1] PREEMPT SMP KASAN PTI
+001: CPU: 1 PID: 13175 Comm: syz-executor.0 Not tainted 5.2.0-rt1+ #2
+001: Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+001: RIP: 0010:pointer+0x556/0x760
+001: Code: 4c 89 e6 e8 fc 8d ff ff 48 89 c5 e9 bd fb ff ff e8 5f 6d f6 fd 49 8d 7d 18 48 b8 00 00 00 00 00 fc ff df 48 89 fa 48 c1 ea 03 <80> 3c 02 00 0f 85 ce 01 00 00 48 8b 4c 24 28 49 8b 55 18 48 89 ef
+001: RSP: 0018:ffff8880bb217280 EFLAGS: 00010006
+001: 
+001: RAX: dffffc0000000000 RBX: 1ffff11017642e51 RCX: ffffffffb5827771
+001: RDX: 0000000000000003 RSI: ffffffffb7212ba7 RDI: 0000000000000018
+001: RBP: ffffffffb7212ba7 R08: ffff0a00ffffff05 R09: fffffbfff6e42574
+001: R10: fffffbfff6e42574 R11: ffffffffb7212ba6 R12: ffffffffb7212f80
+001: R13: 0000000000000000 R14: 0000000000000044 R15: ffffffffb5ea46e9
+001: FS:  00007fd88aac9700(0000) GS:ffff88811b300000(0000) knlGS:0000000000000000
+001: CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+001: CR2: 00007f862acce1b0 CR3: 00000001175b2002 CR4: 0000000000760ee0
+001: DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+001: DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+001: PKRU: 55555554
+001: Call Trace:
+001:  vsnprintf+0x90d/0x1420
+001:  vscnprintf+0x2c/0x60

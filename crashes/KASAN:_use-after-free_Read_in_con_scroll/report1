@@ -1,0 +1,51 @@
+000: ==================================================================
+000: BUG: KASAN: use-after-free in con_scroll+0x462/0x630
+000: Read of size 106344 at addr ffff8880000ec2a8 by task syz-executor.1/3581
+000: 
+000: CPU: 0 PID: 3581 Comm: syz-executor.1 Not tainted 5.2.0-rt1+ #2
+000: Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+000: Call Trace:
+000:  dump_stack+0x79/0xba
+000:  print_address_description+0x60/0x229
+000:  __kasan_report.cold.4+0x17/0x32
+000:  kasan_report+0x12/0x20
+000:  memmove+0x23/0x50
+000:  con_scroll+0x462/0x630
+000:  do_con_trol+0x2576/0x5d40
+000:  do_con_write.part.26+0xb22/0x1a50
+000:  con_put_char+0xd5/0xe0
+000:  tty_put_char+0xbd/0x150
+000:  do_output_char+0x204/0x770
+000:  n_tty_write+0x589/0xe30
+000:  tty_write+0x3a0/0x800
+000:  do_iter_write+0x3dd/0x560
+000:  vfs_writev+0x19b/0x2d0
+000:  do_writev+0x105/0x2b0
+000:  do_syscall_64+0x9e/0x380
+000:  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+000: RIP: 0033:0x4686dd
+000: Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 bc ff ff ff f7 d8 64 89 01 48
+000: RSP: 002b:00007f570f979c58 EFLAGS: 00000246
+000:  ORIG_RAX: 0000000000000014
+000: RAX: ffffffffffffffda RBX: 0000000000544f80 RCX: 00000000004686dd
+000: RDX: 0000000000000001 RSI: 0000000020000040 RDI: 0000000000000003
+000: RBP: 00000000004c4725 R08: 0000000000000000 R09: 0000000000000000
+000: R10: 0000000000000000 R11: 0000000000000246 R12: 000000000057cf00
+000: R13: 00007fff3777e51f R14: 000000000057cf00 R15: 00007f570f979dc0
+000: 
+000: The buggy address belongs to the page:
+000: page:ffffea0000003b00 refcount:1 mapcount:0 mapping:0000000000000000 index:0x0
+000: 
+000: flags: 0x1000(reserved)
+000: raw: 0000000000001000 ffffea0000003b08 ffffea0000003b08 0000000000000000
+000: raw: 0000000000000000 0000000000000000 00000001ffffffff 0000000000000000
+000: page dumped because: kasan: bad access detected
+000: 
+000: Memory state around the buggy address:
+000:  ffff8880000fff00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+000:  ffff8880000fff80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+000: >ffff888000100000: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+000:                    ^
+000:  ffff888000100080: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+000:  ffff888000100100: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+000: ==================================================================

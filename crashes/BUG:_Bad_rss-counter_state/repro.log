@@ -1,0 +1,18 @@
+syzkaller login: [  334.470975] 000: : inode 106958
+[  334.471603] 000: : block 461312
+[  334.472071] 000: 
+[  334.472389] 000: 
+[  334.470950] 000: EXT4-fs (sda): error count since last fsck: 3
+[  334.470974] 000: EXT4-fs (sda): initial error at time 1622039607: mb_free_blocks:1469: inode 106958: block 461312
+Warning: Permanently added '[localhost]:9552' (ECDSA) to the list of known hosts.
+[  408.215945] 000: ata1: lost interrupt (Status 0x58)
+[  334.472389] 000: EXT4-fs (sda): last error at time 1622574171: ext4_mb_generate_buddy:747
+[  469.655912] 001: ata1: lost interrupt (Status 0x58)
+[  470.122233] 001:  in syz-executor697781539[400000+1000]
+[  470.123284] 001: 
+bash: line 1:   329 Segmentation fault      /syz-executor697781539
+[  470.122209] 001: syz-executor697[329]: segfault at 0 ip 0000000000000000 sp 00007ffe6cc481a0 error 14 in syz-executor697781539[400000+1000]
+[  470.123664] 001: Code: Bad RIP value.
+[  470.133052] 001: BUG: Bad rss-counter state mm:0000000054b36ff1 idx:0 val:1
+[  470.136368] 001: BUG: Bad rss-counter state mm:0000000054b36ff1 idx:1 val:2
+[  470.138574] 001: BUG: non-zero pgtables_bytes on freeing mm: 8192

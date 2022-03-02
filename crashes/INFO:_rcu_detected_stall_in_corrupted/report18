@@ -1,0 +1,146 @@
+001: rcu: INFO: rcu_sched detected stalls on CPUs/tasks:
+001: rcu: 	0-...!: (1 GPs behind) idle=1f6/1/0x4000000000000002 softirq=179522/179525 fqs=0 
+001: 	(detected by 1, t=56323 jiffies, g=241833, q=368)
+001: Sending NMI from CPU 1 to CPUs 0:
+000: NMI backtrace for cpu 0
+000: CPU: 0 PID: 294 Comm: sshd Not tainted 5.6.0-rt1+ #2
+000: Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+000: RIP: 0010:try_to_wake_up+0x2/0x1600
+000: Code: fd ff ff 89 14 24 e8 ed 37 3e 00 8b 14 24 e9 b0 fd ff ff 0f 1f 44 00 00 31 d2 e9 59 f9 ff ff 66 0f 1f 84 00 00 00 00 00 41 57 <41> 56 49 be 00 00 00 00 00 fc ff df 41 55 41 54 55 48 89 fd 53 48
+000: RSP: 0018:ffff88811b209b88 EFLAGS: 00000086
+000: RAX: dffffc0000000000 RBX: 0000000000000000 RCX: 1ffff110229f8fc5
+000: RDX: 0000000000000000 RSI: 0000000000000003 RDI: ffff888114fb8000
+000: RBP: dffffc0000000000 R08: ffff888114fc7e20 R09: ffff88811b209c38
+000: R10: ffffed1023641374 R11: 0000000000000003 R12: ffff888114a99810
+000: R13: 0000000000000001 R14: 0000000000000000 R15: 0000000000000000
+000: FS:  00007f7423c5c800(0000) GS:ffff88811b200000(0000) knlGS:0000000000000000
+000: CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+000: CR2: 0000000003455db8 CR3: 00000001135b4004 CR4: 0000000000760ef0
+000: DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+000: DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000600
+000: PKRU: 55555554
+000: Call Trace:
+000:  <IRQ>
+000:  __wake_up_common+0x10b/0x520
+000:  __wake_up_common_lock+0xd0/0x130
+000:  ep_poll_callback+0x284/0x9b0
+000:  __wake_up_common+0x10b/0x520
+000:  timerfd_triggered+0x8f/0xb0
+000:  timerfd_tmrproc+0x11/0x20
+000:  __hrtimer_run_queues+0x308/0x7c0
+000:  hrtimer_interrupt+0x2c9/0x6c0
+000:  smp_apic_timer_interrupt+0xd4/0x380
+000:  apic_timer_interrupt+0xf/0x20
+000:  </IRQ>
+000: RIP: 0010:e1000_xmit_frame+0x1c1d/0x45b0
+000: Code: c1 ea 03 48 01 c3 48 b8 00 00 00 00 00 fc ff df 0f b6 04 02 84 c0 74 08 3c 03 0f 8e 2b 24 00 00 48 8b 44 24 08 8b 40 18 89 03 <e9> 39 0a 00 00 4c 8b 6c 24 20 e8 94 9b ca fe 80 3d 54 82 10 02 00
+000: RSP: 0018:ffff8881119fefe0 EFLAGS: 00000246 ORIG_RAX: ffffffffffffff13
+000: RAX: 00000000000000b4 RBX: ffffc90000043818 RCX: ffffffffb78b6a3d
+000: RDX: 1ffff11022f9f9f3 RSI: ffff888117cfcf80 RDI: ffff888117cfcfaa
+000: RBP: ffff888117cfcf80 R08: 0000000000000001 R09: 0000000000000000
+000: R10: ffffed1017e8a606 R11: ffff8880bf453035 R12: 0000000000000018
+000: R13: dffffc0000000000 R14: 00000000000000b4 R15: ffff8880bb802b30
+000:  dev_hard_start_xmit+0x137/0x5c0
+000:  sch_direct_xmit+0x25e/0x7d0
+000:  __qdisc_run+0x40e/0x16b0
+000:  __dev_queue_xmit+0x102f/0x1e40
+000:  ip_finish_output2+0xa95/0x1880
+000:  __ip_finish_output+0x323/0x760
+000:  ip_output+0x1c0/0x350
+000:  ip_local_out+0x7f/0xc0
+000:  __ip_queue_xmit+0x7d7/0x1800
+000:  __tcp_transmit_skb+0x1835/0x3290
+000:  tcp_write_xmit+0xd5c/0x5620
+000:  __tcp_push_pending_frames+0x9e/0x300
+000:  tcp_push+0x3f5/0x660
+000:  tcp_sendmsg_locked+0x23d9/0x2d20
+000:  tcp_sendmsg+0x2b/0x40
+000:  inet_sendmsg+0xaa/0x130
+000:  sock_sendmsg+0x121/0x170
+000:  sock_write_iter+0x23f/0x3a0
+000:  new_sync_write+0x3d0/0x5c0
+000:  __vfs_write+0xcf/0x100
+000:  vfs_write+0x17b/0x4a0
+000:  ksys_write+0x198/0x210
+000:  do_syscall_64+0x9c/0x390
+000:  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+000: RIP: 0033:0x7f7421fc9c00
+000: Code: 73 01 c3 48 8b 0d 88 92 2c 00 f7 d8 64 89 01 48 83 c8 ff c3 66 0f 1f 44 00 00 83 3d dd eb 2c 00 00 75 10 b8 01 00 00 00 0f 05 <48> 3d 01 f0 ff ff 73 31 c3 48 83 ec 08 e8 ce 8f 01 00 48 89 04 24
+000: RSP: 002b:00007fffcaed6a68 EFLAGS: 00000246 ORIG_RAX: 0000000000000001
+000: RAX: ffffffffffffffda RBX: 00000000000001d4 RCX: 00007f7421fc9c00
+000: RDX: 00000000000001d4 RSI: 0000564f7eb2a5ac RDI: 0000000000000003
+000: RBP: 0000564f7eb2a5ac R08: 0000000000000cc0 R09: 0000000000000481
+000: R10: 0000000000000008 R11: 0000000000000246 R12: 00007fffcaed6ac4
+000: R13: 00007fffcaed6b64 R14: 0000564f7e248e48 R15: 0000564f7e248e80
+001: rcu: rcu_sched kthread starved for 56325 jiffies! g241833 f0x0 RCU_GP_WAIT_FQS(5) ->state=0x0 ->cpu=1
+001: rcu: RCU grace-period kthread stack dump:
+001: rcu_sched       R  running task    29760    10      2 0x80004000
+001: Call Trace:
+001:  schedule+0xc6/0x290
+001:  schedule_timeout+0x2f3/0x860
+001:  rcu_gp_kthread+0x9e6/0x20c0
+001:  kthread+0x2ce/0x3d0
+001:  ret_from_fork+0x35/0x40
+001: systemd[1]: Starting Journal Service...
+001: systemd-journald[140]: Received SIGTERM from PID 1 (systemd).
+001: systemd[1]: Unit systemd-journald.service entered failed state.
+001: systemd[1]: systemd-journald.service has no holdoff time, scheduling restart.
+001: systemd[1]: Stopping Journal Service...
+001: systemd[1]: Starting Journal Service...
+001: systemd[1]: Started Journal Service.
+001: systemd[1]: systemd-journald.service has no holdoff time, scheduling restart.
+001: systemd[1]: Stopping Journal Service...
+001: systemd[1]: Starting Journal Service...
+001: systemd[1]: Started Journal Service.
+001: systemd[1]: Started Trigger Flushing of Journal to Persistent Storage.
+001: systemd-journald[3677]: Received request to flush runtime journal from PID 1
+001: audit: type=1326 audit(2000000417.283:173): auid=0 uid=0 gid=0 ses=4 subj=kernel pid=3730 comm="syz-executor.1" exe="/syz-executor.1" sig=31 arch=c000003e syscall=202 compat=0 ip=0x4686dd code=0x0
+001: audit: type=1326 audit(2000000418.088:174): auid=0 uid=0 gid=0 ses=4 subj=kernel pid=3730 comm="syz-executor.1" exe="/syz-executor.1" sig=31 arch=c000003e syscall=202 compat=0 ip=0x4686dd code=0x0
+001: SELinux: unrecognized netlink message: protocol=0 nlmsg_type=28946 sclass=netlink_route_socket pid=3737 comm=syz-executor.0
+000: SELinux: unrecognized netlink message: protocol=6 nlmsg_type=0 sclass=netlink_xfrm_socket pid=3743 comm=syz-executor.1
+000: SELinux: unrecognized netlink message: protocol=6 nlmsg_type=0 sclass=netlink_xfrm_socket pid=3743 comm=syz-executor.1
+001: SELinux: unrecognized netlink message: protocol=0 nlmsg_type=1019 sclass=netlink_route_socket pid=3761 comm=syz-executor.1
+000: FAT-fs (loop1): bogus number of reserved sectors
+000: FAT-fs (loop1): Can't find a valid FAT filesystem
+000: FAT-fs (loop1): bogus number of reserved sectors
+000: FAT-fs (loop1): Can't find a valid FAT filesystem
+001: SELinux: unrecognized netlink message: protocol=6 nlmsg_type=14135 sclass=netlink_xfrm_socket pid=3794 comm=syz-executor.1
+000: SELinux: unrecognized netlink message: protocol=6 nlmsg_type=14135 sclass=netlink_xfrm_socket pid=3806 comm=syz-executor.1
+000: Process accounting resumed
+000: Process accounting resumed
+001: tmpfs: Bad value for 'size'
+001: tmpfs: Bad value for 'size'
+001: ata1: lost interrupt (Status 0x58)
+001: ata1.00: exception Emask 0x0 SAct 0x0 SErr 0x0 action 0x6 frozen
+001: ata1.00: failed command: WRITE DMA
+001: ata1.00: cmd ca/00:08:08:00:00/00:00:00:00:00/e0 tag 0 dma 4096 out
+001:          res 40/00:01:00:00:00/00:00:00:00:00/a0 Emask 0x4 (timeout)
+001: ata1.00: status: { DRDY }
+001: ata1: soft resetting link
+001: ata1.00: configured for MWDMA2
+001: ata1: EH complete
+001: ata1: lost interrupt (Status 0x58)
+001: ata1.00: exception Emask 0x0 SAct 0x0 SErr 0x0 action 0x6 frozen
+001: ata1.00: failed command: WRITE DMA
+001: ata1.00: cmd ca/00:b8:08:04:00/00:00:00:00:00/e0 tag 0 dma 94208 out
+001:          res 40/00:01:00:00:00/00:00:00:00:00/a0 Emask 0x4 (timeout)
+001: ata1.00: status: { DRDY }
+001: ata1: soft resetting link
+001: ata1.00: configured for MWDMA2
+001: ata1: EH complete
+001: cgroup: Unknown subsys name 'perf_event'
+001: cgroup: Unknown subsys name 'net_cls'
+001: NFS: Device name not specified
+001: NFS: Device name not specified
+001: FAT-fs (loop1): bogus number of reserved sectors
+001: FAT-fs (loop1): Can't find a valid FAT filesystem
+001: FAT-fs (loop1): bogus number of reserved sectors
+001: FAT-fs (loop1): Can't find a valid FAT filesystem
+001: tmpfs: Unknown parameter 'mpol-interlec:8-5ê'
+001: tmpfs: Unknown parameter 'mpol-interlec:8-5ê'
+001: EXT4-fs (loop1): VFS: Can't find ext4 filesystem
+000: sg_write: data in/out 1717986882/2708 bytes for SCSI command 0x44-- guessing data in;
+000:    program syz-executor.0 not setting count and/or reply_len properly
+000: EXT4-fs (loop1): VFS: Can't find ext4 filesystem
+000: sg_write: data in/out 1717986882/2708 bytes for SCSI command 0x44-- guessing data in;
+000:    program syz-executor.0 not setting count and/or reply_len properly

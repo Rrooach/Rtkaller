@@ -1,0 +1,287 @@
+Extracting prog: 36.233489518s
+Minimizing prog: 4m7.098926804s
+Simplifying prog options: 44.080192869s
+Extracting C: 10.937408428s
+Simplifying C: 0s
+
+
+517 programs, 2 VMs, timeouts [15s 1m0s 6m0s]
+extracting reproducer from 517 programs
+single: executing 2 programs separately with timeout 15s
+testing program (duration=15s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): fcntl$dupfd-accept-sendmsg$ETHTOOL_MSG_RINGS_SET-accept-sendmsg$ETHTOOL_MSG_RINGS_SET-ioctl$sock_ipv6_tunnel_SIOCGETTUNNEL-getsockopt$inet_mreqn-accept-sendmsg$ETHTOOL_MSG_RINGS_SET-accept-kexec_load-fsetxattr$trusted_overlay_upper-sendmsg$ETHTOOL_MSG_RINGS_SET-accept-sendmsg$ETHTOOL_MSG_RINGS_SET-ioctl$sock_ipv6_tunnel_SIOCADDTUNNEL-sendmsg$ETHTOOL_MSG_FEATURES_SET-open-fadvise64-sendmsg$ETHTOOL_MSG_EEE_GET
+detailed listing:
+executing program 0:
+r0 = fcntl$dupfd(0xffffffffffffffff, 0x406, 0xffffffffffffffff)
+r1 = accept(0xffffffffffffffff, &(0x7f0000000140)=@xdp={0x2c, 0x0, <r2=>0x0}, &(0x7f00000001c0)=0x80)
+sendmsg$ETHTOOL_MSG_RINGS_SET(r1, &(0x7f0000000580)={&(0x7f00000004c0)={0x10, 0x0, 0x0, 0x80000000}, 0xc, &(0x7f0000000540)={&(0x7f0000000500)={0x40, 0x0, 0x400, 0x70bd26, 0x25dfdbfc, {}, [@ETHTOOL_A_RINGS_HEADER={0x2c, 0x1, 0x0, 0x1, [@ETHTOOL_A_HEADER_FLAGS={0x8, 0x3, 0x2}, @ETHTOOL_A_HEADER_FLAGS={0x8, 0x3, 0x3}, @ETHTOOL_A_HEADER_DEV_INDEX={0x8, 0x1, r2}, @ETHTOOL_A_HEADER_DEV_INDEX={0x8, 0x1, r2}, @ETHTOOL_A_HEADER_FLAGS={0x8, 0x3, 0x7}]}]}, 0x40}, 0x1, 0x0, 0x0, 0x8000}, 0x40800)
+r3 = accept(0xffffffffffffffff, &(0x7f0000000140)=@xdp={0x2c, 0x0, <r4=>0x0}, &(0x7f00000001c0)=0x80)
+sendmsg$ETHTOOL_MSG_RINGS_SET(r3, &(0x7f0000000580)={&(0x7f00000004c0)={0x10, 0x0, 0x0, 0x80000000}, 0xc, &(0x7f0000000540)={&(0x7f0000000500)={0x40, 0x0, 0x400, 0x70bd26, 0x25dfdbfc, {}, [@ETHTOOL_A_RINGS_HEADER={0x2c, 0x1, 0x0, 0x1, [@ETHTOOL_A_HEADER_FLAGS={0x8, 0x3, 0x2}, @ETHTOOL_A_HEADER_FLAGS={0x8, 0x3, 0x3}, @ETHTOOL_A_HEADER_DEV_INDEX={0x8, 0x1, r4}, @ETHTOOL_A_HEADER_DEV_INDEX={0x8, 0x1, r4}, @ETHTOOL_A_HEADER_FLAGS={0x8, 0x3, 0x7}]}]}, 0x40}, 0x1, 0x0, 0x0, 0x8000}, 0x40800)
+ioctl$sock_ipv6_tunnel_SIOCGETTUNNEL(0xffffffffffffffff, 0x89f0, &(0x7f00000001c0)={'syztnl2\x00', &(0x7f0000000140)={'syztnl1\x00', <r5=>0x0, 0x29, 0x5, 0x23, 0x7, 0x0, @loopback, @mcast1, 0x80, 0x7, 0x1, 0x3}})
+getsockopt$inet_mreqn(0xffffffffffffffff, 0x0, 0x24, &(0x7f0000000200)={@loopback, @multicast1}, &(0x7f0000000240)=0xc)
+r6 = accept(0xffffffffffffffff, &(0x7f0000000140)=@xdp={0x2c, 0x0, <r7=>0x0}, &(0x7f00000001c0)=0x80)
+sendmsg$ETHTOOL_MSG_RINGS_SET(r6, &(0x7f0000000580)={&(0x7f00000004c0)={0x10, 0x0, 0x0, 0x80000000}, 0xc, &(0x7f0000000540)={&(0x7f0000000500)=ANY=[@ANYBLOB="5a55291a", @ANYRES16=0x0, @ANYBLOB="000426bd7000fedbdf25100000002c0001800800030002000000080003000300000008000100", @ANYRES32=r7, @ANYBLOB="08000100", @ANYRES32=r7, @ANYBLOB="0800030007000000"], 0x40}, 0x1, 0x0, 0x0, 0x8000}, 0x0)
+r8 = accept(0xffffffffffffffff, &(0x7f0000000140)=@xdp={0x2c, 0x0, <r9=>0x0}, &(0x7f0000001dc0)=0x80)
+kexec_load(0x8, 0x8, &(0x7f0000001cc0)=[{&(0x7f00000000c0)="ff06403746da4709bc027e3215f5305b2c5d0bd7597acce8f6e962d345486b6b807dd901cc24d4932f242d9707764bff056fcbff1e00bee60288dcbca439560a990133ab", 0x44, 0xfffffffffffffff7}, {&(0x7f0000001800)="b99bdcaac3365cea5d898cfe9c679210a8018778284f3f4014e5555a3c4bfcc622df4ad978c3bbd417e25ca146d8d95abac088c260333df83ffcb25528c47c008c88f6271ec0a45d25df9e02bee46e301e2539356a54717e09d3e60651532b531ac11d506348aa1a464fd6", 0x6b, 0x8, 0x7}, {&(0x7f0000001880)="c2718d44f367767bc090c0be6656c7b3c832", 0x12, 0x7, 0x8070}, {&(0x7f00000018c0)="089fee9da58302c0401a20a8133d191324a7d04c415609f1217d0df8aaac3d7d9df9ff7e2250d8f28a34f0e37f8f994ae08670c23e85f9b04e5b0a817c0efb89ee9b25ad75ebe85355d653ba06fd344b92b9e6695ac6bdb6172ebf06f70d31f1f5678e50032ad72316207cc7c65ef31174b955742e540caffea478ad6363333c232917b342fb5c7f17c86a7ec0f3091abe47e9448a2b0e490a056ce2555d3482aa76189fd041d9ef6a3f17bcdd7574742cc6ddff", 0xb4, 0x1f, 0x6}, {&(0x7f0000001980)="ded531e29e7059eb79f3360ee834ee647e48ea6a57eaf22c16e494fa2014984bb550746021ea69b46d7aeae614e3f692d506bfcfacbee35c22ebb4c567e9c25ffc2b427cb0a71ba23870703df4755c15b5842245a391c2091db235abcc47e96b7f2c27819011b5fb1afbcafc2fe2658db9b004801f2b45286bada900178e2f006d1ccc0b8185a1fdae3fc56da323cd196321d8ad34090a57b405fd3227e2ff4dd1779b8f5db004b1dd86bc8c333a6f322eb5a22ede061c231d60b40ea1a6fdce77388789238467db5cb05006dd301b320d8bebf88b67c8ff94a26b4be5c79c49e37480", 0xe3, 0x5, 0x400}, {&(0x7f0000001a80)="3353d5440a98e4896b73c2f2e534b6bb5c92c0768c35caaa56501fceea127dac6d6ad3ce4a308102ed006c5f5d27750249d4a327b553b0140c60be0dbedce8af2e12f2bb39fb452375f63d4b1a52dc368e875ce89329be70e51812d3860c47e83e9b2e00601ed83ac772a6db9166f365e89c8b7499cfe5ddca3b0398f476612fbb55f92a57", 0x85, 0x9220}, {&(0x7f0000001b40)="fbe0bc05e7d20470b4e0c0e6f73145db1ad7f2d0607585cc22582b6c0700c75bb0f44924785c183b4c3b06a71e1db9f2984ed281bed53168c9b0d76931acd7f207d091511300e043a8eb86843e39770c83d4d2c2e6dd2d5e02671fb758ba00d6e0dfbc9f524fa86880305a55304ccf4709b78e3c0e81c879324711", 0x7b, 0x80000000, 0x1f}, {&(0x7f0000001bc0)="a86f10d0c115823c346f2303b483022735a6c420adcf2aca474a6c6cc15f6878e6bceb8e5fcf36ff5eb680efb61c4240865fc8cee333942865853a32d3b3bf8e7fa2148eed574884e332e5f0cdc765d5ef25bd707ecc71ba0a512dfe808e1080ca72aed307e25e8bfbfbc15f3624ad8dc216802fb61a15c042d8412fa09abe058428f9917dc53adf3cdef09b986b59763fbd1239adf583357a2a40d1b37a427f6de1f12a466aed72fe67d7ad08e58235a685d4469e49034e4aec7c89d2604b2f3e911a362cf71e4cf9fdffbc01f7d1d7ebf3a00b44f89225d18102ac4bd181d08082d8306835dfeb3671a45081d04a7f7e2bcdcbdb2c", 0xf6, 0x5, 0xe2a7}], 0x935f09b687e16e0c)
+fsetxattr$trusted_overlay_upper(r1, &(0x7f0000000080)='trusted.overlay.upper\x00', &(0x7f00000007c0)={0x0, 0xfb, 0x1015, 0x2, 0x7, "7924ee37774cb5494602c7c507429cb0", "c03845635c250349092ee07571561d307537dbac0b42da49cc026522bf63ab1dbe1b83c11e6e9069d48f928aca454e1a9bbe647212091acdd77210a1f666a2e336f232a89e79abfbd27dfa497073f21a32fdde2004b6cdca03554cb372aab3294ab355a6219ca7f77839dc6060555ab3f5c78361fc9f439b558501f80752fbb60c3c0ce039b70c63ba29bfb655a35690e0631e49e7d0e0a5b29000cd3196041a7f9bb6ceaf43555b188138a6b139f6678997c5b3b00e6370154de52456b141da792a7741a2dc897cb4d03aed308a02e68acb5dce8e2bc3127827a318c36a607ced98a1b5bb4ded4212723c4389ba305e368068442ed481ac1cffb52fcfe4c0223d900a0b7873905e3c073ae0a0b3e7720e1ffd6f2060d78dceed7e0a60244989e48f14215af58160eb96240e319d3d577d0b37f1d18d04d00dc66cf1b3caf78a58ce37594bd1323b0701847142e9d376b321b4e7792fa9167d901f5f36ed52c9862aca0728b87e5b1310fc2f9c836402a8bec7870de92645a5c1a5f26fc901badaf9b543f65361c00227332485ec12957b93c0f60045ca09a0c93e9e0bed0b923b94033abf78e7780e4a1d235e0e219afd5628612a478051815406f159468a31fc8e4fc263875f8be6ae268330b7a113d3847192ab44e3714a993ec90259468f1d950e4896a41a3121c6217188c0499e8d61ab6a563f325a386e4a2dc1b25e203cce18c7e1c2abe992cfad28e488b199cd04075000e201b23da3cdbeb9f193e85252206a220b0a099f0250a0f27d9fe2649baaf745aab21735819e1bd0a59343c7d134b3e3cddcf3123520c5382deee6c1cf1aeda291d4fa010f43202139e893aff985110d7c78b2455d0590b5531ec80062d7d64a03024a5d7933bb9248a1221d2c7fe5f59e52fbd5384b6f37bee39c793f6cc74d1120393313c92a8a28d04887ae3c5f70ab419c869a12af11fd073d9019b507f08d43eace5afe90ce11386b4d52fc49fdd23ef88a5db46747b3f980f880f04c62a722b510e7a62dd62b6eae4fe065ab4ab7a89d9a0a50936c58e926f23bdff618764accc1219352088cdbc93a442f5baeab9a4bdb7015fb67b71ae7b80181c9d54432c13677f304da26622ac34545aa2c8a5fb5827890fe49bbd81eb3b020af96e51e8331421a140b52fa8d7a0551664533ecc48971c528d60104cac430166288657af8f2c865efaaf84f2c76cbdb936032f011023befe4d409abf7b3ac68a671e409479fc36766b4ffdd0257148431cbcb63ede182886459d09f1f2d541e5073f96e5fc14129ff3a2f483b6bb098b8997f4c283ab7840b135d9e846a3c95b58e1ac1be2da5fa499d63c68e685b21ddbf6fe957faca8a9b133214e12915d90a332317e4ba30502330486ed47aadc3e79fc46725dd440c2b19e9c0e9410fd765f014c04867d9a85b8177ea24bbf5769f6f00ee5817df45f2612926d81f62a559a22efc1c9fe2626e41f1e9177607c4e55135cf196f5cfb23bb7b3935af35d7f0ef10fbaa4fc04192578f4af6b4c2f8b653b0173f4952b4a2d454f087ee2670a7a5788d2533d39f86db34224099ddf7f724344f0cc89ff149785c921c307e1bdc7562e42db4cffaa9d667f1fe49d3178bb17ceea949f06459e454e1429e020cc9db7ee3986f809d590aed1467f06108021e4fed8194e107622c2915090b859e3a496d7a4d377ed8a545fcf04e7def4da23207cc061c3336b09dbb2bc6f03f316be0c2ba47d12d861ce3b455310da9fbcfa8851eec1c059f87e114e5e713e67511f8bffd9b38a66e9654ea3148977d6f471031b047e37a89ba5988b57b3d70fd672db2eabcb2156f14049a95742a1caca22be027877a534aa9213b72e1986654278c74eae0011589d24f2a2a881514e021a897ae96b4a053adea41b63d3294b9112c9d7cd860dda5bd2eb01d2bcb1d811f5340c3699548cf063ef61cda421aa6cd3b57f58584bca3cb6fda87566176294866d51866a544cd4364af86a5ae6982ad70cfff1fec63046facdee15c47ef6851fdc8436c0a34a8745a0eb7d89707c490689848df49f9d1b15b7c558cd5e618ff6d3a7f7c892762acaef0f3a4fbe695bf873c4e6cca8399ebaf7abe83db7571fc3744af9bc95a92dfed83d382862bfa6ec916e5e02e4605dab72a505098ab9e0e9145e83852bcb182f3f26e9c842d33fd62d2f0deedddc3271d1f171dd65f4ebdd6160ae5873cb18347187bbf890426dfc643c4e1b7ca777bf2900fec8f5b4df3ebf399c7240d41a3bc10136b98ec79d13669e016705dfbd425d5657132a93328111bf694b8a6cf07e655883d8d7177234d4f5c624cf8b710f8270d92e206fff8020b7064e280df5f47a810368b39671859627f6727e7d625d3afa53a67a720d65e870e4972a106d9c49c65cf82b8970ec98aed7640a9bb84a97c4f50b58fffe8c4b7a5107f3b43490eed99860bf1c38e615167334b84d03914a0ef3c781272473b75e5975c2fdd7d3f90bc5c85e83f4d7b1adc1f1b67b39ccc01eac4e38e2d18beb69779c135a83103cc335bd536e6e87c0b931fb72b62f77ee441ec8bd2cf65052ed90c11238e61e249e6085d07ca2e7f905edb130d5994379c49886884d3cf65e430e0e75752598fd77722d2046d46b3e98ed16d93a3958eed58abe908348a03e7b0c390fa17555dda50a3e2301060dbfcd8a8aa27bbd3a17bc9b3593a13a30475d7d7b596a1d94c6a09a5f8362e8b6ceceb717a6c532f8a7131264a6c5b0fb008f934077a94c06689edd8ce21b84d74db606f27185e3589e2c831ed04d7ea4e8cf483bf0fb0fa7ac557916b5c5c3a40ba3d29cc2206b2239544fbfc3439296479b80d7719c735e89a459ea6fbc0e2163b95d2fb619f895c21ed044ced393c16be87e754c4db0eab84da82cca81e95b00695e17393e704ae58590842ee355322fb881c461ad711e771893cd3219157a1539ba390ab0e3ddca0cdc17dcf0401722f2c2835a5ec46170b1fcfb462f39ce54ac55e27ec310983df270fce7112fe8b9b22e18e1f159788fc89ddd81c05965df3c59ea15421357474f8260230ede777e5e15fe55baa02eb1c3a52b77f1adae7c8568ea12d1194695b569801462a197f05b4107ebb100f3f9dddca12c43d9178901e6992034fba95cbfa1f810249ca696a6f1815f61f448a121f56a26527253aabef407c7620a822885739986b545f46b11e1faaac824e5b34cbd034644d938ce3e1dff44e3e9ae48ed5ad45c6d11e6a25850773013b6326c2f16fbde4fc03c70435c7910f48848afad59012cb91e34d5517141cb6dcf5f247df65f9057d97a48a2ed4a01653ebb1d7ae014e4569cccd87ebf8d26d294ece98fd52aabc1c801c4f4e488fe942b94802d0035ee27ab2537dc48693cf1e34d6b63bfd46b4598f0a1ebbd90cf016937cc9e915afa8820bc536ffd6c12fb5037f5a7c562ecc5e6d78d6c1f56c3fefe29f35a5a3d78b4e7fbe17a93ee5f486a16be07e299c6f8cdd030ed722a322519efd9848c6d3474f40782954af64a959ac94e66edc50926324c741131940d0cac1c053c57890b6092b9a1183a4d61d506d122b2d5070c6f7c04c3123998cfddb0cc08d5a163c9073fd9c8518e95a890ea524d166a4cefe1445facb94ac1fd136c445eef4de7495cf4b90bb88f5d7410ac34ae28c40ec6f06d19e8a7fe3372369008a3642db99332fe1105d97a6ed684b3b86f67554fc0f287f086259e65971f7856fbb9d4940e4f8323fa337a20c6bf7ed3d23859cab7c782bb8e85f38197bd3cc8c30bf7dec7c077c8a923b01f3e402fe050505bd3740ff235f60d99081d06d91a44c1cf92533ced19ca4fef79a598607eebe055a05cb2734ca8475d02b16fd098192f04d9aaf6d187925f06541b9b9da9b877520e3d8deac343dc7f50485dfcd218d0d710c3e79db0aa9a0f874ebd3b6ddfba67cf8aa90f0f4f19f25d2e8b1b9c868c32f969ae076c60042a1559c0c1baa9d586dda7a21ec8dbaefaaeda943a4701ef1e8a717c97daf69e3aaa33f16c0d6654596449bbb09f67ffb046cf8ea2c4ba11c24ab41ce4c82bcaa298fba71c53456067640e7c7bbc5f13c8cf42c0330c95ca3bb1bce2e93a58d6acde795d51e47602b5a2e3ce7bf37756bc8b255f082e712b397673c60c581cffd7beef670c5136c95b9826a13ac06b966dc1847d0b3d5b3065403a00dccab4a59acfeaa1e3b2aa19ec6b642b4ea21ebec8ee0dd13ce0abec1633c807d7ab28e0a09a0494ad4c0bc903601f43e783634fffd56584d35a3859c24c865e4a4e234148825b9885f289ee33c3d6babf2b1cb9e0d3864ce72eb839f7e08472a4f079e30851958891d9a4792609e2378e3859d22e6c4a63a0ab3f3642bb429bb9a15e16a53544656d88adffb427a0a3c90bfc283247b6d00d7149cddd54d4dc7561b7a24d221bc65fc5778f18ceaa2021a7ea55636266bc731538e6c4207b3e46341dedb961503d12702300071b92f13285e3a3a899f1e591b0d3b3f9ff0fd87787abf6a430abc183a6473539f066d0dfe5000b3359e58f7fafc56482eedb14c23099e605444648257a94b0802642b20152f0430b21ef52f8ef7c8ebdfaaae74f38d588df9fad7ca51f18f5a6ce0b5ac366311c624847416d70480397cb20971c90a7236f3e25857533aa942d465c8894305bbc49559924b2cab4498086f0c3d4896b0c23967be6cbc31f1dea44a307bf4d37d6f5b9c17620bb08a942c0f0c3bf2097503649f7e81d6912914470493d6efd8dcd76ed93413786598510880f4e646395fbbf80f4f23ded3ba18d680dd3dbc47bb9ff6bad3762e651ba88827cb19c81bc047abd3338771cfabfc47bd289f721e3188c84058a74246f418a78982adc39242e4ddc8b5de308052d2833bab077ef876c3d63bf5e863dc8098fee1d4b990bbfa2a43ef101d2c5102cd8816b46d1115462a548047954cb34d0623d092bfc5a399d21848f31477ef2323191b926eab68f9213f4feb59b263a527c2a8417b2d06618cb51bf53a2a439939bce6c5b67782714e4e3ab20b2c0641fe45747295348d5e68c24077ce76ce4a0b4e4a23f65f33833fa3167a8d767af2541b25c7aa2d83de870fa5e6eb22c740c196214d85722708735abdedb3245b2d4eddade838b824ec65fc2861933b1649d48f742ce69712d86df35dddc10f617239201daa2d455a7840b84f44f11076f87b47aca0ae9e653da60c520d3d3a6433d7b07178c3b5538885dd0e96303222413793b2c6136c861566604bc98df2cc5e281fd0030122f81d48e593a1f13fdcce0d83a1e3ef3836113151afb74170babd45d43bfa17aff0f0dc3f57526f987db4bfbf53e4bb1d00dd237136a10f22b32fc31317a30be96bd33c2cfc6726be26b6442d2fb63fcb2eba962b0e12f036808bc8266d32e9c015e2c592b2bd09b5780e4462719588c439be1186b87006c63eba29b6fdbf1784b7c17d397ae0cb7f06d55e35d0d1fe0e3e49030b84bcbeefa200bd73a0921790e55dfb55b21440eece9d02b3a5362c3d74e882be8e738e3e80af51449bb1757d48d411d4b2c999f2003f178351989f01c2cad3dcd0b150a19b0a248a54e893b71468a2468ad3e4cf64787bdb4447689b912af65e11210e96ca734ab787980c4ccc420d76af6ea760ade534a8fd0ebf49dd971403b809d0575a8556354ebaab0af87ebd04853628101cb70502fddb6c35e178b81d98ff95b58c955c484200a84d60e4bbec2715d28f7485b2ffbe1e21035f2eaa7821e4cb023ebeb526"}, 0x1015, 0x0)
+sendmsg$ETHTOOL_MSG_RINGS_SET(r8, &(0x7f0000000580)={&(0x7f00000004c0)={0x10, 0x0, 0x0, 0x80000000}, 0xc, &(0x7f0000000540)={&(0x7f0000000500)={0x40, 0x0, 0x400, 0x70bd26, 0x25dfdbfc, {}, [@ETHTOOL_A_RINGS_HEADER={0x2c, 0x1, 0x0, 0x1, [@ETHTOOL_A_HEADER_FLAGS={0x8, 0x3, 0x2}, @ETHTOOL_A_HEADER_FLAGS={0x8, 0x3, 0x3}, @ETHTOOL_A_HEADER_DEV_INDEX={0x8, 0x1, r9}, @ETHTOOL_A_HEADER_DEV_INDEX={0x8, 0x1, r9}, @ETHTOOL_A_HEADER_FLAGS={0x8, 0x3, 0x7}]}]}, 0x40}, 0x1, 0x0, 0x0, 0x8000}, 0x40800)
+r10 = accept(0xffffffffffffffff, &(0x7f0000000140)=@xdp={0x2c, 0x0, <r11=>0x0}, &(0x7f00000001c0)=0x80)
+sendmsg$ETHTOOL_MSG_RINGS_SET(r10, &(0x7f0000000580)={&(0x7f00000004c0)={0x10, 0x0, 0x0, 0x80000000}, 0xc, &(0x7f0000000540)={&(0x7f0000000500)={0x40, 0x0, 0x400, 0x70bd26, 0x25dfdbfd, {}, [@ETHTOOL_A_RINGS_HEADER={0x2c, 0x1, 0x0, 0x1, [@ETHTOOL_A_HEADER_FLAGS={0x8, 0x3, 0x2}, @ETHTOOL_A_HEADER_FLAGS={0x8, 0x3, 0x3}, @ETHTOOL_A_HEADER_DEV_INDEX={0x8, 0x1, r11}, @ETHTOOL_A_HEADER_DEV_INDEX={0x8, 0x1, r11}, @ETHTOOL_A_HEADER_FLAGS={0x8, 0x3, 0x7}]}]}, 0x40}, 0x1, 0x0, 0x0, 0x8000}, 0x40800)
+ioctl$sock_ipv6_tunnel_SIOCADDTUNNEL(0xffffffffffffffff, 0x89f1, &(0x7f0000000300)={'sit0\x00', &(0x7f0000000280)={'ip6_vti0\x00', <r12=>0x0, 0x4, 0x0, 0x3, 0x100, 0x41, @mcast2, @local, 0x700, 0x7, 0x10001, 0x4}})
+sendmsg$ETHTOOL_MSG_FEATURES_SET(r0, &(0x7f0000000780)={&(0x7f0000000040)={0x10, 0x0, 0x0, 0x400000}, 0xc, &(0x7f0000000740)={&(0x7f0000000340)={0x3ac, 0x0, 0x4, 0x70bd28, 0x25dfdbff, {}, [@ETHTOOL_A_FEATURES_HEADER={0x64, 0x1, 0x0, 0x1, [@ETHTOOL_A_HEADER_DEV_INDEX={0x8, 0x1, r2}, @ETHTOOL_A_HEADER_FLAGS={0x8, 0x3, 0x1}, @ETHTOOL_A_HEADER_DEV_INDEX={0x8, 0x1, r4}, @ETHTOOL_A_HEADER_DEV_NAME={0x14, 0x2, 'bond_slave_0\x00'}, @ETHTOOL_A_HEADER_FLAGS={0x8, 0x3, 0x1}, @ETHTOOL_A_HEADER_DEV_INDEX={0x8, 0x1, r5}, @ETHTOOL_A_HEADER_FLAGS={0x8, 0x3, 0x1}, @ETHTOOL_A_HEADER_FLAGS={0x8, 0x3, 0x3}, @ETHTOOL_A_HEADER_DEV_NAME={0x14, 0x2, 'wg2\x00'}]}, @ETHTOOL_A_FEATURES_HEADER={0x30, 0x1, 0x0, 0x1, [@ETHTOOL_A_HEADER_FLAGS={0x8, 0x3, 0x1}, @ETHTOOL_A_HEADER_FLAGS={0x8}, @ETHTOOL_A_HEADER_DEV_NAME={0x14, 0x2, 'bridge0\x00'}, @ETHTOOL_A_HEADER_FLAGS={0x8, 0x3, 0x1}]}, @ETHTOOL_A_FEATURES_HEADER={0x4}, @ETHTOOL_A_FEATURES_HEADER={0x40, 0x1, 0x0, 0x1, [@ETHTOOL_A_HEADER_FLAGS={0x8, 0x3, 0x1}, @ETHTOOL_A_HEADER_FLAGS={0x8, 0x3, 0x3}, @ETHTOOL_A_HEADER_FLAGS={0x8, 0x3, 0x2}, @ETHTOOL_A_HEADER_FLAGS={0x8, 0x3, 0x1}, @ETHTOOL_A_HEADER_FLAGS={0x8, 0x3, 0x1}, @ETHTOOL_A_HEADER_DEV_NAME={0x14, 0x2, 'veth1_virt_wifi\x00'}]}, @ETHTOOL_A_FEATURES_HEADER={0x68, 0x1, 0x0, 0x1, [@ETHTOOL_A_HEADER_DEV_NAME={0x14, 0x2, 'gretap0\x00'}, @ETHTOOL_A_HEADER_FLAGS={0x8, 0x3, 0x2}, @ETHTOOL_A_HEADER_FLAGS={0x8, 0x3, 0x1}, @ETHTOOL_A_HEADER_DEV_INDEX={0x8, 0x1, r7}, @ETHTOOL_A_HEADER_DEV_NAME={0x14, 0x2, 'veth1_to_team\x00'}, @ETHTOOL_A_HEADER_FLAGS={0x8}, @ETHTOOL_A_HEADER_FLAGS={0x8, 0x3, 0x2}, @ETHTOOL_A_HEADER_DEV_NAME={0x14, 0x2, 'bond0\x00'}]}, @ETHTOOL_A_FEATURES_HEADER={0x34, 0x1, 0x0, 0x1, [@ETHTOOL_A_HEADER_DEV_INDEX={0x8, 0x1, r9}, @ETHTOOL_A_HEADER_DEV_NAME={0x14, 0x2, 'veth0_macvtap\x00'}, @ETHTOOL_A_HEADER_DEV_NAME={0x14, 0x2, 'veth1_to_hsr\x00'}]}, @ETHTOOL_A_FEATURES_HEADER={0x64, 0x1, 0x0, 0x1, [@ETHTOOL_A_HEADER_FLAGS={0x8, 0x3, 0x3}, @ETHTOOL_A_HEADER_DEV_INDEX={0x8}, @ETHTOOL_A_HEADER_FLAGS={0x8, 0x3, 0x2}, @ETHTOOL_A_HEADER_FLAGS={0x8, 0x3, 0x2}, @ETHTOOL_A_HEADER_DEV_INDEX={0x8}, @ETHTOOL_A_HEADER_FLAGS={0x8}, @ETHTOOL_A_HEADER_DEV_NAME={0x14, 0x2, 'veth0\x00'}, @ETHTOOL_A_HEADER_DEV_INDEX={0x8, 0x1, r11}, @ETHTOOL_A_HEADER_DEV_NAME={0x14, 0x2, 'veth1_to_bridge\x00'}]}, @ETHTOOL_A_FEATURES_HEADER={0x30, 0x1, 0x0, 0x1, [@ETHTOOL_A_HEADER_DEV_INDEX={0x8}, @ETHTOOL_A_HEADER_DEV_INDEX={0x8, 0x1, r12}, @ETHTOOL_A_HEADER_DEV_INDEX={0x8}, @ETHTOOL_A_HEADER_DEV_NAME={0x14}]}, @ETHTOOL_A_FEATURES_WANTED={0x178, 0x3, 0x0, 0x1, [@ETHTOOL_A_BITSET_VALUE={0xb8, 0x4, "d83214424ad949793ee6a8e81b18aec6db3ee5ff71a83e8d22ac51cc7a2a96941226ae5c866b052995abcb7c8b8dbd1027cdf591e45f48785f7200c6fe9f6ac9f354dd67ad81c36fea407af7f105588fb0cd107207768b79a819a1d3942cbd47183a4074d95e17377a105fc429bd03b18a84e34f29ebb3f36cb419dd46adea3f85a1ca22a80edddaac604d1b6e0f6f953fa3f1dc5f2900b23b3d3378f4d8bf28203a291160a1f36dd3cfebc1b4d0902f6b81bea2"}, @ETHTOOL_A_BITSET_VALUE={0x70, 0x4, "f8cc2907b3c88e480da6e3e911b94e7f73143266c7899dae486b150e68ab602604edc09456c17d66d1ae228ce5bf99c48684ea1f0c12fd3c0f15de5498673caab39f1c7591169768988d2391dd8b95e3d68caa5b973cfb253b85b9b295503a9405b7fdb0d651287698d99e0b"}, @ETHTOOL_A_BITSET_VALUE={0x4b, 0x4, "1a69a207e7cee56d8e1528bc8c360a43ebc715ee6d0e4dface6ffddf3e107312c9a083e56cf55cd7f07d28a3efdd97985f9c94d767e5b3ae73b4b8ccd9abc67746f46a8e21de66"}]}, @ETHTOOL_A_FEATURES_HEADER={0x18, 0x1, 0x0, 0x1, [@ETHTOOL_A_HEADER_DEV_NAME={0x14, 0x2, 'erspan0\x00'}]}]}, 0x3ac}}, 0xc877d77b37cf5bce)
+r13 = open(&(0x7f0000000000)='/bin/cat\x00', 0x0, 0x0)
+fadvise64(r13, 0x0, 0x0, 0x4)
+sendmsg$ETHTOOL_MSG_EEE_GET(0xffffffffffffffff, &(0x7f0000002000)={&(0x7f0000001e40)={0x10, 0x0, 0x0, 0x80000}, 0xc, &(0x7f0000001fc0)={&(0x7f0000001f40)={0x68, 0x0, 0x400, 0x70bd28, 0x25dfdbfb, {}, [@HEADER={0x50, 0x1, 0x0, 0x1, [@ETHTOOL_A_HEADER_FLAGS, @ETHTOOL_A_HEADER_FLAGS={0x8, 0x3, 0x1}, @ETHTOOL_A_HEADER_FLAGS={0x8, 0x3, 0x1}, @ETHTOOL_A_HEADER_FLAGS={0x8, 0x3, 0x6}, @ETHTOOL_A_HEADER_FLAGS={0x8, 0x3, 0x2}, @ETHTOOL_A_HEADER_DEV_INDEX={0x8}, @ETHTOOL_A_HEADER_FLAGS={0x8, 0x3, 0x1}, @ETHTOOL_A_HEADER_DEV_NAME={0xfffffffffffffc3f, 0x2, 'geneve1\x00'}]}, @HEADER={0x4}]}, 0x68}, 0x1, 0x0, 0x0, 0x4000000}, 0x4000)
+
+program did not crash
+testing program (duration=15s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): mkdir-openat$mice-ioctl$PERF_EVENT_IOC_REFRESH-chdir-open-lstat-rmdir
+detailed listing:
+executing program 0:
+mkdir(&(0x7f000000014f)='/tmp/lstw7aVdE\x00', 0x0)
+r0 = openat$mice(0xffffffffffffff9c, &(0x7f0000000000)='/dev/input/mice\x00', 0x0)
+ioctl$PERF_EVENT_IOC_REFRESH(r0, 0x2402, 0x80)
+chdir(&(0x7f000000017c)='/tmp/lstw7aVdE\x00')
+open(&(0x7f000000018b)='test_dir/test_eacces\x00', 0x0, 0x1b6)
+lstat(&(0x7f0000000252)='./test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop\x00', 0x0)
+rmdir(&(0x7f00000006c7)='/tmp/lstw7aVdE\x00')
+
+program crashed: kernel BUG at fs/namei.c:LINE!
+single: successfully extracted reproducer
+found reproducer with 7 syscalls
+minimizing guilty program
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): mkdir-openat$mice-ioctl$PERF_EVENT_IOC_REFRESH-chdir-open-lstat
+detailed listing:
+executing program 0:
+mkdir(&(0x7f000000014f)='/tmp/lstw7aVdE\x00', 0x0)
+r0 = openat$mice(0xffffffffffffff9c, &(0x7f0000000000)='/dev/input/mice\x00', 0x0)
+ioctl$PERF_EVENT_IOC_REFRESH(r0, 0x2402, 0x80)
+chdir(&(0x7f000000017c)='/tmp/lstw7aVdE\x00')
+open(&(0x7f000000018b)='test_dir/test_eacces\x00', 0x0, 0x1b6)
+lstat(&(0x7f0000000252)='./test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop/test_eloop\x00', 0x0)
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): mkdir-openat$mice-ioctl$PERF_EVENT_IOC_REFRESH-chdir-open-rmdir
+detailed listing:
+executing program 0:
+mkdir(&(0x7f000000014f)='/tmp/lstw7aVdE\x00', 0x0)
+r0 = openat$mice(0xffffffffffffff9c, &(0x7f0000000000)='/dev/input/mice\x00', 0x0)
+ioctl$PERF_EVENT_IOC_REFRESH(r0, 0x2402, 0x80)
+chdir(&(0x7f000000017c)='/tmp/lstw7aVdE\x00')
+open(&(0x7f000000018b)='test_dir/test_eacces\x00', 0x0, 0x1b6)
+rmdir(&(0x7f00000006c7)='/tmp/lstw7aVdE\x00')
+
+program crashed: kernel BUG at fs/namei.c:LINE!
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): mkdir-openat$mice-ioctl$PERF_EVENT_IOC_REFRESH-chdir-rmdir
+detailed listing:
+executing program 0:
+mkdir(&(0x7f000000014f)='/tmp/lstw7aVdE\x00', 0x0)
+r0 = openat$mice(0xffffffffffffff9c, &(0x7f0000000000)='/dev/input/mice\x00', 0x0)
+ioctl$PERF_EVENT_IOC_REFRESH(r0, 0x2402, 0x80)
+chdir(&(0x7f000000017c)='/tmp/lstw7aVdE\x00')
+rmdir(&(0x7f00000006c7)='/tmp/lstw7aVdE\x00')
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): mkdir-openat$mice-ioctl$PERF_EVENT_IOC_REFRESH-open-rmdir
+detailed listing:
+executing program 0:
+mkdir(&(0x7f000000014f)='/tmp/lstw7aVdE\x00', 0x0)
+r0 = openat$mice(0xffffffffffffff9c, &(0x7f0000000000)='/dev/input/mice\x00', 0x0)
+ioctl$PERF_EVENT_IOC_REFRESH(r0, 0x2402, 0x80)
+open(&(0x7f000000018b)='test_dir/test_eacces\x00', 0x0, 0x1b6)
+rmdir(&(0x7f00000006c7)='/tmp/lstw7aVdE\x00')
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): mkdir-openat$mice-chdir-open-rmdir
+detailed listing:
+executing program 0:
+mkdir(&(0x7f000000014f)='/tmp/lstw7aVdE\x00', 0x0)
+openat$mice(0xffffffffffffff9c, &(0x7f0000000000)='/dev/input/mice\x00', 0x0)
+chdir(&(0x7f000000017c)='/tmp/lstw7aVdE\x00')
+open(&(0x7f000000018b)='test_dir/test_eacces\x00', 0x0, 0x1b6)
+rmdir(&(0x7f00000006c7)='/tmp/lstw7aVdE\x00')
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): mkdir-ioctl$PERF_EVENT_IOC_REFRESH-chdir-open-rmdir
+detailed listing:
+executing program 0:
+mkdir(&(0x7f000000014f)='/tmp/lstw7aVdE\x00', 0x0)
+ioctl$PERF_EVENT_IOC_REFRESH(0xffffffffffffffff, 0x2402, 0x80)
+chdir(&(0x7f000000017c)='/tmp/lstw7aVdE\x00')
+open(&(0x7f000000018b)='test_dir/test_eacces\x00', 0x0, 0x1b6)
+rmdir(&(0x7f00000006c7)='/tmp/lstw7aVdE\x00')
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): openat$mice-ioctl$PERF_EVENT_IOC_REFRESH-chdir-open-rmdir
+detailed listing:
+executing program 0:
+r0 = openat$mice(0xffffffffffffff9c, &(0x7f0000000000)='/dev/input/mice\x00', 0x0)
+ioctl$PERF_EVENT_IOC_REFRESH(r0, 0x2402, 0x80)
+chdir(&(0x7f000000017c)='/tmp/lstw7aVdE\x00')
+open(&(0x7f000000018b)='test_dir/test_eacces\x00', 0x0, 0x1b6)
+rmdir(&(0x7f00000006c7)='/tmp/lstw7aVdE\x00')
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): mkdir-openat$mice-ioctl$PERF_EVENT_IOC_REFRESH-chdir-open-rmdir
+detailed listing:
+executing program 0:
+mkdir(0x0, 0x0)
+r0 = openat$mice(0xffffffffffffff9c, &(0x7f0000000000)='/dev/input/mice\x00', 0x0)
+ioctl$PERF_EVENT_IOC_REFRESH(r0, 0x2402, 0x80)
+chdir(&(0x7f000000017c)='/tmp/lstw7aVdE\x00')
+open(&(0x7f000000018b)='test_dir/test_eacces\x00', 0x0, 0x1b6)
+rmdir(&(0x7f00000006c7)='/tmp/lstw7aVdE\x00')
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): mkdir-openat$mice-ioctl$PERF_EVENT_IOC_REFRESH-chdir-open-rmdir
+detailed listing:
+executing program 0:
+mkdir(&(0x7f000000014f)='/tmp/lstw7aVdE\x00', 0x0)
+r0 = openat$mice(0xffffffffffffff9c, 0x0, 0x0)
+ioctl$PERF_EVENT_IOC_REFRESH(r0, 0x2402, 0x80)
+chdir(&(0x7f000000017c)='/tmp/lstw7aVdE\x00')
+open(&(0x7f000000018b)='test_dir/test_eacces\x00', 0x0, 0x1b6)
+rmdir(&(0x7f00000006c7)='/tmp/lstw7aVdE\x00')
+
+program crashed: kernel BUG at fs/namei.c:LINE!
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): mkdir-openat$mice-ioctl$PERF_EVENT_IOC_REFRESH-chdir-open-rmdir
+detailed listing:
+executing program 0:
+mkdir(&(0x7f000000014f)='/tmp/lstw7aVdE\x00', 0x0)
+r0 = openat$mice(0xffffffffffffff9c, 0x0, 0x0)
+ioctl$PERF_EVENT_IOC_REFRESH(r0, 0x2402, 0x80)
+chdir(0x0)
+open(&(0x7f000000018b)='test_dir/test_eacces\x00', 0x0, 0x1b6)
+rmdir(&(0x7f00000006c7)='/tmp/lstw7aVdE\x00')
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): mkdir-openat$mice-ioctl$PERF_EVENT_IOC_REFRESH-chdir-open-rmdir
+detailed listing:
+executing program 0:
+mkdir(&(0x7f000000014f)='/tmp/lstw7aVdE\x00', 0x0)
+r0 = openat$mice(0xffffffffffffff9c, 0x0, 0x0)
+ioctl$PERF_EVENT_IOC_REFRESH(r0, 0x2402, 0x80)
+chdir(&(0x7f000000017c)='/tmp/lstw7aVdE\x00')
+open(0x0, 0x0, 0x1b6)
+rmdir(&(0x7f00000006c7)='/tmp/lstw7aVdE\x00')
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): mkdir-openat$mice-ioctl$PERF_EVENT_IOC_REFRESH-chdir-open-rmdir
+detailed listing:
+executing program 0:
+mkdir(&(0x7f000000014f)='/tmp/lstw7aVdE\x00', 0x0)
+r0 = openat$mice(0xffffffffffffff9c, 0x0, 0x0)
+ioctl$PERF_EVENT_IOC_REFRESH(r0, 0x2402, 0x80)
+chdir(&(0x7f000000017c)='/tmp/lstw7aVdE\x00')
+open(&(0x7f000000018b)='test_dir/test_eacces\x00', 0x0, 0x1b6)
+rmdir(0x0)
+
+program did not crash
+extracting C reproducer
+testing compiled C program (duration=22.5s, {Threaded:true Collide:true Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): mkdir-openat$mice-ioctl$PERF_EVENT_IOC_REFRESH-chdir-open-rmdir
+program did not crash
+simplifying guilty program
+testing program (duration=22.5s, {Threaded:true Collide:false Repeat:true RepeatTimes:0 Procs:2 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): mkdir-openat$mice-ioctl$PERF_EVENT_IOC_REFRESH-chdir-open-rmdir
+detailed listing:
+executing program 0:
+mkdir(&(0x7f000000014f)='/tmp/lstw7aVdE\x00', 0x0)
+r0 = openat$mice(0xffffffffffffff9c, 0x0, 0x0)
+ioctl$PERF_EVENT_IOC_REFRESH(r0, 0x2402, 0x80)
+chdir(&(0x7f000000017c)='/tmp/lstw7aVdE\x00')
+open(&(0x7f000000018b)='test_dir/test_eacces\x00', 0x0, 0x1b6)
+rmdir(&(0x7f00000006c7)='/tmp/lstw7aVdE\x00')
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Collide:true Repeat:false RepeatTimes:0 Procs:1 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:false Cgroups:false BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): mkdir-openat$mice-ioctl$PERF_EVENT_IOC_REFRESH-chdir-open-rmdir
+detailed listing:
+executing program 0:
+mkdir(&(0x7f000000014f)='/tmp/lstw7aVdE\x00', 0x0)
+r0 = openat$mice(0xffffffffffffff9c, 0x0, 0x0)
+ioctl$PERF_EVENT_IOC_REFRESH(r0, 0x2402, 0x80)
+chdir(&(0x7f000000017c)='/tmp/lstw7aVdE\x00')
+open(&(0x7f000000018b)='test_dir/test_eacces\x00', 0x0, 0x1b6)
+rmdir(&(0x7f00000006c7)='/tmp/lstw7aVdE\x00')
+
+program crashed: kernel BUG at fs/namei.c:LINE!
+extracting C reproducer
+testing compiled C program (duration=22.5s, {Threaded:true Collide:true Repeat:false RepeatTimes:0 Procs:1 Sandbox:none Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:true NetReset:false Cgroups:false BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:true HandleSegv:true Repro:true Trace:false}): mkdir-openat$mice-ioctl$PERF_EVENT_IOC_REFRESH-chdir-open-rmdir
+program did not crash
+reproducing took 5m50.726124726s
+repro crashed as (corrupted=false):
+------------[ cut here ]------------
+kernel BUG at fs/namei.c:545!
+invalid opcode: 0000 [#1] SMP 
+Dumping ftrace buffer:
+   (ftrace buffer empty)
+Modules linked in:
+CPU: 1 PID: 2458 Comm: syz-executor.0 Not tainted 3.10.108-rt123+ #14
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+task: ffff88013a630fa0 ti: ffff88013933a000 task.ti: ffff88013933a000
+RIP: 0010:[<ffffffff8116a92a>]  [<ffffffff8116a92a>] unlazy_walk+0x25a/0x270
+RSP: 0018:ffff88013933bc60  EFLAGS: 00010293
+RAX: 0000000000000000 RBX: ffff88013933be40 RCX: 000000000000000d
+RDX: ffff88013a630fa0 RSI: ffffffff8116a92a RDI: ffff88013aed571c
+RBP: ffff88013933bc90 R08: 0000000000000000 R09: ffff88013933bc44
+R10: 0000000000000000 R11: 0000000000000246 R12: ffff88013aed56c0
+R13: 0000000000000006 R14: 0000000000000000 R15: ffff88013a15b940
+FS:  00007f554da9b700(0000) GS:ffff88013fd00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fb1bb334000 CR3: 000000013a20a000 CR4: 00000000003407e0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Stack:
+ 000000003933bcbc ffff88013933bd38 ffff88013933be40 0000000000000001
+ 0000000000000000 ffff88013933bd58 ffff88013933bce8 ffffffff8116ac06
+ ffff88013a2b9f20 ffff88013933bd58 0000000100000081 ffff8801399ec470
+Call Trace:
+ [<ffffffff8116ac06>] lookup_fast+0x2c6/0x3e0
+ [<ffffffff8116b94d>] link_path_walk+0x25d/0xda0
+ [<ffffffff81170841>] path_openat+0xa1/0x650
+ [<ffffffff81171671>] do_filp_open+0x41/0xd0
+ [<ffffffff8115b8ff>] do_sys_open+0x14f/0x290
+ [<ffffffff8115ba6d>] SyS_open+0x2d/0x40
+ [<ffffffff819a0df2>] system_call_fastpath+0x16/0x1b
+Code: ac fe ff ff c7 45 d4 01 00 00 00 e9 24 fe ff ff e8 dc f5 f4 ff 41 80 46 5c 01 e9 3c fe ff ff e8 cd f5 f4 ff 0f 0b e8 c6 f5 f4 ff <0f> 0b e8 bf f5 f4 ff 0f 0b e8 b8 f5 f4 ff 0f 0b 66 0f 1f 44 00 
+RIP  [<ffffffff8116a92a>] unlazy_walk+0x25a/0x270
+ RSP <ffff88013933bc60>
+------------[ cut here ]------------
+---[ end trace 00701b9740812bec ]---
+
+final repro crashed as (corrupted=false):
+------------[ cut here ]------------
+kernel BUG at fs/namei.c:545!
+invalid opcode: 0000 [#1] SMP 
+Dumping ftrace buffer:
+   (ftrace buffer empty)
+Modules linked in:
+CPU: 1 PID: 2458 Comm: syz-executor.0 Not tainted 3.10.108-rt123+ #14
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+task: ffff88013a630fa0 ti: ffff88013933a000 task.ti: ffff88013933a000
+RIP: 0010:[<ffffffff8116a92a>]  [<ffffffff8116a92a>] unlazy_walk+0x25a/0x270
+RSP: 0018:ffff88013933bc60  EFLAGS: 00010293
+RAX: 0000000000000000 RBX: ffff88013933be40 RCX: 000000000000000d
+RDX: ffff88013a630fa0 RSI: ffffffff8116a92a RDI: ffff88013aed571c
+RBP: ffff88013933bc90 R08: 0000000000000000 R09: ffff88013933bc44
+R10: 0000000000000000 R11: 0000000000000246 R12: ffff88013aed56c0
+R13: 0000000000000006 R14: 0000000000000000 R15: ffff88013a15b940
+FS:  00007f554da9b700(0000) GS:ffff88013fd00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fb1bb334000 CR3: 000000013a20a000 CR4: 00000000003407e0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Stack:
+ 000000003933bcbc ffff88013933bd38 ffff88013933be40 0000000000000001
+ 0000000000000000 ffff88013933bd58 ffff88013933bce8 ffffffff8116ac06
+ ffff88013a2b9f20 ffff88013933bd58 0000000100000081 ffff8801399ec470
+Call Trace:
+ [<ffffffff8116ac06>] lookup_fast+0x2c6/0x3e0
+ [<ffffffff8116b94d>] link_path_walk+0x25d/0xda0
+ [<ffffffff81170841>] path_openat+0xa1/0x650
+ [<ffffffff81171671>] do_filp_open+0x41/0xd0
+ [<ffffffff8115b8ff>] do_sys_open+0x14f/0x290
+ [<ffffffff8115ba6d>] SyS_open+0x2d/0x40
+ [<ffffffff819a0df2>] system_call_fastpath+0x16/0x1b
+Code: ac fe ff ff c7 45 d4 01 00 00 00 e9 24 fe ff ff e8 dc f5 f4 ff 41 80 46 5c 01 e9 3c fe ff ff e8 cd f5 f4 ff 0f 0b e8 c6 f5 f4 ff <0f> 0b e8 bf f5 f4 ff 0f 0b e8 b8 f5 f4 ff 0f 0b 66 0f 1f 44 00 
+RIP  [<ffffffff8116a92a>] unlazy_walk+0x25a/0x270
+ RSP <ffff88013933bc60>
+------------[ cut here ]------------
+---[ end trace 00701b9740812bec ]---
+

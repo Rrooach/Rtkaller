@@ -1,0 +1,4 @@
+# {Threaded:false Collide:false Repeat:true RepeatTimes:0 Procs:1 Sandbox: Fault:false FaultCall:-1 FaultNth:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:false KCSAN:false DevlinkPCI:false USB:false VhciInjection:false UseTmpDir:false HandleSegv:false Repro:false Trace:false}
+sendmsg$TIPC_NL_KEY_FLUSH(0xffffffffffffffff, 0x0, 0x8004)
+r0 = syz_open_dev$sg(&(0x7f0000000000)='/dev/sg#\x00', 0x0, 0x0)
+ioctl$SCSI_IOCTL_SEND_COMMAND(r0, 0x1, &(0x7f0000000100)=ANY=[@ANYBLOB="00000000ff0c0000a10a000056ce1b14403c05242f2b73efd5858d849b059b0b34866373c64eae928a781854f263331752756cbf31c105d8466e1a26b6a264cff03c00f29c9409b03213fa29102f2e3cbc7d4f05b60635252b636f30aab829f15b853400379b9bbe091d4996291809581c7e612e224ed6716a5e71891b93d6b644a1bf14abf8dcc47f0dd865b6fa219f6b4e89f93d57787ac6b0a15885c75f72def068cf6dcca841d94cc2926a1a1fd83b3c7a31fc942fa1f939"])

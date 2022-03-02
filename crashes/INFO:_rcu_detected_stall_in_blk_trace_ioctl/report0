@@ -1,0 +1,54 @@
+rcu: INFO: rcu_sched self-detected stall on CPU
+rcu: 	0-....: (186 ticks this GP) idle=732/1/0x4000000000000002 softirq=562527/562527 fqs=371 
+	(t=21172 jiffies g=778297 q=4)
+NMI backtrace for cpu 0
+CPU: 0 PID: 23552 Comm: syz-executor.1 Not tainted 5.3.0+ #3
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+Call Trace:
+ <IRQ>
+ dump_stack+0x64/0x8e
+ nmi_cpu_backtrace.cold.7+0x18/0x65
+ nmi_trigger_cpumask_backtrace+0xc8/0xed
+ rcu_dump_cpu_stacks+0x80/0xac
+ rcu_sched_clock_irq.cold.87+0x1ae/0x39b
+ update_process_times+0x28/0x60
+ tick_sched_handle+0x55/0x70
+ tick_sched_timer+0x3c/0xa0
+ __hrtimer_run_queues+0x149/0x330
+ hrtimer_interrupt+0x10f/0x250
+ smp_apic_timer_interrupt+0x68/0x130
+ apic_timer_interrupt+0xf/0x20
+ </IRQ>
+RIP: 0010:memset_erms+0x9/0x10
+Code: c1 e9 03 40 0f b6 f6 48 b8 01 01 01 01 01 01 01 01 48 0f af c6 f3 48 ab 89 d1 f3 aa 4c 89 c8 c3 90 49 89 f9 40 88 f0 48 89 d1 <f3> aa 4c 89 c8 c3 90 49 89 fa 40 0f b6 ce 48 b8 01 01 01 01 01 01
+RSP: 0018:ffff9cdb88d67c18 EFLAGS: 00010246 ORIG_RAX: ffffffffffffff13
+RAX: 0000000000040000 RBX: ffff8a3091c03900 RCX: 0000000001b8c000
+RDX: 0000000009bb0000 RSI: 0000000000000000 RDI: ffff9cdb9bade000
+RBP: ffff8a30a25fe200 R08: ffff8a3091dd94c0 R09: ffff9cdb93aba000
+R10: 0000000000000000 R11: ffffc58f42dbd5c0 R12: 0000000000009baf
+R13: 0000000000000000 R14: ffff9cdb93aba000 R15: 0000000000009bb0
+ relay_open_buf.part.19+0x253/0x3c0
+ relay_open+0x1e0/0x330
+ do_blk_trace_setup+0x17a/0x350
+ __blk_trace_setup+0x5d/0xd0
+ blk_trace_ioctl+0xa3/0x170
+ blkdev_ioctl+0x5da/0xbd0
+ block_ioctl+0x4f/0x70
+ do_vfs_ioctl+0xbf/0x7d0
+ ksys_ioctl+0x77/0xa0
+ __x64_sys_ioctl+0x1a/0x20
+ do_syscall_64+0x57/0x180
+ entry_SYSCALL_64_after_hwframe+0x44/0xa9
+RIP: 0033:0x4686dd
+Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 bc ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007fbaa51e3c58 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 0000000000514280 RCX: 00000000004686dd
+RDX: 0000000020000080 RSI: 00000000c0481273 RDI: 0000000000000004
+RBP: 00000000004c4725 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 000000000057cf00
+R13: 00007ffd83407cdf R14: 000000000057cf00 R15: 00007fbaa51e3dc0
+debugfs: File 'dropped' in directory 'loop6' already present!
+debugfs: File 'msg' in directory 'loop6' already present!
+debugfs: File 'trace0' in directory 'loop6' already present!
+syz-executor.0 (539) used greatest stack depth: 12256 bytes left
+syz-executor.1 (424) used greatest stack depth: 12008 bytes left

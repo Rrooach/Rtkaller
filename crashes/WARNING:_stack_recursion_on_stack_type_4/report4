@@ -1,0 +1,10 @@
+000: WARNING: stack recursion on stack type 4
+000: WARNING: can't dereference registers at 0000000052ff492b for ip swapgs_restore_regs_and_return_to_usermode+0x79/0x80
+000: perf: interrupt took too long (2993 > 2500), lowering kernel.perf_event_max_sample_rate to 66000
+000: perf: interrupt took too long (3753 > 3741), lowering kernel.perf_event_max_sample_rate to 53000
+000: perf: interrupt took too long (4730 > 4691), lowering kernel.perf_event_max_sample_rate to 42000
+000: perf: interrupt took too long (6008 > 5912), lowering kernel.perf_event_max_sample_rate to 33000
+000: perf: interrupt took too long (7535 > 7510), lowering kernel.perf_event_max_sample_rate to 26000
+000: perf: interrupt took too long (9482 > 9418), lowering kernel.perf_event_max_sample_rate to 21000
+001: EXT4-fs (sda): error count since last fsck: 3
+001: EXT4-fs (sda): initial error at time 1622039607: mb_free_blocks:1469: inode 106958: block 461312

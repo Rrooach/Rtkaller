@@ -1,0 +1,25 @@
+------------[ cut here ]------------
+WARNING: at net/xfrm/xfrm_user.c:1977 xfrm_add_pol_expire+0x22f/0x280()
+Dont know what to do with soft policy expire
+Modules linked in:
+CPU: 0 PID: 11055 Comm: syz-executor.1 Not tainted 3.10.108-rt123+ #14
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014
+ 0000000000000009 ffff880123c598d8 ffffffff81991617 ffff880123c59910
+ ffffffff8103b93c ffff88012402ac00 ffff880123c599d8 ffff880121e2f200
+ 00000000ffffffea ffff880127bb0ec0 ffff880123c59970 ffffffff8103b9a7
+Call Trace:
+ [<ffffffff81991617>] dump_stack+0x1e/0x20
+ [<ffffffff8103b93c>] warn_slowpath_common+0x5c/0x80
+ [<ffffffff8103b9a7>] warn_slowpath_fmt+0x47/0x50
+ [<ffffffff8184aadf>] xfrm_add_pol_expire+0x22f/0x280
+ [<ffffffff81848bdf>] xfrm_user_rcv_msg+0x18f/0x1c0
+ [<ffffffff8179c8e6>] netlink_rcv_skb+0x116/0x150
+ [<ffffffff81846d18>] xfrm_netlink_rcv+0x28/0x40
+ [<ffffffff8179c18f>] netlink_unicast+0x1af/0x260
+ [<ffffffff8179c576>] netlink_sendmsg+0x336/0x430
+ [<ffffffff81749b74>] sock_sendmsg+0xa4/0xf0
+ [<ffffffff8174a098>] ___sys_sendmsg+0x458/0x470
+ [<ffffffff8174ae9d>] __sys_sendmsg+0x4d/0xa0
+ [<ffffffff8174af1d>] SyS_sendmsg+0x2d/0x50
+ [<ffffffff819a0df2>] system_call_fastpath+0x16/0x1b
+---[ end trace ad40b70a9ae3dd3f ]---
