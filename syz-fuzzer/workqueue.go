@@ -1,3 +1,4 @@
+// Copyright 2021, Developed by Tsinghua Wingtecher Lab and Shumuyulin Ltd, All rights reserved.
 // Copyright 2017 syzkaller project authors. All rights reserved.
 // Use of this source code is governed by Apache 2 LICENSE that can be found in the LICENSE file.
 
@@ -37,8 +38,7 @@ const (
 // WorkTriage are programs for which we noticed potential new coverage during
 // first execution. But we are not sure yet if the coverage is real or not.
 // During triage we understand if these programs in fact give new coverage,
-// and if yes, minimize them and add to corpus.
-// modified by Rrooach
+// and if yes, minimize them and add to corpus. 
 type WorkTriage struct {
 	p     *prog.Prog
 	call  int

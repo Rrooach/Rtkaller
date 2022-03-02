@@ -1,4 +1,4 @@
-// © Copyright 2021, Developed by Tsinghua Wingtecher Lab, All rights reserved.
+// Copyright 2021, Developed by Tsinghua Wingtecher Lab and Shumuyulin Ltd, All rights reserved.
 #[macro_use]
 extern crate bitflags;
 #[macro_use]

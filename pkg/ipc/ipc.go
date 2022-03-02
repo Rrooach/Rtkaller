@@ -1,3 +1,4 @@
+// Copyright 2021, Developed by Tsinghua Wingtecher Lab and Shumuyulin Ltd, All rights reserved.
 // Copyright 2015 syzkaller project authors. All rights reserved.
 // Use of this source code is governed by Apache 2 LICENSE that can be found in the LICENSE file.
 
@@ -252,8 +253,7 @@ var rateLimit = time.NewTicker(1 * time.Second)
 // info: per-call info
 // hanged: program hanged and was killed
 // err0: failed to start the process or bug in executor itself.
-
-//modified by Rrooach
+ 
 func (env *Env) TaskExec(opts *ExecOpts, p *prog.Prog) (output []byte, info *ProgInfo, hanged bool, err0 error, rt_sig int) {
 	// Copy-in serialized program.
 	progSize, err := p.SerializeForExec(env.in)

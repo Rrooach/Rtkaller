@@ -1,4 +1,4 @@
-// © Copyright 2021, Developed by Tsinghua Wingtecher Lab. All rights reserved.
+// Copyright 2021, Developed by Tsinghua Wingtecher Lab and Shumuyulin Ltd, All rights reserved.
 // Copyright 2017 syzkaller project authors. All rights reserved.
 // Use of this source code is governed by Apache 2 LICENSE that can be found in the LICENSE file.
 
@@ -264,8 +264,7 @@ func (proc *Proc) executeHintSeed(p *prog.Prog, call int) {
 		proc.execute(proc.execOpts, p, ProgNormal, StatHint)
 	})
 }
-
-//modified by Rrooach
+ 
 type newlist []*ipc.ProgInfo
 
 func (I newlist) Len() int {

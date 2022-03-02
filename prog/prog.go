@@ -1,3 +1,4 @@
+// Copyright 2021, Developed by Tsinghua Wingtecher Lab and Shumuyulin Ltd, All rights reserved.
 // Copyright 2015 syzkaller project authors. All rights reserved.
 // Use of this source code is governed by Apache 2 LICENSE that can be found in the LICENSE file.
 
@@ -10,8 +11,7 @@ import (
 type Prog struct {
 	Target   *Target
 	Calls    []*Call
-	Comments []string
-	//modified by Rrooach
+	Comments []string 
 	Prio int
 }
 

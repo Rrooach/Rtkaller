@@ -1,3 +1,4 @@
+// Copyright 2021, Developed by Tsinghua Wingtecher Lab and Shumuyulin Ltd, All rights reserved.
 // Copyright 2015/2016 syzkaller project authors. All rights reserved.
 // Use of this source code is governed by Apache 2 LICENSE that can be found in the LICENSE file.
 
@@ -533,8 +534,7 @@ func (r *randGen) generateCall(s *state, p *Prog, insertionPoint int) []*Call {
 	meta := r.target.Syscalls[idx]
 	return r.generateParticularCall(s, meta)
 }
-
-//modified by Rrooach
+ 
 func (r *randGen) TaskgenerateParticularCall(s *state, CallName string) (call *Call) {
 	var idx int
 	for i, syscall := range r.target.Syscalls {

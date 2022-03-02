@@ -1,4 +1,4 @@
-// © Copyright 2021, Developed by Tsinghua Wingtecher Lab, All rights reserved.
+// Copyright 2021, Developed by Tsinghua Wingtecher Lab and Shumuyulin Ltd, All rights reserved.
 //
 use crate::prog::Inst;
 use crate::translate::to_c;
